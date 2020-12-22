@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Shush.css">
+    <title>Shush</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="button" onclick="Alarm()">Alarm</div>
+            <span>Wake up at</span>
+            <div class="dropdown" onclick="Dropdown()">
+                <span>7</span>
+                <div class="dropdown-content">
+                    <p>1</p>
+                    <p>2</p>
+                    <p>3</p>
+                    <p>4</p>
+                    <p>5</p>
+                    <p>6</p>
+                    <p>7</p>
+                    <p>8</p>
+                    <p>9</p>
+                    <p>10</p>
+                    <p>11</p>
+                    <p>12</p>
+                </div>
+            </div>
+            <span>:</span>
+            <div class="dropdown">
+                <span>00</span>
+                <div class="dropdown-content">
+                    <p>00</p>
+                    <p>15</p>
+                    <p>30</p>
+                    <p>45</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="button">Alarm without reading</div>
+        </div>
+        <div class="row">
+            <div class="button">Snooze</div>
+            <span>For</span>
+            <div class="increment">+</div>
+            <span id="snoozeminutes">15</span>
+            <div class="increment">-</div> 
+            <span>minutes until</span>
+            <span id="snoozetime">10:00</span>
+        </div>
+        <div class="row">
+            <div class="button disabled">Pause</div>
+        </div>
+    </div>
+</body>
+<script src="./Shush.js"></script>
+</html>
