@@ -1,3 +1,7 @@
+body {
+  background-color: antiquewhite;
+}
+
 .container {
     margin-top: 3rem;
     font-size: 1.5em;
@@ -51,16 +55,12 @@
     color: white;
   }
   
-  .dropdown:hover .dropdown-content {
+  .dropdown.open .dropdown-content {
     display: block;
   }
 
   .dropdown + .button{
       margin-left: 4rem;
-  }
-
-  .disabled{
-      background-color: rgb(161, 161, 161);
   }
 
   span + .dropdown {
@@ -77,3 +77,7 @@
     min-width: 1rem;
     text-align: center;
   }
+
+.disabled {
+    background-color: rgb(161, 161, 161);
+}
