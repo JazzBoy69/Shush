@@ -174,7 +174,7 @@ var readingSchedule = {
     "288": [ "nwt_16_Ne_E_01.mp3", "nwt_16_Ne_E_02.mp3", "nwt_19_Ps_E_123.mp3"],
     "289": [ "nwt_16_Ne_E_04.mp3, 0, 67", "nwt_19_Ps_E_129.mp3", "nwt_16_Ne_E_04.mp3, 68, 185", "nwt_19_Ps_E_134.mp3"],
     "290": [ "nwt_16_Ne_E_05.mp3", "nwt_16_Ne_E_06.mp3"],
-    "291": [ "nwt_16_Ne_E_07.mp3", "nwt_16_Ne_E_08.mp3", "nwt_16_Ne_E_10.mp3, 106, 181"],
+    "291": [ "nwt_16_Ne_E_07.mp3", "nwt_16_Ne_E_08.mp3", "nwt_16_Ne_E_10.mp3, 107, 181"],
     "292": [ "nwt_39_Mal_E_01.mp3", "nwt_39_Mal_E_02.mp3", "nwt_39_Mal_E_03.mp3", "nwt_39_Mal_E_04.mp3"],
     "293": [ "nwt_16_Ne_E_12.mp3, 171, 204", "nwt_19_Ps_E_048.mp3", "nwt_16_Ne_E_13.mp3" ]
 };
