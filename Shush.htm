@@ -12,7 +12,7 @@
             <div class="button" id="Alarm" onclick="Alarm()">Alarm</div>
             <span>Wake up at</span>
             <div class="dropdown" onclick="OpenDropDown(this)">
-                <span id="hour">7</span>
+                <span id="hour">6</span>
                 <div class="dropdown-content">
                     <p onclick="HourDropdown(this)">1</p>
                     <p onclick="HourDropdown(this)">2</p>
@@ -30,7 +30,7 @@
             </div>
             <span>:</span>
             <div class="dropdown" onclick="OpenDropDown(this)">
-                <span id="minute">00</span>
+                <span id="minute">30</span>
                 <div class="dropdown-content">
                     <p onclick="MinuteDropdown(this)">00</p>
                     <p onclick="MinuteDropdown(this)">15</p>
@@ -63,7 +63,7 @@
             <source id="audioSource" src="Pink_Noise.wav"></source>
         </audio>
     </div>
-    <div id="data" data-mode="0" data-hour="7" data-minute="0" data-snooze="15"></div>
+    <div id="data" data-mode="0" data-hour="6" data-minute="30" data-snooze="15"></div>
 </body>
 <script src="./schedule.js"></script>
 <script src="./Shush.js"></script>
