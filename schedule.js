@@ -218,5 +218,10 @@ var readingSchedule = {
                 "nwt_43_Joh_E_19.mp3, 25, 166"],
         "329": ["nwt_42_Lu_E_23.mp3, 215, 191", "nwt_43_Joh_E_19.mp3, 292, 500"],
         "330": ["nwt_40_Mt_E_27.mp3, 561, 500", "nwt_40_Mt_E_28.mp3, 2, 145", "nwt_43_Joh_E_20.mp3, 29, 158", 
-                "nwt_42_Lu_E_24.mp3, 93, 313", "nwt_43_Joh_E_20.mp3, 187, 500"]
+                "nwt_42_Lu_E_24.mp3, 93, 313", "nwt_43_Joh_E_20.mp3, 187, 500"],
+        "331": ["nwt_43_Joh_E_21.mp3", "nwt_40_Mt_E_28.mp3, 146, 500", "nwt_44_Ac_E_01.mp3, 32, 500"],
+        "332": ["nwt_44_Ac_E_02.mp3", "nwt_44_Ac_E_03.mp3"],
+        "333": ["nwt_44_Ac_E_04.mp3", "nwt_44_Ac_E_05.mp3"],
+        "334": ["nwt_44_Ac_E_06.mp3", "nwt_44_Ac_E_07.mp3"],
+        "335": ["nwt_44_Ac_E_08.mp3", "nwt_44_Ac_E_09.mp3"]
 };
