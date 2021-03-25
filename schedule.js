@@ -237,5 +237,12 @@ var readingSchedule = {
                 "nwt_46_1Co_E_01.mp3"],
         "346": ["nwt_46_1Co_E_02.mp3", "nwt_46_1Co_E_03.mp3", "nwt_46_1Co_E_04.mp3"],
         "347": ["nwt_46_1Co_E_05.mp3", "nwt_46_1Co_E_06.mp3", "nwt_46_1Co_E_07.mp3"],
-        "348": ["nwt_46_1Co_E_08.mp3", "nwt_46_1Co_E_09.mp3", "nwt_46_1Co_E_10.mp3"]
+        "348": ["nwt_46_1Co_E_08.mp3", "nwt_46_1Co_E_09.mp3", "nwt_46_1Co_E_10.mp3"],
+        "349": ["nwt_46_1Co_E_11.mp3", "nwt_46_1Co_E_12.mp3", "nwt_46_1Co_E_13.mp3"],
+        "350": ["nwt_46_1Co_E_14.mp3", "nwt_46_1Co_E_15.mp3"],
+        "351": ["nwt_46_1Co_E_16.mp3", "nwt_44_Ac_E_20.mp3, 0, 12", "nwt_47_2Co_E_01.mp3", "nwt_47_2Co_E_02.mp3"],
+        "352": ["nwt_47_2Co_E_03.mp3", "nwt_47_2Co_E_04.mp3", "nwt_47_2Co_E_05.mp3"],
+        "353": ["nwt_47_2Co_E_06.mp3", "nwt_47_2Co_E_07.mp3", "nwt_47_2Co_E_08.mp3"],
+        "354": ["nwt_47_2Co_E_09.mp3", "nwt_47_2Co_E_10.mp3", "nwt_47_2Co_E_11.mp3"],
+        "355": ["nwt_47_2Co_E_12.mp3", "nwt_47_2Co_E_13.mp3", "nwt_44_Ac_E_20.mp3, 12, 9", "nwt_45_Ro_E_01.mp3"]
 };
