@@ -1,4 +1,6 @@
 var readingSchedule = {
+        "0":   ["nwt_51_Col_E_03.mp3", "nwt_51_Col_E_04.mp3", "nwt_49_Eph_E_01.mp3"],
+        "1":   ["nwt_49_Eph_E_02.mp3", "nwt_49_Eph_E_03.mp3", "nwt_49_Eph_E_04.mp3"],
         "116": [ "bi12_09_1Sa_E_16.mp3", "bi12_09_1Sa_E_17.mp3"],
         "117": [ "bi12_09_1Sa_E_18.mp3", "bi12_09_1Sa_E_19.mp3", "nwt_19_Ps_E_058.mp3", "nwt_19_Ps_E_059.mp3"],
         "118": [ "bi12_09_1Sa_E_20.mp3", "bi12_09_1Sa_E_21.mp3", "nwt_19_Ps_E_034.mp3", "nwt_19_Ps_E_035.mp3", "nwt_19_Ps_E_036.mp3", "nwt_19_Ps_E_056.mp3"],
@@ -253,6 +255,5 @@ var readingSchedule = {
         "361": ["nwt_44_Ac_E_20.mp3, 21, 500", "nwt_44_Ac_E_21.mp3", "nwt_44_Ac_E_22.mp3"],
         "362": ["nwt_44_Ac_E_23.mp3", "nwt_44_Ac_E_24.mp3", "nwt_44_Ac_E_25.mp3"],
         "363": ["nwt_44_Ac_E_26.mp3", "nwt_44_Ac_E_27.mp3", "nwt_44_Ac_E_28.mp3"],
-        "364": ["nwt_57_Phm_E_01.mp3", "nwt_51_Col_E_01.mp3", "nwt_51_Col_E_02.mp3"],
-        "365": ["nwt_51_Col_E_03.mp3", "nwt_51_Col_E_04.mp3", "nwt_49_Eph_E_01.mp3"]
+        "364": ["nwt_57_Phm_E_01.mp3", "nwt_51_Col_E_01.mp3", "nwt_51_Col_E_02.mp3"]
 };

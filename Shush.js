@@ -78,7 +78,7 @@ function ScheduleDay() {
     let startTime = new Date();
     //startTime.setTime(startTime.getTime() - (9*60*60*1000));
     let referenceDate = new Date(2020, 3, 5, 3, 0, 0, 0);
-    return Math.floor((startTime-referenceDate)/(1000*60*60*24));
+    return (Math.floor((startTime-referenceDate)/(1000*60*60*24))) % 365;
 }
 
 function PlayTrack(player, day, track) {
