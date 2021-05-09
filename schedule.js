@@ -32,6 +32,8 @@ var readingSchedule = {
         "30":  ["nwt_01_Ge_E_18.mp3", "nwt_01_Ge_E_19.mp3"],
         "31":  ["nwt_01_Ge_E_20.mp3", "nwt_01_Ge_E_21.mp3"],
         "32":  ["nwt_01_Ge_E_22.mp3", "nwt_01_Ge_E_23.mp3"],
+        "33":  ["nwt_01_Ge_E_24.mp3"],
+        "34":  ["nwt_01_Ge_E_25.mp3", "nwt_01_Ge_E_26.mp3"],
         "116": [ "bi12_09_1Sa_E_16.mp3", "bi12_09_1Sa_E_17.mp3"],
         "117": [ "bi12_09_1Sa_E_18.mp3", "bi12_09_1Sa_E_19.mp3", "nwt_19_Ps_E_058.mp3", "nwt_19_Ps_E_059.mp3"],
         "118": [ "bi12_09_1Sa_E_20.mp3", "bi12_09_1Sa_E_21.mp3", "nwt_19_Ps_E_034.mp3", "nwt_19_Ps_E_035.mp3", "nwt_19_Ps_E_036.mp3", "nwt_19_Ps_E_056.mp3"],
