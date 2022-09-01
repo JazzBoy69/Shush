@@ -125,7 +125,7 @@ var readingSchedule = {
         "123": ["nwt_09_1Sa_E_27.mp3", "nwt_09_1Sa_E_28.mp3", "nwt_09_1Sa_E_29.mp3"],
         "124": ["nwt_09_1Sa_E_30.mp3", "nwt_19_Ps_E_140.mp3", "nwt_19_Ps_E_141.mp3"],
         "125": ["nwt_09_1Sa_E_31.mp3", "nwt_10_2Sa_E_01.mp3", "nwt_10_2Sa_E_02.mp3"],
-        "126": ["nwt_10_2Sa_E__03.mp3", "nwt_10_2Sa_E_04.mp3"],
+        "126": ["nwt_10_2Sa_E_03.mp3", "nwt_10_2Sa_E_04.mp3"],
         "127": ["nwt_10_2Sa_E_05.mp3", "nwt_10_2Sa_E_22.mp3"],
         "128": ["nwt_10_2Sa_E_06.mp3", "nwt_19_Ps_E_024.mp3", "nwt_19_Ps_E_065.mp3", "nwt_19_Ps_E_066.mp3", "nwt_19_Ps_E_067.mp3", "nwt_19_Ps_E_068.mp3"],
         "129": ["bi12_13_1Ch_E_16.mp3", "nwt_19_Ps_E_095.mp3", "nwt_19_Ps_E_096.mp3", "nwt_19_Ps_E_097.mp3", "nwt_19_Ps_E_098.mp3", "nwt_19_Ps_E_099.mp3"],
