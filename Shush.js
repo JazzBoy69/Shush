@@ -140,6 +140,17 @@ function StartShush() {
     player.setAttribute("src", null);
     var audio = ShushPlayer();
     audio.play();
+      // Check if the Media Session API is supported
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+        title: 'Pink Noise Player',
+        artist: 'Intranet System',
+        album: 'Continuous Playback Active'
+    });
+
+    // Dummy handlers tell Android Chrome that the media is active and controllable
+    navigator.mediaSession.setActionHandler('play', () => audio.play());
+    navigator.mediaSession.setActionHandler('pause', () => audio.pause());
     audio.addEventListener('timeupdate', function(){
         var buffer = .75;
         if(this.currentTime > this.duration - buffer){
