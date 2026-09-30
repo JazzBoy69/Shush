@@ -56,17 +56,12 @@
                 <source id="audioSource" src=""></source>
             </audio>
         </div>
-        <audio id="player2">
-            <source id="audioSource" src="Pink_Noise.wav"></source>
-        </audio>
-        <audio id="player3">
-            <source id="audioSource" src="Pink_Noise.wav"></source>
-        </audio>
+        <audio id="player2" preload="auto" src="Pink_Noise.wav" playsinline></audio>
     </div>
     <div id="data" data-mode="0" data-hour="6" data-minute="30" data-snooze="15"></div>
 </body>
 <script src="./schedule.js"></script>
-<script src="./Shush.js"></script>
+<script src="./Shush_v2.js"></script>
 <script>
     window.onload = function()  
     {
