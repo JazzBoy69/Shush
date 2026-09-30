@@ -111,6 +111,10 @@ def start_session(
     if session.phase is not Phase.BEDTIME_SETUP or session.alarm_at is None:
         raise ValueError("set an alarm during bedtime setup before starting audio")
     _require_aware(now)
+    try:
+        choice = StartChoice(choice)
+    except ValueError as error:
+        raise ValueError(f"unsupported start choice: {choice!r}") from error
     if now.astimezone(UTC) >= session.alarm_at.astimezone(UTC):
         return replace(session, phase=Phase.STOPPED, start_choice=choice)
 
