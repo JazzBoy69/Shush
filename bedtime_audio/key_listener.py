@@ -31,6 +31,7 @@ class MediaKeyListener:
             return
 
         key_codes = {
+            ecodes.KEY_OK: "toggle",
             ecodes.KEY_PLAYPAUSE: "toggle",
             ecodes.KEY_PLAY: "play",
             ecodes.KEY_PAUSE: "pause",

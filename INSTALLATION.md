@@ -77,20 +77,20 @@ sudo raspi-config
 
 Choose **System Options** → **Audio** → the HDMI output connected to the TV (for example, HDMI 1), then select **Finish**. Menu labels can vary slightly by OS release. This is an OS-level choice; the application uses the OS default audio device and has no audio-device setting. For other outputs such as USB audio, choose that device in the same menu.
 
-If the default audio test still plays through the wrong output, set ALSA's system-wide default to the HDMI card reported by `aplay -l`. For example, if the card ID is `vc4hdmi`, open the OS-wide ALSA settings file:
+If the default audio test still plays through the wrong output, set ALSA's system-wide default to the HDMI card number shown by `aplay -l`. In the example below the TV's HDMI card is card 1; use the number shown for the HDMI card on this Pi:
 
 ```sh
 sudo nano /etc/asound.conf
 ```
 
-Add these lines (replace `vc4hdmi` only if `aplay -l` shows a different ID for the TV's HDMI card):
+Add these lines (replace `1` if `aplay -l` shows a different card number for the TV's HDMI device):
 
 ```text
-defaults.pcm.card vc4hdmi
-defaults.ctl.card vc4hdmi
+defaults.pcm.card 1
+defaults.ctl.card 1
 ```
 
-Save in nano with Ctrl+O, press Enter, then exit with Ctrl+X. This sets the OS-wide ALSA default; it does not add an audio-device option to Shush. ALSA supports card IDs as well as card numbers, so using the ID avoids relying on card ordering. See ALSA's [system-wide default-device configuration](https://www.alsa-project.org/wiki/Setting_the_default_device).
+Save in nano with Ctrl+O, press Enter, then exit with Ctrl+X. This sets the OS-wide ALSA default; it does not add an audio-device option to Shush. The `defaults.*.card` settings use the numeric card index, so use the number from `aplay -l`. See ALSA's [system-wide default-device configuration](https://www.alsa-project.org/wiki/Setting_the_default_device).
 
 Inspect and test the selected output:
 
@@ -237,7 +237,7 @@ sudo usermod -aG input,video,audio bedtime-audio
 
 Group changes take effect when the service starts again; restart the service after adding these groups.
 
-Before starting the service, use `evtest` to identify the receiver and press each button. Confirm that the receiver emits Linux key events corresponding to Left, Right, Up, Down, Channel Up, Channel Down, Play, Play/Pause, and Stop. The application currently maps those standard evdev codes. If this receiver reports different codes, update `bedtime_audio/key_listener.py` to match the observed codes before installing/reinstalling the package.
+Before starting the service, use `evtest` to identify the receiver and press each button. Confirm that the receiver emits Linux key events corresponding to Left, Right, Up, Down, Channel Up, Channel Down, OK, Play, Play/Pause, and Stop. The application currently maps those standard evdev codes. If this receiver reports different codes, update `bedtime_audio/key_listener.py` to match the observed codes before installing/reinstalling the package.
 
 ## 7. Check playback as the service account
 
@@ -292,6 +292,7 @@ The service waits on the ready screen; there is no menu to navigate and no Enter
 - Left/Right adjusts the alarm by 15 minutes; Up/Down adjusts it by one hour.
 - Channel Up/Down toggles the selection between **Alarm with playlist** and **Alarm without playlist**.
 - Play starts the selected mode immediately.
+- OK starts the selected mode from the ready screen and toggles playback between playing and paused during a session.
 - Play/Pause toggles playback; Play resumes after a pause.
 - Stop ends playback and restores the ready screen. It does not stop the boot service.
 - The display is black during playback and pause. The remote remains usable while it is black.

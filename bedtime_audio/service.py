@@ -247,7 +247,7 @@ class BedtimeService:
                 self.player.stop()
                 LOG.info("Playback stopped")
                 return
-            if action == "play" and self.session.phase in (Phase.IDLE, Phase.STOPPED):
+            if action in ("play", "toggle") and self.session.phase in (Phase.IDLE, Phase.STOPPED):
                 self.last_ui_error = None
                 try:
                     self._start_session(
