@@ -1,6 +1,7 @@
 [Unit]
-Description=Raspberry Pi bedtime audio
-After=local-fs.target sound.target getty@tty1.service
+Description=Shush bedtime interface and session controller
+After=local-fs.target sound.target getty@tty1.service bedtime-audio-player.service
+Wants=bedtime-audio-player.service
 Conflicts=getty@tty1.service
 
 [Service]
@@ -17,9 +18,8 @@ TTYPath=/dev/tty1
 TTYReset=yes
 TTYVHangup=yes
 TTYVTDisallocate=yes
-Restart=on-failure
+Restart=always
 RestartSec=3
-TimeoutStopSec=10
 RuntimeDirectory=bedtime-audio
 RuntimeDirectoryMode=0700
 

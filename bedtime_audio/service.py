@@ -12,7 +12,7 @@ import socketserver
 import stat
 import threading
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -29,7 +29,7 @@ from .planner import (
     track_finished,
 )
 from .key_listener import MediaKeyListener
-from .player import MPV_SOCKET, MpvPlayer, PlayerError, PlayerEvent
+from .audio_control import AudioClient, PlayerError, PlayerEvent
 
 
 LOG = logging.getLogger(__name__)
@@ -38,6 +38,7 @@ SCHEDULE_FILE = Path("/opt/bedtime-audio/data/reading_schedule.json")
 MEDIA_ROOT = Path("/var/lib/bedtime-audio/Audio")
 PINK_NOISE_FILE = Path("/var/lib/bedtime-audio/Pink_Noise.wav")
 MAX_CONTROL_MESSAGE_BYTES = 8192
+SESSION_STATE_FILE = Path("/var/lib/bedtime-audio/session-state.json")
 
 
 class ServiceError(RuntimeError):
@@ -139,14 +140,18 @@ class BedtimeService:
         self.timezone = system_timezone()
         self.schedule = load_schedule()
         self.player_events: queue.Queue[PlayerEvent] = queue.Queue()
-        self.session = Session()
         self.alarm_minutes = 6 * 60 + 30
         self.selected_choice = StartChoice.READINGS
         self.last_ui_error: str | None = None
         self.paused = False
+        self.session, self.restore_audio_stop = self._load_persisted_session()
         self.state_lock = threading.RLock()
         self.stop_requested = threading.Event()
-        self.player = MpvPlayer(self.player_events.put, socket_path=MPV_SOCKET)
+        self.audio_stop_pending = False
+        self.audio_stop_retry_after = 0.0
+        self.audio_event_poll_after = 0.0
+        self.audio_poll_error_logged_at = 0.0
+        self.player = AudioClient(self.player_events.put)
         self.control_server: _ControlServer | None = None
         self.control_thread: threading.Thread | None = None
         self.media_keys = MediaKeyListener(self.handle_media_key)
@@ -155,6 +160,10 @@ class BedtimeService:
         try:
             self._clear_stale_control_socket()
             self.player.start()
+            if self.restore_audio_stop:
+                with self.state_lock:
+                    self._request_audio_stop()
+                    self.restore_audio_stop = False
             self.control_server = _ControlServer(CONTROL_SOCKET, self)
             self.control_thread = threading.Thread(
                 target=self.control_server.serve_forever,
@@ -178,10 +187,8 @@ class BedtimeService:
         with self.state_lock:
             self.session = stop_session(self.session)
             self.paused = False
-            try:
-                self.player.stop()
-            except PlayerError:
-                LOG.exception("Could not stop playback during shutdown")
+            # Do not stop audio during controller shutdown or restart. Audio
+            # has an independent systemd unit and remains in its current state.
         if self.control_server is not None:
             if self.control_thread is not None and self.control_thread.is_alive():
                 self.control_server.shutdown()
@@ -222,6 +229,15 @@ class BedtimeService:
     def handle_media_key(self, action: str) -> None:
         """Apply a standard media-key action without creating/restarting a session."""
         with self.state_lock:
+            if action in ("volume_up", "volume_down", "mute_toggle"):
+                try:
+                    if action == "mute_toggle":
+                        self.player.toggle_mute()
+                    else:
+                        self.player.adjust_volume(5 if action == "volume_up" else -5)
+                except PlayerError:
+                    LOG.exception("Could not apply media volume action %s", action)
+                return
             alarm_adjustments = {
                 "alarm_left": -15,
                 "alarm_right": 15,
@@ -244,7 +260,7 @@ class BedtimeService:
                 self.session = stop_session(self.session)
                 self.paused = False
                 self.last_ui_error = None
-                self.player.stop()
+                self._request_audio_stop()
                 LOG.info("Playback stopped")
                 return
             if action in ("play", "toggle") and self.session.phase in (Phase.IDLE, Phase.STOPPED):
@@ -267,9 +283,11 @@ class BedtimeService:
             if action == "pause" and not self.paused:
                 self.player.set_paused(True)
                 self.paused = True
+                self._save_persisted_session()
             elif action == "play" and self.paused:
                 self.player.set_paused(False)
                 self.paused = False
+                self._save_persisted_session()
 
     def adjust_alarm(self, minutes: int) -> None:
         """Adjust the ready-screen alarm time, wrapping within a local day."""
@@ -281,8 +299,32 @@ class BedtimeService:
 
     def service_tick(self) -> None:
         """Advance playback events and enforce the alarm cutoff once."""
+        now = time.monotonic()
+        if now >= self.audio_event_poll_after:
+            self.audio_event_poll_after = now + 0.25
+            try:
+                self.player.poll_events()
+            except PlayerError:
+                if now - self.audio_poll_error_logged_at >= 10:
+                    LOG.exception("Could not read events from the independent audio service")
+                    self.audio_poll_error_logged_at = now
         self._process_player_events()
         self._enforce_alarm()
+        if self.audio_stop_pending and time.monotonic() >= self.audio_stop_retry_after:
+            with self.state_lock:
+                self._request_audio_stop()
+
+    def _request_audio_stop(self) -> None:
+        self._save_persisted_session()
+        try:
+            self.player.stop()
+        except PlayerError:
+            self.audio_stop_pending = True
+            self.audio_stop_retry_after = time.monotonic() + 1.0
+            LOG.exception("Audio stop is pending; will retry when the audio service responds")
+        else:
+            self.audio_stop_pending = False
+            self._clear_persisted_session()
 
     def _start_session(self, request: Mapping[str, object]) -> dict[str, object]:
         alarm_text = request.get("alarm")
@@ -300,12 +342,15 @@ class BedtimeService:
             next_session = set_alarm(next_session, now, alarm_text)
             next_session = start_session(next_session, now, choice, self.schedule)
             self.session = next_session
+            self._save_persisted_session()
             self.player.set_paused(False)
             self.paused = False
             if self.session.phase is Phase.PLAYLIST:
                 self._play_current_track()
             elif self.session.phase is Phase.PINK_NOISE:
                 self._play_pink_noise()
+            else:
+                self._request_audio_stop()
             LOG.info(
                 "Session started: mode=%s alarm=%s day=%s",
                 choice.value,
@@ -316,6 +361,7 @@ class BedtimeService:
 
     def _play_current_track(self) -> None:
         assert self.session.schedule_day is not None
+        self._save_persisted_session()
         entry = self.schedule[str(self.session.schedule_day)][self.session.track_index]
         path = MEDIA_ROOT / str(entry["file"])
         try:
@@ -331,23 +377,18 @@ class BedtimeService:
             LOG.error("Cannot play scheduled track %s: %s", path, error)
             self.session = stop_session(self.session)
             self.paused = False
-            try:
-                self.player.stop()
-            except PlayerError:
-                LOG.exception("Could not stop MPV after a track error")
+            self._request_audio_stop()
             raise ServiceError(f"cannot play {path.name}: {error}") from error
 
     def _play_pink_noise(self) -> None:
+        self._save_persisted_session()
         try:
             self.player.play_pink_noise(PINK_NOISE_FILE)
         except (OSError, PlayerError) as error:
             LOG.error("Cannot play pink noise %s: %s", PINK_NOISE_FILE, error)
             self.session = stop_session(self.session)
             self.paused = False
-            try:
-                self.player.stop()
-            except PlayerError:
-                LOG.exception("Could not stop MPV after a pink-noise error")
+            self._request_audio_stop()
             raise ServiceError(f"cannot play pink noise: {error}") from error
 
     def _process_player_events(self) -> None:
@@ -359,12 +400,13 @@ class BedtimeService:
             with self.state_lock:
                 if event.kind == "error":
                     LOG.error("Playback error for %s: %s", event.path, event.message)
+                    if self.session.phase is Phase.PINK_NOISE:
+                        # Keep the pink-noise session visible if its native
+                        # continuous-output backend reports an error.
+                        continue
                     self.session = stop_session(self.session)
                     self.paused = False
-                    try:
-                        self.player.stop()
-                    except PlayerError:
-                        LOG.exception("Could not stop MPV after an error event")
+                    self._request_audio_stop()
                     continue
                 if event.kind != "completed" or self.session.phase is not Phase.PLAYLIST:
                     continue
@@ -386,7 +428,7 @@ class BedtimeService:
                     except ServiceError:
                         LOG.exception("Could not start pink noise after readings")
                 else:
-                    self.player.stop()
+                    self._request_audio_stop()
 
     def _enforce_alarm(self) -> None:
         with self.state_lock:
@@ -395,7 +437,93 @@ class BedtimeService:
             if old_phase in (Phase.PLAYLIST, Phase.PINK_NOISE) and self.session.phase is Phase.STOPPED:
                 LOG.info("Alarm time reached; stopping audio")
                 self.paused = False
-                self.player.stop()
+                self._request_audio_stop()
+
+    def _load_persisted_session(self) -> tuple[Session, bool]:
+        """Restore a valid session and absolute alarm deadline after restart."""
+        try:
+            data = json.loads(SESSION_STATE_FILE.read_text(encoding="utf-8"))
+            if not isinstance(data, dict):
+                raise ValueError("session state must be an object")
+            alarm_value = data.get("alarm_at_utc")
+            if not isinstance(alarm_value, str):
+                raise ValueError("session state has no alarm deadline")
+            alarm_at = datetime.fromisoformat(alarm_value)
+            if alarm_at.tzinfo is None or alarm_at.utcoffset() is None:
+                raise ValueError("saved alarm deadline is not timezone-aware")
+            alarm_at = alarm_at.astimezone(self.timezone)
+            self.alarm_minutes = int(data.get("alarm_minutes", self.alarm_minutes)) % (24 * 60)
+            choice = StartChoice(data.get("start_choice", StartChoice.READINGS.value))
+            self.selected_choice = choice
+            self.paused = bool(data.get("paused", False))
+            phase = Phase(data.get("phase", Phase.IDLE.value))
+            if phase is Phase.STOPPED:
+                return Session(phase=Phase.STOPPED, alarm_at=alarm_at, start_choice=choice), True
+            if phase not in (Phase.PLAYLIST, Phase.PINK_NOISE):
+                raise ValueError("saved session is not active")
+
+            session = Session(phase=phase, alarm_at=alarm_at, start_choice=choice)
+            if phase is Phase.PLAYLIST:
+                day = data.get("schedule_day")
+                index = int(data.get("track_index", 0))
+                if not isinstance(day, int) or not 0 <= day < 366:
+                    raise ValueError("saved playlist day is invalid")
+                entries = self.schedule.get(str(day), [])
+                if not entries or not 0 <= index < len(entries):
+                    raise ValueError("saved playlist position is invalid")
+                session = Session(
+                    phase=Phase.PLAYLIST,
+                    alarm_at=alarm_at,
+                    start_choice=choice,
+                    schedule_day=day,
+                    track_index=index,
+                    track_count=len(entries),
+                )
+            if advance_time(session, datetime.now(self.timezone)).phase is Phase.STOPPED:
+                LOG.info("Saved session alarm has passed; stopping restored audio")
+                return Session(phase=Phase.STOPPED, alarm_at=alarm_at, start_choice=choice), True
+            LOG.info("Restored %s session with alarm deadline %s", phase.value, alarm_at.isoformat())
+            return session, False
+        except FileNotFoundError:
+            return Session(), False
+        except (OSError, ValueError, TypeError, json.JSONDecodeError) as error:
+            LOG.error("Ignoring invalid saved session state: %s", error)
+            return Session(), False
+
+    def _save_persisted_session(self) -> None:
+        if self.session.phase is Phase.IDLE or self.session.alarm_at is None:
+            return
+        document = {
+            "phase": self.session.phase.value,
+            "alarm_at_utc": self.session.alarm_at.astimezone(timezone.utc).isoformat(),
+            "start_choice": self.session.start_choice.value if self.session.start_choice else None,
+            "schedule_day": self.session.schedule_day,
+            "track_index": self.session.track_index,
+            "track_count": self.session.track_count,
+            "alarm_minutes": self.alarm_minutes,
+            "paused": self.paused,
+        }
+        temporary = SESSION_STATE_FILE.with_suffix(".tmp")
+        try:
+            with temporary.open("w", encoding="utf-8") as state_file:
+                state_file.write(json.dumps(document) + "\n")
+                state_file.flush()
+                os.fsync(state_file.fileno())
+            os.replace(temporary, SESSION_STATE_FILE)
+            directory = os.open(SESSION_STATE_FILE.parent, os.O_RDONLY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
+        except OSError:
+            LOG.exception("Could not persist the active bedtime session")
+
+    @staticmethod
+    def _clear_persisted_session() -> None:
+        try:
+            SESSION_STATE_FILE.unlink(missing_ok=True)
+        except OSError:
+            LOG.exception("Could not clear completed bedtime session state")
 
     def _status_snapshot(self) -> dict[str, object]:
         with self.state_lock:
@@ -413,6 +541,7 @@ class BedtimeService:
             "alarm_time": f"{self.alarm_minutes // 60:02d}:{self.alarm_minutes % 60:02d}",
             "selected_mode": self.selected_choice.value,
             "error": self.last_ui_error,
+            "audio_stop_pending": self.audio_stop_pending,
         }
 
     @staticmethod

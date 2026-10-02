@@ -18,7 +18,7 @@ The browser exposes OS/browser media-session play, pause, and stop actions. The 
 
 ## Platform and runtime assumptions
 
-Use a small Python 3 service on Raspberry Pi OS, with a system audio backend such as MPV controlled through local IPC. Keep schedule logic independent of the player so timing behavior can be reasoned about and recovered without an audio device.
+Use a Python 3 UI/session controller and a compiled native C++ audio daemon on Raspberry Pi OS. The daemon streams the installed pink-noise WAV through one persistent ALSA PCM stream at the WAV's exact sample rate; MPV is used only for scheduled reading tracks. Keep schedule logic independent of audio output.
 
 Target Raspberry Pi OS Lite (64-bit). Do not add an application configuration file or setup screen for static system settings. Use the OS timezone and default audio device. Install the application, migrated schedule, readings, and `Pink_Noise.wav` at fixed documented paths under `/opt/bedtime-audio` and `/var/lib/bedtime-audio`; keep those paths as application/package constants. Configure timezone and audio output through Raspberry Pi OS.
 
@@ -75,14 +75,15 @@ bedtime-audio/
     __init__.py
     __main__.py
     planner.py
-    player.py
+    audio_control.py
     key_listener.py
     ui.py
     service.py
   tools/migrate_schedule.py
+  native/audio_player.cpp
 ```
 
-The current implementation uses a directly runnable Python package rather than a built wheel: place the `bedtime_audio/` directory and `bedtime-audio.service` at `/opt/bedtime-audio/`, and place the schedule under `/opt/bedtime-audio/data/`. The full-screen native UI uses Tkinter and a local X server; keyboard and remote input use Raspberry Pi OS's `python3-evdev` package. Create the venv with system-site packages enabled so it can import these OS Python packages.
+The UI/session controller uses a directly runnable Python package rather than a built wheel: place the `bedtime_audio/` directory and `bedtime-audio.service` at `/opt/bedtime-audio/`. Build `native/audio_player.cpp` into `/opt/bedtime-audio/bin/bedtime-audio-player`; systemd runs that compiled daemon directly. The full-screen UI uses Tkinter and a local X server; keyboard and remote input use Raspberry Pi OS's `python3-evdev` package.
 
 Keep the planner pure: given session state, schedule, and a timezone-aware current time, it returns `idle`, `playlist`, `pink_noise`, or `stopped`, along with the alarm deadline and playlist index/clip details. The user flow is `IDLE → BEDTIME_SETUP → (PLAYLIST or PINK_NOISE) → STOPPED`; playlist completion changes `PLAYLIST → PINK_NOISE`, and alarm time or explicit Stop ends either playback state. The service executes that plan and reacts to player/control events.
 
@@ -141,7 +142,7 @@ sudo python3 -m venv --system-site-packages /opt/bedtime-audio/.venv
 
 Run those commands from the repository root on the Pi (or adjust only the source side if the checkout is elsewhere). Keep application code owned by root and readable by the service; media is readable by the service account.
 
-For keyboard and remote controls, ensure the `bedtime-audio` account can read the relevant `/dev/input/event*` device. On Raspberry Pi OS installations that assign these devices to the `input` group, add the service account to that existing group with `sudo usermod -aG input bedtime-audio`, then restart the service so systemd applies the group membership. Use `evtest` during setup to confirm the receiver's HID buttons arrive as the expected Linux `KEY_*` events, including Channel Up/Down, Play, Play/Pause, Stop, and arrows; adjust the evdev mapping if the receiver reports different codes.
+For keyboard and remote controls, ensure the `bedtime-audio` account can read the relevant `/dev/input/event*` device. On Raspberry Pi OS installations that assign these devices to the `input` group, add the service account to that existing group with `sudo usermod -aG input bedtime-audio`, then restart the controller so systemd applies the group membership. Use `evtest` to confirm the expected `KEY_*` events, including Volume Up, Volume Down, and Mute.
 
 - Install the migrated schedule with the application under `/opt/bedtime-audio/data/reading_schedule.json`.
 - Install readings under `/var/lib/bedtime-audio/Audio/` and `Pink_Noise.wav` at `/var/lib/bedtime-audio/Pink_Noise.wav`.
@@ -220,17 +221,17 @@ To skip readings and start pink noise immediately from an administrative shell, 
 
 1. Convert and validate `readingSchedule`; preserve the anchor, use a 366-day cycle to reach keys 0 through 365, and retain ordering and clip ranges.
 2. Implement the deterministic session state machine for idle/setup, playlist, pink noise, and stopped. Take timezone and audio output from Raspberry Pi OS; accept the alarm time only as a per-session user input. Define overnight/session-date and daylight-saving behavior.
-3. Implement the player adapter for ordered local tracks, clip seek/duration, pink-noise looping, volume, completion/error events, and stop. Use the OS default audio output without an app-level device setting.
-4. Implement the long-running service: startup reconciliation, alarm cutoff enforcement, clean shutdown, log output, and local status/control if required.
-5. Implemented: the designed graphical UI and remote actions. Arrow keys adjust the alarm; Channel Up/Down toggles the playlist choice label; Play starts the selected mode; Play/Pause toggles playback; Stop stops playback and returns to ready UI.
+3. Implement a compiled native audio daemon. Stream the pink-noise WAV from memory through one ALSA PCM stream at its exact sample rate; use MPV only for scheduled reading tracks. Keep the private Unix-socket command/event protocol for the Python controller.
+4. Implement the long-running Python controller: alarm cutoff enforcement, log output, local status/control, and controller restart without stopping playback.
+5. Implemented: the designed graphical UI and remote actions. Arrow keys adjust the alarm; Channel Up/Down toggles the playlist choice label; Play starts the selected mode; Play/Pause toggles playback; Stop stops playback and returns to ready UI. Media Volume Up/Down and Mute adjust the output level.
 6. Package and deploy as a `systemd` service using the setup instructions above. Do not require an app configuration file.
 7. Verify deterministic schedule/clip conversion and planner behavior with a fake clock and mock player, then verify on Pi hardware: bedtime setup, both start choices, phase transitions, clip boundaries, noise looping, cutoff during both playlist and noise, restart recovery, DST/time changes, missing media, audio failure, media keys, and confirmed remote/display integrations if applicable.
 
 ## Current implementation status
 
-- Completed: schedule JSON migration and migration utility; fixed 366-day selector; pure session planner; MPV playback adapter for full tracks, clip ranges, looping pink noise, volume, pause/resume, and stop; long-running service with alarm cutoff and private local Unix-socket controls; administrative CLI; systemd unit configured to start at boot; Raspberry Pi OS setup and install instructions.
+- Implemented: schedule JSON migration and utility; fixed 366-day selector; pure session planner; compiled C++ audio daemon; direct ALSA PCM stream loops the pink-noise WAV in memory at its fixed sample rate; MPV handles scheduled reading tracks; private Unix control socket; media volume and mute controls; maintenance and installation instructions.
 - Completed: full-screen Tkinter UI with visible mode, Play, Play/Pause, and Stop buttons; Left/Right adjust minutes by 15; Up/Down adjust hours; Channel Up/Down toggles playlist mode; Play starts the selected mode; the display turns pure black during playback or pause and Stop/alarm cutoff restore the ready screen. The Linux input adapter maps keyboard arrows and remote events through evdev.
-- Still needed: persistent session/restart recovery; confirming the receiver's HID-to-Linux key mapping and device permissions on the Pi; on-device UI, playback, and boot verification.
+- Still needed: confirming the receiver's HID-to-Linux key mapping and device permissions on the Pi; on-device UI, playback, and boot verification.
 - No application settings file is used. The OS provides timezone and default audio output; alarm time is entered for each session. There is no snooze behavior.
 
 ## Acceptance criteria

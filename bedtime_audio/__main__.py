@@ -30,7 +30,7 @@ def build_parser() -> argparse.ArgumentParser:
     commands.add_parser("pause", help="pause current audio")
     commands.add_parser("resume", help="resume current audio")
 
-    volume = commands.add_parser("volume", help="set MPV software volume")
+    volume = commands.add_parser("volume", help="set playback volume")
     volume.add_argument("percent", type=float, help="volume from 0 through 100")
     return parser
 
@@ -40,7 +40,6 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command == "service":
         run_service()
         return 0
-
     if args.command == "start":
         request = {
             "action": "start",
