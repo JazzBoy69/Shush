@@ -14,7 +14,6 @@
 #include <fcntl.h>
 #include <fstream>
 #include <iostream>
-#include <iterator>
 #include <limits>
 #include <limits.h>
 #include <mutex>
@@ -24,7 +23,7 @@
 #include <string>
 #include <sys/socket.h>
 #include <sys/stat.h>
-#include <sys/time.h>
+#include <sys/timerfd.h>
 #include <sys/types.h>
 #include <sys/un.h>
 #include <thread>
@@ -35,7 +34,6 @@
 namespace {
 constexpr char kSocket[] = "/run/bedtime-audio-player/audio.sock";
 constexpr char kPinkNoise[] = "/var/lib/bedtime-audio/Pink_Noise.wav";
-constexpr char kStateFile[] = "/var/lib/bedtime-audio/audio-daemon-state.json";
 constexpr std::size_t kMaxRequest = 8192;
 constexpr std::size_t kMaxWavBytes = 32 * 1024 * 1024;
 
@@ -173,21 +171,19 @@ public:
         if (bind(listener_, reinterpret_cast<sockaddr*>(&address), sizeof(address)) || chmod(kSocket, 0600) || listen(listener_, 8)) {
             throw error("cannot bind audio socket: " + std::string(std::strerror(errno)));
         }
-        load_saved_state();
-        if (saved_pink_) {
-            std::cerr << "Restoring continuous pink noise\n";
-            start_noise();
-            current_kind_ = "pink_noise";
-        }
+        deadline_fd_ = timerfd_create(CLOCK_REALTIME, TFD_CLOEXEC | TFD_NONBLOCK);
+        if (deadline_fd_ < 0) throw error("cannot create playback deadline timer: " + std::string(std::strerror(errno)));
+        deadline_thread_stop_ = false;
+        deadline_thread_ = std::thread(&AudioService::deadline_loop, this);
         std::cerr << "Native audio service ready\n";
     }
 
     void run() {
         while (!g_stop) {
             pollfd pfd{listener_, POLLIN, 0};
-            int ready = poll(&pfd, 1, 250);
+            int ready = poll(&pfd, 1, -1);
             if (ready < 0) { if (errno == EINTR) continue; throw error("audio socket poll failed"); }
-            if (!ready) continue;
+            if (!(pfd.revents & POLLIN)) continue;
             int client = accept4(listener_, nullptr, nullptr, SOCK_CLOEXEC);
             if (client < 0) { if (errno == EINTR) continue; throw error("audio socket accept failed"); }
             timeval timeout{5, 0};
@@ -200,6 +196,9 @@ public:
 
     void shutdown() {
         if (listener_ >= 0) { close(listener_); listener_ = -1; }
+        deadline_thread_stop_ = true;
+        if (deadline_thread_.joinable()) deadline_thread_.join();
+        if (deadline_fd_ >= 0) { close(deadline_fd_); deadline_fd_ = -1; }
         stop_noise();
         if (!socket_path_removed_) { unlink(kSocket); socket_path_removed_ = true; }
     }
@@ -217,21 +216,48 @@ private:
             const std::string path = canonical_file(json_string(req, "path"));
             if (path != canonical_file(kPinkNoise))
                 throw error("pink-noise path is not the installed source");
+            json_object* stop_at = nullptr;
+            if (!json_object_object_get_ex(req, "stop_at_unix_ms", &stop_at) ||
+                !(json_object_is_type(stop_at, json_type_int) || json_object_is_type(stop_at, json_type_double)))
+                throw error("pink-noise playback requires stop_at_unix_ms");
+            const double stop_at_ms = json_object_get_double(stop_at);
+            if (!std::isfinite(stop_at_ms) || stop_at_ms <= 0 || stop_at_ms > 9.0e15)
+                throw error("stop_at_unix_ms is invalid");
             PcmFile pcm = read_wav(path); // Validate before disrupting current output.
-            start_noise(std::move(pcm));
-            { std::lock_guard<std::mutex> lock(state_mutex_); current_kind_ = "pink_noise"; }
-            save_state(true);
-            return response(true);
-        }
-        if (action == "pause") {
-            json_object* paused = nullptr;
-            if (!json_object_object_get_ex(req, "paused", &paused) || !json_object_is_type(paused, json_type_boolean)) throw error("paused must be boolean");
-            set_paused(json_object_get_boolean(paused));
+            stop_existing_noise();
+            arm_deadline(static_cast<int64_t>(stop_at_ms));
+            try {
+                start_noise(std::move(pcm));
+            } catch (...) {
+                finish_failed_start();
+                throw;
+            }
+            bool started = false;
+            {
+                std::lock_guard<std::mutex> lock(state_mutex_);
+                if (current_kind_ == "starting") {
+                    current_kind_ = "pink_noise";
+                    started = true;
+                    emit_event("started", "command");
+                }
+            }
+            if (!started) {
+                stop_noise();
+                throw error("pink-noise stop time elapsed before playback started");
+            }
             return response(true);
         }
         if (action == "stop") {
-            { std::lock_guard<std::mutex> lock(state_mutex_); current_kind_ = "off"; }
-            stop_noise(); save_state(false);
+            bool was_playing = false;
+            {
+                std::lock_guard<std::mutex> lock(state_mutex_);
+                was_playing = current_kind_ == "pink_noise" || current_kind_ == "starting";
+                current_kind_ = "off";
+                stop_at_unix_ms_ = 0;
+                disarm_deadline_locked();
+            }
+            stop_noise();
+            if (was_playing) emit_event("stopped", "command");
             return response(true);
         }
         if (action == "volume_step") {
@@ -242,14 +268,12 @@ private:
             if (muted_) { muted_ = false; volume_ = muted_volume_; }
             volume_ = std::clamp(volume_ + delta, 0.0, 100.0);
             output_gain_.store(volume_ / 100.0);
-            save_state(current_kind_ == "pink_noise");
             return response(true);
         }
         if (action == "mute_toggle") {
             if (!muted_) { muted_volume_ = volume_; muted_ = true; }
             else { muted_ = false; volume_ = muted_volume_; }
             output_gain_.store(muted_ ? 0.0 : volume_ / 100.0);
-            save_state(current_kind_ == "pink_noise");
             return response(true);
         }
         if (action == "volume") {
@@ -261,7 +285,6 @@ private:
             volume_ = volume;
             if (muted_) muted_volume_ = volume;
             if (!muted_) output_gain_.store(volume_ / 100.0);
-            save_state(current_kind_ == "pink_noise");
             return response(true);
         }
         if (action == "events") return events_response();
@@ -329,18 +352,112 @@ private:
         return result;
     }
 
-    void start_noise() { start_noise(read_wav(kPinkNoise)); }
-    void start_noise(PcmFile pcm) {
+    void arm_deadline(int64_t stop_at_unix_ms) {
+        std::lock_guard<std::mutex> lock(state_mutex_);
+        itimerspec spec{};
+        spec.it_value.tv_sec = static_cast<time_t>(stop_at_unix_ms / 1000);
+        spec.it_value.tv_nsec = static_cast<long>((stop_at_unix_ms % 1000) * 1000000);
+        current_kind_ = "starting";
+        stop_at_unix_ms_ = stop_at_unix_ms;
+        {
+            std::lock_guard<std::mutex> noise_lock(noise_mutex_);
+            noise_stop_ = false;
+            noise_ready_ = false;
+            noise_error_.clear();
+        }
+        if (timerfd_settime(deadline_fd_, TFD_TIMER_ABSTIME, &spec, nullptr) != 0) {
+            current_kind_ = "off";
+            stop_at_unix_ms_ = 0;
+            throw error("cannot arm playback deadline timer: " + std::string(std::strerror(errno)));
+        }
+    }
+
+    void disarm_deadline_locked() {
+        itimerspec spec{};
+        if (deadline_fd_ >= 0 && timerfd_settime(deadline_fd_, 0, &spec, nullptr) != 0)
+            std::cerr << "Could not disarm playback deadline: " << std::strerror(errno) << '\n';
+    }
+
+    void emit_event(const std::string& kind, const std::string& reason) {
+        std::lock_guard<std::mutex> lock(event_mutex_);
+        events_.push(Event{kind, kPinkNoise, reason, ""});
+    }
+
+    void deadline_loop() {
+        while (!deadline_thread_stop_) {
+            pollfd pfd{deadline_fd_, POLLIN, 0};
+            int ready = poll(&pfd, 1, 100);
+            if (ready < 0) {
+                if (errno == EINTR) continue;
+                std::cerr << "Playback deadline poll failed: " << std::strerror(errno) << '\n';
+                continue;
+            }
+            if (ready == 0 || !(pfd.revents & POLLIN)) continue;
+            uint64_t expirations = 0;
+            ssize_t bytes_read;
+            do {
+                bytes_read = read(deadline_fd_, &expirations, sizeof(expirations));
+            } while (bytes_read < 0 && errno == EINTR);
+            if (bytes_read != static_cast<ssize_t>(sizeof(expirations))) continue;
+
+            bool was_playing = false;
+            bool emit_started = false;
+            bool should_stop = false;
+            {
+                std::lock_guard<std::mutex> lock(state_mutex_);
+                const int64_t now_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+                    std::chrono::system_clock::now().time_since_epoch()).count();
+                if (stop_at_unix_ms_ > 0 && now_ms >= stop_at_unix_ms_ &&
+                    (current_kind_ == "pink_noise" || current_kind_ == "starting")) {
+                    emit_started = current_kind_ == "starting" && noise_is_ready();
+                    was_playing = current_kind_ == "pink_noise" || emit_started;
+                    current_kind_ = "off";
+                    stop_at_unix_ms_ = 0;
+                    should_stop = true;
+                }
+            }
+            if (!should_stop) continue;
+            if (emit_started) emit_event("started", "command");
+            request_noise_stop();
+            if (was_playing) emit_event("stopped", "deadline");
+        }
+    }
+
+    void stop_existing_noise() {
+        bool was_playing = false;
+        {
+            std::lock_guard<std::mutex> lock(state_mutex_);
+            was_playing = current_kind_ == "pink_noise";
+            current_kind_ = "off";
+            stop_at_unix_ms_ = 0;
+            disarm_deadline_locked();
+        }
         stop_noise();
+        if (was_playing) emit_event("stopped", "command");
+    }
+
+    void finish_failed_start() {
+        {
+            std::lock_guard<std::mutex> lock(state_mutex_);
+            current_kind_ = "off";
+            stop_at_unix_ms_ = 0;
+            disarm_deadline_locked();
+        }
+        stop_noise();
+    }
+
+    void start_noise(PcmFile pcm) {
         {
             std::lock_guard<std::mutex> lock(noise_mutex_);
-            noise_stop_ = false; noise_paused_ = false; noise_ready_ = false; noise_error_.clear();
             pcm_ = std::move(pcm);
         }
         noise_thread_ = std::thread(&AudioService::noise_loop, this);
         std::unique_lock<std::mutex> lock(noise_mutex_);
-        if (!noise_cv_.wait_for(lock, std::chrono::seconds(8), [this]{ return noise_ready_ || !noise_error_.empty(); })) {
+        if (!noise_cv_.wait_for(lock, std::chrono::seconds(8), [this]{ return noise_ready_ || !noise_error_.empty() || noise_stop_; })) {
             lock.unlock(); stop_noise(); throw error("timed out opening audio output");
+        }
+        if (noise_stop_) {
+            lock.unlock(); stop_noise(); throw error("playback stopped before audio output was ready");
         }
         if (!noise_error_.empty()) {
             std::string why = noise_error_; lock.unlock(); stop_noise(); throw error("cannot start continuous WAV output: " + why);
@@ -408,10 +525,9 @@ private:
         bool started = false;
         std::vector<int16_t> scaled(2048 * frame_samples);
         while (true) {
-            std::unique_lock<std::mutex> lock(noise_mutex_);
-            noise_cv_.wait(lock, [this]{ return noise_stop_ || !noise_paused_; });
-            if (noise_stop_) break;
-            lock.unlock();
+            bool stopping;
+            { std::lock_guard<std::mutex> lock(noise_mutex_); stopping = noise_stop_; }
+            if (stopping) break;
             std::size_t available_samples = pcm_.samples.size() - cursor;
             snd_pcm_uframes_t frames = static_cast<snd_pcm_uframes_t>(std::min<std::size_t>(2048, available_samples / frame_samples));
             const double gain = output_gain_.load();
@@ -424,6 +540,9 @@ private:
             }
             snd_pcm_sframes_t written = snd_pcm_writei(pcm, output, frames);
             if (written < 0) {
+                bool stopping;
+                { std::lock_guard<std::mutex> lock(noise_mutex_); stopping = noise_stop_; }
+                if (stopping) break;
                 // Do not prepare/restart after an underrun: that would create the gap this stream is designed to avoid.
                 fail(std::string("continuous PCM stream stopped: ") + snd_strerror(static_cast<int>(written)));
                 break;
@@ -443,69 +562,36 @@ private:
     }
 
     void stop_noise() {
-        {
-            std::lock_guard<std::mutex> lock(noise_mutex_);
-            noise_stop_ = true; noise_cv_.notify_all();
-        }
+        request_noise_stop();
         if (noise_thread_.joinable()) noise_thread_.join();
     }
 
-    void set_paused(bool paused) {
-        std::string kind;
-        { std::lock_guard<std::mutex> lock(state_mutex_); kind = current_kind_; }
-        if (kind == "pink_noise") {
-            std::lock_guard<std::mutex> lock(noise_mutex_);
-            if (!active_pcm_) throw error("audio output is not ready");
-            int rc = snd_pcm_pause(active_pcm_, paused ? 1 : 0);
-            if (rc < 0) throw error(std::string("audio device cannot pause/resume stream: ") + snd_strerror(rc));
-            noise_paused_ = paused; noise_cv_.notify_all();
-        }
+    void request_noise_stop() {
+        std::lock_guard<std::mutex> lock(noise_mutex_);
+        noise_stop_ = true;
+        noise_cv_.notify_all();
+        if (active_pcm_) snd_pcm_drop(active_pcm_);
     }
 
-    void load_saved_state() {
-        std::ifstream file(kStateFile);
-        std::string contents((std::istreambuf_iterator<char>(file)), {});
-        json_object* root = json_tokener_parse(contents.c_str());
-        if (!root || !json_object_is_type(root, json_type_object)) { if (root) json_object_put(root); return; }
-        json_object* value = nullptr;
-        if (json_object_object_get_ex(root, "state", &value) && json_object_is_type(value, json_type_string))
-            saved_pink_ = std::string(json_object_get_string(value)) == "pink_noise";
-        if (json_object_object_get_ex(root, "volume", &value) && (json_object_is_type(value, json_type_double) || json_object_is_type(value, json_type_int))) {
-            double v = json_object_get_double(value);
-            if (std::isfinite(v) && v >= 0 && v <= 100) volume_ = v;
-        }
-        if (json_object_object_get_ex(root, "muted", &value) && json_object_is_type(value, json_type_boolean)) muted_ = json_object_get_boolean(value);
-        muted_volume_ = volume_;
-        output_gain_.store(muted_ ? 0.0 : volume_ / 100.0);
-        json_object_put(root);
-    }
-    void save_state(bool pink) {
-        std::string temp = std::string(kStateFile) + ".tmp";
-        int fd = open(temp.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, 0600);
-        if (fd < 0) throw error("cannot write audio state: " + std::string(std::strerror(errno)));
-        saved_pink_ = pink;
-        std::string value = std::string("{\"state\":\"") + (pink ? "pink_noise" : "off") +
-            "\",\"volume\":" + std::to_string(volume_) + ",\"muted\":" + (muted_ ? "true" : "false") + "}\n";
-        ssize_t n = write(fd, value.data(), value.size());
-        bool good = n == static_cast<ssize_t>(value.size()) && fsync(fd) == 0;
-        close(fd);
-        if (!good || rename(temp.c_str(), kStateFile) != 0) { unlink(temp.c_str()); throw error("cannot commit audio state"); }
-        int dirfd = open("/var/lib/bedtime-audio", O_RDONLY | O_DIRECTORY | O_CLOEXEC);
-        if (dirfd >= 0) { fsync(dirfd); close(dirfd); }
+    bool noise_is_ready() {
+        std::lock_guard<std::mutex> lock(noise_mutex_);
+        return noise_ready_;
     }
 
     int listener_ = -1;
+    int deadline_fd_ = -1;
     bool socket_path_removed_ = false;
     std::string current_kind_ = "off";
+    int64_t stop_at_unix_ms_ = 0;
+    std::atomic<bool> deadline_thread_stop_{false};
     std::mutex state_mutex_, event_mutex_, noise_mutex_;
     std::condition_variable noise_cv_;
     std::queue<Event> events_;
-    std::thread noise_thread_;
+    std::thread noise_thread_, deadline_thread_;
     PcmFile pcm_;
-    bool noise_stop_ = false, noise_paused_ = false, noise_ready_ = false;
+    bool noise_stop_ = true, noise_ready_ = false;
     snd_pcm_t* active_pcm_ = nullptr;
     std::string noise_error_;
-    bool saved_pink_ = false;
     std::atomic<double> output_gain_{1.0};
     double volume_ = 100.0, muted_volume_ = 100.0;
     bool muted_ = false;

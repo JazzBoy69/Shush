@@ -44,8 +44,9 @@ class AudioClient:
         self._request({"action": "play_track", "path": str(Path(path).resolve()),
                        "start_seconds": start_seconds, "duration_seconds": duration_seconds})
 
-    def play_pink_noise(self, path: Path) -> None:
-        self._request({"action": "pink_noise", "path": str(Path(path).resolve())})
+    def play_pink_noise(self, path: Path, *, stop_at_unix_ms: int) -> None:
+        self._request({"action": "pink_noise", "path": str(Path(path).resolve()),
+                       "stop_at_unix_ms": stop_at_unix_ms})
 
     def set_volume(self, percent: float) -> None:
         self._request({"action": "volume", "percent": percent})
@@ -57,9 +58,6 @@ class AudioClient:
 
     def toggle_mute(self) -> None:
         self._request({"action": "mute_toggle"})
-
-    def set_paused(self, paused: bool) -> None:
-        self._request({"action": "pause", "paused": paused})
 
     def stop(self) -> None:
         self._request({"action": "stop"})

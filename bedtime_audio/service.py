@@ -292,6 +292,8 @@ class BedtimeService:
                 return
             if self.session.phase not in (Phase.PLAYLIST, Phase.PINK_NOISE):
                 return
+            if self.session.phase is Phase.PINK_NOISE and action in ("play", "pause", "toggle"):
+                return
             if action == "toggle":
                 action = "pause" if not self.paused else "play"
             if action == "pause" and not self.paused:
@@ -400,8 +402,13 @@ class BedtimeService:
 
     def _play_pink_noise(self) -> None:
         self._save_persisted_session()
+        if self.session.alarm_at is None:
+            raise ServiceError("cannot start pink noise without a stop time")
         try:
-            self.audio.play_pink_noise(PINK_NOISE_FILE)
+            self.audio.play_pink_noise(
+                PINK_NOISE_FILE,
+                stop_at_unix_ms=round(self.session.alarm_at.timestamp() * 1000),
+            )
         except (OSError, AudioError) as error:
             LOG.error("Cannot play pink noise %s: %s", PINK_NOISE_FILE, error)
             self.session = stop_session(self.session)
@@ -422,6 +429,13 @@ class BedtimeService:
                     self.session = stop_session(self.session)
                     self.paused = False
                     self._request_audio_stop()
+                    continue
+                if isinstance(event, AudioEvent) and event.kind in ("started", "stopped"):
+                    LOG.info("Fixed WAV daemon event: %s (%s)", event.kind, event.reason or "unspecified")
+                    if event.kind == "stopped" and event.reason == "deadline" and self.session.phase is Phase.PINK_NOISE:
+                        self.session = stop_session(self.session)
+                        self.paused = False
+                        self._clear_persisted_session()
                     continue
                 if event.kind != "completed" or self.session.phase is not Phase.PLAYLIST:
                     continue
@@ -446,10 +460,7 @@ class BedtimeService:
                     self._request_audio_stop()
 
     def _set_paused(self, paused: bool) -> None:
-        if self.session.phase is Phase.PINK_NOISE:
-            self.audio.set_paused(paused)
-        else:
-            self.player.set_paused(paused)
+        self.player.set_paused(paused)
 
     def _set_volume(self, percent: float) -> None:
         if self.session.phase is Phase.PINK_NOISE or (
