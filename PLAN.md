@@ -222,16 +222,16 @@ To skip readings and start pink noise immediately from an administrative shell, 
 1. Convert and validate `readingSchedule`; preserve the anchor, use a 366-day cycle to reach keys 0 through 365, and retain ordering and clip ranges.
 2. Implement the deterministic session state machine for idle/setup, playlist, pink noise, and stopped. Take timezone and audio output from Raspberry Pi OS; accept the alarm time only as a per-session user input. Define overnight/session-date and daylight-saving behavior.
 3. Implement a compiled native audio daemon. Stream the pink-noise WAV from memory through one ALSA PCM stream at its exact sample rate; use MPV only for scheduled reading tracks. Keep the private Unix-socket command/event protocol for the Python controller.
-4. Implement the long-running Python controller: alarm cutoff enforcement, log output, local status/control, and controller restart without stopping playback.
+4. Implement the long-running Python UI/controller, log output, local status/control, and controller restart without stopping playback. Scheduled cutoff is owned by the separate native timing daemon.
 5. Implemented: the designed graphical UI and remote actions. Arrow keys adjust the alarm; Channel Up/Down toggles the playlist choice label; Play starts the selected mode; Play/Pause toggles playback; Stop stops playback and returns to ready UI. Media Volume Up/Down and Mute adjust the output level.
 6. Package and deploy as a `systemd` service using the setup instructions above. Do not require an app configuration file.
 7. Verify deterministic schedule/clip conversion and planner behavior with a fake clock and mock player, then verify on Pi hardware: bedtime setup, both start choices, phase transitions, clip boundaries, noise looping, cutoff during both playlist and noise, restart recovery, DST/time changes, missing media, audio failure, media keys, and confirmed remote/display integrations if applicable.
 
 ## Current implementation status
 
-- Implemented: schedule JSON migration and utility; fixed 366-day selector; pure session planner; compiled C++ audio daemon; direct ALSA PCM stream loops the pink-noise WAV in memory at its fixed sample rate; MPV handles scheduled reading tracks; private Unix control socket; media volume and mute controls; maintenance and installation instructions.
+- Implemented: schedule JSON migration and utility; fixed 366-day selector; pure session planner; compiled C++ sound daemon; direct ALSA PCM stream loops the pink-noise WAV in memory at its fixed sample rate; MPV handles scheduled reading tracks; private Unix control socket; media volume and mute controls; separate C++ timing daemon that arms an absolute Linux timer before durably persisting and acknowledging a deadline, then sends the scheduled stop directly to the sound daemon; Python UI/controller integration and timing daemon installation instructions.
 - Completed: full-screen Tkinter UI with visible mode, Play, Play/Pause, and Stop buttons; Left/Right adjust minutes by 15; Up/Down adjust hours; Channel Up/Down toggles playlist mode; Play starts the selected mode; the display turns pure black during playback or pause and Stop/alarm cutoff restore the ready screen. The Linux input adapter maps keyboard arrows and remote events through evdev.
-- Still needed: confirming the receiver's HID-to-Linux key mapping and device permissions on the Pi; on-device UI, playback, and boot verification.
+- Still needed: confirming the receiver's HID-to-Linux key mapping and device permissions on the Pi; on-device UI, timing, playback, and boot verification.
 - No application settings file is used. The OS provides timezone and default audio output; alarm time is entered for each session. There is no snooze behavior.
 
 ## Acceptance criteria
@@ -240,7 +240,7 @@ To skip readings and start pink noise immediately from an administrative shell, 
 - Schedule selection matches the legacy anchor and reaches all 366 schedule entries through the 366-day cycle.
 - All daily tracks play in the specified order, and clip entries honor their start and duration values.
 - Pink noise starts after playlist completion and loops until the configured alarm time.
-- Alarm time stops audio even during a long playlist; no new audio begins after the cutoff.
+- The native timing daemon arms the absolute deadline before acknowledging a session start, and stops audio even during a long playlist; no new audio begins after the cutoff.
 - Restart behavior follows the documented policy and never plays past alarm time.
 - Missing files, invalid schedule entries, and player/device failures are clearly logged and cannot silently produce an unintended session.
 - Local controls and supported OS media keys work; any programmed remote is tied to confirmed hardware/protocol.

@@ -135,20 +135,8 @@ def start_session(
     )
 
 
-def advance_time(session: Session, now: datetime) -> Session:
-    """Apply the hard alarm cutoff while either playback phase is active."""
-    _require_aware(now)
-    if session.phase in (Phase.PLAYLIST, Phase.PINK_NOISE):
-        if session.alarm_at is None:
-            raise ValueError("active session has no alarm deadline")
-        if now.astimezone(UTC) >= session.alarm_at.astimezone(UTC):
-            return replace(session, phase=Phase.STOPPED)
-    return session
-
-
-def track_finished(session: Session, now: datetime) -> Session:
-    """Advance after a full track or a scheduled partial-track segment ends."""
-    session = advance_time(session, now)
+def track_finished(session: Session) -> Session:
+    """Advance to the next scheduled track or pink noise."""
     if session.phase is not Phase.PLAYLIST:
         return session
     if session.track_index + 1 < session.track_count:

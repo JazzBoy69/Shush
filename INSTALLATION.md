@@ -33,6 +33,7 @@ Shush-install/
 ├── native/                    (copy the entire folder and its contents)
 ├── bedtime-audio.service
 ├── bedtime-audio-player.service
+├── bedtime-audio-timer.service
 ├── MIGRATION.md
 └── reading_schedule.json
 ```
@@ -59,7 +60,7 @@ sudo timedatectl set-timezone Area/City
 timedatectl status
 ```
 
-Confirm that the reported local time is correct. The application uses this OS time for the alarm cutoff and schedule selection.
+Confirm that the reported local time is correct. The application uses this OS time for schedule selection; alarm cutoff is currently unavailable.
 
 For a dedicated Shush Pi, keep updates and reboots inside a maintenance window. Apply the no-automatic-updates and no-suspend settings described in [MIGRATION.md](MIGRATION.md); the same instructions apply to a fresh installation.
 
@@ -144,7 +145,7 @@ sudo mount -o ro /dev/sda1 /mnt/shush-usb
 ls /mnt/shush-usb/Shush-install
 ```
 
-Replace `/dev/sda1` in the mount command with your USB partition name. The last command should list `Audio`, `bedtime_audio`, `native`, `Pink_Noise.wav`, both service units, `MIGRATION.md`, and `reading_schedule.json`. If the USB is already mounted, use its displayed mount point and skip the `mount` command. If the folder does not appear, check the mount point and USB folder layout before continuing.
+Replace `/dev/sda1` in the mount command with your USB partition name. The last command should list `Audio`, `bedtime_audio`, `native`, `Pink_Noise.wav`, all three service units, `MIGRATION.md`, and `reading_schedule.json`. If the USB is already mounted, use its displayed mount point and skip the `mount` command. If the folder does not appear, check the mount point and USB folder layout before continuing.
 
 Copy the application, migrated schedule, and systemd unit from the USB drive:
 
@@ -154,20 +155,28 @@ sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/bedtime_audio/
 sudo install -d -o root -g root -m 0755 /opt/bedtime-audio/native /opt/bedtime-audio/bin
 sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/native/audio_player.cpp \
   /opt/bedtime-audio/native/audio_player.cpp
+sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/native/audio_timer.cpp \
+  /opt/bedtime-audio/native/audio_timer.cpp
 sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/reading_schedule.json \
   /opt/bedtime-audio/data/reading_schedule.json
 sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/bedtime-audio.service \
   /etc/systemd/system/bedtime-audio.service
 sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/bedtime-audio-player.service \
   /etc/systemd/system/bedtime-audio-player.service
+sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/bedtime-audio-timer.service \
+  /etc/systemd/system/bedtime-audio-timer.service
 sudo g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic \
   /opt/bedtime-audio/native/audio_player.cpp \
   -o /opt/bedtime-audio/bin/bedtime-audio-player \
   $(pkg-config --cflags --libs alsa json-c) -pthread
+sudo g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic \
+  /opt/bedtime-audio/native/audio_timer.cpp \
+  -o /opt/bedtime-audio/bin/bedtime-audio-timer \
+  $(pkg-config --cflags --libs json-c)
 sudo python3 -m venv --system-site-packages /opt/bedtime-audio/.venv
 ```
 
-The virtual environment shares Raspberry Pi OS's `python3-evdev` and Tkinter packages. The audio daemon is compiled C++ and uses ALSA for continuous WAV playback; MPV is used only for scheduled reading tracks.
+The virtual environment shares Raspberry Pi OS's `python3-evdev` and Tkinter packages. The sound daemon is compiled C++ and uses ALSA for continuous WAV playback; MPV is used only for scheduled reading tracks. A separate native timing daemon receives each controller start request with its cutoff, arms and persists that deadline before forwarding playback, and sends the existing stop command when due. It does not manage volume, mute, pause, or the PCM stream.
 
 ## 5. Install the audio files
 
@@ -278,24 +287,24 @@ With the TV connected to the Pi and powered on, Raspberry Pi OS normally selects
 
 ## 8. Enable the boot service
 
-The repository provides two services. `bedtime-audio-player.service` runs the compiled daemon, which owns the continuous ALSA stream and launches MPV for reading tracks. `bedtime-audio.service` runs the full-screen UI on tty1 and controls the daemon over a private local socket. Restarting the UI/controller does not stop audio. The controller persists active session state and its absolute alarm deadline under `/var/lib/bedtime-audio/session-state.json`, then restores them after restart. Both units run as `bedtime-audio`; the audio unit does not automatically restart after exiting. If the controller disappears as a reading ends, the daemon falls back to pink noise.
+The repository provides three services. `bedtime-audio-player.service` runs the compiled sound daemon, which owns the continuous ALSA stream and launches MPV for reading tracks. `bedtime-audio-timer.service` receives the controller's initial playback command and absolute alarm deadline together; it arms and persists the deadline before forwarding playback, then sends the existing stop command when due. `bedtime-audio.service` runs the full-screen UI on tty1. Track transitions also pass through the timing daemon so it can refuse a new track after cutoff; volume, mute, and pause still go directly to the sound daemon. Restarting the UI/controller or timing daemon does not restart the sound daemon or its PCM stream. The sound service continues to use `Restart=no`.
 
 Load the unit, enable it for boot, and start it now:
 
 ```sh
 sudo systemctl daemon-reload
-sudo systemctl enable --now bedtime-audio-player.service bedtime-audio.service
-systemctl status bedtime-audio-player.service bedtime-audio.service
-systemctl is-enabled bedtime-audio-player.service bedtime-audio.service
+sudo systemctl enable --now bedtime-audio-player.service bedtime-audio-timer.service bedtime-audio.service
+systemctl status bedtime-audio-player.service bedtime-audio-timer.service bedtime-audio.service
+systemctl is-enabled bedtime-audio-player.service bedtime-audio-timer.service bedtime-audio.service
 ```
 
-The display should show the ready screen. When a session starts, it should turn completely black. Audio playback and remote controls remain active. Stop or the alarm cutoff restores the ready screen.
+The display should show the ready screen. When a session starts, it should turn completely black. Audio playback and remote controls remain active. Stop restores the ready screen.
 
 If the UI does not appear or audio does not start, inspect the service log:
 
 ```sh
-sudo journalctl -u bedtime-audio-player.service -u bedtime-audio.service -b --no-pager
-sudo journalctl -u bedtime-audio-player.service -u bedtime-audio.service -f
+sudo journalctl -u bedtime-audio-player.service -u bedtime-audio-timer.service -u bedtime-audio.service -b --no-pager
+sudo journalctl -u bedtime-audio-player.service -u bedtime-audio-timer.service -u bedtime-audio.service -f
 ```
 
 Use `Ctrl+C` to stop following the live log. Restarting `bedtime-audio.service` leaves playback alone. Restarting `bedtime-audio-player.service` interrupts playback briefly and is for maintenance or recovery.
@@ -316,33 +325,33 @@ The service waits on the ready screen; there is no menu to navigate and no Enter
 There is no snooze function. To inspect or operate the service for administration, use systemd and the local CLI rather than adding application configuration:
 
 ```sh
-sudo systemctl status bedtime-audio-player.service bedtime-audio.service
-sudo -u bedtime-audio /opt/bedtime-audio/.venv/bin/python -m bedtime_audio status
-sudo -u bedtime-audio /opt/bedtime-audio/.venv/bin/python -m bedtime_audio stop
+sudo systemctl status bedtime-audio-player.service bedtime-audio-timer.service bedtime-audio.service
+sudo -u bedtime-audio env PYTHONPATH=/opt/bedtime-audio /opt/bedtime-audio/.venv/bin/python -m bedtime_audio status
+sudo -u bedtime-audio env PYTHONPATH=/opt/bedtime-audio /opt/bedtime-audio/.venv/bin/python -m bedtime_audio stop
 ```
 
-## Updating the installation
+If the schedule or media changed, install those files at their fixed paths and preserve the ownership and read permissions described above. No application settings file needs to be created.
+## Updating the timing daemon and controller
 
-To update from a USB drive, repeat the USB mount steps above and recopy the changed Python files and unit, then restart the service:
+This update adds the separate timing daemon and changes only the Python controller. Copy the USB files, build the timing executable, and restart only the controller. Do not install, rebuild, enable, or restart `bedtime-audio-player.service`; its running sound daemon and continuous stream are left untouched.
 
 ```sh
 sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/bedtime_audio/*.py \
   /opt/bedtime-audio/bedtime_audio/
 sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/bedtime-audio.service \
   /etc/systemd/system/bedtime-audio.service
-sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/bedtime-audio-player.service \
-  /etc/systemd/system/bedtime-audio-player.service
-sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/native/audio_player.cpp \
-  /opt/bedtime-audio/native/audio_player.cpp
+sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/bedtime-audio-timer.service \
+  /etc/systemd/system/bedtime-audio-timer.service
+sudo install -o root -g root -m 0644 /mnt/shush-usb/Shush-install/native/audio_timer.cpp \
+  /opt/bedtime-audio/native/audio_timer.cpp
 sudo g++ -std=c++17 -O2 -Wall -Wextra -Wpedantic \
-  /opt/bedtime-audio/native/audio_player.cpp \
-  -o /opt/bedtime-audio/bin/bedtime-audio-player \
-  $(pkg-config --cflags --libs alsa json-c) -pthread
+  /opt/bedtime-audio/native/audio_timer.cpp \
+  -o /opt/bedtime-audio/bin/bedtime-audio-timer \
+  $(pkg-config --cflags --libs json-c)
 sudo systemctl daemon-reload
+sudo systemctl enable --now bedtime-audio-timer.service
 sudo systemctl restart bedtime-audio.service
 sudo umount /mnt/shush-usb
 ```
 
-If the update changed `native/audio_player.cpp`, rebuild the native daemon using the compile command in the installation section, then restart `bedtime-audio-player.service` during the maintenance window. That interrupts playback; routine UI-only updates require only the controller restart.
-
-If the schedule or media changed, install those files at their fixed paths and preserve the ownership and read permissions described above. No application settings file needs to be created.
+The timer service restores its saved absolute deadline on startup. Starting it does not restart the sound daemon. Restarting the UI/controller does not stop playback.

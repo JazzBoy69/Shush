@@ -20,7 +20,6 @@ from .planner import (
     Phase,
     Session,
     StartChoice,
-    advance_time,
     begin_setup,
     set_alarm,
     start_session,
@@ -29,7 +28,8 @@ from .planner import (
     track_finished,
 )
 from .key_listener import MediaKeyListener
-from .audio_control import AudioClient, PlayerError, PlayerEvent
+from .audio_control import AudioClient, PlayerError as AudioError, PlayerEvent as AudioEvent
+from .player import MPV_SOCKET, MpvPlayer, PlayerError, PlayerEvent
 
 
 LOG = logging.getLogger(__name__)
@@ -112,7 +112,7 @@ class _ControlHandler(socketserver.StreamRequestHandler):
             if not isinstance(request, dict):
                 raise ValueError("request must be a JSON object")
             response = self.server.owner.handle_request(request)  # type: ignore[attr-defined]
-        except (json.JSONDecodeError, ValueError, ServiceError, PlayerError) as error:
+        except (json.JSONDecodeError, ValueError, ServiceError, PlayerError, AudioError) as error:
             response = {"ok": False, "error": str(error)}
         except Exception:
             LOG.exception("Unexpected control request failure")
@@ -139,7 +139,7 @@ class BedtimeService:
     def __init__(self) -> None:
         self.timezone = system_timezone()
         self.schedule = load_schedule()
-        self.player_events: queue.Queue[PlayerEvent] = queue.Queue()
+        self.player_events: queue.Queue[PlayerEvent | AudioEvent] = queue.Queue()
         self.alarm_minutes = 6 * 60 + 30
         self.selected_choice = StartChoice.READINGS
         self.last_ui_error: str | None = None
@@ -151,7 +151,10 @@ class BedtimeService:
         self.audio_stop_retry_after = 0.0
         self.audio_event_poll_after = 0.0
         self.audio_poll_error_logged_at = 0.0
-        self.player = AudioClient(self.player_events.put)
+        self.volume_percent = 100.0
+        self.muted = False
+        self.player = MpvPlayer(self.player_events.put, socket_path=MPV_SOCKET)
+        self.audio = AudioClient(self.player_events.put)
         self.control_server: _ControlServer | None = None
         self.control_thread: threading.Thread | None = None
         self.media_keys = MediaKeyListener(self.handle_media_key)
@@ -160,10 +163,17 @@ class BedtimeService:
         try:
             self._clear_stale_control_socket()
             self.player.start()
+            self.audio.start()
             if self.restore_audio_stop:
                 with self.state_lock:
                     self._request_audio_stop()
                     self.restore_audio_stop = False
+            elif self.session.phase in (Phase.PLAYLIST, Phase.PINK_NOISE):
+                with self.state_lock:
+                    if self.session.phase is Phase.PLAYLIST:
+                        self._play_current_track()
+                    else:
+                        self._play_pink_noise()
             self.control_server = _ControlServer(CONTROL_SOCKET, self)
             self.control_thread = threading.Thread(
                 target=self.control_server.serve_forever,
@@ -197,6 +207,7 @@ class BedtimeService:
             self.control_server = None
         self.media_keys.close()
         self.player.close()
+        self.audio.close()
         try:
             CONTROL_SOCKET.unlink(missing_ok=True)
         except OSError:
@@ -222,7 +233,8 @@ class BedtimeService:
             value = request.get("percent")
             if not isinstance(value, (int, float)):
                 raise ValueError("volume percent must be a number")
-            self.player.set_volume(float(value))
+            self.volume_percent = float(value)
+            self._set_volume(self.volume_percent)
             return {"ok": True, "session": self._status_snapshot()}
         raise ValueError("action must be start, stop, status, pause, resume, or volume")
 
@@ -232,10 +244,12 @@ class BedtimeService:
             if action in ("volume_up", "volume_down", "mute_toggle"):
                 try:
                     if action == "mute_toggle":
-                        self.player.toggle_mute()
+                        self.muted = not self.muted
+                        self._set_volume(0 if self.muted else self.volume_percent)
                     else:
-                        self.player.adjust_volume(5 if action == "volume_up" else -5)
-                except PlayerError:
+                        self.volume_percent = min(100, max(0, self.volume_percent + (5 if action == "volume_up" else -5)))
+                        self._set_volume(0 if self.muted else self.volume_percent)
+                except (PlayerError, AudioError):
                     LOG.exception("Could not apply media volume action %s", action)
                 return
             alarm_adjustments = {
@@ -272,7 +286,7 @@ class BedtimeService:
                             "mode": self.selected_choice.value,
                         }
                     )
-                except (ValueError, ServiceError, PlayerError) as error:
+                except (ValueError, ServiceError, PlayerError, AudioError) as error:
                     self.last_ui_error = str(error)
                     LOG.error("Could not start playback: %s", error)
                 return
@@ -281,11 +295,11 @@ class BedtimeService:
             if action == "toggle":
                 action = "pause" if not self.paused else "play"
             if action == "pause" and not self.paused:
-                self.player.set_paused(True)
+                self._set_paused(True)
                 self.paused = True
                 self._save_persisted_session()
             elif action == "play" and self.paused:
-                self.player.set_paused(False)
+                self._set_paused(False)
                 self.paused = False
                 self._save_persisted_session()
 
@@ -298,18 +312,17 @@ class BedtimeService:
             self.last_ui_error = None
 
     def service_tick(self) -> None:
-        """Advance playback events and enforce the alarm cutoff once."""
+        """Process player events and retry explicit stop requests."""
         now = time.monotonic()
         if now >= self.audio_event_poll_after:
             self.audio_event_poll_after = now + 0.25
             try:
-                self.player.poll_events()
-            except PlayerError:
+                self.audio.poll_events()
+            except AudioError:
                 if now - self.audio_poll_error_logged_at >= 10:
-                    LOG.exception("Could not read events from the independent audio service")
+                    LOG.exception("Could not read events from the fixed WAV audio daemon")
                     self.audio_poll_error_logged_at = now
         self._process_player_events()
-        self._enforce_alarm()
         if self.audio_stop_pending and time.monotonic() >= self.audio_stop_retry_after:
             with self.state_lock:
                 self._request_audio_stop()
@@ -319,6 +332,10 @@ class BedtimeService:
         try:
             self.player.stop()
         except PlayerError:
+            LOG.exception("Could not stop playlist playback")
+        try:
+            self.audio.stop()
+        except AudioError:
             self.audio_stop_pending = True
             self.audio_stop_retry_after = time.monotonic() + 1.0
             LOG.exception("Audio stop is pending; will retry when the audio service responds")
@@ -343,8 +360,10 @@ class BedtimeService:
             next_session = start_session(next_session, now, choice, self.schedule)
             self.session = next_session
             self._save_persisted_session()
-            self.player.set_paused(False)
             self.paused = False
+            self.player.stop()
+            self.audio.stop()
+            self.player.set_paused(False)
             if self.session.phase is Phase.PLAYLIST:
                 self._play_current_track()
             elif self.session.phase is Phase.PINK_NOISE:
@@ -377,18 +396,16 @@ class BedtimeService:
             LOG.error("Cannot play scheduled track %s: %s", path, error)
             self.session = stop_session(self.session)
             self.paused = False
-            self._request_audio_stop()
             raise ServiceError(f"cannot play {path.name}: {error}") from error
 
     def _play_pink_noise(self) -> None:
         self._save_persisted_session()
         try:
-            self.player.play_pink_noise(PINK_NOISE_FILE)
-        except (OSError, PlayerError) as error:
+            self.audio.play_pink_noise(PINK_NOISE_FILE)
+        except (OSError, AudioError) as error:
             LOG.error("Cannot play pink noise %s: %s", PINK_NOISE_FILE, error)
             self.session = stop_session(self.session)
             self.paused = False
-            self._request_audio_stop()
             raise ServiceError(f"cannot play pink noise: {error}") from error
 
     def _process_player_events(self) -> None:
@@ -400,9 +417,7 @@ class BedtimeService:
             with self.state_lock:
                 if event.kind == "error":
                     LOG.error("Playback error for %s: %s", event.path, event.message)
-                    if self.session.phase is Phase.PINK_NOISE:
-                        # Keep the pink-noise session visible if its native
-                        # continuous-output backend reports an error.
+                    if isinstance(event, AudioEvent) and self.session.phase is Phase.PINK_NOISE:
                         continue
                     self.session = stop_session(self.session)
                     self.paused = False
@@ -410,7 +425,7 @@ class BedtimeService:
                     continue
                 if event.kind != "completed" or self.session.phase is not Phase.PLAYLIST:
                     continue
-                self.session = track_finished(self.session, datetime.now(self.timezone))
+                self.session = track_finished(self.session)
                 if self.session.phase is Phase.PLAYLIST:
                     LOG.info(
                         "Reading track complete; starting track %d of %d",
@@ -430,14 +445,20 @@ class BedtimeService:
                 else:
                     self._request_audio_stop()
 
-    def _enforce_alarm(self) -> None:
-        with self.state_lock:
-            old_phase = self.session.phase
-            self.session = advance_time(self.session, datetime.now(self.timezone))
-            if old_phase in (Phase.PLAYLIST, Phase.PINK_NOISE) and self.session.phase is Phase.STOPPED:
-                LOG.info("Alarm time reached; stopping audio")
-                self.paused = False
-                self._request_audio_stop()
+    def _set_paused(self, paused: bool) -> None:
+        if self.session.phase is Phase.PINK_NOISE:
+            self.audio.set_paused(paused)
+        else:
+            self.player.set_paused(paused)
+
+    def _set_volume(self, percent: float) -> None:
+        if self.session.phase is Phase.PINK_NOISE or (
+            self.session.phase in (Phase.IDLE, Phase.STOPPED)
+            and self.selected_choice is StartChoice.PINK_NOISE
+        ):
+            self.audio.set_volume(percent)
+        else:
+            self.player.set_volume(percent)
 
     def _load_persisted_session(self) -> tuple[Session, bool]:
         """Restore a valid session and absolute alarm deadline after restart."""
@@ -479,9 +500,6 @@ class BedtimeService:
                     track_index=index,
                     track_count=len(entries),
                 )
-            if advance_time(session, datetime.now(self.timezone)).phase is Phase.STOPPED:
-                LOG.info("Saved session alarm has passed; stopping restored audio")
-                return Session(phase=Phase.STOPPED, alarm_at=alarm_at, start_choice=choice), True
             LOG.info("Restored %s session with alarm deadline %s", phase.value, alarm_at.isoformat())
             return session, False
         except FileNotFoundError:
