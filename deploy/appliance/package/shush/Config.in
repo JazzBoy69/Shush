@@ -1,0 +1,16 @@
+config BR2_PACKAGE_SHUSH
+	bool "shush"
+	depends on BR2_PACKAGE_HOST_RUSTC_TARGET_ARCH_SUPPORTS
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	depends on !BR2_STATIC_LIBS
+	select BR2_PACKAGE_HOST_RUSTC
+	select BR2_PACKAGE_ALSA_LIB
+	help
+	  Audio-only Rust alarm appliance for a Raspberry Pi 3 B+.
+	  Builds local repository sources and installs the reading media,
+	  pink noise, and prepared voice prompts under /opt/shush.
+	  Preparation requires Cargo.lock and network access for vendoring
+	  crates on the build host; compilation itself is offline and locked.
+
+comment "shush needs Rust target support and a toolchain with threads and dynamic libraries"
+	depends on !BR2_PACKAGE_HOST_RUSTC_TARGET_ARCH_SUPPORTS || !BR2_TOOLCHAIN_HAS_THREADS || BR2_STATIC_LIBS

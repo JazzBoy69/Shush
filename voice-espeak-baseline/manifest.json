@@ -1,0 +1,4710 @@
+{
+  "generator": "eSpeak NG 1.51, Ubuntu 1.51+dfsg-12build1, x86-64",
+  "packages": [
+    {
+      "path": "universe/e/espeak-ng/espeak-ng_1.51+dfsg-12build1_amd64.deb",
+      "sha256": "ffeac730f1f43b5cdbca708a8215d6b7310bf3bd40d7dcf0affd6a62f86aa6df"
+    },
+    {
+      "path": "main/e/espeak-ng/libespeak-ng1_1.51+dfsg-12build1_amd64.deb",
+      "sha256": "aab65c41ccd62c3998d0fc45cdb9e7e3a2d91031d7ee51b913775718b3f0f60e"
+    },
+    {
+      "path": "main/e/espeak-ng/espeak-ng-data_1.51+dfsg-12build1_amd64.deb",
+      "sha256": "60057f68ba6f79e69aafd943e67e7d9a844de0531e77dc86b1971c43782e4d88"
+    },
+    {
+      "path": "main/p/pcaudiolib/libpcaudio0_1.2-2build3_amd64.deb",
+      "sha256": "a0528a39edac8a05174a219315392422e54ce9f85364a3ca001fdbf25da2dc4e"
+    },
+    {
+      "path": "main/s/sonic/libsonic0_0.2.0-13build1_amd64.deb",
+      "sha256": "2cdd82b71f417cd41725452e91649708e129b4f706eca7a11a7815acb0ed4ad1"
+    },
+    {
+      "path": "main/p/pulseaudio/libpulse0_16.1+dfsg1-2ubuntu10.1_amd64.deb",
+      "sha256": "b8d52aa6c2f74ae99e749c9f98d6ad2dbf924fd422371ac469725245cdd919fc"
+    },
+    {
+      "path": "main/liba/libasyncns/libasyncns0_0.8-6build4_amd64.deb",
+      "sha256": "f8483917fd216e248143eba1c80dfc9384b94fb4dac402194a98c11505674269"
+    },
+    {
+      "path": "main/libs/libsndfile/libsndfile1_1.2.2-1ubuntu5.24.04.1_amd64.deb",
+      "sha256": "fe2461b27e747fa88ede157ea39c6379e2101c280a730cda9c825f566a3808e5"
+    },
+    {
+      "path": "main/f/flac/libflac12t64_1.4.3+ds-2.1ubuntu2_amd64.deb",
+      "sha256": "f2396692573407b2fbc92cd83148342d4aec717d42d5e24ac64c471204a0b7a9"
+    },
+    {
+      "path": "main/libv/libvorbis/libvorbis0a_1.3.7-1build3_amd64.deb",
+      "sha256": "d704ac0a5dd7a9797a2f2dc86fc8333c9973023b98b3510dcd2f1cc00da3624d"
+    },
+    {
+      "path": "main/libv/libvorbis/libvorbisenc2_1.3.7-1build3_amd64.deb",
+      "sha256": "866c561fe81d4430a48c820f4e62f3cd138f4c8c7664f9203f02c1ced2eb55d4"
+    },
+    {
+      "path": "main/o/opus/libopus0_1.4-1build1_amd64.deb",
+      "sha256": "6d8da32a832e655c9603543b47a0bc90c6f60bdee0c00fe7499bd50acad566cf"
+    },
+    {
+      "path": "main/libo/libogg/libogg0_1.3.5-3build1_amd64.deb",
+      "sha256": "fbdb2fedbafb02c3f07f2c2ddeb4018b5e94e13462f93fbececdcefc06fe2ac1"
+    },
+    {
+      "path": "main/m/mpg123/libmpg123-0t64_1.32.5-1ubuntu1.1_amd64.deb",
+      "sha256": "bbe32128e3358f141f9f58ef6e76a7bef3e07d09165203665d30fdc27372b418"
+    },
+    {
+      "path": "main/l/lame/libmp3lame0_3.100-6build1_amd64.deb",
+      "sha256": "d739e9a3565f98b8b72a9e203a9a537bd1090af6cafb94c98adf8e27f9d3fb94"
+    }
+  ],
+  "arguments": [
+    "-v",
+    "en-us",
+    "-s",
+    "155",
+    "-p",
+    "50",
+    "-a",
+    "100",
+    "-g",
+    "0"
+  ],
+  "format": {
+    "channels": 1,
+    "sample_bits": 16,
+    "sample_rate": 22050
+  },
+  "assets": [
+    {
+      "file": "current-1-00.wav",
+      "text": "The time is 1 o'clock.",
+      "sha256": "8faba566e0a34eeb60a2fcf17da7cac1932e07d212e3141dcde7b16ca689c88a",
+      "frames": 37842
+    },
+    {
+      "file": "current-1-01.wav",
+      "text": "The time is 1 oh 1.",
+      "sha256": "f797aa7b193ac64e0544277c8be1ff36b0de01e183a30094e5efae4a0df87c3d",
+      "frames": 39571
+    },
+    {
+      "file": "current-1-02.wav",
+      "text": "The time is 1 oh 2.",
+      "sha256": "12f87d21e727601b0d093f005f05a06690c84bf392c7ffda063f54fb1ffd5696",
+      "frames": 37706
+    },
+    {
+      "file": "current-1-03.wav",
+      "text": "The time is 1 oh 3.",
+      "sha256": "5ad690373a000a58df3c8ede2fbea510df4c9c938b725e8d400815991b4bddc8",
+      "frames": 38092
+    },
+    {
+      "file": "current-1-04.wav",
+      "text": "The time is 1 oh 4.",
+      "sha256": "6f2edf423fa86b36a0a72ce3224dd4b073b4e2202fe33fb138aba367e48b15c5",
+      "frames": 39420
+    },
+    {
+      "file": "current-1-05.wav",
+      "text": "The time is 1 oh 5.",
+      "sha256": "460f196d38ec264d8fcc7609e8ec77299998b9cdb8fdf7e6b95a9aa872d0a75e",
+      "frames": 40617
+    },
+    {
+      "file": "current-1-06.wav",
+      "text": "The time is 1 oh 6.",
+      "sha256": "833d283ea719fb1e815acc2f8bd4e61f70d8dd11483375a76eceb3a5984c0e41",
+      "frames": 40135
+    },
+    {
+      "file": "current-1-07.wav",
+      "text": "The time is 1 oh 7.",
+      "sha256": "90d75297a0ff16c800fa17d5a17687b9f8e8ccb55f8b16bd002bdaebc13b4f93",
+      "frames": 40822
+    },
+    {
+      "file": "current-1-08.wav",
+      "text": "The time is 1 oh 8.",
+      "sha256": "f94d89dd85cfa6ed3e8a85996874bc3e5291d385ffd27504296230b13c7d5b15",
+      "frames": 36631
+    },
+    {
+      "file": "current-1-09.wav",
+      "text": "The time is 1 oh 9.",
+      "sha256": "301c6f2bfd049d4d884cf8ab469c142d308e9eb1484800d8460778a35b8fd7d5",
+      "frames": 40899
+    },
+    {
+      "file": "current-1-10.wav",
+      "text": "The time is 1 10.",
+      "sha256": "403d7cf26309250ebf76a0857621991a595f044941eeeb8c95134f966fa17a3f",
+      "frames": 37145
+    },
+    {
+      "file": "current-1-11.wav",
+      "text": "The time is 1 11.",
+      "sha256": "e8aa5744716a038a5d6bcadcbf02e6bd33910d7cd6c4bb14e3e63adbe6629f29",
+      "frames": 37607
+    },
+    {
+      "file": "current-1-12.wav",
+      "text": "The time is 1 12.",
+      "sha256": "e49c499183597d1fdfb3449e40edacaa35c69eb2c345054bd84683ab6b843bf8",
+      "frames": 39821
+    },
+    {
+      "file": "current-1-13.wav",
+      "text": "The time is 1 13.",
+      "sha256": "3f339d3d2684a4521d8bd920a76f3a00999c812d2b87d55047a59fd2080fc4e9",
+      "frames": 39626
+    },
+    {
+      "file": "current-1-14.wav",
+      "text": "The time is 1 14.",
+      "sha256": "8fc8223e67195f5cce62251cecc541bf55a89d9a038026d3d88b809517d86e18",
+      "frames": 40173
+    },
+    {
+      "file": "current-1-15.wav",
+      "text": "The time is 1 15.",
+      "sha256": "939dd233a5e33fdbb29368e27eba962845c9e86a0fac38dc40879d63fa3cad22",
+      "frames": 39908
+    },
+    {
+      "file": "current-1-16.wav",
+      "text": "The time is 1 16.",
+      "sha256": "5aba3848b39a33b94aceca568dff9836e85230d60c8a4da24d305a7a56be34aa",
+      "frames": 40996
+    },
+    {
+      "file": "current-1-17.wav",
+      "text": "The time is 1 17.",
+      "sha256": "4fab148352a33fc53fb00c7a046b4b291bd4c4e9cc4ae9b8172bfef2b61089e8",
+      "frames": 43214
+    },
+    {
+      "file": "current-1-18.wav",
+      "text": "The time is 1 18.",
+      "sha256": "dda91e0481239a84c48f0790224a57c9bfcd2bf97ec1bda5fc85c366c73539a0",
+      "frames": 36817
+    },
+    {
+      "file": "current-1-19.wav",
+      "text": "The time is 1 19.",
+      "sha256": "6e48970c57566821d19145327058545096c51c0ca77d5e645cf5b682d4f72a9e",
+      "frames": 40251
+    },
+    {
+      "file": "current-1-20.wav",
+      "text": "The time is 1 20.",
+      "sha256": "04dfa199b1164bd2c30ca283a57cb70e6fdbe82dd60790570be2e73c3890f7a3",
+      "frames": 40308
+    },
+    {
+      "file": "current-1-21.wav",
+      "text": "The time is 1 21.",
+      "sha256": "7f7fff952b601c11cdcc01600299cb8cd757c73a0588a4d3120d97939e712655",
+      "frames": 47455
+    },
+    {
+      "file": "current-1-22.wav",
+      "text": "The time is 1 22.",
+      "sha256": "992e48a6f97772c7d4e78e26acecfed85c2e5790dacac0195eed6d0ac40f7ba2",
+      "frames": 45752
+    },
+    {
+      "file": "current-1-23.wav",
+      "text": "The time is 1 23.",
+      "sha256": "811d3b096a14e5a22a017c980557dc91aa5e28b9ee78d31074a6081187fd81da",
+      "frames": 46408
+    },
+    {
+      "file": "current-1-24.wav",
+      "text": "The time is 1 24.",
+      "sha256": "ce78457fa495b48f0dfeb4cc39c2a1658bd915d1c9d6ef5e4bf8323cfa2dc355",
+      "frames": 47714
+    },
+    {
+      "file": "current-1-25.wav",
+      "text": "The time is 1 25.",
+      "sha256": "6852e6b1bbc3a6652ea8e8dca79eaf822636aabcc7ca14d57e666e0a3c62b7bb",
+      "frames": 48905
+    },
+    {
+      "file": "current-1-26.wav",
+      "text": "The time is 1 26.",
+      "sha256": "cbec6845e5b228e2ca96a674c49c81a46d9896dea36768a7b2c0b130747d8bf7",
+      "frames": 48423
+    },
+    {
+      "file": "current-1-27.wav",
+      "text": "The time is 1 27.",
+      "sha256": "17d916ac331e5881ddb7414ca318b2a037730475c7c6ab5a614b03af68c4d12a",
+      "frames": 49115
+    },
+    {
+      "file": "current-1-28.wav",
+      "text": "The time is 1 28.",
+      "sha256": "ebf461f035b24a8ec08b14297cb7ecbbf5af5639b57c27bdd4306fc22b457327",
+      "frames": 45049
+    },
+    {
+      "file": "current-1-29.wav",
+      "text": "The time is 1 29.",
+      "sha256": "dcab4cf8a26981bf34fe1afefb1ec98ab8f76fd43a8a90237c1a79a5cea7dc8a",
+      "frames": 48474
+    },
+    {
+      "file": "current-1-30.wav",
+      "text": "The time is 1 30.",
+      "sha256": "e7be5b769422fa61e8eaa9680a491cf18cdc946fb4037eefc5364fed87d960df",
+      "frames": 37638
+    },
+    {
+      "file": "current-1-31.wav",
+      "text": "The time is 1 31.",
+      "sha256": "46d24301316eb4bf542d90db706073a79b6f470878143829cb5f8f4b2d8198b8",
+      "frames": 44772
+    },
+    {
+      "file": "current-1-32.wav",
+      "text": "The time is 1 32.",
+      "sha256": "d58c83a3eb44a3b152da43509ff7e7941fcfd870fe5a11aaabe0ba61c7e97e69",
+      "frames": 43085
+    },
+    {
+      "file": "current-1-33.wav",
+      "text": "The time is 1 33.",
+      "sha256": "fe0b8e4d50329192474b9d3aba2bab88447b9796a019b516df778e13f1f73af1",
+      "frames": 43737
+    },
+    {
+      "file": "current-1-34.wav",
+      "text": "The time is 1 34.",
+      "sha256": "2a91ea935c61e38024edd41a922ba829880cd69bf126f7af41e0b455255e46ca",
+      "frames": 45046
+    },
+    {
+      "file": "current-1-35.wav",
+      "text": "The time is 1 35.",
+      "sha256": "842d476e1210214a7522ae42966550ea2f6ab204db865b1e934525eda200a8d9",
+      "frames": 46233
+    },
+    {
+      "file": "current-1-36.wav",
+      "text": "The time is 1 36.",
+      "sha256": "281080dbab2ad34f88ea0516bc9ada4c05a9273c1db1c0a008de59cd9e846cb9",
+      "frames": 45752
+    },
+    {
+      "file": "current-1-37.wav",
+      "text": "The time is 1 37.",
+      "sha256": "e21f1a52fdeec7005dbcf2d5516720384fb818da868c3fbc843c33b08039d46c",
+      "frames": 46435
+    },
+    {
+      "file": "current-1-38.wav",
+      "text": "The time is 1 38.",
+      "sha256": "c4d7075d35cad064bf0cb9f717557995dc82de082a0523c1628d8a647c8e1df3",
+      "frames": 42373
+    },
+    {
+      "file": "current-1-39.wav",
+      "text": "The time is 1 39.",
+      "sha256": "a66ca0dd55208902802e0756613d24602fa3683e15a12b96b390c4bb0f52f017",
+      "frames": 45797
+    },
+    {
+      "file": "current-1-40.wav",
+      "text": "The time is 1 40.",
+      "sha256": "83ff4af9d88d3626f8409e3fe1e215c34bf71b5cf2662351b86d5dc127bd2333",
+      "frames": 38461
+    },
+    {
+      "file": "current-1-41.wav",
+      "text": "The time is 1 41.",
+      "sha256": "8bb09a105811640322e475972534fb6e30db36de082d4014004bb282c3bbe054",
+      "frames": 45289
+    },
+    {
+      "file": "current-1-42.wav",
+      "text": "The time is 1 42.",
+      "sha256": "103fef7a1a077ccbc4d70671d6de68c8bd88a8a18215c33811d3083a845fe1db",
+      "frames": 43828
+    },
+    {
+      "file": "current-1-43.wav",
+      "text": "The time is 1 43.",
+      "sha256": "9efce4ccf69ea1fc80c9a17432033c0ead2b61e7482ed76a4f2fcdc83345624b",
+      "frames": 44242
+    },
+    {
+      "file": "current-1-44.wav",
+      "text": "The time is 1 44.",
+      "sha256": "c32eaebb64395569b71db281949b84a639a80cf9fd9fd1369a77a132e82190f3",
+      "frames": 45552
+    },
+    {
+      "file": "current-1-45.wav",
+      "text": "The time is 1 45.",
+      "sha256": "872f78eda7d7bb97ae08fd8e94f9f57a756c652fbbd74977e5c2c72b1265751b",
+      "frames": 46739
+    },
+    {
+      "file": "current-1-46.wav",
+      "text": "The time is 1 46.",
+      "sha256": "a82fe2206fb10c5bf805c33c66b2b8e6964d66235fbec076a77d8d0a45b8a056",
+      "frames": 46258
+    },
+    {
+      "file": "current-1-47.wav",
+      "text": "The time is 1 47.",
+      "sha256": "a7f4dffd0fd672ab992c87ccb7a3d124bfda6bc4524d81b5e5a91b808856cf2f",
+      "frames": 46950
+    },
+    {
+      "file": "current-1-48.wav",
+      "text": "The time is 1 48.",
+      "sha256": "7a4725a1e9657005593fbaaf67d4dcbeb418bee8c32347e590f0180cf6cb2f96",
+      "frames": 42869
+    },
+    {
+      "file": "current-1-49.wav",
+      "text": "The time is 1 49.",
+      "sha256": "209e7a2784a36d123edf113a81704f3ada39a3c3291ebfafbaa6ceeb76abcfdb",
+      "frames": 46309
+    },
+    {
+      "file": "current-1-50.wav",
+      "text": "The time is 1 50.",
+      "sha256": "7c307fc0870859c3748f50058af7a336f6558dbd9c06e869fd55e381abba7eb0",
+      "frames": 38526
+    },
+    {
+      "file": "current-1-51.wav",
+      "text": "The time is 1 51.",
+      "sha256": "fa1953402501fd6879f82d3126b58e7620a6d5f13610441678a835b2592bec28",
+      "frames": 46353
+    },
+    {
+      "file": "current-1-52.wav",
+      "text": "The time is 1 52.",
+      "sha256": "a6a77ad1e9ca352baf34a0603660951ec6a9a916ad1df504f71890f18701b1bc",
+      "frames": 44652
+    },
+    {
+      "file": "current-1-53.wav",
+      "text": "The time is 1 53.",
+      "sha256": "a3cdf536ea4248c2b1d7123ac20ddfb4090969b7b44e2a55dff6b95efc32683e",
+      "frames": 45304
+    },
+    {
+      "file": "current-1-54.wav",
+      "text": "The time is 1 54.",
+      "sha256": "8c7a2ec614cb1e613e576196bdb77f2fbe2346c116f6080904fe74d891f1cb95",
+      "frames": 46601
+    },
+    {
+      "file": "current-1-55.wav",
+      "text": "The time is 1 55.",
+      "sha256": "7374c21f38fb98375dcdd1f5c6ed284c858e1d82a384f1fbccdbaecb09ae4cba",
+      "frames": 47800
+    },
+    {
+      "file": "current-1-56.wav",
+      "text": "The time is 1 56.",
+      "sha256": "4447cd53a84bdb0064a1c4f5b615bd88bb6081aee4193045edd6204a7af4bcd3",
+      "frames": 47308
+    },
+    {
+      "file": "current-1-57.wav",
+      "text": "The time is 1 57.",
+      "sha256": "48604e67e53893a2425ae6d5876bce5eede7ac269d9d9eca65a2536f3236d824",
+      "frames": 48012
+    },
+    {
+      "file": "current-1-58.wav",
+      "text": "The time is 1 58.",
+      "sha256": "1f195f5ccbafe5bd7a543d15b358d1836c089e753155a890b14b8ad1da58464f",
+      "frames": 43942
+    },
+    {
+      "file": "current-1-59.wav",
+      "text": "The time is 1 59.",
+      "sha256": "83aa84d8cc9696ec2808fdc3eecfa7e07b3af71f06292ac7a072bf59028eaccd",
+      "frames": 47363
+    },
+    {
+      "file": "current-10-00.wav",
+      "text": "The time is 10 o'clock.",
+      "sha256": "fe121559c7ef5639a3637cf6a9d52f5b1d8b3265b7812e13306b07a4473a7896",
+      "frames": 38945
+    },
+    {
+      "file": "current-10-01.wav",
+      "text": "The time is 10 oh 1.",
+      "sha256": "4f756e8b63029723c02bccd3cc6820f29f8d3c03bdb28dbb55548c5caa5d0a53",
+      "frames": 40534
+    },
+    {
+      "file": "current-10-02.wav",
+      "text": "The time is 10 oh 2.",
+      "sha256": "eaf23523231be37b9041c204717162124f0b023bdb8d2d0bea84a19927bef74c",
+      "frames": 38671
+    },
+    {
+      "file": "current-10-03.wav",
+      "text": "The time is 10 oh 3.",
+      "sha256": "a66b84c4517b64d6400a2c978ed02632437c3e63ac7b7eae040f595a19d0f4d3",
+      "frames": 39054
+    },
+    {
+      "file": "current-10-04.wav",
+      "text": "The time is 10 oh 4.",
+      "sha256": "d9160688196a416d590566a5784a2e62d13199b0719bb0a2c33f1b97a881c50c",
+      "frames": 40365
+    },
+    {
+      "file": "current-10-05.wav",
+      "text": "The time is 10 oh 5.",
+      "sha256": "42bd36b566717844bb74c595ec88e803a6ce3af82ef05af6fa71684b2bc5c4fb",
+      "frames": 41568
+    },
+    {
+      "file": "current-10-06.wav",
+      "text": "The time is 10 oh 6.",
+      "sha256": "b39751d6eddf03ddc01565d39f4f156590948041b4566fb897872ac022422f4b",
+      "frames": 41080
+    },
+    {
+      "file": "current-10-07.wav",
+      "text": "The time is 10 oh 7.",
+      "sha256": "f2a22810b4ba1cd2f5a67ecf1e2037d84846f2da5c524e36ca443a5045eb87b5",
+      "frames": 41774
+    },
+    {
+      "file": "current-10-08.wav",
+      "text": "The time is 10 oh 8.",
+      "sha256": "cb323ab58fc27bf469aa9b5976470657e415bb0ea09366d1e56561ae8a102b86",
+      "frames": 37864
+    },
+    {
+      "file": "current-10-09.wav",
+      "text": "The time is 10 oh 9.",
+      "sha256": "27e58cf74b38066d79e9f3da173baff7e236ccce0380d25a1e8fea1880cad1cf",
+      "frames": 41839
+    },
+    {
+      "file": "current-10-10.wav",
+      "text": "The time is 10 10.",
+      "sha256": "75eb4b85784224d61863ca9f1f7a18a749324d9630a6e0ebe23f64ec11b9b78f",
+      "frames": 38027
+    },
+    {
+      "file": "current-10-11.wav",
+      "text": "The time is 10 11.",
+      "sha256": "aaf74258a9638248cfca7351a527a36d6c4223b33cfdd03077fcaff228486f8c",
+      "frames": 38737
+    },
+    {
+      "file": "current-10-12.wav",
+      "text": "The time is 10 12.",
+      "sha256": "28c8f5a93aad75e46c2cc53f1ce18c27c524289c22a99a31d0b4213e87fbe1dd",
+      "frames": 40692
+    },
+    {
+      "file": "current-10-13.wav",
+      "text": "The time is 10 13.",
+      "sha256": "72ddfec51b30676b86aa48d7a02a0839d3a76d5980c3c3cae36fa8a04df2b503",
+      "frames": 40512
+    },
+    {
+      "file": "current-10-14.wav",
+      "text": "The time is 10 14.",
+      "sha256": "8fae229bb2a193e5fa235c3b9b70e2d6870ac79405ffb6f250b76fc5dfcf07f6",
+      "frames": 41053
+    },
+    {
+      "file": "current-10-15.wav",
+      "text": "The time is 10 15.",
+      "sha256": "ce75d7f344a8718f091f2372ef0c6cb19a1e964cc498fa60f197c3380540c2c3",
+      "frames": 40780
+    },
+    {
+      "file": "current-10-16.wav",
+      "text": "The time is 10 16.",
+      "sha256": "95cdc2b6a8804190834055d54c487ce5c9c5a2bd2ec36059950095482a7f25e6",
+      "frames": 41868
+    },
+    {
+      "file": "current-10-17.wav",
+      "text": "The time is 10 17.",
+      "sha256": "eec19ecbd2c8414c26f1aefd90db307fbe30f7459e34a0f44408d87d3c4864ed",
+      "frames": 44093
+    },
+    {
+      "file": "current-10-18.wav",
+      "text": "The time is 10 18.",
+      "sha256": "ca4562436534338d21388e5c3dfb0ed83f4174ead86557a6792193e0488766eb",
+      "frames": 37949
+    },
+    {
+      "file": "current-10-19.wav",
+      "text": "The time is 10 19.",
+      "sha256": "d5e9021a6c9ec85ded3e43170b387bfa5c70fd87ec88b89c75c35dd7a0624f52",
+      "frames": 41101
+    },
+    {
+      "file": "current-10-20.wav",
+      "text": "The time is 10 20.",
+      "sha256": "699ac65dc0b51e9367d62f8277facb50daa1486071cc04d31e7f7815cefe1a52",
+      "frames": 41185
+    },
+    {
+      "file": "current-10-21.wav",
+      "text": "The time is 10 21.",
+      "sha256": "8d1ef31487f7ac536b06b8e6a1d36588a34a37a0b891e54015786c543e608f83",
+      "frames": 48407
+    },
+    {
+      "file": "current-10-22.wav",
+      "text": "The time is 10 22.",
+      "sha256": "5d7a3f76e95b1ca014dda26edadf14ac709661245d139112858fad9b65512bfa",
+      "frames": 46718
+    },
+    {
+      "file": "current-10-23.wav",
+      "text": "The time is 10 23.",
+      "sha256": "cd543b011dc663357e47d2ba58e6ba0ccf497e78dc38ae5b8eceb3e1ea644dfe",
+      "frames": 47367
+    },
+    {
+      "file": "current-10-24.wav",
+      "text": "The time is 10 24.",
+      "sha256": "0fda9568bf11b413169ce0b3b73f6ce6586d6b6a7e8f498a7f4935f5bb31eebc",
+      "frames": 48668
+    },
+    {
+      "file": "current-10-25.wav",
+      "text": "The time is 10 25.",
+      "sha256": "880d8da9cc6bacbfdcdc8a7e41dbb22eb3123f4842cb456529241e7284d3e20e",
+      "frames": 49868
+    },
+    {
+      "file": "current-10-26.wav",
+      "text": "The time is 10 26.",
+      "sha256": "954ff663fe937fe70b844fbbdfe86cf51f092ff50c40df005689631edb943b93",
+      "frames": 49378
+    },
+    {
+      "file": "current-10-27.wav",
+      "text": "The time is 10 27.",
+      "sha256": "fcc34639f7f658b9169dea0612f2e707e27359f30cb87b64a78e57fd27f4f0fa",
+      "frames": 50070
+    },
+    {
+      "file": "current-10-28.wav",
+      "text": "The time is 10 28.",
+      "sha256": "a0b06f7a5349192ab4e7200b1b363da7c9fd11ac56844e50bb712a5672da2397",
+      "frames": 46006
+    },
+    {
+      "file": "current-10-29.wav",
+      "text": "The time is 10 29.",
+      "sha256": "b8f15f3838c5e6e65d3711a5a2ae13eaab454a88e38249119d81576b7d239e1f",
+      "frames": 49427
+    },
+    {
+      "file": "current-10-30.wav",
+      "text": "The time is 10 30.",
+      "sha256": "3129cb5b141c248916399fac4759410cdd4585ba524dc6c514777bd0d0085339",
+      "frames": 38524
+    },
+    {
+      "file": "current-10-31.wav",
+      "text": "The time is 10 31.",
+      "sha256": "0763eb649cd9b6502945cf532269af83125c14cc09b28ac362e5a8631e939e4c",
+      "frames": 45741
+    },
+    {
+      "file": "current-10-32.wav",
+      "text": "The time is 10 32.",
+      "sha256": "deec4912e253d2621374a46f21931b87f3390fae235e1cce5647b7a4d640cf6a",
+      "frames": 44041
+    },
+    {
+      "file": "current-10-33.wav",
+      "text": "The time is 10 33.",
+      "sha256": "0ed9e50d998f216333f32e74b53b75acbc720d03b66bf1d9698141df4da3e595",
+      "frames": 44700
+    },
+    {
+      "file": "current-10-34.wav",
+      "text": "The time is 10 34.",
+      "sha256": "dc23b567459d94ed3e80661a2c705b61960a99a1240c6dbb2314a5617308157d",
+      "frames": 45989
+    },
+    {
+      "file": "current-10-35.wav",
+      "text": "The time is 10 35.",
+      "sha256": "b6419872a4f14274ad4db676e3a17a41c76517a0dab997d2a7b2ec56878bb956",
+      "frames": 47199
+    },
+    {
+      "file": "current-10-36.wav",
+      "text": "The time is 10 36.",
+      "sha256": "96850d160d09bb680a6db13e01164ff4acf085d91aaf2d0cffef040853f4c814",
+      "frames": 46699
+    },
+    {
+      "file": "current-10-37.wav",
+      "text": "The time is 10 37.",
+      "sha256": "dd020267f84a95ca8368a89437307583284f8b02492cca9734a34c78ba26e1c6",
+      "frames": 47404
+    },
+    {
+      "file": "current-10-38.wav",
+      "text": "The time is 10 38.",
+      "sha256": "97cbd96369b4c4ffb034b2fca542845165ae5f1b76d2e17daf892ed381552a10",
+      "frames": 43328
+    },
+    {
+      "file": "current-10-39.wav",
+      "text": "The time is 10 39.",
+      "sha256": "27ed82e4aaed3e0c96ed2a9b83337181f639ca24dd9646e3863db3b4c0f43489",
+      "frames": 46746
+    },
+    {
+      "file": "current-10-40.wav",
+      "text": "The time is 10 40.",
+      "sha256": "3e37123967ea089733d46cf8ba57f6347be15e49427a8d648a2fde89197e38f1",
+      "frames": 39332
+    },
+    {
+      "file": "current-10-41.wav",
+      "text": "The time is 10 41.",
+      "sha256": "d52262520abb36470ed14f483e9ac5baa94efe99990fb74391593f7a896741f9",
+      "frames": 46243
+    },
+    {
+      "file": "current-10-42.wav",
+      "text": "The time is 10 42.",
+      "sha256": "80bbe558768474e898492c205ff7f6619d0dfe38a2aad1a0f640742cf8a6c631",
+      "frames": 44793
+    },
+    {
+      "file": "current-10-43.wav",
+      "text": "The time is 10 43.",
+      "sha256": "d6b8627461482376165483a9693be346052e2dff3c6ca1aae957fd2f544f29e1",
+      "frames": 45204
+    },
+    {
+      "file": "current-10-44.wav",
+      "text": "The time is 10 44.",
+      "sha256": "4d216324735bd02c1909e39e2cbe773002ee859c141147ade9261dabcdeb4d98",
+      "frames": 46500
+    },
+    {
+      "file": "current-10-45.wav",
+      "text": "The time is 10 45.",
+      "sha256": "ebac33bf5e751bca80cce539e815f9721764fb7dc54f1cce3e17fa526566b8d3",
+      "frames": 47705
+    },
+    {
+      "file": "current-10-46.wav",
+      "text": "The time is 10 46.",
+      "sha256": "d69f036636527a6ecf92b44d60382a5f09c99863cedfa7647e26980c00d04dd9",
+      "frames": 47211
+    },
+    {
+      "file": "current-10-47.wav",
+      "text": "The time is 10 47.",
+      "sha256": "967a4dad8e6f1d1fc1011fb183c744f296ec7e4fe95585ac9b89905da5610248",
+      "frames": 47909
+    },
+    {
+      "file": "current-10-48.wav",
+      "text": "The time is 10 48.",
+      "sha256": "4bd290f3f15c9176484680444d40312f888f1fe6a002652cd4ba4f3130c21c4f",
+      "frames": 43825
+    },
+    {
+      "file": "current-10-49.wav",
+      "text": "The time is 10 49.",
+      "sha256": "acf15c06fc1eb680cad99e755d0382072d448af99c08dbe23da0fc44b884ca24",
+      "frames": 47258
+    },
+    {
+      "file": "current-10-50.wav",
+      "text": "The time is 10 50.",
+      "sha256": "d60a4d7210d162fb7daf7047c81b87dbeaaebb9f1018a063c43abacaebbc17c1",
+      "frames": 39394
+    },
+    {
+      "file": "current-10-51.wav",
+      "text": "The time is 10 51.",
+      "sha256": "2b1cc6b4c53d02c729ea81542ac5aa4974da1554a841acfd3f056f37955724a9",
+      "frames": 47294
+    },
+    {
+      "file": "current-10-52.wav",
+      "text": "The time is 10 52.",
+      "sha256": "b6f34bf6aa35a2e84bf0d918f5a5c34b17c69d4a307fe79dc6e1f8b1fa1caa22",
+      "frames": 45600
+    },
+    {
+      "file": "current-10-53.wav",
+      "text": "The time is 10 53.",
+      "sha256": "b65bd69a2280385fa80ecb0b36483f4757c8890f5cecce5138da58838768fed5",
+      "frames": 46254
+    },
+    {
+      "file": "current-10-54.wav",
+      "text": "The time is 10 54.",
+      "sha256": "1c7f1b8a5ff3a3c50f43ac0e757ff791da5ae39bae3e3f7de73f4bde2d1651bb",
+      "frames": 47558
+    },
+    {
+      "file": "current-10-55.wav",
+      "text": "The time is 10 55.",
+      "sha256": "4f116225b2d333e57ba44c2082c839986f08ebdd9b43140053642c5e511df41f",
+      "frames": 48752
+    },
+    {
+      "file": "current-10-56.wav",
+      "text": "The time is 10 56.",
+      "sha256": "5854701ecaba3ef316418567a3f0367ffad2e9dacf5a837fb2135471cd410a75",
+      "frames": 48274
+    },
+    {
+      "file": "current-10-57.wav",
+      "text": "The time is 10 57.",
+      "sha256": "0c46fd69af171d8a300adecc04cb03436ad815e979360462dda575ab53f59d7c",
+      "frames": 48957
+    },
+    {
+      "file": "current-10-58.wav",
+      "text": "The time is 10 58.",
+      "sha256": "57acf97197ef6ee2d00661c66d66434e92aa04802b43db529bd1df7ae7a13890",
+      "frames": 44891
+    },
+    {
+      "file": "current-10-59.wav",
+      "text": "The time is 10 59.",
+      "sha256": "46e160292cd7d624337683a1bedb6aa38beca677b01e93573911bc6d1ef723d1",
+      "frames": 48321
+    },
+    {
+      "file": "current-11-00.wav",
+      "text": "The time is 11 o'clock.",
+      "sha256": "20930998b684e96dfbfc623793cbcaaafb51aa33b60f581693f721445e1adbe4",
+      "frames": 40912
+    },
+    {
+      "file": "current-11-01.wav",
+      "text": "The time is 11 oh 1.",
+      "sha256": "2f42a620d5b8ba7fc6546092075f460dacf118903537fef962c3200d85b20d00",
+      "frames": 42540
+    },
+    {
+      "file": "current-11-02.wav",
+      "text": "The time is 11 oh 2.",
+      "sha256": "4b575d8eacc97efef8183c6b6b603e9b7e27d622c6ca79bb62e276116ef05000",
+      "frames": 40907
+    },
+    {
+      "file": "current-11-03.wav",
+      "text": "The time is 11 oh 3.",
+      "sha256": "5b186b89e5cf3903a716b4d9cd8313f54908570f596a7b0feb6b2d7dd6a3f676",
+      "frames": 41294
+    },
+    {
+      "file": "current-11-04.wav",
+      "text": "The time is 11 oh 4.",
+      "sha256": "3516cce923d162676c05c3b7491afdd987f03c71a00c3ec0334e83cbbad09e13",
+      "frames": 42625
+    },
+    {
+      "file": "current-11-05.wav",
+      "text": "The time is 11 oh 5.",
+      "sha256": "57f6196766c5796b72680650c7fd6950a24f60ec33146433b25858ea072da5d9",
+      "frames": 43814
+    },
+    {
+      "file": "current-11-06.wav",
+      "text": "The time is 11 oh 6.",
+      "sha256": "174417d660481361a3f844b571bb7629a847de72ce6d557e68ce1cf361cceb23",
+      "frames": 43331
+    },
+    {
+      "file": "current-11-07.wav",
+      "text": "The time is 11 oh 7.",
+      "sha256": "b5cae499c7ecf99c4bce1d197f55b60259274d4c17acc7d14ce21426c1bb29d5",
+      "frames": 44015
+    },
+    {
+      "file": "current-11-08.wav",
+      "text": "The time is 11 oh 8.",
+      "sha256": "89ae338da746690c2bb1c33a880220a886e17408d4379663c8e5186b2c87e9c7",
+      "frames": 39863
+    },
+    {
+      "file": "current-11-09.wav",
+      "text": "The time is 11 oh 9.",
+      "sha256": "abec19dadae22cc4677e90dbcb544975ecf3c193a3f753ec5eba0f021209b363",
+      "frames": 43864
+    },
+    {
+      "file": "current-11-10.wav",
+      "text": "The time is 11 10.",
+      "sha256": "a1995b32f4c6e4123dc8c7a8aa323a8b197c5160eea0be642ae11c2e79798a1c",
+      "frames": 39873
+    },
+    {
+      "file": "current-11-11.wav",
+      "text": "The time is 11 11.",
+      "sha256": "a81704fc5c1f486d40408591026e740c8be9b39bfd04c9445462267021dd46e7",
+      "frames": 40687
+    },
+    {
+      "file": "current-11-12.wav",
+      "text": "The time is 11 12.",
+      "sha256": "71b2825230a104489179bc9f60e9d5e054db8176073482a833933abd60629a3e",
+      "frames": 42548
+    },
+    {
+      "file": "current-11-13.wav",
+      "text": "The time is 11 13.",
+      "sha256": "8b39c48fb8485b5cc9739dfb612d5f4a070884b7759ecea02217af9e79a32bee",
+      "frames": 42356
+    },
+    {
+      "file": "current-11-14.wav",
+      "text": "The time is 11 14.",
+      "sha256": "80de29aa69f7401e77b342196deefe888ef10c961f7be6627350b0e82294fa8c",
+      "frames": 42901
+    },
+    {
+      "file": "current-11-15.wav",
+      "text": "The time is 11 15.",
+      "sha256": "ab827583146a46dac75997eb51631934639fc7dfd885278131d5f21193cee6d9",
+      "frames": 42623
+    },
+    {
+      "file": "current-11-16.wav",
+      "text": "The time is 11 16.",
+      "sha256": "4b34110ed6c109d285e5e39b53fe1a79a69ebbdc24fee32bb718759c2a741bd9",
+      "frames": 43713
+    },
+    {
+      "file": "current-11-17.wav",
+      "text": "The time is 11 17.",
+      "sha256": "8c2e612d2dc1b3a1d6f4509f7de8ef9221f263f64e23bb93d6676a62f971e73b",
+      "frames": 45934
+    },
+    {
+      "file": "current-11-18.wav",
+      "text": "The time is 11 18.",
+      "sha256": "6874632882efad1c89fd713bee445c2547053e36e20448bd3a2a0f36c002d82b",
+      "frames": 39896
+    },
+    {
+      "file": "current-11-19.wav",
+      "text": "The time is 11 19.",
+      "sha256": "bbf5e1fa0e36f668d5f4699014faf5931a9b1a36c3ebe57c493c702616f3f6c7",
+      "frames": 42976
+    },
+    {
+      "file": "current-11-20.wav",
+      "text": "The time is 11 20.",
+      "sha256": "326484122704acd343d417a587d6ff116c93059b749f9471ba5343c90bb104ce",
+      "frames": 43033
+    },
+    {
+      "file": "current-11-21.wav",
+      "text": "The time is 11 21.",
+      "sha256": "3795435c884c3ec8a0483d55e692157418e317bba9ae405a54ad21abccef04ea",
+      "frames": 50070
+    },
+    {
+      "file": "current-11-22.wav",
+      "text": "The time is 11 22.",
+      "sha256": "ffd70dffe13d55fa7d0fa0f65d79ded6a26070a11cabe01ff310d8e5053ae3f6",
+      "frames": 48374
+    },
+    {
+      "file": "current-11-23.wav",
+      "text": "The time is 11 23.",
+      "sha256": "29f90cf2db9ddec692540774b889842f3dcc9096d535470d2d8bb7c0473e08bb",
+      "frames": 49031
+    },
+    {
+      "file": "current-11-24.wav",
+      "text": "The time is 11 24.",
+      "sha256": "c753b5ca100ddb86c597a46001ed222d2a08ed2555e87ac25120b29e8f18a196",
+      "frames": 50336
+    },
+    {
+      "file": "current-11-25.wav",
+      "text": "The time is 11 25.",
+      "sha256": "57d9a3feb0d99ff130a767f2fac63a4eb6143ea90ea1825ece5b65cc86eb7f5d",
+      "frames": 51533
+    },
+    {
+      "file": "current-11-26.wav",
+      "text": "The time is 11 26.",
+      "sha256": "787a8017494e8fff83f784ea17eac30011eb33d58415531d6414419d3d135d68",
+      "frames": 51048
+    },
+    {
+      "file": "current-11-27.wav",
+      "text": "The time is 11 27.",
+      "sha256": "777dab87c8385984d43fdb17f7101a213b0784c668271532f289c266605289ba",
+      "frames": 51734
+    },
+    {
+      "file": "current-11-28.wav",
+      "text": "The time is 11 28.",
+      "sha256": "880a41260026ccc1139bd192754283a086001fc7117bc12100aea42bd3e8f5b7",
+      "frames": 47673
+    },
+    {
+      "file": "current-11-29.wav",
+      "text": "The time is 11 29.",
+      "sha256": "a376f397ac289c9160ffafb692bbcdbd3e8e127cc8358611dec0fe08b49e1763",
+      "frames": 51093
+    },
+    {
+      "file": "current-11-30.wav",
+      "text": "The time is 11 30.",
+      "sha256": "d19472bba62575b9618486f9b2abbb3276749607dacdf687bc0a0caaf2a01749",
+      "frames": 40368
+    },
+    {
+      "file": "current-11-31.wav",
+      "text": "The time is 11 31.",
+      "sha256": "c19501649e6a4439962cc4e7e4d2be8380f81f85883ba47eb0320808999bbcf2",
+      "frames": 47403
+    },
+    {
+      "file": "current-11-32.wav",
+      "text": "The time is 11 32.",
+      "sha256": "36a0b3be377b6994374640cee539120ada953b0c3ebf9295d7c02fd6b99998a7",
+      "frames": 45712
+    },
+    {
+      "file": "current-11-33.wav",
+      "text": "The time is 11 33.",
+      "sha256": "7a1085f4766de9f167de8f0fbc5c3f9474319facc1604bb7a772de4b1dc9106e",
+      "frames": 46359
+    },
+    {
+      "file": "current-11-34.wav",
+      "text": "The time is 11 34.",
+      "sha256": "054421b708cd8f58234951fbfb9e22d351fb12d96ab6469ee87add0ce742addc",
+      "frames": 47368
+    },
+    {
+      "file": "current-11-35.wav",
+      "text": "The time is 11 35.",
+      "sha256": "43ed822afb7341cebfe6bd99bfb8aa2a30b3c4eec648c2b6e91141b0c166130a",
+      "frames": 48859
+    },
+    {
+      "file": "current-11-36.wav",
+      "text": "The time is 11 36.",
+      "sha256": "5e53f1a766fcc7b19690b2d60a3f38328442b03061f801dd7e81abf2917b3cec",
+      "frames": 48363
+    },
+    {
+      "file": "current-11-37.wav",
+      "text": "The time is 11 37.",
+      "sha256": "589498a13050b1a7990ba3a5f14d4f8278823f80ee932fcf5fd7b6f12682957a",
+      "frames": 49064
+    },
+    {
+      "file": "current-11-38.wav",
+      "text": "The time is 11 38.",
+      "sha256": "7f8012a532e30fa72c05405f95b8fe98457107c66dde4578d3e8e60294027511",
+      "frames": 44996
+    },
+    {
+      "file": "current-11-39.wav",
+      "text": "The time is 11 39.",
+      "sha256": "48e486828eefeebee4070d899227ca513e64fc62173c07a6a7b0062e9a84ad3f",
+      "frames": 48411
+    },
+    {
+      "file": "current-11-40.wav",
+      "text": "The time is 11 40.",
+      "sha256": "c72c00bef25a3d5bd5d46fd9386f133d14cc2055a50aae64ffc68b43f6626908",
+      "frames": 41182
+    },
+    {
+      "file": "current-11-41.wav",
+      "text": "The time is 11 41.",
+      "sha256": "608982bb56c1f511bc54d12a3e2523422a2326d75ba1194fe79dc905ebdb6220",
+      "frames": 47907
+    },
+    {
+      "file": "current-11-42.wav",
+      "text": "The time is 11 42.",
+      "sha256": "55134b5e286e0d759ec93a1ee6f05cfeb26671c2b6a594a4b416d8700fae4a64",
+      "frames": 46448
+    },
+    {
+      "file": "current-11-43.wav",
+      "text": "The time is 11 43.",
+      "sha256": "77d452c3fb8279295a20a305052f46292387b8439075c65094fcb0e44109acb7",
+      "frames": 46863
+    },
+    {
+      "file": "current-11-44.wav",
+      "text": "The time is 11 44.",
+      "sha256": "207634ad9b972d6d9018d274f8107163c8599388b43e9d24d376a93ac53d950b",
+      "frames": 48171
+    },
+    {
+      "file": "current-11-45.wav",
+      "text": "The time is 11 45.",
+      "sha256": "f913f57397787daaf12cc369c8ce821a25a3220e138e84a20702e4ff119c7350",
+      "frames": 49369
+    },
+    {
+      "file": "current-11-46.wav",
+      "text": "The time is 11 46.",
+      "sha256": "346146b0d4490daa0b0f5b04b6d90a02c3f02d4b17108e9197d29b5411da3b4b",
+      "frames": 48879
+    },
+    {
+      "file": "current-11-47.wav",
+      "text": "The time is 11 47.",
+      "sha256": "9bb06d8b856a4896c0f0e3d6ef8cddefb9e68db9f2e63e27a9a5626cc69f3dd2",
+      "frames": 49573
+    },
+    {
+      "file": "current-11-48.wav",
+      "text": "The time is 11 48.",
+      "sha256": "8567fcda85edb0b9e03c0961bbcd4292d39309c52b6464201a41347cf801c2da",
+      "frames": 45492
+    },
+    {
+      "file": "current-11-49.wav",
+      "text": "The time is 11 49.",
+      "sha256": "1beac8b5bc8b6c02350e9a3380062e38a45f41109e984f4f7a7f5a9aee91c1d0",
+      "frames": 48923
+    },
+    {
+      "file": "current-11-50.wav",
+      "text": "The time is 11 50.",
+      "sha256": "932dfa456f8259ca5b7facc564479cfe53e99010f3e27c3baf27adb453642470",
+      "frames": 41236
+    },
+    {
+      "file": "current-11-51.wav",
+      "text": "The time is 11 51.",
+      "sha256": "d8f7ab8771f827a93537b0678573f11be4c2851905951ed83d0e96df35c0730f",
+      "frames": 48964
+    },
+    {
+      "file": "current-11-52.wav",
+      "text": "The time is 11 52.",
+      "sha256": "baab87aaf13a547a2fca74c5e677be4c535105156c03068a03b98f9125bba0df",
+      "frames": 47261
+    },
+    {
+      "file": "current-11-53.wav",
+      "text": "The time is 11 53.",
+      "sha256": "37f26d46d5ec3ccac67f0f2cf3ba25971a88f4934d873cb2a214d2178707dfe0",
+      "frames": 47921
+    },
+    {
+      "file": "current-11-54.wav",
+      "text": "The time is 11 54.",
+      "sha256": "c24f3f2176aafc7e5a9453e482b61c573ca6f181459d4ee1f226735a64be1160",
+      "frames": 49222
+    },
+    {
+      "file": "current-11-55.wav",
+      "text": "The time is 11 55.",
+      "sha256": "f3673bd0f2c61844693ce32791b2570797b7ee988a0d512c300e10925d77ac86",
+      "frames": 50417
+    },
+    {
+      "file": "current-11-56.wav",
+      "text": "The time is 11 56.",
+      "sha256": "fa3863a3838ac0ee93283b23a12349678e20239652ec3b6c30bfb70e2eab8e73",
+      "frames": 49934
+    },
+    {
+      "file": "current-11-57.wav",
+      "text": "The time is 11 57.",
+      "sha256": "212570b0d069a58e2e6a82c265f52ee5ce34809f5d7a8a9c73736a37d546ece9",
+      "frames": 50625
+    },
+    {
+      "file": "current-11-58.wav",
+      "text": "The time is 11 58.",
+      "sha256": "d02c84a380488ef5aa463b688829cfad8683de647a4e92142570c8f3ada6233f",
+      "frames": 46558
+    },
+    {
+      "file": "current-11-59.wav",
+      "text": "The time is 11 59.",
+      "sha256": "882c4e6ef7311b071711d7082ef768f959837b188af93bd0a7b91d30dcadb75f",
+      "frames": 49983
+    },
+    {
+      "file": "current-12-00.wav",
+      "text": "The time is 12 o'clock.",
+      "sha256": "9a30dafa961d9addf3be15cabed7af196f6d8d76ee00cb544b65ff3294b6b732",
+      "frames": 42964
+    },
+    {
+      "file": "current-12-01.wav",
+      "text": "The time is 12 oh 1.",
+      "sha256": "4faaf871ccc48ff57fc1e81c7979bbd43fb6da28922dfc435fb0975d68412757",
+      "frames": 44913
+    },
+    {
+      "file": "current-12-02.wav",
+      "text": "The time is 12 oh 2.",
+      "sha256": "ca46e711f9eae19692d325e5dcba4ec8aff8f47414e8fffa56a08ec051ca9aa0",
+      "frames": 43051
+    },
+    {
+      "file": "current-12-03.wav",
+      "text": "The time is 12 oh 3.",
+      "sha256": "ff256c61fed76fe512e01bddabfa33eef6f52eb424b104afa6478af331347f48",
+      "frames": 43436
+    },
+    {
+      "file": "current-12-04.wav",
+      "text": "The time is 12 oh 4.",
+      "sha256": "4bcc48e2ef46078c19fa3be36533f33c82aa65b5c2ad40ccc867e76856a4982f",
+      "frames": 44765
+    },
+    {
+      "file": "current-12-05.wav",
+      "text": "The time is 12 oh 5.",
+      "sha256": "5cfecb74aa61c70fdffd57ca84531389e904cec9e74b15327b64ab76d5e4bb06",
+      "frames": 45956
+    },
+    {
+      "file": "current-12-06.wav",
+      "text": "The time is 12 oh 6.",
+      "sha256": "1e56471a0ffdb9182a76b9c59bea6cd6a15b02897b89af20420a627fd2745f33",
+      "frames": 45472
+    },
+    {
+      "file": "current-12-07.wav",
+      "text": "The time is 12 oh 7.",
+      "sha256": "5d604c044c6fd05022c390bb0c104e29dfc30cde40c1d8a4d150eebcc7fea53a",
+      "frames": 46157
+    },
+    {
+      "file": "current-12-08.wav",
+      "text": "The time is 12 oh 8.",
+      "sha256": "fd0e22fed0cc944608275a4b251840f32d178257fa93ad976c16c1e550013089",
+      "frames": 41969
+    },
+    {
+      "file": "current-12-09.wav",
+      "text": "The time is 12 oh 9.",
+      "sha256": "c025ab6c54a830c3e96da6d53b30a714fc9da8cdc23bc06c07fd928952ec0b74",
+      "frames": 46235
+    },
+    {
+      "file": "current-12-10.wav",
+      "text": "The time is 12 10.",
+      "sha256": "4d3fa16b7451c6e89c6faa5c37a5fc83f3e4bff6b91a4313de9be1dbe892f781",
+      "frames": 41138
+    },
+    {
+      "file": "current-12-11.wav",
+      "text": "The time is 12 11.",
+      "sha256": "b3e7d72837c1bc1d123f8b785f9191141b5732097cf12c62673d2d32de830fcd",
+      "frames": 42490
+    },
+    {
+      "file": "current-12-12.wav",
+      "text": "The time is 12 12.",
+      "sha256": "bb5ebd2adbf43d01b4374d458db0c94c16b71eb60fc16b9e518915219af243ee",
+      "frames": 43800
+    },
+    {
+      "file": "current-12-13.wav",
+      "text": "The time is 12 13.",
+      "sha256": "32f35f06df63ee2736f8fce7af93afcd7b50e8555a69775b5aa12f36e20d86fe",
+      "frames": 43617
+    },
+    {
+      "file": "current-12-14.wav",
+      "text": "The time is 12 14.",
+      "sha256": "b15d0b3558ac643bcf1bfc658d3e22879916a33591338b528838b9b0d88e21f3",
+      "frames": 44168
+    },
+    {
+      "file": "current-12-15.wav",
+      "text": "The time is 12 15.",
+      "sha256": "4822a08bf9950a5884d44f1574d56fc9adde3e861bde508408586a6502174b40",
+      "frames": 43883
+    },
+    {
+      "file": "current-12-16.wav",
+      "text": "The time is 12 16.",
+      "sha256": "1291b8fa9203b7abd5dd890f4dcdcdba6dc3e2d307e62c9deaf1903e8c781a46",
+      "frames": 44967
+    },
+    {
+      "file": "current-12-17.wav",
+      "text": "The time is 12 17.",
+      "sha256": "6415a2b5aec1217f3e544c9b5599f8cca83cddc60422ba6e2a29a940489459db",
+      "frames": 47209
+    },
+    {
+      "file": "current-12-18.wav",
+      "text": "The time is 12 18.",
+      "sha256": "c0c68cfad9e00333a6d84d85154ab15aa28a744ed46620a2a24bdab048ee8a90",
+      "frames": 42003
+    },
+    {
+      "file": "current-12-19.wav",
+      "text": "The time is 12 19.",
+      "sha256": "5f281fc97def36abe295aca8b9619fbf889c3595d3fddbf203f2a4db12526e28",
+      "frames": 43777
+    },
+    {
+      "file": "current-12-20.wav",
+      "text": "The time is 12 20.",
+      "sha256": "f5ed6684377c4e46f12c74d4da313ee3467ab299f34ef3c40c3c82b6f7c7234f",
+      "frames": 44303
+    },
+    {
+      "file": "current-12-21.wav",
+      "text": "The time is 12 21.",
+      "sha256": "0d60a0d0a1204c226b0a181ceae48a396bd185a117363a1ab2b9d964ee1d591a",
+      "frames": 51514
+    },
+    {
+      "file": "current-12-22.wav",
+      "text": "The time is 12 22.",
+      "sha256": "7240dada500bfd5d8824fa0051aac6495a114e1dd44b41648eca262a441f6861",
+      "frames": 49820
+    },
+    {
+      "file": "current-12-23.wav",
+      "text": "The time is 12 23.",
+      "sha256": "35d2ddf9dac3704aec27b4c8abf987b99ab5b61c6fd0b44284c48dc46282aeac",
+      "frames": 50464
+    },
+    {
+      "file": "current-12-24.wav",
+      "text": "The time is 12 24.",
+      "sha256": "165ef225a4f17067ea18159824593532cb8eb5c5e5d5a3c1977820cae14d581b",
+      "frames": 51475
+    },
+    {
+      "file": "current-12-25.wav",
+      "text": "The time is 12 25.",
+      "sha256": "04481916a6e8c95a7016c8d91a56668bc2079c5a9294cef6d6e7a8558d0f616b",
+      "frames": 52966
+    },
+    {
+      "file": "current-12-26.wav",
+      "text": "The time is 12 26.",
+      "sha256": "4782d1f90a02f28c367463cac70cf3efd3a5595491077067ed60b77a32437036",
+      "frames": 52470
+    },
+    {
+      "file": "current-12-27.wav",
+      "text": "The time is 12 27.",
+      "sha256": "c536ec73ba76e4cbca1e794c1f8f738999cedb3eb0f0ede85662acb1255504c4",
+      "frames": 53172
+    },
+    {
+      "file": "current-12-28.wav",
+      "text": "The time is 12 28.",
+      "sha256": "bf48ce0bd5ead00de937c72a6beafff50313f4aff3008904cfa35373213e568d",
+      "frames": 49110
+    },
+    {
+      "file": "current-12-29.wav",
+      "text": "The time is 12 29.",
+      "sha256": "6b7f786c769d63ffbffdf12e90704c9422fcb1ee21c2049c766fbf5ce8a4e601",
+      "frames": 52520
+    },
+    {
+      "file": "current-12-30.wav",
+      "text": "The time is 12 30.",
+      "sha256": "0b6a33b97b9c14e2a027a6804aa59083801a26876e580ce11de6c183534b80f6",
+      "frames": 41629
+    },
+    {
+      "file": "current-12-31.wav",
+      "text": "The time is 12 31.",
+      "sha256": "42a1a7086ebb8ac15039564e4a989815053031ee7f7fe48b641aa5e346ece107",
+      "frames": 48839
+    },
+    {
+      "file": "current-12-32.wav",
+      "text": "The time is 12 32.",
+      "sha256": "947c520c3e9f8dc26e4db22301974d4d4654f0732e6b29e06bd5fc4b0a0d84b7",
+      "frames": 47149
+    },
+    {
+      "file": "current-12-33.wav",
+      "text": "The time is 12 33.",
+      "sha256": "7c2e8868e16127a68130bb2afb520076be8fed1ecc538580c36718ac1dac02b8",
+      "frames": 47802
+    },
+    {
+      "file": "current-12-34.wav",
+      "text": "The time is 12 34.",
+      "sha256": "b7cac025128bc5265a8c703d481ab2343b2b798d0560986d9eafcfcff9828214",
+      "frames": 49090
+    },
+    {
+      "file": "current-12-35.wav",
+      "text": "The time is 12 35.",
+      "sha256": "971964617f8a9d1e7608fc98eaabf3c737a5c90663a802f37ea8025adad7824a",
+      "frames": 50294
+    },
+    {
+      "file": "current-12-36.wav",
+      "text": "The time is 12 36.",
+      "sha256": "6bd1160d4b5b559fd566012d252481f4d8142c9385a4fb3c27d195f718a70e60",
+      "frames": 49804
+    },
+    {
+      "file": "current-12-37.wav",
+      "text": "The time is 12 37.",
+      "sha256": "0f9a6630b32ac4b66b6441def9365b90f9e9ef96597c13231bb06e34d9e73679",
+      "frames": 50501
+    },
+    {
+      "file": "current-12-38.wav",
+      "text": "The time is 12 38.",
+      "sha256": "f0635726eb38cf180bb2fd6d2be8033466124a789a76120954fa82b47f0f9d52",
+      "frames": 46420
+    },
+    {
+      "file": "current-12-39.wav",
+      "text": "The time is 12 39.",
+      "sha256": "a049c45b63b113a920eb38d027baefb13511aab325ecf00816df17f9414731fc",
+      "frames": 49856
+    },
+    {
+      "file": "current-12-40.wav",
+      "text": "The time is 12 40.",
+      "sha256": "4f34f81ef820376e1d1f5edf8e53fb4099cfcf248947989610f6f39091b95f7b",
+      "frames": 42451
+    },
+    {
+      "file": "current-12-41.wav",
+      "text": "The time is 12 41.",
+      "sha256": "26a2f7dd4966142dc1ce5d0711c332c7547ab5f1734f6c2a10013bdb80b7ffeb",
+      "frames": 49346
+    },
+    {
+      "file": "current-12-42.wav",
+      "text": "The time is 12 42.",
+      "sha256": "8edd77e29bc9a7664012a51592e714b40160b584f7921b031b7e88a5209a1c54",
+      "frames": 47895
+    },
+    {
+      "file": "current-12-43.wav",
+      "text": "The time is 12 43.",
+      "sha256": "0bd9c99904166d8a4bf9e923938e569145131c6d730287e091f29cb6d4b96cc8",
+      "frames": 48306
+    },
+    {
+      "file": "current-12-44.wav",
+      "text": "The time is 12 44.",
+      "sha256": "296f74aba6ac290c227182706d01600b21fb4d974f8b7c1a171f130ae50b31ed",
+      "frames": 49311
+    },
+    {
+      "file": "current-12-45.wav",
+      "text": "The time is 12 45.",
+      "sha256": "b46f2bb2dc21e625d9395c91267edb7bc2f2a9ec2579b45140081f6b281cb243",
+      "frames": 50804
+    },
+    {
+      "file": "current-12-46.wav",
+      "text": "The time is 12 46.",
+      "sha256": "c40f137a00c12c7d3ece99f731e61f40185217482a41ca45b9ac6d3452cda6b4",
+      "frames": 50309
+    },
+    {
+      "file": "current-12-47.wav",
+      "text": "The time is 12 47.",
+      "sha256": "21b898c106cefb68d7eb9fe33087e9e25fe7c5700f805ad6dd9cbe162d8c084b",
+      "frames": 51009
+    },
+    {
+      "file": "current-12-48.wav",
+      "text": "The time is 12 48.",
+      "sha256": "efc36c80ec30d493dfe6c51dbe83d0ce564a1094a865b2242015effb67cc03c1",
+      "frames": 46932
+    },
+    {
+      "file": "current-12-49.wav",
+      "text": "The time is 12 49.",
+      "sha256": "39374641fe61d5b19ef7e5f25ba4970f9eb1cb56b25a981e2c145091eaa42c59",
+      "frames": 50355
+    },
+    {
+      "file": "current-12-50.wav",
+      "text": "The time is 12 50.",
+      "sha256": "2bddecc2704ccd35c9efb12528cc999965c6b0c53524f0672126863ef5e2bb9a",
+      "frames": 42503
+    },
+    {
+      "file": "current-12-51.wav",
+      "text": "The time is 12 51.",
+      "sha256": "448783a61997981cc9bbc1c507d51cf8cccc0f6bef4d974a78f797106d298279",
+      "frames": 50394
+    },
+    {
+      "file": "current-12-52.wav",
+      "text": "The time is 12 52.",
+      "sha256": "1172da155ec5e0ac32c6fa8b9232f2fbc9eb37f1b19a37168930a3a4a3543d00",
+      "frames": 48703
+    },
+    {
+      "file": "current-12-53.wav",
+      "text": "The time is 12 53.",
+      "sha256": "c2b4f43192da712744d970b2a2440a4c816461080f730e28d2aa5b34491193d9",
+      "frames": 49352
+    },
+    {
+      "file": "current-12-54.wav",
+      "text": "The time is 12 54.",
+      "sha256": "fdce22e4c853feb25d61c4e7af98554dd1223682c74aa26b73b80fa00bedab7e",
+      "frames": 50663
+    },
+    {
+      "file": "current-12-55.wav",
+      "text": "The time is 12 55.",
+      "sha256": "14c1e6812444f605fef83de4ecfdeb26043c2cc47aa8296977f0a6b8ceced781",
+      "frames": 51847
+    },
+    {
+      "file": "current-12-56.wav",
+      "text": "The time is 12 56.",
+      "sha256": "f3c58af26a2e7a0efc075a2841af2b65e773d87dac81729946a37ecc65688368",
+      "frames": 51367
+    },
+    {
+      "file": "current-12-57.wav",
+      "text": "The time is 12 57.",
+      "sha256": "93e0965c959cfacf444d9529ed939439538a1d43dd673b6053762972e5a96d7b",
+      "frames": 52052
+    },
+    {
+      "file": "current-12-58.wav",
+      "text": "The time is 12 58.",
+      "sha256": "a61812ed13dc2a3ce9845f02442a89af919b898808591ae8fe56d5d8e506157b",
+      "frames": 47997
+    },
+    {
+      "file": "current-12-59.wav",
+      "text": "The time is 12 59.",
+      "sha256": "5cb7df933c3ccf47f97de7ca576b775fc187a2a815312f10af9f33e6507bf6a8",
+      "frames": 51417
+    },
+    {
+      "file": "current-2-00.wav",
+      "text": "The time is 2 o'clock.",
+      "sha256": "62ae665f883838230fb3d84b94bf476fbb70b28e4f4feb0fcdcfa21c6e95d9b6",
+      "frames": 38049
+    },
+    {
+      "file": "current-2-01.wav",
+      "text": "The time is 2 oh 1.",
+      "sha256": "11d16e9f4b0339c1cdd29f1a09a62370ec02d96534df06816328869bc48b0ae0",
+      "frames": 39506
+    },
+    {
+      "file": "current-2-02.wav",
+      "text": "The time is 2 oh 2.",
+      "sha256": "9c9262f4deece012090b850f88281c288779f48121b6e6fa49efbeafaceca915",
+      "frames": 37641
+    },
+    {
+      "file": "current-2-03.wav",
+      "text": "The time is 2 oh 3.",
+      "sha256": "e2857116f913f8ac1639dc20cc83185cdbf17a70613e49bb5f0d3114225d7e04",
+      "frames": 38257
+    },
+    {
+      "file": "current-2-04.wav",
+      "text": "The time is 2 oh 4.",
+      "sha256": "9ef14497dc3c34405bb65900d9d81289257024f0d508fc439dfeddf0c5c2c712",
+      "frames": 39568
+    },
+    {
+      "file": "current-2-05.wav",
+      "text": "The time is 2 oh 5.",
+      "sha256": "3d0c996e229530f5b9f81c735615533b592a3925c6a241f701f9ff0203d33f3a",
+      "frames": 40770
+    },
+    {
+      "file": "current-2-06.wav",
+      "text": "The time is 2 oh 6.",
+      "sha256": "d97e4b1ae5bd5cf7c83daa5bbe24f245b7c1792a7ff6473d738bd035a1cdca00",
+      "frames": 40285
+    },
+    {
+      "file": "current-2-07.wav",
+      "text": "The time is 2 oh 7.",
+      "sha256": "ea34927455138e153d817d44cbc316cc4fb9f8cf8894efa5a5a2c5b18869b5bc",
+      "frames": 40979
+    },
+    {
+      "file": "current-2-08.wav",
+      "text": "The time is 2 oh 8.",
+      "sha256": "7bc3f994affd4463334a16a6c6c06d88e3abc1a92cec1b131ae31c1dec0287ad",
+      "frames": 36837
+    },
+    {
+      "file": "current-2-09.wav",
+      "text": "The time is 2 oh 9.",
+      "sha256": "011336ebf9d34bd4f54702e6f9e74cfba884d9ca56dd30860c2cb63645eb1a78",
+      "frames": 40821
+    },
+    {
+      "file": "current-2-10.wav",
+      "text": "The time is 2 10.",
+      "sha256": "fa9f54adb588be6c22b3ebe686323613ea1448b9cd31adbeea98dc8533c5db90",
+      "frames": 36041
+    },
+    {
+      "file": "current-2-11.wav",
+      "text": "The time is 2 11.",
+      "sha256": "3e04db2a1be0cdff91490039e05a54d82c56d327d9f84bf4cddc3b68914c8d28",
+      "frames": 37835
+    },
+    {
+      "file": "current-2-12.wav",
+      "text": "The time is 2 12.",
+      "sha256": "93b8086f2093356c75730d46fecd8038cf1a497561ebbbb00d399be7983d3be6",
+      "frames": 38720
+    },
+    {
+      "file": "current-2-13.wav",
+      "text": "The time is 2 13.",
+      "sha256": "d7b0a71df15a5e96ad8b99c01617e62b1a90ced1ccb904640ca2dd1bd09d643f",
+      "frames": 38749
+    },
+    {
+      "file": "current-2-14.wav",
+      "text": "The time is 2 14.",
+      "sha256": "69e5dd41feef9d1e1ef8c442a95e50e937b09438b8ea7b5affe15b0748d03d2a",
+      "frames": 39303
+    },
+    {
+      "file": "current-2-15.wav",
+      "text": "The time is 2 15.",
+      "sha256": "b4bd75a6f022e8bedac886ff8161e83a67d932dcb123b393554d63957f259947",
+      "frames": 39021
+    },
+    {
+      "file": "current-2-16.wav",
+      "text": "The time is 2 16.",
+      "sha256": "17249c30a2de5d9b24ca39b158e27b6b53c9f10262ebeed0b0aeaf2ee9aef861",
+      "frames": 40109
+    },
+    {
+      "file": "current-2-17.wav",
+      "text": "The time is 2 17.",
+      "sha256": "bcce4ac79287095030afc0770a41269a4944781fb5b3d9158edf99f0da1dba35",
+      "frames": 42330
+    },
+    {
+      "file": "current-2-18.wav",
+      "text": "The time is 2 18.",
+      "sha256": "f7acd033437d15bd11c2d8038e845686649df996d4abe7a288dbd7b9e6fae556",
+      "frames": 36274
+    },
+    {
+      "file": "current-2-19.wav",
+      "text": "The time is 2 19.",
+      "sha256": "c1236c5afb98e7d9db7b7dbbce758c0795f586f88ab45d9badcbe52c10509157",
+      "frames": 39379
+    },
+    {
+      "file": "current-2-20.wav",
+      "text": "The time is 2 20.",
+      "sha256": "a35229cba83b64a77c737d694a74cd08b7a7afd2df7d1162f63d67ec3fcf6abb",
+      "frames": 39211
+    },
+    {
+      "file": "current-2-21.wav",
+      "text": "The time is 2 21.",
+      "sha256": "39ecf89d5307e1aef34569b71b15358e7456ef823d90c7df91daa8ff86775e4a",
+      "frames": 46350
+    },
+    {
+      "file": "current-2-22.wav",
+      "text": "The time is 2 22.",
+      "sha256": "a450939506c6ff6d539bf36622ae280fa3fb5b1c7c6f577aa6f146464a521065",
+      "frames": 44657
+    },
+    {
+      "file": "current-2-23.wav",
+      "text": "The time is 2 23.",
+      "sha256": "b70d06b578e5da9d6632739a6b0b32873917bd332639a02b9f45523662c8337e",
+      "frames": 45076
+    },
+    {
+      "file": "current-2-24.wav",
+      "text": "The time is 2 24.",
+      "sha256": "bb894ab37998e5cca57dc1b68387f78e8ee0492f5fc91ba1b1980c8041ba4768",
+      "frames": 46378
+    },
+    {
+      "file": "current-2-25.wav",
+      "text": "The time is 2 25.",
+      "sha256": "2daad6d8ae11a7549f26ba352829fd9027f075ae47f1116860117ef822b27ea7",
+      "frames": 47569
+    },
+    {
+      "file": "current-2-26.wav",
+      "text": "The time is 2 26.",
+      "sha256": "cb67c7b66c6612532e6038ecbcd6cb545d9835780aebafa68666199ded370b3a",
+      "frames": 47094
+    },
+    {
+      "file": "current-2-27.wav",
+      "text": "The time is 2 27.",
+      "sha256": "12dfc9afeb1e7436e5c532b16d86d6b6da9dc1a05c7142e4727021f87edea7de",
+      "frames": 47773
+    },
+    {
+      "file": "current-2-28.wav",
+      "text": "The time is 2 28.",
+      "sha256": "f6bd84595fb9c9c6f898e61012a0f4625e68883bcebd385f583b49cc142d405c",
+      "frames": 43950
+    },
+    {
+      "file": "current-2-29.wav",
+      "text": "The time is 2 29.",
+      "sha256": "ca20ff100780128060a384ffca756a37f03713486355ebcee4a7068902da1c35",
+      "frames": 47383
+    },
+    {
+      "file": "current-2-30.wav",
+      "text": "The time is 2 30.",
+      "sha256": "ef9e8180a42bc7415bda2d154bb26043989b279b626ba2d069356fdf53963c20",
+      "frames": 37050
+    },
+    {
+      "file": "current-2-31.wav",
+      "text": "The time is 2 31.",
+      "sha256": "ffbecb9436937e1c539388aba27b3d443e41808c0f014c2c41a62235fdc46797",
+      "frames": 43891
+    },
+    {
+      "file": "current-2-32.wav",
+      "text": "The time is 2 32.",
+      "sha256": "dac5dba538732dd1444c3d52c44f400bac4e15b67f5fa0a886f6b3beb04fdf5a",
+      "frames": 42196
+    },
+    {
+      "file": "current-2-33.wav",
+      "text": "The time is 2 33.",
+      "sha256": "9cbe940eaee7793790e50d4c33c8382451370e3d250811df13b8366f898d7d52",
+      "frames": 42849
+    },
+    {
+      "file": "current-2-34.wav",
+      "text": "The time is 2 34.",
+      "sha256": "0a91604941d88f21a74b3ef5f05cd97bec2dd6d2fa1bd4004cfe3dde7ac5c2b7",
+      "frames": 44153
+    },
+    {
+      "file": "current-2-35.wav",
+      "text": "The time is 2 35.",
+      "sha256": "8dd9c46f25462e4ee5790c59f9537f2ac6352f727d1bcc73f12c8159361822b5",
+      "frames": 45348
+    },
+    {
+      "file": "current-2-36.wav",
+      "text": "The time is 2 36.",
+      "sha256": "4f2415834e90b57c4490deed8ab2b072979520f1563661da9c2997ba0a9a2d41",
+      "frames": 44870
+    },
+    {
+      "file": "current-2-37.wav",
+      "text": "The time is 2 37.",
+      "sha256": "b2f0bcefd64013a7562e39ba1633d1922149e035b8c46b6c02ac6127f6883835",
+      "frames": 45554
+    },
+    {
+      "file": "current-2-38.wav",
+      "text": "The time is 2 38.",
+      "sha256": "e0eeb4edf193f6230858b8b42f22c1bd24a35e095e8267087f03cd57a5c28413",
+      "frames": 41480
+    },
+    {
+      "file": "current-2-39.wav",
+      "text": "The time is 2 39.",
+      "sha256": "3abad2273fdf266036b7799de1309a92c66e9d422cacb256611e5af30f9eef82",
+      "frames": 44911
+    },
+    {
+      "file": "current-2-40.wav",
+      "text": "The time is 2 40.",
+      "sha256": "e52a28317105271b118786b51322b1b8ed3501218eba7d0d776e7be88c08abdb",
+      "frames": 37584
+    },
+    {
+      "file": "current-2-41.wav",
+      "text": "The time is 2 41.",
+      "sha256": "c2f374e3864c77daedb9dad69644b0806932608020c8fdac45bd17f5f96021cb",
+      "frames": 44395
+    },
+    {
+      "file": "current-2-42.wav",
+      "text": "The time is 2 42.",
+      "sha256": "17ce818bdea42f8fbb4a2e34cc8238d5112c1294f4d68c070bbe8e01570f15fe",
+      "frames": 42949
+    },
+    {
+      "file": "current-2-43.wav",
+      "text": "The time is 2 43.",
+      "sha256": "f4f85bfa9b1d4482a444da43b2bae9bc11e0fed96bcdef5e5c005086edfa0440",
+      "frames": 43366
+    },
+    {
+      "file": "current-2-44.wav",
+      "text": "The time is 2 44.",
+      "sha256": "4af232e46d841004604decdb9bc47999c067351b5d6501200578a5007e6ded30",
+      "frames": 44664
+    },
+    {
+      "file": "current-2-45.wav",
+      "text": "The time is 2 45.",
+      "sha256": "b69d1d32e1a2ca9004c5e89be7741963b6f25784678b5d018692e697f5b7d319",
+      "frames": 46144
+    },
+    {
+      "file": "current-2-46.wav",
+      "text": "The time is 2 46.",
+      "sha256": "33f4fd35d9800a8c5c737d79b4e59b561d66ac47c39976db43e7e937d7779bfb",
+      "frames": 45378
+    },
+    {
+      "file": "current-2-47.wav",
+      "text": "The time is 2 47.",
+      "sha256": "ac13d2169ba5983e516475dc1c56a60286405f3066a938b124e0bbc16ba628e4",
+      "frames": 46057
+    },
+    {
+      "file": "current-2-48.wav",
+      "text": "The time is 2 48.",
+      "sha256": "d49708ae26cbfe120e97220637dbb94d200d46ba71c769a9d7572ad41489e321",
+      "frames": 41977
+    },
+    {
+      "file": "current-2-49.wav",
+      "text": "The time is 2 49.",
+      "sha256": "7d5c69805b00fba65a547a24660f3b2d05d745f9616c5d1feba72e73863e23f8",
+      "frames": 45426
+    },
+    {
+      "file": "current-2-50.wav",
+      "text": "The time is 2 50.",
+      "sha256": "04d031402efbabd51df435ae4f7f9b44f6d482f4fb018b565c48a1a7f64481a4",
+      "frames": 37642
+    },
+    {
+      "file": "current-2-51.wav",
+      "text": "The time is 2 51.",
+      "sha256": "a2720f94012ae6da0f96b83f6a54a57ce0a6831b763e3b7f39bc0f9750be922f",
+      "frames": 45461
+    },
+    {
+      "file": "current-2-52.wav",
+      "text": "The time is 2 52.",
+      "sha256": "23ccadd5a05d68378de34f58d5394b63f79298a4cf9c85d4e09e8e65bb939616",
+      "frames": 43772
+    },
+    {
+      "file": "current-2-53.wav",
+      "text": "The time is 2 53.",
+      "sha256": "df7c56794515ea9a7f67bf02b64de776e863930782a470e39c961b0062d326e1",
+      "frames": 44426
+    },
+    {
+      "file": "current-2-54.wav",
+      "text": "The time is 2 54.",
+      "sha256": "bc3599614c84137a89bcac25df955a4aa9875d7879d61697a608b4c1da39e975",
+      "frames": 45711
+    },
+    {
+      "file": "current-2-55.wav",
+      "text": "The time is 2 55.",
+      "sha256": "3c74d1c31aadc6a3603e960070daa4bb5c8a05afaef13ce3755442a81a27c552",
+      "frames": 46915
+    },
+    {
+      "file": "current-2-56.wav",
+      "text": "The time is 2 56.",
+      "sha256": "48529f1d4d78b066504db27d5186ba4fb7d23f83eb98d7c258060ef9e3c34ad3",
+      "frames": 46426
+    },
+    {
+      "file": "current-2-57.wav",
+      "text": "The time is 2 57.",
+      "sha256": "05c939cd50a364ff2a6b4bc5b607edc0f3114649b090479542601093c3ace150",
+      "frames": 47120
+    },
+    {
+      "file": "current-2-58.wav",
+      "text": "The time is 2 58.",
+      "sha256": "09ee8080af70677c69d3096fcb0b662ef6001d42a3f85bc69b91493c422dca92",
+      "frames": 43059
+    },
+    {
+      "file": "current-2-59.wav",
+      "text": "The time is 2 59.",
+      "sha256": "43a3094ce0a3aa4879a7439adb3a3c0877ffddbbdc97c9b094fe67d477a2d94a",
+      "frames": 46477
+    },
+    {
+      "file": "current-3-00.wav",
+      "text": "The time is 3 o'clock.",
+      "sha256": "a8e77696e345709c7eca207f3d7371edf12a176a7c33a9562d5dde930a93f460",
+      "frames": 38746
+    },
+    {
+      "file": "current-3-01.wav",
+      "text": "The time is 3 oh 1.",
+      "sha256": "451b3fd08f835a1fe3e8cc3dd98e1c0a9b06c9dc2df9809ebae471990f9a5d20",
+      "frames": 40202
+    },
+    {
+      "file": "current-3-02.wav",
+      "text": "The time is 3 oh 2.",
+      "sha256": "1758566a26015b68fe536135b4d8bd2d2a20001faca51593155784333ab16b70",
+      "frames": 38339
+    },
+    {
+      "file": "current-3-03.wav",
+      "text": "The time is 3 oh 3.",
+      "sha256": "87108d81f5db7c92db1f8078a3a50d663ea8dacdfbd2622d09f7001d0c45d315",
+      "frames": 38953
+    },
+    {
+      "file": "current-3-04.wav",
+      "text": "The time is 3 oh 4.",
+      "sha256": "4fe8ebecb3a20bcb061eca13b13e47d501baa593c860455f7f308333854f8935",
+      "frames": 40260
+    },
+    {
+      "file": "current-3-05.wav",
+      "text": "The time is 3 oh 5.",
+      "sha256": "25b76c6decefa2c89233ef98e118e4d0e81c5ff48fd4db372512436507d6087e",
+      "frames": 41465
+    },
+    {
+      "file": "current-3-06.wav",
+      "text": "The time is 3 oh 6.",
+      "sha256": "91ffb5e957d973b9d2b6e65ca0f98f046b9696f1f65c727927c4d80082fba31b",
+      "frames": 40975
+    },
+    {
+      "file": "current-3-07.wav",
+      "text": "The time is 3 oh 7.",
+      "sha256": "0cc4e092464e5bf36495a3a13a4d2ee36243444a0be8e048381a1fe4520beb8c",
+      "frames": 41669
+    },
+    {
+      "file": "current-3-08.wav",
+      "text": "The time is 3 oh 8.",
+      "sha256": "f4c1c101a54e83720e118ebbc72a047d7cf6bdb55140017e721cb3ab09fc1f8d",
+      "frames": 37537
+    },
+    {
+      "file": "current-3-09.wav",
+      "text": "The time is 3 oh 9.",
+      "sha256": "1183ba28b7ccf861a530a1dbd60f622d6a3bd6f7514f3d60c5475ae8d6a99c3f",
+      "frames": 41514
+    },
+    {
+      "file": "current-3-10.wav",
+      "text": "The time is 3 10.",
+      "sha256": "c061d5adb1c1d73ab68ab65d0ea9547c099e42491c9a09947f370eb96ecbb277",
+      "frames": 36747
+    },
+    {
+      "file": "current-3-11.wav",
+      "text": "The time is 3 11.",
+      "sha256": "6199f8eb74638a8b535179039df710629522fa445cd1e1c9be04a741c78ebe52",
+      "frames": 38542
+    },
+    {
+      "file": "current-3-12.wav",
+      "text": "The time is 3 12.",
+      "sha256": "f4374940fc8c10cfbebe0c57d66676e7eb33901a69e75d967ada281688f35b32",
+      "frames": 39416
+    },
+    {
+      "file": "current-3-13.wav",
+      "text": "The time is 3 13.",
+      "sha256": "7da3a0c9d93873ae994f82d40a8dec476abbcf4161b24323579df1e2b72f6e41",
+      "frames": 39229
+    },
+    {
+      "file": "current-3-14.wav",
+      "text": "The time is 3 14.",
+      "sha256": "0818284f7a293a099b25ab3017e6e80b43f04207695d676695c938e75d63a108",
+      "frames": 39776
+    },
+    {
+      "file": "current-3-15.wav",
+      "text": "The time is 3 15.",
+      "sha256": "3cb209bba66c1d94a2d8e5ca9c7e8b159c1d1991087cea8c86562db50783600a",
+      "frames": 39493
+    },
+    {
+      "file": "current-3-16.wav",
+      "text": "The time is 3 16.",
+      "sha256": "bd7c1ce8b901a30158ad26304bdf405d39d19a9103b3df61eee578d4d54fd916",
+      "frames": 40583
+    },
+    {
+      "file": "current-3-17.wav",
+      "text": "The time is 3 17.",
+      "sha256": "90c4818e1b662c7a23b963d192dc8ae4471332837f00257c10107c9431fdec9c",
+      "frames": 42810
+    },
+    {
+      "file": "current-3-18.wav",
+      "text": "The time is 3 18.",
+      "sha256": "dfca767b1a12964c8e20277f4fc2caf7301ca659394b6f32ca3d8e8682d6c830",
+      "frames": 36872
+    },
+    {
+      "file": "current-3-19.wav",
+      "text": "The time is 3 19.",
+      "sha256": "23f5a129c9eceddc0bf30c590a5474af7a1b11265835b273a3b3a0f12ccb0e91",
+      "frames": 40083
+    },
+    {
+      "file": "current-3-20.wav",
+      "text": "The time is 3 20.",
+      "sha256": "b5db589dc16bef497135915417d7e76f4823e94a7eb7ad4fec87336ebb7748ef",
+      "frames": 39915
+    },
+    {
+      "file": "current-3-21.wav",
+      "text": "The time is 3 21.",
+      "sha256": "a67cacbab9edd33ecae08283fef5def2c32c991c1a4595ee4e2006683aedd153",
+      "frames": 47083
+    },
+    {
+      "file": "current-3-22.wav",
+      "text": "The time is 3 22.",
+      "sha256": "0975fbdd7769647ff337afd9d7ebb8d3d58f1000563b508a96aed742435dea40",
+      "frames": 45385
+    },
+    {
+      "file": "current-3-23.wav",
+      "text": "The time is 3 23.",
+      "sha256": "e74bf3d6d83c68651d6bc1d8459720aa838dcc88ff069b9207b22a51ebebf17e",
+      "frames": 45796
+    },
+    {
+      "file": "current-3-24.wav",
+      "text": "The time is 3 24.",
+      "sha256": "3c50c259eab33e1cba5abb61e146497af42c723ed211727e22225553a95d5367",
+      "frames": 47093
+    },
+    {
+      "file": "current-3-25.wav",
+      "text": "The time is 3 25.",
+      "sha256": "c2a4c3604d315bce80434562761d183f5b25df79b3ca13943ee8adb7bc8ea767",
+      "frames": 48583
+    },
+    {
+      "file": "current-3-26.wav",
+      "text": "The time is 3 26.",
+      "sha256": "f96b737948c87b980d4a02a20f7f54ecb6e9f2749762675eec0d133c02c58cf8",
+      "frames": 47803
+    },
+    {
+      "file": "current-3-27.wav",
+      "text": "The time is 3 27.",
+      "sha256": "8a85f25048de466dd351ae7202ebc2304ec568aba389937106f6f628b0700cce",
+      "frames": 48495
+    },
+    {
+      "file": "current-3-28.wav",
+      "text": "The time is 3 28.",
+      "sha256": "579530395a18468102b0ce07b06d6ed33471f8e5650a81c9239c5c8f031b84e7",
+      "frames": 44670
+    },
+    {
+      "file": "current-3-29.wav",
+      "text": "The time is 3 29.",
+      "sha256": "56337296ec7fa28cda17771378689b953dd338a71a70b2b796f66d499348222a",
+      "frames": 48097
+    },
+    {
+      "file": "current-3-30.wav",
+      "text": "The time is 3 30.",
+      "sha256": "e3eff84cdddeb2da42fb368b32dac2e8d86ee1796fbe76add922f88c0bf4c41d",
+      "frames": 37239
+    },
+    {
+      "file": "current-3-31.wav",
+      "text": "The time is 3 31.",
+      "sha256": "441f0f4b4451be86c7f0a711ebabc142a5976e8805b54cdb4f326125bee73a25",
+      "frames": 44388
+    },
+    {
+      "file": "current-3-32.wav",
+      "text": "The time is 3 32.",
+      "sha256": "688769be05500fd9c9f82faababfc42c86cfe26d745c26f1ce0dcaf6a8c0a656",
+      "frames": 42698
+    },
+    {
+      "file": "current-3-33.wav",
+      "text": "The time is 3 33.",
+      "sha256": "9d6cf4a69e4c399e025b92d36466b6923c38bc672846f49fc8669ec21a9ab638",
+      "frames": 43358
+    },
+    {
+      "file": "current-3-34.wav",
+      "text": "The time is 3 34.",
+      "sha256": "d32b108fb573dfa8e66c2d586888b483dde5bff51d20e6c1600d3a54c575c8e7",
+      "frames": 44660
+    },
+    {
+      "file": "current-3-35.wav",
+      "text": "The time is 3 35.",
+      "sha256": "faa5cfced7fd516a72db177f7156101b5372df1f8f0759dc7cb9018258f0185b",
+      "frames": 46140
+    },
+    {
+      "file": "current-3-36.wav",
+      "text": "The time is 3 36.",
+      "sha256": "3ae25a1640053d845529a13ac4b4e9c69dc6778df157681f0085851699ea796b",
+      "frames": 45375
+    },
+    {
+      "file": "current-3-37.wav",
+      "text": "The time is 3 37.",
+      "sha256": "3036656c0b8e5a9357d0f8560ed836f0f078857007a015ae554a55dd9f81810e",
+      "frames": 46053
+    },
+    {
+      "file": "current-3-38.wav",
+      "text": "The time is 3 38.",
+      "sha256": "712da2056a2c0655d293b3467c578d1904c058459e659f261e8c85a6f4c207d1",
+      "frames": 41984
+    },
+    {
+      "file": "current-3-39.wav",
+      "text": "The time is 3 39.",
+      "sha256": "263bfda4bb7bf6918da9aa5838a2d528994eddeba2b0c950973581b2a91f6775",
+      "frames": 45420
+    },
+    {
+      "file": "current-3-40.wav",
+      "text": "The time is 3 40.",
+      "sha256": "5870b721e9cb02b01b5bfda7942721be1abf8fbedda586dd40ac37da11501ccd",
+      "frames": 38059
+    },
+    {
+      "file": "current-3-41.wav",
+      "text": "The time is 3 41.",
+      "sha256": "4d7de24359bb413611091794f51c53e68acb54eac35e5edb96b9c7fa1f70cabb",
+      "frames": 44909
+    },
+    {
+      "file": "current-3-42.wav",
+      "text": "The time is 3 42.",
+      "sha256": "db2738866820c67b7e958a27ecd81212a167f2889b1153c9fa7c28bc9e3eb68c",
+      "frames": 43457
+    },
+    {
+      "file": "current-3-43.wav",
+      "text": "The time is 3 43.",
+      "sha256": "7b9aae06d304324846f1e0ed0021daf12497c2d777b1206cf91ddf78a8364759",
+      "frames": 43869
+    },
+    {
+      "file": "current-3-44.wav",
+      "text": "The time is 3 44.",
+      "sha256": "14f1d41c110ead5c43aab929956ca74552b40558f05a5fcfa182ca81ba6d513c",
+      "frames": 45166
+    },
+    {
+      "file": "current-3-45.wav",
+      "text": "The time is 3 45.",
+      "sha256": "93d7f97c668320404ebfb271cd93c3fb502540259998b5d8213a4f17929110a9",
+      "frames": 46656
+    },
+    {
+      "file": "current-3-46.wav",
+      "text": "The time is 3 46.",
+      "sha256": "0cd3254e6725fdc601ff6085ee1e5ad91423ae72e8ee94719c1eb67849942a5d",
+      "frames": 45876
+    },
+    {
+      "file": "current-3-47.wav",
+      "text": "The time is 3 47.",
+      "sha256": "528190505f189934e8cb4bd7bfae06bc2df8d3db78b687c9c729d05656ab48bb",
+      "frames": 46568
+    },
+    {
+      "file": "current-3-48.wav",
+      "text": "The time is 3 48.",
+      "sha256": "5428a1331aa5821e746ee83e2a4ac03c7604caf860778935752732db1bdda81d",
+      "frames": 42483
+    },
+    {
+      "file": "current-3-49.wav",
+      "text": "The time is 3 49.",
+      "sha256": "98b7596f8cee5a63ba0fcfc10eb1b156bac17039b879524ad6e0231ff2229873",
+      "frames": 45928
+    },
+    {
+      "file": "current-3-50.wav",
+      "text": "The time is 3 50.",
+      "sha256": "9091abf221d75341673cba48bcdfc7140c3bb05fec9782bb4bdc2bfdfc676799",
+      "frames": 38124
+    },
+    {
+      "file": "current-3-51.wav",
+      "text": "The time is 3 51.",
+      "sha256": "0a829dc3bc83277210a48c7a0a5ab926d739e3bc3a64ed8c016c62768272104a",
+      "frames": 45969
+    },
+    {
+      "file": "current-3-52.wav",
+      "text": "The time is 3 52.",
+      "sha256": "cc5e22564abf76d2f6f903a42949114cf143dbbc0956df2181aeace4795e2708",
+      "frames": 44278
+    },
+    {
+      "file": "current-3-53.wav",
+      "text": "The time is 3 53.",
+      "sha256": "0d2a7780962e87997abc2baff99ce17bc3c18adf4ccaa67cac7abb662b0533a0",
+      "frames": 44923
+    },
+    {
+      "file": "current-3-54.wav",
+      "text": "The time is 3 54.",
+      "sha256": "d8f8dee9b59640c580628f5101b55c35685be60b6aba9798687b6e6d86aa9b1b",
+      "frames": 46220
+    },
+    {
+      "file": "current-3-55.wav",
+      "text": "The time is 3 55.",
+      "sha256": "c92b99ecee8698764a09084d71f1f385a7ebadf83170b425ae76afd0cd6db1d4",
+      "frames": 47419
+    },
+    {
+      "file": "current-3-56.wav",
+      "text": "The time is 3 56.",
+      "sha256": "7dca7b57e690cc5418bbdd924d9c5621450dd81e5d886ecdc2096598485696fb",
+      "frames": 46936
+    },
+    {
+      "file": "current-3-57.wav",
+      "text": "The time is 3 57.",
+      "sha256": "81e50f847c21b9f5dca0070c78fa528addd044266c179ad1e25d1f95dee23ee3",
+      "frames": 47628
+    },
+    {
+      "file": "current-3-58.wav",
+      "text": "The time is 3 58.",
+      "sha256": "58e1100246def430c75e5c5b95215075ad2a22879bed66168ce01099ff3928e3",
+      "frames": 43565
+    },
+    {
+      "file": "current-3-59.wav",
+      "text": "The time is 3 59.",
+      "sha256": "a6a0c66cc50612c8cb94ce52a960945382134461d813cfa7385460e84d91ad63",
+      "frames": 46981
+    },
+    {
+      "file": "current-4-00.wav",
+      "text": "The time is 4 o'clock.",
+      "sha256": "101b339790423f46874f19cd9a441a56968aea50d42d9cbd92205f6defd2baf6",
+      "frames": 39785
+    },
+    {
+      "file": "current-4-01.wav",
+      "text": "The time is 4 oh 1.",
+      "sha256": "d137d0a01fc870368c89e278d4f3a60edc036582ac298f65c11100c3931e13d4",
+      "frames": 41304
+    },
+    {
+      "file": "current-4-02.wav",
+      "text": "The time is 4 oh 2.",
+      "sha256": "2489443d04766742cad97152ad420dd6891618f23ba17d42d4d31f0ec7ee691e",
+      "frames": 39440
+    },
+    {
+      "file": "current-4-03.wav",
+      "text": "The time is 4 oh 3.",
+      "sha256": "bafae8b69aa85bcb30e4f93a531ae32317fe1f75595d55e0c675b6eac262c1ae",
+      "frames": 39821
+    },
+    {
+      "file": "current-4-04.wav",
+      "text": "The time is 4 oh 4.",
+      "sha256": "73d3c7bf38d0f1075d7265f44eac4ee0942f1bf414c4279c60206b33b9e17a85",
+      "frames": 40857
+    },
+    {
+      "file": "current-4-05.wav",
+      "text": "The time is 4 oh 5.",
+      "sha256": "c1e54a86c321fe46e3a5dc8fa8c36443d55664ec493a36bf90b787804c7efb1b",
+      "frames": 42348
+    },
+    {
+      "file": "current-4-06.wav",
+      "text": "The time is 4 oh 6.",
+      "sha256": "be4c5656556899b217a717e7a26b716359720c429808d4dbf45cbfa92cd70203",
+      "frames": 41863
+    },
+    {
+      "file": "current-4-07.wav",
+      "text": "The time is 4 oh 7.",
+      "sha256": "5853dbfc8ed1cc3c7838f70e2f82410b9913b411b6008b355f9b400381e9a2e4",
+      "frames": 42552
+    },
+    {
+      "file": "current-4-08.wav",
+      "text": "The time is 4 oh 8.",
+      "sha256": "5aea21e7599e40abfa886c8a4b900c8e37abcad3a058cd8284f1636994796275",
+      "frames": 38387
+    },
+    {
+      "file": "current-4-09.wav",
+      "text": "The time is 4 oh 9.",
+      "sha256": "4d4280f95215a0854700c9c440ac6b8b85a4c30957ee7d618c9eefd79b2df7f7",
+      "frames": 42623
+    },
+    {
+      "file": "current-4-10.wav",
+      "text": "The time is 4 10.",
+      "sha256": "fa85dbfbb4ec4dba0e42992819fa3e8055fdc6d31681c3eea796452bde773fd3",
+      "frames": 36888
+    },
+    {
+      "file": "current-4-11.wav",
+      "text": "The time is 4 11.",
+      "sha256": "1ae588bb796ebd877b04e8c0e941f9969c2615afae9c856a73bf3edd1b6cd192",
+      "frames": 39533
+    },
+    {
+      "file": "current-4-12.wav",
+      "text": "The time is 4 12.",
+      "sha256": "319128b2a33145702121d0119edff6d85cb71f22edea1f18092b7b43de58c683",
+      "frames": 39552
+    },
+    {
+      "file": "current-4-13.wav",
+      "text": "The time is 4 13.",
+      "sha256": "530d06e789d226d8fd99ce8a0b4423d8b2170c0d9409c8be260e8f746178e610",
+      "frames": 39595
+    },
+    {
+      "file": "current-4-14.wav",
+      "text": "The time is 4 14.",
+      "sha256": "30f88d114ebfa8f68bec5b41d0ae32004f57d7f928f6209b618accd823014d8d",
+      "frames": 40143
+    },
+    {
+      "file": "current-4-15.wav",
+      "text": "The time is 4 15.",
+      "sha256": "1e7c07018e9599425f81d10a378a7aefc1dec34f4ca26958f5826d28b281a00c",
+      "frames": 39858
+    },
+    {
+      "file": "current-4-16.wav",
+      "text": "The time is 4 16.",
+      "sha256": "66dd716cc70ca6f17f6923c4603e09102c40d9a8719ecf6c60bd87fbd1037411",
+      "frames": 40944
+    },
+    {
+      "file": "current-4-17.wav",
+      "text": "The time is 4 17.",
+      "sha256": "4a1ddb1366051998fe11457da483e820d07cc637d41cc86f8dc51fd03fe2f333",
+      "frames": 43176
+    },
+    {
+      "file": "current-4-18.wav",
+      "text": "The time is 4 18.",
+      "sha256": "2a8a0bf301769e765f45b6d2eff8a178b814de2e684434da6fdcad87fa8f92ef",
+      "frames": 38136
+    },
+    {
+      "file": "current-4-19.wav",
+      "text": "The time is 4 19.",
+      "sha256": "dc7865048a4b9bd26cc945bea79b7bee764c3208b1cd8d05df927d083f0f04c8",
+      "frames": 40444
+    },
+    {
+      "file": "current-4-20.wav",
+      "text": "The time is 4 20.",
+      "sha256": "259ba114afa2ba7ef2ad489bf0760adeba68a8fbf2b288010b00cfd1438d50fe",
+      "frames": 40054
+    },
+    {
+      "file": "current-4-21.wav",
+      "text": "The time is 4 21.",
+      "sha256": "a635f79fc00104194e44586e4ed6ef49678a8a04383e87fb491c0e88b7b3352b",
+      "frames": 47145
+    },
+    {
+      "file": "current-4-22.wav",
+      "text": "The time is 4 22.",
+      "sha256": "294fff02fd55e96793f9b9dad6f60803b4d488fa7966238bbe0048190863c7ec",
+      "frames": 45444
+    },
+    {
+      "file": "current-4-23.wav",
+      "text": "The time is 4 23.",
+      "sha256": "e4c39ef33476f0271376c4d289782f876fe5cd64ca0294423dbc22876d673176",
+      "frames": 46096
+    },
+    {
+      "file": "current-4-24.wav",
+      "text": "The time is 4 24.",
+      "sha256": "9fc1aeeb1c3bf1b93eaf061d219c025981dfd65cff402d19b716aea85085153c",
+      "frames": 47393
+    },
+    {
+      "file": "current-4-25.wav",
+      "text": "The time is 4 25.",
+      "sha256": "f19d33ada0a6c5eb5adacc39e66959bec7cac2c0bfab64622cf5737a9eeea989",
+      "frames": 48592
+    },
+    {
+      "file": "current-4-26.wav",
+      "text": "The time is 4 26.",
+      "sha256": "f462c353d053b54ff2936e10c555c9d19cade5c35ee0fa4400a79164fd7356d0",
+      "frames": 48100
+    },
+    {
+      "file": "current-4-27.wav",
+      "text": "The time is 4 27.",
+      "sha256": "84cfd5274940758815d84cc7ad10d8731794b205d107c8e7b55310a29cb39c6a",
+      "frames": 48804
+    },
+    {
+      "file": "current-4-28.wav",
+      "text": "The time is 4 28.",
+      "sha256": "0da4690a36135b9e2e78fd8c2506d6ba6be481dcfefbc001d9c73ed2f3c6e987",
+      "frames": 44734
+    },
+    {
+      "file": "current-4-29.wav",
+      "text": "The time is 4 29.",
+      "sha256": "934313c8ecf2cbfd41dae0c666ac28b3aa5c3a3f2f7949ee67730a2b3dcee78a",
+      "frames": 48155
+    },
+    {
+      "file": "current-4-30.wav",
+      "text": "The time is 4 30.",
+      "sha256": "baf99b1b52e19cc74ff324131f13ffc9e18059abbd3e70318698dcdaf404f55c",
+      "frames": 37606
+    },
+    {
+      "file": "current-4-31.wav",
+      "text": "The time is 4 31.",
+      "sha256": "71e74ac13984e2651f2ed5b0888ba6110854cf0258b57f0069b1d92567868ae3",
+      "frames": 44884
+    },
+    {
+      "file": "current-4-32.wav",
+      "text": "The time is 4 32.",
+      "sha256": "9d5bab80a0630ae1dd15da8d3835390db61b9f545781819531922954752cf437",
+      "frames": 43190
+    },
+    {
+      "file": "current-4-33.wav",
+      "text": "The time is 4 33.",
+      "sha256": "dd4d40dbe9c5660169ca69239dfa0c98c9330a14a38ac8de095bc229ee08295c",
+      "frames": 43843
+    },
+    {
+      "file": "current-4-34.wav",
+      "text": "The time is 4 34.",
+      "sha256": "547b11a4977cfd0571b158d438cf538538b26ba3e81207678826ee8905f116f2",
+      "frames": 45140
+    },
+    {
+      "file": "current-4-35.wav",
+      "text": "The time is 4 35.",
+      "sha256": "16e67542a470899d4a18f866bc9ea7b9330660d84f57032eb1fd22cac9695f2e",
+      "frames": 46630
+    },
+    {
+      "file": "current-4-36.wav",
+      "text": "The time is 4 36.",
+      "sha256": "86ef79e8d27a88965629374f4121a3693215fb897602ac900c375ce1391c1d24",
+      "frames": 45850
+    },
+    {
+      "file": "current-4-37.wav",
+      "text": "The time is 4 37.",
+      "sha256": "cdd9bd23b874428bda651a786a08b5226b7502fd709e033c7dc315678a7635ac",
+      "frames": 46542
+    },
+    {
+      "file": "current-4-38.wav",
+      "text": "The time is 4 38.",
+      "sha256": "7cd1eb8d5e9b033ad44a1b606edef228abde0ac8d2f2a712f4ebe2d81d364e1a",
+      "frames": 42467
+    },
+    {
+      "file": "current-4-39.wav",
+      "text": "The time is 4 39.",
+      "sha256": "1ad7899ece092b06cf2025b0485db93249eb3358d72fcd6bebffb240159c9492",
+      "frames": 45903
+    },
+    {
+      "file": "current-4-40.wav",
+      "text": "The time is 4 40.",
+      "sha256": "19e014e85fab0292658eea2795b8218214f3ce071f65edb1a4285df6149b33c2",
+      "frames": 38429
+    },
+    {
+      "file": "current-4-41.wav",
+      "text": "The time is 4 41.",
+      "sha256": "16961184d12c1c26081e37782c8977e412e09f5199f0c7c57972b9ec1dd97414",
+      "frames": 45398
+    },
+    {
+      "file": "current-4-42.wav",
+      "text": "The time is 4 42.",
+      "sha256": "03ba86ceee2d1acc031935897d89358fdf5dfc95cf2ba3c29fb7b0bb9187e32e",
+      "frames": 43938
+    },
+    {
+      "file": "current-4-43.wav",
+      "text": "The time is 4 43.",
+      "sha256": "b550c5b955b754f7d848642a57a7e19ab08f1ebcc40784a293a747a26d15bc51",
+      "frames": 44355
+    },
+    {
+      "file": "current-4-44.wav",
+      "text": "The time is 4 44.",
+      "sha256": "840bf9a1328b878d1caf92279106b5ee9e1ae5bf9c0d5dcb0c3131e4fa3ea4aa",
+      "frames": 45647
+    },
+    {
+      "file": "current-4-45.wav",
+      "text": "The time is 4 45.",
+      "sha256": "27a1a14ad48248fd158673de67fa3521c2ad57d0176c0024d340b8fc685ad59a",
+      "frames": 46853
+    },
+    {
+      "file": "current-4-46.wav",
+      "text": "The time is 4 46.",
+      "sha256": "a5b0a4e803720abb43fcede5d6b72b74117ed6adb6192d29396aa63f257b82bd",
+      "frames": 46355
+    },
+    {
+      "file": "current-4-47.wav",
+      "text": "The time is 4 47.",
+      "sha256": "d6c96b3405658127c00866c78ba5faafbc6234209d3c8af1bbb5a23eeff8ae52",
+      "frames": 47061
+    },
+    {
+      "file": "current-4-48.wav",
+      "text": "The time is 4 48.",
+      "sha256": "dda0b17aa0f0851549b9ea474b82820bd3b9e2c8987a544601702ef4119e43fb",
+      "frames": 42976
+    },
+    {
+      "file": "current-4-49.wav",
+      "text": "The time is 4 49.",
+      "sha256": "4428dd1ffebfe64b9bbcf8da464daed14b8a2e9feafd10726ea6d9c9d0ff885b",
+      "frames": 46404
+    },
+    {
+      "file": "current-4-50.wav",
+      "text": "The time is 4 50.",
+      "sha256": "dc7018e12229a36dd64cc4362d593f5a5c2adf6b0d372b7d120703dc24daf73a",
+      "frames": 38487
+    },
+    {
+      "file": "current-4-51.wav",
+      "text": "The time is 4 51.",
+      "sha256": "086a2d9e0703de0756d325eece03b9058bfd6b6263f2d057c1fedc74929b9c06",
+      "frames": 46447
+    },
+    {
+      "file": "current-4-52.wav",
+      "text": "The time is 4 52.",
+      "sha256": "8571eaccd4b0231b0d8e08da7cf83462a81e7610679a7b46a134e20a8150ef23",
+      "frames": 44750
+    },
+    {
+      "file": "current-4-53.wav",
+      "text": "The time is 4 53.",
+      "sha256": "be0e5623ad2286d96f7d0ac8a2038ae396b2e81017852f13be5c2c66fe134917",
+      "frames": 45400
+    },
+    {
+      "file": "current-4-54.wav",
+      "text": "The time is 4 54.",
+      "sha256": "7344d5a8e2e895cc2ffb726ba6b9e7713e07b81ca613d590544d4acc03947ff3",
+      "frames": 46414
+    },
+    {
+      "file": "current-4-55.wav",
+      "text": "The time is 4 55.",
+      "sha256": "4df6b571f12d4a425aaca90e1fe88324ff4d5ca77d1d34d9ee28bde6b4d9b26f",
+      "frames": 47904
+    },
+    {
+      "file": "current-4-56.wav",
+      "text": "The time is 4 56.",
+      "sha256": "6c0501bfa7722b409da25074db9b50c766dbb050d752efc690b9a252e981bb63",
+      "frames": 47419
+    },
+    {
+      "file": "current-4-57.wav",
+      "text": "The time is 4 57.",
+      "sha256": "a51ee8286f03ab827aef5675eb9a878999a5e40629a87621fccdfad6e5aa531f",
+      "frames": 48107
+    },
+    {
+      "file": "current-4-58.wav",
+      "text": "The time is 4 58.",
+      "sha256": "ea47060bf245a52d1c4ab67ef9fd23743bf955c895e29dd9eed88c915612eded",
+      "frames": 44048
+    },
+    {
+      "file": "current-4-59.wav",
+      "text": "The time is 4 59.",
+      "sha256": "7ff9c5d0545345528695ed95d1065ef9e946f79ac5fb54bbb27fa24664ab45a3",
+      "frames": 47457
+    },
+    {
+      "file": "current-5-00.wav",
+      "text": "The time is 5 o'clock.",
+      "sha256": "56edebd537be41f821af3907ec8bc44ffa3e17d8fae6bba23b5728c959f4c54a",
+      "frames": 40717
+    },
+    {
+      "file": "current-5-01.wav",
+      "text": "The time is 5 oh 1.",
+      "sha256": "7951ea480e4aa8316bc31a8ba932ade52aed8ec2af385a6c9fbdaff04ef1e4e8",
+      "frames": 42608
+    },
+    {
+      "file": "current-5-02.wav",
+      "text": "The time is 5 oh 2.",
+      "sha256": "3d4c720564eab4c4c97c3cdc21fd9ab8a5af1956756d10da1709112c30da1635",
+      "frames": 40741
+    },
+    {
+      "file": "current-5-03.wav",
+      "text": "The time is 5 oh 3.",
+      "sha256": "383fbe9c88d5d9ff1cd123a96395501268e4057d1f9b1b8c7be29766784c61df",
+      "frames": 41130
+    },
+    {
+      "file": "current-5-04.wav",
+      "text": "The time is 5 oh 4.",
+      "sha256": "c191dbb43c7806f9c23ac98f483d3b148a036b83fe7dd87d30093fa037135351",
+      "frames": 42451
+    },
+    {
+      "file": "current-5-05.wav",
+      "text": "The time is 5 oh 5.",
+      "sha256": "f10c1da3dcdf0f65d0eb999de18a74244dfe4853b4f47a14d3e19e2ec2f997dc",
+      "frames": 43931
+    },
+    {
+      "file": "current-5-06.wav",
+      "text": "The time is 5 oh 6.",
+      "sha256": "a2e06cc4a6c474c91515b0e0e41bbe9ae2180181127c1a4c9bf5dd3552eca803",
+      "frames": 43166
+    },
+    {
+      "file": "current-5-07.wav",
+      "text": "The time is 5 oh 7.",
+      "sha256": "deb4a7f5b3c85b49681cebc89e9b051320c47c501f2dfb788dbd54dbdd54a2b7",
+      "frames": 43843
+    },
+    {
+      "file": "current-5-08.wav",
+      "text": "The time is 5 oh 8.",
+      "sha256": "90f3cb0bf0cfc7bb83b6dd04563588eee1f261f565c8e4ffd92c76d19ad65f57",
+      "frames": 39660
+    },
+    {
+      "file": "current-5-09.wav",
+      "text": "The time is 5 oh 9.",
+      "sha256": "6ebe33b86dbcf245f0974ef4632a5ea355a86a65865fadf5b77e5979f7005179",
+      "frames": 43924
+    },
+    {
+      "file": "current-5-10.wav",
+      "text": "The time is 5 10.",
+      "sha256": "b6b88aa9c5e28b47be8939a1d7834565fc742e03d16b0b913382cf11bc6749b5",
+      "frames": 38874
+    },
+    {
+      "file": "current-5-11.wav",
+      "text": "The time is 5 11.",
+      "sha256": "db5a1c2d3e95611dbb5e01cc673e560ab33737a339068534c2627cd16d6d0630",
+      "frames": 40249
+    },
+    {
+      "file": "current-5-12.wav",
+      "text": "The time is 5 12.",
+      "sha256": "959c02d8febfe757be84025b5da63c29f6b571cc7e433a24b9e7f49907d85314",
+      "frames": 41540
+    },
+    {
+      "file": "current-5-13.wav",
+      "text": "The time is 5 13.",
+      "sha256": "2a753e56aeb068043d4d1e190ae8092f25a4441cf05c3fff8d2f2727cf1fd2c7",
+      "frames": 41349
+    },
+    {
+      "file": "current-5-14.wav",
+      "text": "The time is 5 14.",
+      "sha256": "53c696f7cb6f9b4c111536c0b82cc77bce3cbfdc56f910d78ea3a233a5156269",
+      "frames": 41894
+    },
+    {
+      "file": "current-5-15.wav",
+      "text": "The time is 5 15.",
+      "sha256": "a60d4997384494f3e762c0283990d52b5c8fe618ac734ab50b122b35591065d5",
+      "frames": 41628
+    },
+    {
+      "file": "current-5-16.wav",
+      "text": "The time is 5 16.",
+      "sha256": "42043bb79bca8d2700a972282d5d53232253b5693ee07e7bcf20c041ed12de76",
+      "frames": 42713
+    },
+    {
+      "file": "current-5-17.wav",
+      "text": "The time is 5 17.",
+      "sha256": "1593fe435df6f3938e26a39f011d21c448490ddb57faaec9fe743c9b4f30ad37",
+      "frames": 44937
+    },
+    {
+      "file": "current-5-18.wav",
+      "text": "The time is 5 18.",
+      "sha256": "b5544d9b21ce9959076fbded7dad112f779772c00b8a354f778ff84488cb5ea8",
+      "frames": 39476
+    },
+    {
+      "file": "current-5-19.wav",
+      "text": "The time is 5 19.",
+      "sha256": "fc08fbe72722fcea4db976f12eef60b6ec063b26d39119c023ee13c6d425c9ad",
+      "frames": 41509
+    },
+    {
+      "file": "current-5-20.wav",
+      "text": "The time is 5 20.",
+      "sha256": "d05218443cd2ed6ee38bc4acd4c63c890deb21eef5bdfb2d2345e999b92c1b88",
+      "frames": 42026
+    },
+    {
+      "file": "current-5-21.wav",
+      "text": "The time is 5 21.",
+      "sha256": "236af8f33d99e70f6b329f81084cfb7b32639f31dc8bef5db8be87d3f21e6709",
+      "frames": 49190
+    },
+    {
+      "file": "current-5-22.wav",
+      "text": "The time is 5 22.",
+      "sha256": "22f50c7615cc326fc12e171899d681ad173c29d7a2123b24fd01e24f4788e7de",
+      "frames": 47495
+    },
+    {
+      "file": "current-5-23.wav",
+      "text": "The time is 5 23.",
+      "sha256": "5e4d7d6548813c50f8ca29dea4cee5398028b75e7fd800b3d6cb4f734d97433f",
+      "frames": 48143
+    },
+    {
+      "file": "current-5-24.wav",
+      "text": "The time is 5 24.",
+      "sha256": "cac66a5b9e8f852c12d51fcfdb74ec190f9452e0ad6bd32bc06616cb3e9e2990",
+      "frames": 49455
+    },
+    {
+      "file": "current-5-25.wav",
+      "text": "The time is 5 25.",
+      "sha256": "75bd8c191a5ac40419d8b9f0bcf54377b317d0ea7239e6c5bcf302236dfec57c",
+      "frames": 50639
+    },
+    {
+      "file": "current-5-26.wav",
+      "text": "The time is 5 26.",
+      "sha256": "f0ea33ad59aaf90153af0c93acaf98455ccfbc7d0453531210db39ad80f18553",
+      "frames": 50159
+    },
+    {
+      "file": "current-5-27.wav",
+      "text": "The time is 5 27.",
+      "sha256": "d4089bbfe0b7085e7eca1222abe07fec2a349499fb664fb76e0174c8f5ce04de",
+      "frames": 50847
+    },
+    {
+      "file": "current-5-28.wav",
+      "text": "The time is 5 28.",
+      "sha256": "92f11991964194880ddcc3298f769c285086ce062278491fe81d668f314c4630",
+      "frames": 46788
+    },
+    {
+      "file": "current-5-29.wav",
+      "text": "The time is 5 29.",
+      "sha256": "ad56310cb135093e3d096cd11957cf58f4ed4d0d80530bce021c62627060d7f9",
+      "frames": 50210
+    },
+    {
+      "file": "current-5-30.wav",
+      "text": "The time is 5 30.",
+      "sha256": "0da39d2c6837a8a09ab29267e8db55430c0b9c03c84db29ee9d9d6bb40982ca3",
+      "frames": 39361
+    },
+    {
+      "file": "current-5-31.wav",
+      "text": "The time is 5 31.",
+      "sha256": "3529213a729df92343f4ebe4f8467c634a7a7e3e2e525e8e6ff354e9d5c880f7",
+      "frames": 46512
+    },
+    {
+      "file": "current-5-32.wav",
+      "text": "The time is 5 32.",
+      "sha256": "551bc11ae8e72e8f55e876ceb1eb3243f80cffe3f788452d9280ef0d9fae1624",
+      "frames": 44827
+    },
+    {
+      "file": "current-5-33.wav",
+      "text": "The time is 5 33.",
+      "sha256": "e9eb1a69d53d3982a9f68e839695388ed15a92c0782c203d87889966eadf00c8",
+      "frames": 45475
+    },
+    {
+      "file": "current-5-34.wav",
+      "text": "The time is 5 34.",
+      "sha256": "378c45235457450b467f75543d30e2c5f05eb48ae46268bd26afade351bd2260",
+      "frames": 46776
+    },
+    {
+      "file": "current-5-35.wav",
+      "text": "The time is 5 35.",
+      "sha256": "1f1cd23bdcbf19965b996feffbde6df71a7fe179b83f65175ec67b7ce8ad3257",
+      "frames": 47976
+    },
+    {
+      "file": "current-5-36.wav",
+      "text": "The time is 5 36.",
+      "sha256": "aaa3fefb024dee99630da0f17be7154c3a01070ec25aeed4cd82b39eb291a278",
+      "frames": 47486
+    },
+    {
+      "file": "current-5-37.wav",
+      "text": "The time is 5 37.",
+      "sha256": "cadd6af64002eddb78deab1735e82f321042916ed66e4c88801d52db619add8a",
+      "frames": 48178
+    },
+    {
+      "file": "current-5-38.wav",
+      "text": "The time is 5 38.",
+      "sha256": "769f412c860cb6ddaf395927f3a0ffa263e29e6d467bd7dfc2d279181bb5851a",
+      "frames": 44107
+    },
+    {
+      "file": "current-5-39.wav",
+      "text": "The time is 5 39.",
+      "sha256": "7096006c1585b0bf234466c14e05f766e9e2e8bfe7716c795539c8dbb0c11231",
+      "frames": 47532
+    },
+    {
+      "file": "current-5-40.wav",
+      "text": "The time is 5 40.",
+      "sha256": "5011d661f690e68fa2dbd88901087349754e067952618a38bebd377fc06d0a29",
+      "frames": 40176
+    },
+    {
+      "file": "current-5-41.wav",
+      "text": "The time is 5 41.",
+      "sha256": "24ed2850c58d1f521e1b4e1290f46ae08e88193cc66aa1e032a4a50a2243205f",
+      "frames": 47019
+    },
+    {
+      "file": "current-5-42.wav",
+      "text": "The time is 5 42.",
+      "sha256": "abd729c335d4223ccc27a6f1cb55680d7bd611146afd57704216d5d706a16049",
+      "frames": 45570
+    },
+    {
+      "file": "current-5-43.wav",
+      "text": "The time is 5 43.",
+      "sha256": "6d4e49fd3b0ef456d696ec80280f45805644cf01bf2a24ce3cb9a52005d9d3bc",
+      "frames": 45980
+    },
+    {
+      "file": "current-5-44.wav",
+      "text": "The time is 5 44.",
+      "sha256": "60927b0f5582916267421b081e642ddcb977512ab092b9cba4562dd87a13c9a6",
+      "frames": 47291
+    },
+    {
+      "file": "current-5-45.wav",
+      "text": "The time is 5 45.",
+      "sha256": "3e7980572db58ddf84a2555689a45924edfbbbc74fdbc238c24f30da209ab575",
+      "frames": 48475
+    },
+    {
+      "file": "current-5-46.wav",
+      "text": "The time is 5 46.",
+      "sha256": "d08fe9d94d3c441953cec80ac4d51f273c81da97afad6c34c576322612e1bbec",
+      "frames": 47995
+    },
+    {
+      "file": "current-5-47.wav",
+      "text": "The time is 5 47.",
+      "sha256": "3c9919a9d8d464d4f177cdd77641abf710c8867fc0d16b65f90627656887fc60",
+      "frames": 48680
+    },
+    {
+      "file": "current-5-48.wav",
+      "text": "The time is 5 48.",
+      "sha256": "4d8f975623bebb4ff5fb4e7becdc8757817c51bde4036d07f77431d231bbab7c",
+      "frames": 44608
+    },
+    {
+      "file": "current-5-49.wav",
+      "text": "The time is 5 49.",
+      "sha256": "ff218b4b1d5b52ea97780548dcf826d15f87279b549977ae6c7cda17bc4420ce",
+      "frames": 48042
+    },
+    {
+      "file": "current-5-50.wav",
+      "text": "The time is 5 50.",
+      "sha256": "0cee1c7d01325016ea9b222efcf412b115571a4092d9677c31fd4d19c347b0a8",
+      "frames": 40243
+    },
+    {
+      "file": "current-5-51.wav",
+      "text": "The time is 5 51.",
+      "sha256": "d7d0204043114eb00f44cde3d0518e538678f138a339ed589eb75fe0c30d6342",
+      "frames": 48082
+    },
+    {
+      "file": "current-5-52.wav",
+      "text": "The time is 5 52.",
+      "sha256": "7c80515b9df4e2707fe2bb1e83b43de73ef0ba3475712d135b8fb1817d7c7aeb",
+      "frames": 46389
+    },
+    {
+      "file": "current-5-53.wav",
+      "text": "The time is 5 53.",
+      "sha256": "00ee74c1daf31bb400e08fb1c9502c06897fa97558f2929f221d899130228f46",
+      "frames": 46803
+    },
+    {
+      "file": "current-5-54.wav",
+      "text": "The time is 5 54.",
+      "sha256": "f0bc749810d03619dc4932dd635cd4b19a9f3d0544093848e818bc79f79e017f",
+      "frames": 48100
+    },
+    {
+      "file": "current-5-55.wav",
+      "text": "The time is 5 55.",
+      "sha256": "53708d20e6c90c03d3de00c665eb9794b516066730ce24bfb2cdb830ab40949f",
+      "frames": 49582
+    },
+    {
+      "file": "current-5-56.wav",
+      "text": "The time is 5 56.",
+      "sha256": "f8f09876ece034f82c752c6f3062961c8473bec90827d56ebc323a24338b9f0e",
+      "frames": 48813
+    },
+    {
+      "file": "current-5-57.wav",
+      "text": "The time is 5 57.",
+      "sha256": "73e76567ca8c2a888195b91761532d3ae72c4a4f90839362ca0a6d5713281241",
+      "frames": 49495
+    },
+    {
+      "file": "current-5-58.wav",
+      "text": "The time is 5 58.",
+      "sha256": "8904f130dd7425f0ff8804ac4bcafd13163bafa7b1b136f4eb6caae16f9b275f",
+      "frames": 45673
+    },
+    {
+      "file": "current-5-59.wav",
+      "text": "The time is 5 59.",
+      "sha256": "36ac2c8f465a24a91cd4f0b6b641d734566fe97bb34ddc9102794150017afb63",
+      "frames": 49103
+    },
+    {
+      "file": "current-6-00.wav",
+      "text": "The time is 6 o'clock.",
+      "sha256": "8ea88eccc415f8d391448dcf07af205e2b8fbc8b139b199dc072a1aa8fb3bef5",
+      "frames": 41750
+    },
+    {
+      "file": "current-6-01.wav",
+      "text": "The time is 6 oh 1.",
+      "sha256": "ea1898d09750ce2a81ac26a899a2595b89faa74ebfd3670f891faf25a43ec6a6",
+      "frames": 43234
+    },
+    {
+      "file": "current-6-02.wav",
+      "text": "The time is 6 oh 2.",
+      "sha256": "9a8ac5a941815032a1ed700c15e380ac5496ad1dd5abf05fcb7fa9e1653906dc",
+      "frames": 41369
+    },
+    {
+      "file": "current-6-03.wav",
+      "text": "The time is 6 oh 3.",
+      "sha256": "ede8055d55ed58935356611cc2eb97b50a320adb491b677e64d0fd1135f4314f",
+      "frames": 41752
+    },
+    {
+      "file": "current-6-04.wav",
+      "text": "The time is 6 oh 4.",
+      "sha256": "e4e331519c83a01705bc9b55d835442fdc73113faa8c450b02e79bb77c862257",
+      "frames": 43069
+    },
+    {
+      "file": "current-6-05.wav",
+      "text": "The time is 6 oh 5.",
+      "sha256": "93f4d86c3fd31f9adc252c55b36ec64456efd14d32816f34207f42494fd7eee3",
+      "frames": 44260
+    },
+    {
+      "file": "current-6-06.wav",
+      "text": "The time is 6 oh 6.",
+      "sha256": "b07811b6d70a5b564ebb4e3a5e4a678291e227cc74e322ac340e848f18cc2f55",
+      "frames": 43785
+    },
+    {
+      "file": "current-6-07.wav",
+      "text": "The time is 6 oh 7.",
+      "sha256": "3087b50d786c1d30e8c2cfd9ba6e7ddb746ce32ce25c7ad91c65bebbf2d2e723",
+      "frames": 44470
+    },
+    {
+      "file": "current-6-08.wav",
+      "text": "The time is 6 oh 8.",
+      "sha256": "efa28915e7939ca18dcb9090a80158ec85cf419db500c9209efa92cca4896026",
+      "frames": 40565
+    },
+    {
+      "file": "current-6-09.wav",
+      "text": "The time is 6 oh 9.",
+      "sha256": "a46aa1a100bcb86d923a0b41fc0577fad484f51ae835e3caba0c6456cd1203cf",
+      "frames": 44549
+    },
+    {
+      "file": "current-6-10.wav",
+      "text": "The time is 6 10.",
+      "sha256": "7774adceedc7221154f68a0865eb893cc828de967526f6369416984ac5589222",
+      "frames": 39302
+    },
+    {
+      "file": "current-6-11.wav",
+      "text": "The time is 6 11.",
+      "sha256": "1f51ea2e1e9f06baeb18256a163aebf21e073a6dd6185b1c2941becdd3f1320e",
+      "frames": 41258
+    },
+    {
+      "file": "current-6-12.wav",
+      "text": "The time is 6 12.",
+      "sha256": "3e02712436a4e6d330aefcf8cf01a258c797c01bd6b0ca2fce5f12770b11cbe2",
+      "frames": 41980
+    },
+    {
+      "file": "current-6-13.wav",
+      "text": "The time is 6 13.",
+      "sha256": "52c078e2d938325d7f36e531db4c18ef14aaafb187cf8672a3d56d1b2a652e09",
+      "frames": 42240
+    },
+    {
+      "file": "current-6-14.wav",
+      "text": "The time is 6 14.",
+      "sha256": "82b045a34377ab520da494e21d6d0540fa15606647d59549d694a6f8e5705426",
+      "frames": 42792
+    },
+    {
+      "file": "current-6-15.wav",
+      "text": "The time is 6 15.",
+      "sha256": "40232d14fbad96593bb887899324e6f922e019b75dfc8ab45cf7d10fcf2854c3",
+      "frames": 42517
+    },
+    {
+      "file": "current-6-16.wav",
+      "text": "The time is 6 16.",
+      "sha256": "14b5587fecfcf4211b4563c4d0db28093e722df8307f7ab61f50e5c89de150e7",
+      "frames": 43607
+    },
+    {
+      "file": "current-6-17.wav",
+      "text": "The time is 6 17.",
+      "sha256": "3041835b08a1cba89fd58d7df30f1ee29405754a1eb3f0b3149ba9d58d757142",
+      "frames": 45820
+    },
+    {
+      "file": "current-6-18.wav",
+      "text": "The time is 6 18.",
+      "sha256": "f919ed1525094a483b6246a8fdf6cf70d0913b646e64c366039f053d9526cb52",
+      "frames": 40204
+    },
+    {
+      "file": "current-6-19.wav",
+      "text": "The time is 6 19.",
+      "sha256": "24a16ab255c5a7df926d173f957e238fd84362b76cc50d613b87c03328fffaa5",
+      "frames": 42663
+    },
+    {
+      "file": "current-6-20.wav",
+      "text": "The time is 6 20.",
+      "sha256": "de852771f3388bf132a350715258bc3933583a1d515aa732d3966ca6f5f78b18",
+      "frames": 42468
+    },
+    {
+      "file": "current-6-21.wav",
+      "text": "The time is 6 21.",
+      "sha256": "29d5399ea4089240fea11af172addff87c708aaec39b832f4bd1d89013967852",
+      "frames": 49415
+    },
+    {
+      "file": "current-6-22.wav",
+      "text": "The time is 6 22.",
+      "sha256": "8577c06bb2e2be12086d5b3b1485e6dc5f7788ec18bdf7312c173fdb3cf993fd",
+      "frames": 47722
+    },
+    {
+      "file": "current-6-23.wav",
+      "text": "The time is 6 23.",
+      "sha256": "ff286e02e15932ae92e31f0fde3d1c35105de2bf77c5a72ccd33d02399ff585a",
+      "frames": 48378
+    },
+    {
+      "file": "current-6-24.wav",
+      "text": "The time is 6 24.",
+      "sha256": "c4e7cf377b5a7f55a4c8b26ee7dafe6b524fa10a9ed1068610fad02d9ed9463c",
+      "frames": 49681
+    },
+    {
+      "file": "current-6-25.wav",
+      "text": "The time is 6 25.",
+      "sha256": "02b7a225d2801475377f0d0161bf49413081fa221938e42ad967649fa39b7cca",
+      "frames": 50874
+    },
+    {
+      "file": "current-6-26.wav",
+      "text": "The time is 6 26.",
+      "sha256": "aad2453603e0b1b3c8e6b110427db085dfb1e381aac4f136ce746ea7b9b87058",
+      "frames": 50397
+    },
+    {
+      "file": "current-6-27.wav",
+      "text": "The time is 6 27.",
+      "sha256": "0b22297dad325b8f95293bca570c89f9c0b30f8505fc506309a9500b4095d628",
+      "frames": 51078
+    },
+    {
+      "file": "current-6-28.wav",
+      "text": "The time is 6 28.",
+      "sha256": "3cc8c6488c812562a93e1bb8c764dcee0d2ac4f160b134db82c09efdbfef4164",
+      "frames": 47014
+    },
+    {
+      "file": "current-6-29.wav",
+      "text": "The time is 6 29.",
+      "sha256": "4c377776c6268d3f113418dde8fc1733e4eb0f2deaa00d3793aac5132927e6ed",
+      "frames": 50444
+    },
+    {
+      "file": "current-6-30.wav",
+      "text": "The time is 6 30.",
+      "sha256": "936cf49f6f33d63379733e73d86b434032b53cfffbb5b2562852ae1c485620a6",
+      "frames": 40535
+    },
+    {
+      "file": "current-6-31.wav",
+      "text": "The time is 6 31.",
+      "sha256": "12ee7d5338855289c9b9e9f464e6373dc51367fe5b10becb9406c3a91d287170",
+      "frames": 47204
+    },
+    {
+      "file": "current-6-32.wav",
+      "text": "The time is 6 32.",
+      "sha256": "48be78b6feeb54b557dadc7a16f570ee9e1feb8eaf1b434586da5b18df3f0f1d",
+      "frames": 45509
+    },
+    {
+      "file": "current-6-33.wav",
+      "text": "The time is 6 33.",
+      "sha256": "0227ca2a00a5cad9d52ff295a4211ac839c0d67b63d6fb2cd9bf41f3b0688b8a",
+      "frames": 46160
+    },
+    {
+      "file": "current-6-34.wav",
+      "text": "The time is 6 34.",
+      "sha256": "da6c9d96ab6faaf5e527041e56b11c205badae0c8d10dded692331e928c2f9a3",
+      "frames": 47173
+    },
+    {
+      "file": "current-6-35.wav",
+      "text": "The time is 6 35.",
+      "sha256": "c79a2db0f7708a29389a0b37dc099b6dc562a5fac90fe881f74819beaed77683",
+      "frames": 48664
+    },
+    {
+      "file": "current-6-36.wav",
+      "text": "The time is 6 36.",
+      "sha256": "2b316ae9b772e652c0932be5e18bb2a6918c53f5c150edaa2daf80fd0f25b647",
+      "frames": 48179
+    },
+    {
+      "file": "current-6-37.wav",
+      "text": "The time is 6 37.",
+      "sha256": "79fd635faf2448e93cc912a47db726f39e2bb3bc5ea567e22a9b147d9d98bfa2",
+      "frames": 48868
+    },
+    {
+      "file": "current-6-38.wav",
+      "text": "The time is 6 38.",
+      "sha256": "f502d556c3f8d4339dff2d32e5827322eccde694a5b58db61a0a5517d8e09a24",
+      "frames": 44801
+    },
+    {
+      "file": "current-6-39.wav",
+      "text": "The time is 6 39.",
+      "sha256": "e595a26fe65b40971edebc2010146e21ac71cdc9e36ad534b320aef0166f0d6e",
+      "frames": 48214
+    },
+    {
+      "file": "current-6-40.wav",
+      "text": "The time is 6 40.",
+      "sha256": "0882256cbc4eef11e8607fd08a162b385db314a72105ab2618a27c3b0092fbb9",
+      "frames": 41077
+    },
+    {
+      "file": "current-6-41.wav",
+      "text": "The time is 6 41.",
+      "sha256": "7437a6e1428cb0dbeab438320888ccbb6d65091d59bf5852587e616981dfe39b",
+      "frames": 47708
+    },
+    {
+      "file": "current-6-42.wav",
+      "text": "The time is 6 42.",
+      "sha256": "deb031fc03d1cddbffca60ceaab2f3139808257a2dca2f9d0db8f21b4d8bdc7d",
+      "frames": 46253
+    },
+    {
+      "file": "current-6-43.wav",
+      "text": "The time is 6 43.",
+      "sha256": "f457db7650f9074b3ba824172ff3e4bb7982fd594014b69977bdbe75960a3b88",
+      "frames": 46667
+    },
+    {
+      "file": "current-6-44.wav",
+      "text": "The time is 6 44.",
+      "sha256": "f98da91feed13f1886850f380b340fbeace749ad7ef1567097681abef6a2572c",
+      "frames": 47971
+    },
+    {
+      "file": "current-6-45.wav",
+      "text": "The time is 6 45.",
+      "sha256": "520c54852043206afb401b2ea6552433afcf3e87e6e3bb83bf1f40c9342d7776",
+      "frames": 49166
+    },
+    {
+      "file": "current-6-46.wav",
+      "text": "The time is 6 46.",
+      "sha256": "4fa8ea1e0b3b440101a1986624bddf644afdea29bc153ab07f52ab3545d5df68",
+      "frames": 48688
+    },
+    {
+      "file": "current-6-47.wav",
+      "text": "The time is 6 47.",
+      "sha256": "ba48d432c2e26c41488978c0db43fd82056912f2e0d1f1fe7c4474f75ff01bf8",
+      "frames": 49372
+    },
+    {
+      "file": "current-6-48.wav",
+      "text": "The time is 6 48.",
+      "sha256": "5b01e07719b0a242cf307b113b672502b32d2325371ab1ac5a1d85ba6beca2c2",
+      "frames": 45289
+    },
+    {
+      "file": "current-6-49.wav",
+      "text": "The time is 6 49.",
+      "sha256": "78f8fbd4f5ee4df1b90e99f3ad7261f3c1df6d62a015d66f5253da71b84fe6fa",
+      "frames": 48730
+    },
+    {
+      "file": "current-6-50.wav",
+      "text": "The time is 6 50.",
+      "sha256": "de8d525b3f708345db9114cff461cdde1d72c11f4d6f4c705c17b6121a859cbb",
+      "frames": 41127
+    },
+    {
+      "file": "current-6-51.wav",
+      "text": "The time is 6 51.",
+      "sha256": "2605df94e606e071c74d07bb5856adcf294e842cb5ac2531f83af7e23581d26e",
+      "frames": 48771
+    },
+    {
+      "file": "current-6-52.wav",
+      "text": "The time is 6 52.",
+      "sha256": "56817b616869d9b70d5ed2746111cb3537cf6830ee438a908aa47ce82668aaa1",
+      "frames": 47078
+    },
+    {
+      "file": "current-6-53.wav",
+      "text": "The time is 6 53.",
+      "sha256": "5b137e632497117e4ff1e3596bccead863314a016f3f78e4b446f6cd4132929c",
+      "frames": 47733
+    },
+    {
+      "file": "current-6-54.wav",
+      "text": "The time is 6 54.",
+      "sha256": "073344f535e9a4a42192ccb6811c6b4a2c561ef0e1cd42582e4034891cf1bd2c",
+      "frames": 49021
+    },
+    {
+      "file": "current-6-55.wav",
+      "text": "The time is 6 55.",
+      "sha256": "2db964f38e539d9e556654d1f8e53e0b53cd272bbc08593ea7e0dcb6176f10c3",
+      "frames": 50223
+    },
+    {
+      "file": "current-6-56.wav",
+      "text": "The time is 6 56.",
+      "sha256": "71ec53a1fbfb152a9b5474e900feeb9a1a594468c4c5f2fc9ba88d59adce3e1e",
+      "frames": 49738
+    },
+    {
+      "file": "current-6-57.wav",
+      "text": "The time is 6 57.",
+      "sha256": "ff53bcfab47536fd564f194db2be76fb5d60c19f6803bf21ca2d65f413a0ffca",
+      "frames": 50432
+    },
+    {
+      "file": "current-6-58.wav",
+      "text": "The time is 6 58.",
+      "sha256": "9d3e2732d1f6169b5e444498304e4b5f2487bfb040de926f71ee7306a7af4ce3",
+      "frames": 46370
+    },
+    {
+      "file": "current-6-59.wav",
+      "text": "The time is 6 59.",
+      "sha256": "e1ca6b90bc1b7a15acedb5ed8176531fd7978e41f2190aa568326869f52709a1",
+      "frames": 49789
+    },
+    {
+      "file": "current-7-00.wav",
+      "text": "The time is 7 o'clock.",
+      "sha256": "049e21ae952b4d34a5a81a28c93fe6010774de56ff70e4b592b8d617bb007a9e",
+      "frames": 41607
+    },
+    {
+      "file": "current-7-01.wav",
+      "text": "The time is 7 oh 1.",
+      "sha256": "023eec664f840feff1605c514fa380f8eb4805b16bb9846a1a275031cfc0e6f3",
+      "frames": 43245
+    },
+    {
+      "file": "current-7-02.wav",
+      "text": "The time is 7 oh 2.",
+      "sha256": "73b9af3a8b077540c61150c5f9da8027fea06cb2bd2d03aa7abba0a83b3095f1",
+      "frames": 41369
+    },
+    {
+      "file": "current-7-03.wav",
+      "text": "The time is 7 oh 3.",
+      "sha256": "7ad611f37f0ff35f6ae2e3225640186adb68de95aa3d351dddac681b77903b2c",
+      "frames": 41756
+    },
+    {
+      "file": "current-7-04.wav",
+      "text": "The time is 7 oh 4.",
+      "sha256": "fe3d4aef33a29eec6bf50d4da1cdc96d65a3a16e1f13c5ad99fd17bce3ca5ab2",
+      "frames": 43077
+    },
+    {
+      "file": "current-7-05.wav",
+      "text": "The time is 7 oh 5.",
+      "sha256": "e296b16ecb518967d581792f2dfb8a004fe847345d7333c2d8b631412a301a18",
+      "frames": 44272
+    },
+    {
+      "file": "current-7-06.wav",
+      "text": "The time is 7 oh 6.",
+      "sha256": "3b0230c783220cc01b12531039d46189a0f5e2d8038228209b6b8f8ec4d17108",
+      "frames": 43784
+    },
+    {
+      "file": "current-7-07.wav",
+      "text": "The time is 7 oh 7.",
+      "sha256": "98f52e617010149b289a1f25dd44a56efff13d1f45338ee33bbef38c0e3ce8dd",
+      "frames": 44485
+    },
+    {
+      "file": "current-7-08.wav",
+      "text": "The time is 7 oh 8.",
+      "sha256": "ab78d65dbd345ca36bc912a019947fda460a3d5e541cc33a4f3048520e9375a3",
+      "frames": 40567
+    },
+    {
+      "file": "current-7-09.wav",
+      "text": "The time is 7 oh 9.",
+      "sha256": "a95bf1d988f4eab3c63176e2771227babe24ad70f712d9d7ac6a18a1bdcc2af4",
+      "frames": 44545
+    },
+    {
+      "file": "current-7-10.wav",
+      "text": "The time is 7 10.",
+      "sha256": "7bd44c5bf9675de45183ce84ff98a1b65e8f3b3121c07e9fcbabcaf4f67b3b74",
+      "frames": 40327
+    },
+    {
+      "file": "current-7-11.wav",
+      "text": "The time is 7 11.",
+      "sha256": "d7baa6e3a96210ae4d2721572a2958b8cc4ae478288d3e2345875c0595a28c22",
+      "frames": 41388
+    },
+    {
+      "file": "current-7-12.wav",
+      "text": "The time is 7 12.",
+      "sha256": "b37eb411ab4728454f16d54e081290ed18cea45f44ecb453b06cd34083141e33",
+      "frames": 43003
+    },
+    {
+      "file": "current-7-13.wav",
+      "text": "The time is 7 13.",
+      "sha256": "2aa3085cd94d9cb3410529f657192eae2d12d0789915cba3d064b5ac6128054d",
+      "frames": 42817
+    },
+    {
+      "file": "current-7-14.wav",
+      "text": "The time is 7 14.",
+      "sha256": "eaa353c0dfc92747716bfa706039b6cbc940727a4f89f73e60a4a19a9775ca01",
+      "frames": 43363
+    },
+    {
+      "file": "current-7-15.wav",
+      "text": "The time is 7 15.",
+      "sha256": "9c843832bd762ee010550908b2c494573d25ac579adc0a8b91bc55b50990afc0",
+      "frames": 43080
+    },
+    {
+      "file": "current-7-16.wav",
+      "text": "The time is 7 16.",
+      "sha256": "db1be20044d3440620b69b3cba0df4b0d947839884448151661ffc5d33b20a82",
+      "frames": 44168
+    },
+    {
+      "file": "current-7-17.wav",
+      "text": "The time is 7 17.",
+      "sha256": "184f7052f17d72eb3c82150554414cf479faacb0a54865340a760f5989985b22",
+      "frames": 46405
+    },
+    {
+      "file": "current-7-18.wav",
+      "text": "The time is 7 18.",
+      "sha256": "726b065d3ea2234814d2fd51d07991400fae4f5b72dcb40d050245fbdc93fb35",
+      "frames": 40605
+    },
+    {
+      "file": "current-7-19.wav",
+      "text": "The time is 7 19.",
+      "sha256": "61569fc2180abac961721efe916364a04b98e97844349c855d12a8cb218e808b",
+      "frames": 43400
+    },
+    {
+      "file": "current-7-20.wav",
+      "text": "The time is 7 20.",
+      "sha256": "c7cdff67523eac0dd3247385d9afb4f323667c3ee2a393bbfd906e2c10c81516",
+      "frames": 43497
+    },
+    {
+      "file": "current-7-21.wav",
+      "text": "The time is 7 21.",
+      "sha256": "041fed6677f1667dace1d473fb7fec6472b3b2e7bb9d92ac641b63c69f86dc50",
+      "frames": 50766
+    },
+    {
+      "file": "current-7-22.wav",
+      "text": "The time is 7 22.",
+      "sha256": "a27c9969a1d40306e14b77e7d5545ea88181ef1f152a05983cdc8a9c0276b915",
+      "frames": 49075
+    },
+    {
+      "file": "current-7-23.wav",
+      "text": "The time is 7 23.",
+      "sha256": "54c38a014dd72c9b0968875093703d8301d3d2d640250e87d541bdc4c8b61414",
+      "frames": 49727
+    },
+    {
+      "file": "current-7-24.wav",
+      "text": "The time is 7 24.",
+      "sha256": "a29ad4797b733e5699782dffd2cb864e4cbf09306efb44280c858a164cb5740c",
+      "frames": 51019
+    },
+    {
+      "file": "current-7-25.wav",
+      "text": "The time is 7 25.",
+      "sha256": "309aac8ea000706ffce5df191c0793fc7908ea9daeaa55bb8a5e16b7d0e8b537",
+      "frames": 52221
+    },
+    {
+      "file": "current-7-26.wav",
+      "text": "The time is 7 26.",
+      "sha256": "fa6b883a24131b4d7be8bb5393d88415d6a189a2372722e25c7e162ffc132397",
+      "frames": 51729
+    },
+    {
+      "file": "current-7-27.wav",
+      "text": "The time is 7 27.",
+      "sha256": "a95a165e49cd5d09cdf1978a19eecc9d84ca4a39a9f7d4e10f7a5495b6c89da9",
+      "frames": 52427
+    },
+    {
+      "file": "current-7-28.wav",
+      "text": "The time is 7 28.",
+      "sha256": "157b2ded6b868ff5c646ba26a4c6af276d02d3620a5a34895674d42e53683917",
+      "frames": 48357
+    },
+    {
+      "file": "current-7-29.wav",
+      "text": "The time is 7 29.",
+      "sha256": "6018d0b3d376b5d44674a3e6eebe217f82ca7369ba3e0d14434ace3d7d2dd63e",
+      "frames": 51783
+    },
+    {
+      "file": "current-7-30.wav",
+      "text": "The time is 7 30.",
+      "sha256": "ffc3b94e45385b434d952436244be7108e1c96fc31ca1ebc1448b1e11e8b4d3d",
+      "frames": 40828
+    },
+    {
+      "file": "current-7-31.wav",
+      "text": "The time is 7 31.",
+      "sha256": "ac2032cdc6145c2aac16ae7f0d5dd3689a9d2af375b0d2a25d2d0a7290e862f5",
+      "frames": 48086
+    },
+    {
+      "file": "current-7-32.wav",
+      "text": "The time is 7 32.",
+      "sha256": "5b9398b37a1484712fe84883f2536a397d895be402a570a33960985712169bac",
+      "frames": 46387
+    },
+    {
+      "file": "current-7-33.wav",
+      "text": "The time is 7 33.",
+      "sha256": "d828ee0d0bf6db7c52c3db09a123311c9aaf8a1e1a20a4ec0fbad722b6cc653f",
+      "frames": 47052
+    },
+    {
+      "file": "current-7-34.wav",
+      "text": "The time is 7 34.",
+      "sha256": "c8adb1a22ed05bc5d0f8c96c0e34049a525e1a48af00cbf1917ce4a8a93b9b45",
+      "frames": 48342
+    },
+    {
+      "file": "current-7-35.wav",
+      "text": "The time is 7 35.",
+      "sha256": "50b9aa5120b5c5fcfb1d0ac7ae13103fd6c8a6bc62d0860aaff3786bad74e1c2",
+      "frames": 49544
+    },
+    {
+      "file": "current-7-36.wav",
+      "text": "The time is 7 36.",
+      "sha256": "a584f6dd38a1393f829a039e20db329238f8754f89f64b2869177389f208a032",
+      "frames": 49059
+    },
+    {
+      "file": "current-7-37.wav",
+      "text": "The time is 7 37.",
+      "sha256": "621a5fb19f60513675c6849f24a2b43dc4697d822aa197e75c574bed91167f7c",
+      "frames": 49749
+    },
+    {
+      "file": "current-7-38.wav",
+      "text": "The time is 7 38.",
+      "sha256": "8383f1f704f7e5a07c9275f4041cc909a8e44ddc14e2cbf81001c8552c0ebd65",
+      "frames": 45674
+    },
+    {
+      "file": "current-7-39.wav",
+      "text": "The time is 7 39.",
+      "sha256": "498098d92643a9cd6999908f9eb4666796cad00446b1b1ad6d9153239299597e",
+      "frames": 49105
+    },
+    {
+      "file": "current-7-40.wav",
+      "text": "The time is 7 40.",
+      "sha256": "64cf48786b3352a86d27b58b8a8f0cfda7afc8186ab4715466693b71c68f1cb5",
+      "frames": 41646
+    },
+    {
+      "file": "current-7-41.wav",
+      "text": "The time is 7 41.",
+      "sha256": "86bf0b5a730ee26ea03d34dc5a6f146ed2c899b645c72be452114235b5f97278",
+      "frames": 48601
+    },
+    {
+      "file": "current-7-42.wav",
+      "text": "The time is 7 42.",
+      "sha256": "f67d066878066f453e82cb81a0e558a94fc7f9dc032277afa95454684dba3f72",
+      "frames": 47152
+    },
+    {
+      "file": "current-7-43.wav",
+      "text": "The time is 7 43.",
+      "sha256": "77ddcada87308847033d37c1f2dec5629062bad3b9065b97f0f66e34d61f831a",
+      "frames": 47564
+    },
+    {
+      "file": "current-7-44.wav",
+      "text": "The time is 7 44.",
+      "sha256": "10ea8a05f86551e38c2a945cbb35d3aab4eb76081d0689fa4fdc37d3de675b33",
+      "frames": 48852
+    },
+    {
+      "file": "current-7-45.wav",
+      "text": "The time is 7 45.",
+      "sha256": "6e027d06851029c84bddb24c1a2f2e865a9ffeb6a691ca3eb1af526a2c7620c6",
+      "frames": 50056
+    },
+    {
+      "file": "current-7-46.wav",
+      "text": "The time is 7 46.",
+      "sha256": "5424aacae815950a315bd3b5e64bd4c522b0ab88568fb90377ab5d29686fb640",
+      "frames": 49566
+    },
+    {
+      "file": "current-7-47.wav",
+      "text": "The time is 7 47.",
+      "sha256": "5ea6d4d86a1ab0961b5c9a5a98e993e27e2b19ac3c1fc24566eeb9a97d1ed11c",
+      "frames": 50263
+    },
+    {
+      "file": "current-7-48.wav",
+      "text": "The time is 7 48.",
+      "sha256": "36b65594a76961785d13e9ac682a5e3a8d2958acc7c17675e5a308e290b5b473",
+      "frames": 46172
+    },
+    {
+      "file": "current-7-49.wav",
+      "text": "The time is 7 49.",
+      "sha256": "3e976343499bee5cc5321b0c24d524415239ee6c5a28918023e7e46bce8fae1d",
+      "frames": 49618
+    },
+    {
+      "file": "current-7-50.wav",
+      "text": "The time is 7 50.",
+      "sha256": "6e8a444a0d023135d9844125f0de2e20bba1446c37130f5443f4a3df88573c15",
+      "frames": 41713
+    },
+    {
+      "file": "current-7-51.wav",
+      "text": "The time is 7 51.",
+      "sha256": "af07e6d44fa2be10d97d3339cf489946d5baf5bfc181f3fc755afce2557a797c",
+      "frames": 49649
+    },
+    {
+      "file": "current-7-52.wav",
+      "text": "The time is 7 52.",
+      "sha256": "bc3d611825021b3bc33de86f93254443e48407b2dacf8b90c7c1f64086fc36bc",
+      "frames": 47962
+    },
+    {
+      "file": "current-7-53.wav",
+      "text": "The time is 7 53.",
+      "sha256": "61910014fa532767d8cf264fb765fdb1fe31d4c53c62103b0c3d2002081b916f",
+      "frames": 48610
+    },
+    {
+      "file": "current-7-54.wav",
+      "text": "The time is 7 54.",
+      "sha256": "0970858f07925f1a6c2be1348fb4d231b19b86d00121ae215ea52a8b91dd5a0f",
+      "frames": 49913
+    },
+    {
+      "file": "current-7-55.wav",
+      "text": "The time is 7 55.",
+      "sha256": "97b1d5cfa11d24ba2878bd1763b65094f1af25acc3eec4dcdd886188a6ec7674",
+      "frames": 51110
+    },
+    {
+      "file": "current-7-56.wav",
+      "text": "The time is 7 56.",
+      "sha256": "6ac8af5bd106d99f31a0207073d6bc3df6ee0f563ea0d3f9dde359684ad3005d",
+      "frames": 50622
+    },
+    {
+      "file": "current-7-57.wav",
+      "text": "The time is 7 57.",
+      "sha256": "79309271f27b94b318ff809920bdc5469c50a9259298d26714009f28050edfb8",
+      "frames": 51312
+    },
+    {
+      "file": "current-7-58.wav",
+      "text": "The time is 7 58.",
+      "sha256": "4805b3805f957a1bbead020af7c6edf83d5e21f58d7e1f7b7acf7aa43fed5c7d",
+      "frames": 47251
+    },
+    {
+      "file": "current-7-59.wav",
+      "text": "The time is 7 59.",
+      "sha256": "a55f3d6090f17ccafcdcece634d2905945cf33e71878e5ad780b8d2cc8d640c2",
+      "frames": 50672
+    },
+    {
+      "file": "current-8-00.wav",
+      "text": "The time is 8 o'clock.",
+      "sha256": "e6c8e23f4b409f529414d577e60fb92831a451ae9f110431d49d1a1c970e9384",
+      "frames": 38098
+    },
+    {
+      "file": "current-8-01.wav",
+      "text": "The time is 8 oh 1.",
+      "sha256": "5713dcdac8f90e3355c12be97dd8c3e6a636333b01e620f0fa630eadeaaf2550",
+      "frames": 39697
+    },
+    {
+      "file": "current-8-02.wav",
+      "text": "The time is 8 oh 2.",
+      "sha256": "dac2466af7713e662184891fc2097261adb63dd50f5107932203623a85d8ae90",
+      "frames": 38063
+    },
+    {
+      "file": "current-8-03.wav",
+      "text": "The time is 8 oh 3.",
+      "sha256": "25ba9370fa3dcf91763f1a030e64cfdd0717cca3915ff28b82405d9b03d54531",
+      "frames": 38451
+    },
+    {
+      "file": "current-8-04.wav",
+      "text": "The time is 8 oh 4.",
+      "sha256": "90babf6afc9ad32a1088066968efbd333536d9b6fb0ff5b25d7d8c46e084eb81",
+      "frames": 39759
+    },
+    {
+      "file": "current-8-05.wav",
+      "text": "The time is 8 oh 5.",
+      "sha256": "289465093aefdbcdd4b94d270dd1c979837d393ceeeb58525350c8d599bd56d9",
+      "frames": 40965
+    },
+    {
+      "file": "current-8-06.wav",
+      "text": "The time is 8 oh 6.",
+      "sha256": "61a135ecf6c13c57604ab0fdf53940db219f759afa4fa8e4d8d22b42ce7aa330",
+      "frames": 40474
+    },
+    {
+      "file": "current-8-07.wav",
+      "text": "The time is 8 oh 7.",
+      "sha256": "4d9096e7b829da19af69bf6aec938374870ec285a6dc3cdc4dbb8c352383899f",
+      "frames": 41169
+    },
+    {
+      "file": "current-8-08.wav",
+      "text": "The time is 8 oh 8.",
+      "sha256": "8b8b742cd753036d97fb1eaf9b9b9fb2abdd13f2eab8d7189159a76fc1235bc3",
+      "frames": 37010
+    },
+    {
+      "file": "current-8-09.wav",
+      "text": "The time is 8 oh 9.",
+      "sha256": "edb58a7a7a2b9405d1bdec33414531b8ceceb6811bbc31aca10900ebd0549be9",
+      "frames": 41012
+    },
+    {
+      "file": "current-8-10.wav",
+      "text": "The time is 8 10.",
+      "sha256": "2b8a89be6e99ebfac5a4911056e7869cd97afba5340266420ffe6b818ac8e4ab",
+      "frames": 36472
+    },
+    {
+      "file": "current-8-11.wav",
+      "text": "The time is 8 11.",
+      "sha256": "19d022171c29cf6114e8a3975ff3b574e485310fa383805f8cd37bdd4d6a2fd7",
+      "frames": 37874
+    },
+    {
+      "file": "current-8-12.wav",
+      "text": "The time is 8 12.",
+      "sha256": "5297b03220acc827d5baab64f12124210a883da75ed762be4b94aca7d01ee647",
+      "frames": 39147
+    },
+    {
+      "file": "current-8-13.wav",
+      "text": "The time is 8 13.",
+      "sha256": "60f757a94f570f21d354ec0cb45831c757c0fbd360ea6139f983ffbe2a94078b",
+      "frames": 38959
+    },
+    {
+      "file": "current-8-14.wav",
+      "text": "The time is 8 14.",
+      "sha256": "773cf5b3bbdbc3bf6679560144a63d2eb49123ff690c68c8690455ca836950ee",
+      "frames": 39511
+    },
+    {
+      "file": "current-8-15.wav",
+      "text": "The time is 8 15.",
+      "sha256": "3c95bda5cdcfcc49cc1d841a3a8f493604695326d27117457fad7a2628e7c07b",
+      "frames": 39228
+    },
+    {
+      "file": "current-8-16.wav",
+      "text": "The time is 8 16.",
+      "sha256": "f4191b160b141a786f3a3298a0f6c4dcdfda2c1261343d7a3e07f758979d7d89",
+      "frames": 40317
+    },
+    {
+      "file": "current-8-17.wav",
+      "text": "The time is 8 17.",
+      "sha256": "d781ed456ffd3f2b561d83a304d6534756f10b8e8813288ddccc84e454f4a590",
+      "frames": 42541
+    },
+    {
+      "file": "current-8-18.wav",
+      "text": "The time is 8 18.",
+      "sha256": "a5b44fd666102b7ee429160728953641f00cba6b4e4ffc7c86eacb0528c0d627",
+      "frames": 36548
+    },
+    {
+      "file": "current-8-19.wav",
+      "text": "The time is 8 19.",
+      "sha256": "675b20988b858b30b36bac3cc5c98c9acbce1dc9c3a99e12fdadedc52218af0c",
+      "frames": 39372
+    },
+    {
+      "file": "current-8-20.wav",
+      "text": "The time is 8 20.",
+      "sha256": "5b703869e11025a77199716e0b80a68c11f9865d6cb102c8fa6915e9e379b164",
+      "frames": 39643
+    },
+    {
+      "file": "current-8-21.wav",
+      "text": "The time is 8 21.",
+      "sha256": "31d4c19a0a36095adc55117626a84766dc79edbe02f03d451e61203fa5b27a6a",
+      "frames": 46693
+    },
+    {
+      "file": "current-8-22.wav",
+      "text": "The time is 8 22.",
+      "sha256": "ff28e60101d16ce897b4c7280df01514bf563f009e1c871db14e4957dee9b205",
+      "frames": 45001
+    },
+    {
+      "file": "current-8-23.wav",
+      "text": "The time is 8 23.",
+      "sha256": "50883c00b2811101105ea8e68d36ccc0350807032e01b5834fc51a2b552495fc",
+      "frames": 45418
+    },
+    {
+      "file": "current-8-24.wav",
+      "text": "The time is 8 24.",
+      "sha256": "8a60a08ac7fa08d655511b09dba78dae38009490de50961d3b22fa424ce8745f",
+      "frames": 46716
+    },
+    {
+      "file": "current-8-25.wav",
+      "text": "The time is 8 25.",
+      "sha256": "eaf6f7d6027afc8000a4a47742eeb3a775cb6843b2918310230974a6321c52a3",
+      "frames": 48196
+    },
+    {
+      "file": "current-8-26.wav",
+      "text": "The time is 8 26.",
+      "sha256": "f34eb688790076b00c963eba1e40f2c62aa68db91dc20a37a14240db9e565ca2",
+      "frames": 47430
+    },
+    {
+      "file": "current-8-27.wav",
+      "text": "The time is 8 27.",
+      "sha256": "9e35f1ea7ea32d7efbdfb4bbcc5dfb75b9b1dcb4f03cf511cb7575aabf13d9e1",
+      "frames": 48109
+    },
+    {
+      "file": "current-8-28.wav",
+      "text": "The time is 8 28.",
+      "sha256": "767c2d5ce5475e38a773bf30e10a87cd8c6f55702fc678e4eec91327d18d850a",
+      "frames": 44287
+    },
+    {
+      "file": "current-8-29.wav",
+      "text": "The time is 8 29.",
+      "sha256": "07a949871c20a135ed87d873bd064668a906537ec9dfa4d2ef32e57f1270baa7",
+      "frames": 47719
+    },
+    {
+      "file": "current-8-30.wav",
+      "text": "The time is 8 30.",
+      "sha256": "0312f439a12603e1cf4edf94895edb82e03f03551b0a2f59586da562e351dafb",
+      "frames": 36969
+    },
+    {
+      "file": "current-8-31.wav",
+      "text": "The time is 8 31.",
+      "sha256": "935ef43d186251763fe00e20b1695397290b5452334dae56cb285847312f2a86",
+      "frames": 44015
+    },
+    {
+      "file": "current-8-32.wav",
+      "text": "The time is 8 32.",
+      "sha256": "b97993510675d174bc524952c4058185bd6456616b1ae35952e6d5519f8a48e5",
+      "frames": 42323
+    },
+    {
+      "file": "current-8-33.wav",
+      "text": "The time is 8 33.",
+      "sha256": "7b25f2b24ecdbb12fff6b49411b3b2cd7d947964ad9d0d2ec5ffd0f68c7b7371",
+      "frames": 42976
+    },
+    {
+      "file": "current-8-34.wav",
+      "text": "The time is 8 34.",
+      "sha256": "c8b051b29e9e2fa208ec0d7b453653e472d3b3c7b2ad7b352e435b425238c64b",
+      "frames": 44280
+    },
+    {
+      "file": "current-8-35.wav",
+      "text": "The time is 8 35.",
+      "sha256": "36991c634c5896aa3e6358deaf186502d2b049d7a416c138295776be0b2a7230",
+      "frames": 45474
+    },
+    {
+      "file": "current-8-36.wav",
+      "text": "The time is 8 36.",
+      "sha256": "dcba6f9de7ad8d8ad167edb11e793d4c223ab76bc0840f1b7da4a3e930d11f28",
+      "frames": 44997
+    },
+    {
+      "file": "current-8-37.wav",
+      "text": "The time is 8 37.",
+      "sha256": "b5bad20f234c022d739cad56f4a1eb0a021a46b7038c630f64c8f9f55b9de675",
+      "frames": 45680
+    },
+    {
+      "file": "current-8-38.wav",
+      "text": "The time is 8 38.",
+      "sha256": "2b00bce690020b567c673f23869b8ca2c76c311efcb5875748265339bf1e08c7",
+      "frames": 41607
+    },
+    {
+      "file": "current-8-39.wav",
+      "text": "The time is 8 39.",
+      "sha256": "360d140f893bb96666d898016c497dceb5f2b7d4bb305d761897bcfc5c9294fe",
+      "frames": 45040
+    },
+    {
+      "file": "current-8-40.wav",
+      "text": "The time is 8 40.",
+      "sha256": "277df8461d9bd26314853f64fc4240b4836339497664813570df93235b62b187",
+      "frames": 37792
+    },
+    {
+      "file": "current-8-41.wav",
+      "text": "The time is 8 41.",
+      "sha256": "ecb9af0a6d34f6dab93d99ac2ac6ec0dbaf301e0a8017df98308c32e378b4571",
+      "frames": 44523
+    },
+    {
+      "file": "current-8-42.wav",
+      "text": "The time is 8 42.",
+      "sha256": "9d4c8556042c5ecccbef135ac1f9015220e5df14a5a68586275544aa1ebb2935",
+      "frames": 43078
+    },
+    {
+      "file": "current-8-43.wav",
+      "text": "The time is 8 43.",
+      "sha256": "e6d7c4c705328d48e2adab447e3c8f5c3073ebc59fedd88c72a1fccc41188ef6",
+      "frames": 43492
+    },
+    {
+      "file": "current-8-44.wav",
+      "text": "The time is 8 44.",
+      "sha256": "4355a63d7aa9634c6b7ec3b2e97d41bcd15aab5f81d4c31cf305730685910c86",
+      "frames": 44790
+    },
+    {
+      "file": "current-8-45.wav",
+      "text": "The time is 8 45.",
+      "sha256": "5b9b54b56c681b665ba0abbf1d792d5e1c4a8d032cfdfcadc52cdf46f2051723",
+      "frames": 46271
+    },
+    {
+      "file": "current-8-46.wav",
+      "text": "The time is 8 46.",
+      "sha256": "302b28af3d539bae2148ceb57951d82cec20d9e3e0332a0b22e48a202f682675",
+      "frames": 45504
+    },
+    {
+      "file": "current-8-47.wav",
+      "text": "The time is 8 47.",
+      "sha256": "d7c9c8873944839a7e3dddfffd379deb80fa3829282ff7155add4a10bc641c29",
+      "frames": 46183
+    },
+    {
+      "file": "current-8-48.wav",
+      "text": "The time is 8 48.",
+      "sha256": "06dbe3b49de8291238743825da6c002d4af735bbd12034323276b522fc728dc0",
+      "frames": 42104
+    },
+    {
+      "file": "current-8-49.wav",
+      "text": "The time is 8 49.",
+      "sha256": "d4bf4aa50690413df32fcc2586942a3f64578091f1e57de64ff02b404d71d77d",
+      "frames": 45552
+    },
+    {
+      "file": "current-8-50.wav",
+      "text": "The time is 8 50.",
+      "sha256": "d38a2444d183818dac59168e00cc9ad8961f364851c7e1945c8ca0ce2576a6ea",
+      "frames": 37854
+    },
+    {
+      "file": "current-8-51.wav",
+      "text": "The time is 8 51.",
+      "sha256": "d565242c30e5eca34a9b92b24e26bdcc3bcc539ce3ce52ab2cb6216935a0c4c6",
+      "frames": 45588
+    },
+    {
+      "file": "current-8-52.wav",
+      "text": "The time is 8 52.",
+      "sha256": "d5be6d28367994237a0f061cc3423638fe2cc74dae655f05a08ff1518579abb6",
+      "frames": 43899
+    },
+    {
+      "file": "current-8-53.wav",
+      "text": "The time is 8 53.",
+      "sha256": "7b11196f3fb1b981fd35028c079ece06ad3e3fde14759030b5dbf96a22d63aeb",
+      "frames": 44552
+    },
+    {
+      "file": "current-8-54.wav",
+      "text": "The time is 8 54.",
+      "sha256": "540673765c83ea21274f4cc64c3193316a8089d486664dc4f48d2b2525974625",
+      "frames": 45839
+    },
+    {
+      "file": "current-8-55.wav",
+      "text": "The time is 8 55.",
+      "sha256": "ad8aef3d86fbdd44d413beece1f6ac36bce91979dd459234fdd3aeb4d738f364",
+      "frames": 47042
+    },
+    {
+      "file": "current-8-56.wav",
+      "text": "The time is 8 56.",
+      "sha256": "0363a53fa90ce1b7981d066065c9476dcc50ae92cf376a628033d8ce5ce48ef0",
+      "frames": 46553
+    },
+    {
+      "file": "current-8-57.wav",
+      "text": "The time is 8 57.",
+      "sha256": "fb3bbb1848f88dd2e94b1185671c58fb2cf008cbf5a3f5b1db1935335c185234",
+      "frames": 47248
+    },
+    {
+      "file": "current-8-58.wav",
+      "text": "The time is 8 58.",
+      "sha256": "4f519797658715d890e75857465087571472efaf0f284bd3c5ce9abb3ed23c13",
+      "frames": 43186
+    },
+    {
+      "file": "current-8-59.wav",
+      "text": "The time is 8 59.",
+      "sha256": "c926ac1ffb5e63ee8167e79017648db30402e8902134c7c8acea94cd64994ba2",
+      "frames": 46604
+    },
+    {
+      "file": "current-9-00.wav",
+      "text": "The time is 9 o'clock.",
+      "sha256": "8ba6bbdf3f85c9146be46c36254cded56d0c705590ff05b556d3981a0531013e",
+      "frames": 38681
+    },
+    {
+      "file": "current-9-01.wav",
+      "text": "The time is 9 oh 1.",
+      "sha256": "79bbbaea1f77c34ee025310ef121b8cb5e6610f6fda74021852139efa8f96b7b",
+      "frames": 40171
+    },
+    {
+      "file": "current-9-02.wav",
+      "text": "The time is 9 oh 2.",
+      "sha256": "e627e8ea6802a04be96ee011a25a3b3430323778537b3799f43ac42f44663aa6",
+      "frames": 38538
+    },
+    {
+      "file": "current-9-03.wav",
+      "text": "The time is 9 oh 3.",
+      "sha256": "e6644298deb530a93035ba2f2e95eaff745b865ad83889db4c36bd852b9cc051",
+      "frames": 38929
+    },
+    {
+      "file": "current-9-04.wav",
+      "text": "The time is 9 oh 4.",
+      "sha256": "3bf8e3b73be9168a029afa79d30e3303a1d4cd15b8c6e853a38f1c80bff5dba8",
+      "frames": 40250
+    },
+    {
+      "file": "current-9-05.wav",
+      "text": "The time is 9 oh 5.",
+      "sha256": "7e9fa38b70248246a49af52c979925e4c0be1922a98724fd8e439c59ebdd06cc",
+      "frames": 41730
+    },
+    {
+      "file": "current-9-06.wav",
+      "text": "The time is 9 oh 6.",
+      "sha256": "be78f6959ee742abcfd18f36c91c2425af4a80b62c8fae262041b1a49585b5ef",
+      "frames": 40965
+    },
+    {
+      "file": "current-9-07.wav",
+      "text": "The time is 9 oh 7.",
+      "sha256": "3feb206165a4e8e358bfc0ba72e45772dc998469048a710d90af087bfa7bf42d",
+      "frames": 41642
+    },
+    {
+      "file": "current-9-08.wav",
+      "text": "The time is 9 oh 8.",
+      "sha256": "93ad9bbd13a54c20912458a82825f4b78b384c899d1c2378cd8c45d0ee5e99e7",
+      "frames": 37469
+    },
+    {
+      "file": "current-9-09.wav",
+      "text": "The time is 9 oh 9.",
+      "sha256": "e6c01ae304fa374b5d6f8e65c3cd8098d24c669d053548e8e43829e7e73f002e",
+      "frames": 41496
+    },
+    {
+      "file": "current-9-10.wav",
+      "text": "The time is 9 10.",
+      "sha256": "83b5b225e5967a74573060c3a2da7fcb68aa39a5f2408fb031f0d704b0a55409",
+      "frames": 37744
+    },
+    {
+      "file": "current-9-11.wav",
+      "text": "The time is 9 11.",
+      "sha256": "cf9607f172eac50897d48ed3e960b182eea8467c139ab8a00418e56e95952e95",
+      "frames": 38453
+    },
+    {
+      "file": "current-9-12.wav",
+      "text": "The time is 9 12.",
+      "sha256": "374b727ed6efb0ea9b91074c839991f198c58364d70c389a5e568179b3990521",
+      "frames": 40423
+    },
+    {
+      "file": "current-9-13.wav",
+      "text": "The time is 9 13.",
+      "sha256": "f9c29c0a3ffd92a0d7d1132a36ebeb64f676fc4efe225ce8a2dded26bda0b633",
+      "frames": 40227
+    },
+    {
+      "file": "current-9-14.wav",
+      "text": "The time is 9 14.",
+      "sha256": "4f4addc94add31b780f676e4b5c2b54fbc2622ab7ed5e0fdae38cbb0c1c247e4",
+      "frames": 40783
+    },
+    {
+      "file": "current-9-15.wav",
+      "text": "The time is 9 15.",
+      "sha256": "ebcd4ab131ed67aab4e7518180c91f5aa63bb196473788a4c96032c1e16104e9",
+      "frames": 40498
+    },
+    {
+      "file": "current-9-16.wav",
+      "text": "The time is 9 16.",
+      "sha256": "3f9305b6779a979586d94a52030198c2f61094c7b88b1e4c23629eab74a97b82",
+      "frames": 41588
+    },
+    {
+      "file": "current-9-17.wav",
+      "text": "The time is 9 17.",
+      "sha256": "176e5bf1d0e99005d14c9a07f1bdc3c1aa40f11787474c237ded2c1db4413b55",
+      "frames": 43812
+    },
+    {
+      "file": "current-9-18.wav",
+      "text": "The time is 9 18.",
+      "sha256": "57502acba0bffb43af9c7a9dae4a5d424ca2365862ddd8152476eae139e2472d",
+      "frames": 37659
+    },
+    {
+      "file": "current-9-19.wav",
+      "text": "The time is 9 19.",
+      "sha256": "65f2b618bd84f6f3e8275b9f958611e6a9728aa2282b6bd663d16a6b26cfb24e",
+      "frames": 41092
+    },
+    {
+      "file": "current-9-20.wav",
+      "text": "The time is 9 20.",
+      "sha256": "345f84c4987066012798db095e9c4b7d2d62e71cd855c3bf546b6676b09d5b64",
+      "frames": 40917
+    },
+    {
+      "file": "current-9-21.wav",
+      "text": "The time is 9 21.",
+      "sha256": "99cbe895a80c33ef9e3a9e9e146533bddcc02154aa270081ae2eea2631fb88dd",
+      "frames": 48068
+    },
+    {
+      "file": "current-9-22.wav",
+      "text": "The time is 9 22.",
+      "sha256": "3c486adc5ad5694b922fc29287a2218ed3ac7b85dc79ee8909f074d0d2f20555",
+      "frames": 46369
+    },
+    {
+      "file": "current-9-23.wav",
+      "text": "The time is 9 23.",
+      "sha256": "fd5ee1457f23c9b8d48a1491dcc2593353966aa45c4d09e3dab45f9252e0e082",
+      "frames": 47032
+    },
+    {
+      "file": "current-9-24.wav",
+      "text": "The time is 9 24.",
+      "sha256": "9b2f02d04d51f046877587eeb7168f5dab5fbb20e2f5b19869657f137ea1063f",
+      "frames": 48316
+    },
+    {
+      "file": "current-9-25.wav",
+      "text": "The time is 9 25.",
+      "sha256": "75c61a07039ff78110ec05b2261211bed996c6f52f952f8a38cbafcc66218b92",
+      "frames": 49521
+    },
+    {
+      "file": "current-9-26.wav",
+      "text": "The time is 9 26.",
+      "sha256": "d8f6e63fb1270e0a31d63519546278105e313afad15bbd14ea2525b3b9a5b3f8",
+      "frames": 49035
+    },
+    {
+      "file": "current-9-27.wav",
+      "text": "The time is 9 27.",
+      "sha256": "c67078af1f181271eada33085ebd19f40992b7d9be427689eb0d11ac883eeb15",
+      "frames": 49727
+    },
+    {
+      "file": "current-9-28.wav",
+      "text": "The time is 9 28.",
+      "sha256": "8296b9f36f16c420410939e59c8d564f141c634532605018ffb088f78c2875e4",
+      "frames": 45654
+    },
+    {
+      "file": "current-9-29.wav",
+      "text": "The time is 9 29.",
+      "sha256": "68304dc8d203e3795be56ad49db33f727fbcc3657d6cb4aceb31d01de7a42efe",
+      "frames": 49085
+    },
+    {
+      "file": "current-9-30.wav",
+      "text": "The time is 9 30.",
+      "sha256": "c5f0060e0809e390c86b73e45f778b9c4b6faa6297872f337913186ec527aa02",
+      "frames": 38528
+    },
+    {
+      "file": "current-9-31.wav",
+      "text": "The time is 9 31.",
+      "sha256": "d777635ce3ac1158dd25d6e603d1ad213dd671fef4d9518d73940fc799619335",
+      "frames": 45391
+    },
+    {
+      "file": "current-9-32.wav",
+      "text": "The time is 9 32.",
+      "sha256": "9b6958f12405462c18537a3692c3d5f6c06a088c6a147e8c20d16ba99ce6e9a6",
+      "frames": 43695
+    },
+    {
+      "file": "current-9-33.wav",
+      "text": "The time is 9 33.",
+      "sha256": "5776fcc4af12e9f0621b1d25d2f7916b9767b125ba86a165bbe028113fed9bc9",
+      "frames": 44345
+    },
+    {
+      "file": "current-9-34.wav",
+      "text": "The time is 9 34.",
+      "sha256": "f3425274ad46053aeb8b39dbb171f83181c052a068833dc5b419ca7907f95e63",
+      "frames": 45655
+    },
+    {
+      "file": "current-9-35.wav",
+      "text": "The time is 9 35.",
+      "sha256": "041fd4773bd468ff80795d7c1c6bbe036e35e02c549f19e64c4944dcbdccf627",
+      "frames": 46842
+    },
+    {
+      "file": "current-9-36.wav",
+      "text": "The time is 9 36.",
+      "sha256": "a515853ef827f690bc2e6477c1b17c26194526f1887ee2e35a21b9b46fb1b21c",
+      "frames": 46361
+    },
+    {
+      "file": "current-9-37.wav",
+      "text": "The time is 9 37.",
+      "sha256": "904037bce593466819caed1edabcf3fee79a4ffb9312ae21d439c1d9f6532966",
+      "frames": 47053
+    },
+    {
+      "file": "current-9-38.wav",
+      "text": "The time is 9 38.",
+      "sha256": "5a8b0999611696ce684255aeffea5ece594b2820ac165826f01fa958ddccdba1",
+      "frames": 42980
+    },
+    {
+      "file": "current-9-39.wav",
+      "text": "The time is 9 39.",
+      "sha256": "e24b5bbf120d8978971a773e9b745c24210496d0f49fd79ce9e0e3e496c05ef5",
+      "frames": 46411
+    },
+    {
+      "file": "current-9-40.wav",
+      "text": "The time is 9 40.",
+      "sha256": "e5d382329063cca57be0a7026d9adfe1908e2dfe26faa3df2f732c88089a2e44",
+      "frames": 39065
+    },
+    {
+      "file": "current-9-41.wav",
+      "text": "The time is 9 41.",
+      "sha256": "d9d0611e745a91624d99cae134134a8f58d5d607be59113e9d7d1afaa6e93ad1",
+      "frames": 45899
+    },
+    {
+      "file": "current-9-42.wav",
+      "text": "The time is 9 42.",
+      "sha256": "07539902a0bb8f32398b3f4a12a3560b8466a01c807cd43e95e970ae2f1b4c14",
+      "frames": 44447
+    },
+    {
+      "file": "current-9-43.wav",
+      "text": "The time is 9 43.",
+      "sha256": "037fc6f736e0bddfb30e1c6d72ce1128c42aa7c4f5db33f3a44138b45603e1bc",
+      "frames": 44867
+    },
+    {
+      "file": "current-9-44.wav",
+      "text": "The time is 9 44.",
+      "sha256": "8124bedb65aeafa4a61fcd772b88bf539748c3493eb3356a0b64eec9a409dbda",
+      "frames": 46155
+    },
+    {
+      "file": "current-9-45.wav",
+      "text": "The time is 9 45.",
+      "sha256": "3fe8d23c3de6facc456aa994c36a5cc79851bd2a5792fa80ec65372b64e5bd4f",
+      "frames": 47358
+    },
+    {
+      "file": "current-9-46.wav",
+      "text": "The time is 9 46.",
+      "sha256": "180b9919776bce3221319345de0d6edf6a901ebda945bb3279b6873917c81fc3",
+      "frames": 46872
+    },
+    {
+      "file": "current-9-47.wav",
+      "text": "The time is 9 47.",
+      "sha256": "24ec5f69a544d9df101ba998d2285fdf1c9fb8724cb964e1d3e6f6b0ecf0644a",
+      "frames": 47563
+    },
+    {
+      "file": "current-9-48.wav",
+      "text": "The time is 9 48.",
+      "sha256": "6526f0c7a8b3d194904d21729e59b650be8ba6108c161593e6268e82ae6287c2",
+      "frames": 43476
+    },
+    {
+      "file": "current-9-49.wav",
+      "text": "The time is 9 49.",
+      "sha256": "c50aac321bc55dc968bcdde06cb2f8d6d6f5d57b30c207a4153441ab6012fa67",
+      "frames": 46918
+    },
+    {
+      "file": "current-9-50.wav",
+      "text": "The time is 9 50.",
+      "sha256": "12db65a0175ae97b6560c953483df3645d32ee41943eda76ca0d6878f50f9e55",
+      "frames": 39126
+    },
+    {
+      "file": "current-9-51.wav",
+      "text": "The time is 9 51.",
+      "sha256": "883744ed9b3bfc224b69bfa419e3d4daeb124b87ace1621536507d1bbb4023dc",
+      "frames": 46963
+    },
+    {
+      "file": "current-9-52.wav",
+      "text": "The time is 9 52.",
+      "sha256": "2f9f8ae1e26ac1f0d7ad82e3d2f7dab879cd457dead9a9116b7b253310abb565",
+      "frames": 45264
+    },
+    {
+      "file": "current-9-53.wav",
+      "text": "The time is 9 53.",
+      "sha256": "5778f8b7226e6a8f63f9f04ff7a4834bd5c1daf041d5d670c15a8dacf6385dc6",
+      "frames": 45920
+    },
+    {
+      "file": "current-9-54.wav",
+      "text": "The time is 9 54.",
+      "sha256": "ac5d762fd9c16e1409cf258c37577c5691809bb9065d592f86482f0fefe8c23d",
+      "frames": 47208
+    },
+    {
+      "file": "current-9-55.wav",
+      "text": "The time is 9 55.",
+      "sha256": "6ac4b5a5dc5ea97bbd6b3a996a9ecc8895b938d2f2f6f005cb5ecfd9044b03e2",
+      "frames": 48420
+    },
+    {
+      "file": "current-9-56.wav",
+      "text": "The time is 9 56.",
+      "sha256": "78acd33a8fe720f0d49b86579be30bd994b6bbff2d3244faf38293b4ee0c5dad",
+      "frames": 47920
+    },
+    {
+      "file": "current-9-57.wav",
+      "text": "The time is 9 57.",
+      "sha256": "7aa9598984f50fa9a0c919d4b089c308a9b09319d4e9116d0c9f3e07c33b4c42",
+      "frames": 48624
+    },
+    {
+      "file": "current-9-58.wav",
+      "text": "The time is 9 58.",
+      "sha256": "13d7971b49ab3386d132f181bf94489a3f62006587ada5851274de482a5da49b",
+      "frames": 44552
+    },
+    {
+      "file": "current-9-59.wav",
+      "text": "The time is 9 59.",
+      "sha256": "d706d9fba18e1cccc6b3052c59a07b25d572d0baaccfbb3b912f578cd5aa610c",
+      "frames": 47968
+    },
+    {
+      "file": "error.wav",
+      "text": "Playback cannot start. Check appliance diagnostics.",
+      "sha256": "1d2f429c288b6dd01c2d5bfbae3370977d5cb51e7fe9a0119a47d42c1378ad54",
+      "frames": 90629
+    },
+    {
+      "file": "mode-noise.wav",
+      "text": "Pink noise immediately.",
+      "sha256": "456c7d11981db48d986333052ddba90af6cbf782be2de03953566164020ac6c6",
+      "frames": 38722
+    },
+    {
+      "file": "mode-reading.wav",
+      "text": "Complete reading playlist, then pink noise.",
+      "sha256": "16bc0989b3f6300c0135fb9d5d3641c336a75ce84b65e6ce01c746c479c1f840",
+      "frames": 72048
+    },
+    {
+      "file": "wake-1-00.wav",
+      "text": "Wake time, 1 o'clock.",
+      "sha256": "37bd705500d1c50eaa6336d9e499119471e68f4262644f35536ee2e676e6991f",
+      "frames": 47017
+    },
+    {
+      "file": "wake-1-15.wav",
+      "text": "Wake time, 1 15.",
+      "sha256": "e96599c28e858612bf037937a97f95ddf790a732a726ce6887480576fd24be65",
+      "frames": 49061
+    },
+    {
+      "file": "wake-1-30.wav",
+      "text": "Wake time, 1 30.",
+      "sha256": "d58c2f9aac2e89a1bcc1478c5a951c3a0cff9b02f4a7dcb0df485a6286b44461",
+      "frames": 47087
+    },
+    {
+      "file": "wake-1-45.wav",
+      "text": "Wake time, 1 45.",
+      "sha256": "6bd26207a8358f0b8a1ed3d3854f83fd6bc5f915847205b2e8a6627220f733d2",
+      "frames": 55912
+    },
+    {
+      "file": "wake-10-00.wav",
+      "text": "Wake time, 10 o'clock.",
+      "sha256": "407dde494accbb150dd45078156dbeea7eb1cc6911a882cf1e0deb1a7c1c06af",
+      "frames": 48011
+    },
+    {
+      "file": "wake-10-15.wav",
+      "text": "Wake time, 10 15.",
+      "sha256": "39d8d9fb0384a20d10e8cd8ab52bc5b1235999cec3c5d6ea552cfd5661f8425a",
+      "frames": 50059
+    },
+    {
+      "file": "wake-10-30.wav",
+      "text": "Wake time, 10 30.",
+      "sha256": "2075bc71e3955666b318093bbeebcc0c4764419ae8ccb2bec67f01e3d06a025a",
+      "frames": 47802
+    },
+    {
+      "file": "wake-10-45.wav",
+      "text": "Wake time, 10 45.",
+      "sha256": "8e7b186bc0131c0ea3861e6340eeaa7afca2af86dd669096a41b76987ffca8bb",
+      "frames": 56915
+    },
+    {
+      "file": "wake-11-00.wav",
+      "text": "Wake time, 11 o'clock.",
+      "sha256": "f33825faa2fc1fb0785ea943046403d263d90da4d1dea0c1c48469c7820bfecb",
+      "frames": 50824
+    },
+    {
+      "file": "wake-11-15.wav",
+      "text": "Wake time, 11 15.",
+      "sha256": "174b0e5b5ec6688573067382098e79bf97700639c3f46cfa029c50f8876007bb",
+      "frames": 52568
+    },
+    {
+      "file": "wake-11-30.wav",
+      "text": "Wake time, 11 30.",
+      "sha256": "4aede90c7f7d13c4b06a9874723d5748814c30dea85d783452fb09365818c1e8",
+      "frames": 50583
+    },
+    {
+      "file": "wake-11-45.wav",
+      "text": "Wake time, 11 45.",
+      "sha256": "2a11896f72ac7cac73f3dccd6bb967e8129a303fc8e9517e6c49e0de5f523028",
+      "frames": 59412
+    },
+    {
+      "file": "wake-12-00.wav",
+      "text": "Wake time, 12 o'clock.",
+      "sha256": "0fcde69ae914b6551f4c5bdc906cff44243dee95e02a7559e7c61eda89a1b3e5",
+      "frames": 52083
+    },
+    {
+      "file": "wake-12-15.wav",
+      "text": "Wake time, 12 15.",
+      "sha256": "cbdf1f1c3e48011470b5c5529002bebce1fc78d25825c32281f499ec3b1a3242",
+      "frames": 52946
+    },
+    {
+      "file": "wake-12-30.wav",
+      "text": "Wake time, 12 30.",
+      "sha256": "cf0b8326c42d6b5ddfea461682d052e0819bf03cdedaa5374228e86e35986130",
+      "frames": 50692
+    },
+    {
+      "file": "wake-12-45.wav",
+      "text": "Wake time, 12 45.",
+      "sha256": "d4cd1e27770287bd8daa8144e7a9570292e542e76cff47607883729440ca5e5d",
+      "frames": 59807
+    },
+    {
+      "file": "wake-2-00.wav",
+      "text": "Wake time, 2 o'clock.",
+      "sha256": "6c1ce295b227d1c0bb4c3cbabf12780fe20582084d2bb374bcef93b5214cafde",
+      "frames": 47246
+    },
+    {
+      "file": "wake-2-15.wav",
+      "text": "Wake time, 2 15.",
+      "sha256": "203df34d81dd6b5dc8e0c820fd0a1d19e87266d0395f4cfbd9cde18ea772720f",
+      "frames": 48151
+    },
+    {
+      "file": "wake-2-30.wav",
+      "text": "Wake time, 2 30.",
+      "sha256": "d3e5ce1744140f86f8be061af8f5ffbd17fc5d5ebecda1801cabd3908e257538",
+      "frames": 45881
+    },
+    {
+      "file": "wake-2-45.wav",
+      "text": "Wake time, 2 45.",
+      "sha256": "75fa34dfb4495810d62452f5b60385804aac2009c5e29322ec4e13b63fb7f3e5",
+      "frames": 54989
+    },
+    {
+      "file": "wake-3-00.wav",
+      "text": "Wake time, 3 o'clock.",
+      "sha256": "7c5758fae3fbccc59063a7cfc413a5fa5ce86ff2b5074a0dbb9933207427da09",
+      "frames": 47938
+    },
+    {
+      "file": "wake-3-15.wav",
+      "text": "Wake time, 3 15.",
+      "sha256": "fd2d1be58751526639af51f3d335e73b735bcc2dab0c67141ea5ce9487beb2ed",
+      "frames": 48646
+    },
+    {
+      "file": "wake-3-30.wav",
+      "text": "Wake time, 3 30.",
+      "sha256": "1432c70ae4170738065d9df12f2a5be348b8004ea26c2465e7be49e9425a21c1",
+      "frames": 46670
+    },
+    {
+      "file": "wake-3-45.wav",
+      "text": "Wake time, 3 45.",
+      "sha256": "f11d4f8dde0eeee00261f7d0ff97a46751feb37766d8f1c32d264dbab2aff2ec",
+      "frames": 55499
+    },
+    {
+      "file": "wake-4-00.wav",
+      "text": "Wake time, 4 o'clock.",
+      "sha256": "273d60a32efec4525e2f8ba7586102f856888ea0dd071f025618556538e76842",
+      "frames": 48929
+    },
+    {
+      "file": "wake-4-15.wav",
+      "text": "Wake time, 4 15.",
+      "sha256": "1351a11671d9c4c9066856b7b4eb89d27ae9d603a64eb895ac659dd8b0307cde",
+      "frames": 49057
+    },
+    {
+      "file": "wake-4-30.wav",
+      "text": "Wake time, 4 30.",
+      "sha256": "54d0de7deaa20b73f793b23a2d63aeba4952d397f2ee3c5aace35e49462c088a",
+      "frames": 46802
+    },
+    {
+      "file": "wake-4-45.wav",
+      "text": "Wake time, 4 45.",
+      "sha256": "1f6e8350afb2e6cb0d1be89da636769914fbab8199307a85f5fdc8cd5908c072",
+      "frames": 55914
+    },
+    {
+      "file": "wake-5-00.wav",
+      "text": "Wake time, 5 o'clock.",
+      "sha256": "4a6f7e7b7c996d47d0fcf68c70589d6d52f81429863b29cbe4540f64c8927e40",
+      "frames": 49731
+    },
+    {
+      "file": "wake-5-15.wav",
+      "text": "Wake time, 5 15.",
+      "sha256": "c1a1e435948b236e2f5a359c9cc5db07254b666bb90afbe8a2befc91d5241613",
+      "frames": 50784
+    },
+    {
+      "file": "wake-5-30.wav",
+      "text": "Wake time, 5 30.",
+      "sha256": "892a33da1a80880637d67427e52281ab42f464c9f149dcb9a5ad089120f0ca89",
+      "frames": 48529
+    },
+    {
+      "file": "wake-5-45.wav",
+      "text": "Wake time, 5 45.",
+      "sha256": "3ed0716660e98cada6ca7605c60453dbe15c773083a1259c9295614969f2cbce",
+      "frames": 57639
+    },
+    {
+      "file": "wake-6-00.wav",
+      "text": "Wake time, 6 o'clock.",
+      "sha256": "fb352694bb6c8a679efd2f297d841b9ec0d2c8fda90bc296d11ef349edbdf27c",
+      "frames": 50748
+    },
+    {
+      "file": "wake-6-15.wav",
+      "text": "Wake time, 6 15.",
+      "sha256": "17b0692fdbe7efb6b28a3f23c3381b17423b00a596d2d75d1c30599d65a328b1",
+      "frames": 51501
+    },
+    {
+      "file": "wake-6-30.wav",
+      "text": "Wake time, 6 30.",
+      "sha256": "b68944e919ae8f0a2282323f3f595f095dc1ea623be5f3ece2f6dd78f745cfce",
+      "frames": 49237
+    },
+    {
+      "file": "wake-6-45.wav",
+      "text": "Wake time, 6 45.",
+      "sha256": "910a8969df0eee0098fd8e90cfdcde3613b06cb9ed42ce51deb1893eccf9b4aa",
+      "frames": 58342
+    },
+    {
+      "file": "wake-7-00.wav",
+      "text": "Wake time, 7 o'clock.",
+      "sha256": "670e890b8f1244fb7bd82124033a09780a92159784563e43fc6f58fd019ebe35",
+      "frames": 50706
+    },
+    {
+      "file": "wake-7-15.wav",
+      "text": "Wake time, 7 15.",
+      "sha256": "0b8e312156dfb76a794b36dc03b3bc185b2476db3b34a3d851826090c6bf3bf3",
+      "frames": 52239
+    },
+    {
+      "file": "wake-7-30.wav",
+      "text": "Wake time, 7 30.",
+      "sha256": "e49c2ed60f99d73d270f22d990ff5ff40f2f61e0e4dd7ccb8ca2d357c8b6e3a3",
+      "frames": 50262
+    },
+    {
+      "file": "wake-7-45.wav",
+      "text": "Wake time, 7 45.",
+      "sha256": "68919e4afb9e8e7ea68ac6fab1a6d49e43f7228d1bccf53f5d9fa16a2cb6cf1d",
+      "frames": 59091
+    },
+    {
+      "file": "wake-8-00.wav",
+      "text": "Wake time, 8 o'clock.",
+      "sha256": "dcfb772dfaa8c2fec13945fa99b24a797f463dac5548383d0af8cfce3ace33e7",
+      "frames": 47564
+    },
+    {
+      "file": "wake-8-15.wav",
+      "text": "Wake time, 8 15.",
+      "sha256": "eb21ebdf0a7647c3f119d7652a78a224842fb465bb105698b8edcfd691c6547c",
+      "frames": 48652
+    },
+    {
+      "file": "wake-8-30.wav",
+      "text": "Wake time, 8 30.",
+      "sha256": "92aa886906b3499e108dd85e4c28a10059a007608e877401abb6097dd67194bd",
+      "frames": 46675
+    },
+    {
+      "file": "wake-8-45.wav",
+      "text": "Wake time, 8 45.",
+      "sha256": "b83eb79e13629e5a04b4ee459e635b58f6789e3e75397573ed9500ed2a7d22ac",
+      "frames": 55504
+    },
+    {
+      "file": "wake-9-00.wav",
+      "text": "Wake time, 9 o'clock.",
+      "sha256": "9229f680e139f4265338c079397ceaf0d137cc01cc4b565e63e2c2ea194b0c5f",
+      "frames": 48170
+    },
+    {
+      "file": "wake-9-15.wav",
+      "text": "Wake time, 9 15.",
+      "sha256": "590ef7048fb3d1fabb86fd5bce0c56162b44b3df6d54d0902add4e1a4573ecdf",
+      "frames": 50212
+    },
+    {
+      "file": "wake-9-30.wav",
+      "text": "Wake time, 9 30.",
+      "sha256": "42da023e666b5048d7ff9c7171cafa76abaa4a5547eb23d10e822ec11e765c87",
+      "frames": 48235
+    },
+    {
+      "file": "wake-9-45.wav",
+      "text": "Wake time, 9 45.",
+      "sha256": "501ebf470b099f2418e07b4d1ba2ba070ae51ef67ce440ee1091b8f49fac2316",
+      "frames": 57064
+    }
+  ]
+}

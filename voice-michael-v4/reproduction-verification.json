@@ -1,0 +1,22 @@
+{
+  "verified_at_utc": "2026-10-05T13:04:06.514322+00:00",
+  "method": "720 current-time WAVs carried forward from prior complete independent v3 renders after validating unchanged text, phonemes, correction metadata, environment, sorted seed-zero prefix recipe, and hashes. The other 51 WAVs freshly rendered in independent error/mode/wake sessions twice. Complete ordered v4 manifests, all 771 actual WAV bytes, and recorded hashes compared.",
+  "prompt_count": 771,
+  "newly_independently_synthesized": 51,
+  "previously_independently_synthesized_unchanged_current": 720,
+  "prior_current_manifest_sha256": "26aca51c181028b4276f77b7ad92c5aba723ce520fac65113eef228416b9965c",
+  "all_manifests_and_wavs_identical": true,
+  "stress_pass_version": "shush-phrase-stress-v4",
+  "manifest_sha256": "140c8564b5ef7468ff7559c193db314edc6a74277bf77f168c619a91112310f0",
+  "source_sha256": {
+    "scripts/stress.py": "af7a8f4ee1219aab526a19b35dc310ef6299b5013944e6010d900ee54dce58f0",
+    "scripts/neural_pipeline.py": "3312fd92034ece1e1af5bff88882f26a216fa6ac6f10257a6a433bf193cea4b9",
+    "scripts/generate_neural_voice.py": "128f41e6dc4bc25042c82864f095920b7816530348b990f12639a1bc88bc99e5",
+    "scripts/preview_voice.py": "92c7ef127bcb33d974d720f1a3b9addece8a78f873f42b1f3cd8501d4b9cb710"
+  },
+  "resident_pcm_bytes_at_44100": 163572504,
+  "clipped_i16_samples": 0,
+  "peak_i16": 17184,
+  "appliance_staged_check": "passed",
+  "appliance_installed_check": "passed"
+}

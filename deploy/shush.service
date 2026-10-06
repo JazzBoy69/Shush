@@ -1,0 +1,39 @@
+[Unit]
+Description=Shush audio alarm appliance
+After=sound.target time-sync.target
+Wants=time-sync.target systemd-time-wait-sync.service
+
+[Service]
+Type=simple
+User=shush
+Group=shush
+SupplementaryGroups=audio input
+EnvironmentFile=/etc/shush.conf
+WorkingDirectory=/opt/shush
+ExecStart=/opt/shush/bin/shush run --root /opt/shush --settings /var/lib/shush/settings.json --input ${INPUT_DEVICE} --audio ${AUDIO_DEVICE}
+Restart=no
+StateDirectory=shush
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/shush
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+RestrictAddressFamilies=AF_UNIX
+MemorySwapMax=0
+Nice=-10
+LimitNOFILE=64
+TasksMax=16
+StandardOutput=journal
+StandardError=journal
+LogRateLimitIntervalSec=60
+LogRateLimitBurst=20
+
+[Install]
+WantedBy=multi-user.target

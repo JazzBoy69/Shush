@@ -1,0 +1,100 @@
+#!/bin/sh
+set -eu
+
+# Discover once before starting Rust. No device reopening or playback recovery.
+sysfs=${SHUSH_SYSFS:-/sys}
+devfs=${SHUSH_DEVFS:-/dev}
+input=${INPUT_DEVICE-auto}
+audio=${AUDIO_DEVICE-auto}
+case "$input" in
+    auto|/dev/input/by-id/*-event*) ;;
+    *) echo "shush: INPUT_DEVICE must be auto or a persistent by-id event path" >&2; exit 1 ;;
+esac
+case "$audio" in
+    auto) ;;
+    plughw:CARD=*,DEV=*)
+        card=${audio#plughw:CARD=}; card=${card%,DEV=*}
+        device=${audio##*,DEV=}
+        case "$card" in ''|*[!A-Za-z0-9_]*) exit 1 ;; esac
+        case "$device" in ''|*[!0-9]*) exit 1 ;; esac
+        ;;
+    *) echo "shush: AUDIO_DEVICE must be auto or plughw:CARD=identifier,DEV=number" >&2; exit 1 ;;
+esac
+case "$input$audio" in *REPLACE*) echo "shush: unresolved device override" >&2; exit 1 ;; esac
+
+has_driver() {
+    ancestor=$(readlink -f "$1") || return 1
+    while [ "$ancestor" != / ]; do
+        if [ -L "$ancestor/driver" ]; then
+            driver=$(readlink -f "$ancestor/driver") || return 1
+            [ "${driver##*/}" = "$2" ] && return 0
+        fi
+        ancestor=${ancestor%/*}
+        [ -n "$ancestor" ] || break
+    done
+    return 1
+}
+
+remaining=60
+while [ "$remaining" -gt 0 ]; do
+    selected_input=$input
+    selected_audio=$audio
+    playback_node=
+    control_node=
+    if [ "$input" = auto ]; then
+        selected_input=
+        for event in "$sysfs"/class/input/event*; do
+            [ -e "$event/device" ] || continue
+            has_driver "$event/device" mceusb || continue
+            if [ -n "$selected_input" ]; then
+                echo "shush: multiple MCEUSB input nodes; refusing ambiguous selection" >&2
+                exit 1
+            fi
+            selected_input=$devfs/input/${event##*/}
+        done
+    fi
+    if [ "$audio" = auto ]; then
+        selected_audio=
+        for pcm in "$sysfs"/class/sound/pcmC*D*p; do
+            [ -e "$pcm" ] || continue
+            has_driver "$pcm" snd-usb-audio || continue
+            if [ -n "$selected_audio" ]; then
+                echo "shush: multiple USB playback devices; refusing ambiguous selection" >&2
+                exit 1
+            fi
+            name=${pcm##*/}
+            index=${name#pcmC}; index=${index%%D*}
+            number=${name#*D}; number=${number%p}
+            case "$index" in ''|*[!0-9]*) exit 1 ;; esac
+            case "$number" in ''|*[!0-9]*) exit 1 ;; esac
+            selected_audio=plughw:CARD=$index,DEV=$number
+            playback_node=$devfs/snd/$name
+            control_node=$devfs/snd/controlC$index
+        done
+    else
+        for identity in "$sysfs"/class/sound/card*/id; do
+            [ -f "$identity" ] || continue
+            IFS= read -r found < "$identity"
+            [ "$found" = "$card" ] || continue
+            index=${identity%/id}; index=${index##*/card}
+            playback_node=$devfs/snd/pcmC${index}D${device}p
+            control_node=$devfs/snd/controlC$index
+        done
+    fi
+    # udev may still be assigning audio/input permissions after node creation.
+    if [ -c "$selected_input" ] && [ -r "$selected_input" ] &&
+       [ -c "$playback_node" ] && [ -r "$playback_node" ] && [ -w "$playback_node" ] &&
+       [ -c "$control_node" ] && [ -r "$control_node" ] && [ -w "$control_node" ]; then
+        if [ "${1:-}" = --probe ]; then
+            printf '%s\n%s\n' "$selected_input" "$selected_audio"
+            exit 0
+        fi
+        exec /opt/shush/bin/shush run --root /opt/shush \
+            --settings /var/lib/shush/settings.json \
+            --input "$selected_input" --audio "$selected_audio"
+    fi
+    sleep 1
+    remaining=$((remaining - 1))
+done
+echo "shush: USB receiver and speakers were not ready within 60 seconds" >&2
+exit 1

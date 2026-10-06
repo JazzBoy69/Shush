@@ -1,0 +1,8 @@
+start_file=start.elf
+fixup_file=fixup.dat
+kernel=Image
+arm_64bit=1
+gpu_mem=32
+enable_uart=1
+dtoverlay=disable-bt
+dtparam=audio=off

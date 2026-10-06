@@ -1,0 +1,3116 @@
+{
+  "standalone": {
+    "one": "w\u02cc\u028cn",
+    "two": "t\u02c8u\u02d0",
+    "three": "\u03b8\u0279\u02c8i\u02d0",
+    "four": "f\u02c8\u0254\u02d0\u0279",
+    "five": "f\u02c8a\u026av",
+    "six": "s\u02c8\u026aks",
+    "seven": "s\u02c8\u025bv\u0259n",
+    "eight": "\u02c8e\u026at",
+    "nine": "n\u02c8a\u026an",
+    "ten": "t\u02c8\u025bn",
+    "eleven": "\u1d7bl\u02c8\u025bv\u0259n",
+    "twelve": "tw\u02c8\u025blv",
+    "thirteen": "\u03b8\u02c8\u025c\u02d0ti\u02d0n",
+    "fourteen": "f\u02c8\u0254\u02d0\u0279ti\u02d0n",
+    "fifteen": "f\u02c8\u026afti\u02d0n",
+    "sixteen": "s\u02c8\u026aksti\u02d0n",
+    "seventeen": "s\u02c8\u025bv\u0259nt\u02cci\u02d0n",
+    "eighteen": "\u02c8e\u026ati\u02d0n",
+    "nineteen": "n\u02c8a\u026anti\u02d0n",
+    "twenty": "tw\u02c8\u025bnti",
+    "thirty": "\u03b8\u02c8\u025c\u02d0\u027ei",
+    "forty": "f\u02c8\u0254\u02d0\u0279\u027ei",
+    "fifty": "f\u02c8\u026afti",
+    "Playback cannot start. Check appliance diagnostics.": "pl\u02c8e\u026ab\u00e6k k\u00e6n\u02c8\u0251\u02d0t st\u02c8\u0251\u02d0\u0279t. t\u0283\u02c8\u025bk \u0250pl\u02c8a\u026a\u0259ns d\u02cca\u026a\u0259\u0261n\u02c8\u0251\u02d0st\u026aks.",
+    "With reading.": "w\u026a\u00f0 \u0279\u02c8i\u02d0d\u026a\u014b.",
+    "Without reading.": "w\u026a\u00f0\u02cca\u028at \u0279\u02c8i\u02d0d\u026a\u014b."
+  },
+  "corpus": {
+    "current-1-00.wav": {
+      "text": "The current time is one o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-1-01.wav": {
+      "text": "The current time is one oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-1-02.wav": {
+      "text": "The current time is one oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-1-03.wav": {
+      "text": "The current time is one oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-1-04.wav": {
+      "text": "The current time is one oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-1-05.wav": {
+      "text": "The current time is one oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-1-06.wav": {
+      "text": "The current time is one oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-1-07.wav": {
+      "text": "The current time is one oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-1-08.wav": {
+      "text": "The current time is one oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-1-09.wav": {
+      "text": "The current time is one oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-1-10.wav": {
+      "text": "The current time is one ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn t\u02c8\u025bn."
+    },
+    "current-1-11.wav": {
+      "text": "The current time is one eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-1-12.wav": {
+      "text": "The current time is one twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn tw\u02c8\u025blv."
+    },
+    "current-1-13.wav": {
+      "text": "The current time is one thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-1-14.wav": {
+      "text": "The current time is one fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-1-15.wav": {
+      "text": "The current time is one fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u026afti\u02d0n."
+    },
+    "current-1-16.wav": {
+      "text": "The current time is one sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn s\u02c8\u026aksti\u02d0n."
+    },
+    "current-1-17.wav": {
+      "text": "The current time is one seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-1-18.wav": {
+      "text": "The current time is one eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u02c8e\u026ati\u02d0n."
+    },
+    "current-1-19.wav": {
+      "text": "The current time is one nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn n\u02c8a\u026anti\u02d0n."
+    },
+    "current-1-20.wav": {
+      "text": "The current time is one twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn tw\u02c8\u025bnti."
+    },
+    "current-1-21.wav": {
+      "text": "The current time is one twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-1-22.wav": {
+      "text": "The current time is one twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-1-23.wav": {
+      "text": "The current time is one twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-1-24.wav": {
+      "text": "The current time is one twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-1-25.wav": {
+      "text": "The current time is one twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-1-26.wav": {
+      "text": "The current time is one twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-1-27.wav": {
+      "text": "The current time is one twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-1-28.wav": {
+      "text": "The current time is one twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-1-29.wav": {
+      "text": "The current time is one twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-1-30.wav": {
+      "text": "The current time is one thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-1-31.wav": {
+      "text": "The current time is one thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-1-32.wav": {
+      "text": "The current time is one thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-1-33.wav": {
+      "text": "The current time is one thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-1-34.wav": {
+      "text": "The current time is one thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-1-35.wav": {
+      "text": "The current time is one thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-1-36.wav": {
+      "text": "The current time is one thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-1-37.wav": {
+      "text": "The current time is one thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-1-38.wav": {
+      "text": "The current time is one thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-1-39.wav": {
+      "text": "The current time is one thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-1-40.wav": {
+      "text": "The current time is one forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-1-41.wav": {
+      "text": "The current time is one forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-1-42.wav": {
+      "text": "The current time is one forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-1-43.wav": {
+      "text": "The current time is one forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-1-44.wav": {
+      "text": "The current time is one forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-1-45.wav": {
+      "text": "The current time is one forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-1-46.wav": {
+      "text": "The current time is one forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-1-47.wav": {
+      "text": "The current time is one forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-1-48.wav": {
+      "text": "The current time is one forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-1-49.wav": {
+      "text": "The current time is one forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-1-50.wav": {
+      "text": "The current time is one fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u026afti."
+    },
+    "current-1-51.wav": {
+      "text": "The current time is one fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-1-52.wav": {
+      "text": "The current time is one fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-1-53.wav": {
+      "text": "The current time is one fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-1-54.wav": {
+      "text": "The current time is one fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-1-55.wav": {
+      "text": "The current time is one fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-1-56.wav": {
+      "text": "The current time is one fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-1-57.wav": {
+      "text": "The current time is one fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-1-58.wav": {
+      "text": "The current time is one fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-1-59.wav": {
+      "text": "The current time is one fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az w\u02c8\u028cn f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "current-10-00.wav": {
+      "text": "The current time is ten o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-10-01.wav": {
+      "text": "The current time is ten oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-10-02.wav": {
+      "text": "The current time is ten oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-10-03.wav": {
+      "text": "The current time is ten oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-10-04.wav": {
+      "text": "The current time is ten oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-10-05.wav": {
+      "text": "The current time is ten oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-10-06.wav": {
+      "text": "The current time is ten oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-10-07.wav": {
+      "text": "The current time is ten oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-10-08.wav": {
+      "text": "The current time is ten oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-10-09.wav": {
+      "text": "The current time is ten oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-10-10.wav": {
+      "text": "The current time is ten ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn t\u02c8\u025bn."
+    },
+    "current-10-11.wav": {
+      "text": "The current time is ten eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-10-12.wav": {
+      "text": "The current time is ten twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn tw\u02c8\u025blv."
+    },
+    "current-10-13.wav": {
+      "text": "The current time is ten thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-10-14.wav": {
+      "text": "The current time is ten fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-10-15.wav": {
+      "text": "The current time is ten fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u026afti\u02d0n."
+    },
+    "current-10-16.wav": {
+      "text": "The current time is ten sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn s\u02c8\u026aksti\u02d0n."
+    },
+    "current-10-17.wav": {
+      "text": "The current time is ten seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-10-18.wav": {
+      "text": "The current time is ten eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u02c8e\u026ati\u02d0n."
+    },
+    "current-10-19.wav": {
+      "text": "The current time is ten nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn n\u02c8a\u026anti\u02d0n."
+    },
+    "current-10-20.wav": {
+      "text": "The current time is ten twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn tw\u02c8\u025bnti."
+    },
+    "current-10-21.wav": {
+      "text": "The current time is ten twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-10-22.wav": {
+      "text": "The current time is ten twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-10-23.wav": {
+      "text": "The current time is ten twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-10-24.wav": {
+      "text": "The current time is ten twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-10-25.wav": {
+      "text": "The current time is ten twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-10-26.wav": {
+      "text": "The current time is ten twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-10-27.wav": {
+      "text": "The current time is ten twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-10-28.wav": {
+      "text": "The current time is ten twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-10-29.wav": {
+      "text": "The current time is ten twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-10-30.wav": {
+      "text": "The current time is ten thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-10-31.wav": {
+      "text": "The current time is ten thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-10-32.wav": {
+      "text": "The current time is ten thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-10-33.wav": {
+      "text": "The current time is ten thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-10-34.wav": {
+      "text": "The current time is ten thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-10-35.wav": {
+      "text": "The current time is ten thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-10-36.wav": {
+      "text": "The current time is ten thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-10-37.wav": {
+      "text": "The current time is ten thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-10-38.wav": {
+      "text": "The current time is ten thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-10-39.wav": {
+      "text": "The current time is ten thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-10-40.wav": {
+      "text": "The current time is ten forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-10-41.wav": {
+      "text": "The current time is ten forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-10-42.wav": {
+      "text": "The current time is ten forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-10-43.wav": {
+      "text": "The current time is ten forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-10-44.wav": {
+      "text": "The current time is ten forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-10-45.wav": {
+      "text": "The current time is ten forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-10-46.wav": {
+      "text": "The current time is ten forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-10-47.wav": {
+      "text": "The current time is ten forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-10-48.wav": {
+      "text": "The current time is ten forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-10-49.wav": {
+      "text": "The current time is ten forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-10-50.wav": {
+      "text": "The current time is ten fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u026afti."
+    },
+    "current-10-51.wav": {
+      "text": "The current time is ten fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-10-52.wav": {
+      "text": "The current time is ten fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-10-53.wav": {
+      "text": "The current time is ten fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-10-54.wav": {
+      "text": "The current time is ten fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-10-55.wav": {
+      "text": "The current time is ten fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-10-56.wav": {
+      "text": "The current time is ten fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-10-57.wav": {
+      "text": "The current time is ten fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-10-58.wav": {
+      "text": "The current time is ten fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-10-59.wav": {
+      "text": "The current time is ten fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8\u025bn f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "current-11-00.wav": {
+      "text": "The current time is eleven o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-11-01.wav": {
+      "text": "The current time is eleven oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-11-02.wav": {
+      "text": "The current time is eleven oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-11-03.wav": {
+      "text": "The current time is eleven oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-11-04.wav": {
+      "text": "The current time is eleven oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-11-05.wav": {
+      "text": "The current time is eleven oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-11-06.wav": {
+      "text": "The current time is eleven oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-11-07.wav": {
+      "text": "The current time is eleven oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-11-08.wav": {
+      "text": "The current time is eleven oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-11-09.wav": {
+      "text": "The current time is eleven oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-11-10.wav": {
+      "text": "The current time is eleven ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n t\u02c8\u025bn."
+    },
+    "current-11-11.wav": {
+      "text": "The current time is eleven eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-11-12.wav": {
+      "text": "The current time is eleven twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n tw\u02c8\u025blv."
+    },
+    "current-11-13.wav": {
+      "text": "The current time is eleven thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-11-14.wav": {
+      "text": "The current time is eleven fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-11-15.wav": {
+      "text": "The current time is eleven fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti\u02d0n."
+    },
+    "current-11-16.wav": {
+      "text": "The current time is eleven sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n s\u02c8\u026aksti\u02d0n."
+    },
+    "current-11-17.wav": {
+      "text": "The current time is eleven seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-11-18.wav": {
+      "text": "The current time is eleven eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u02c8e\u026ati\u02d0n."
+    },
+    "current-11-19.wav": {
+      "text": "The current time is eleven nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n n\u02c8a\u026anti\u02d0n."
+    },
+    "current-11-20.wav": {
+      "text": "The current time is eleven twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n tw\u02c8\u025bnti."
+    },
+    "current-11-21.wav": {
+      "text": "The current time is eleven twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-11-22.wav": {
+      "text": "The current time is eleven twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-11-23.wav": {
+      "text": "The current time is eleven twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-11-24.wav": {
+      "text": "The current time is eleven twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-11-25.wav": {
+      "text": "The current time is eleven twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-11-26.wav": {
+      "text": "The current time is eleven twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-11-27.wav": {
+      "text": "The current time is eleven twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-11-28.wav": {
+      "text": "The current time is eleven twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-11-29.wav": {
+      "text": "The current time is eleven twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-11-30.wav": {
+      "text": "The current time is eleven thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-11-31.wav": {
+      "text": "The current time is eleven thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-11-32.wav": {
+      "text": "The current time is eleven thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-11-33.wav": {
+      "text": "The current time is eleven thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-11-34.wav": {
+      "text": "The current time is eleven thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-11-35.wav": {
+      "text": "The current time is eleven thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-11-36.wav": {
+      "text": "The current time is eleven thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-11-37.wav": {
+      "text": "The current time is eleven thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-11-38.wav": {
+      "text": "The current time is eleven thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-11-39.wav": {
+      "text": "The current time is eleven thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-11-40.wav": {
+      "text": "The current time is eleven forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-11-41.wav": {
+      "text": "The current time is eleven forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-11-42.wav": {
+      "text": "The current time is eleven forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-11-43.wav": {
+      "text": "The current time is eleven forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-11-44.wav": {
+      "text": "The current time is eleven forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-11-45.wav": {
+      "text": "The current time is eleven forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-11-46.wav": {
+      "text": "The current time is eleven forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-11-47.wav": {
+      "text": "The current time is eleven forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-11-48.wav": {
+      "text": "The current time is eleven forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-11-49.wav": {
+      "text": "The current time is eleven forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-11-50.wav": {
+      "text": "The current time is eleven fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti."
+    },
+    "current-11-51.wav": {
+      "text": "The current time is eleven fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-11-52.wav": {
+      "text": "The current time is eleven fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-11-53.wav": {
+      "text": "The current time is eleven fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-11-54.wav": {
+      "text": "The current time is eleven fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-11-55.wav": {
+      "text": "The current time is eleven fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-11-56.wav": {
+      "text": "The current time is eleven fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-11-57.wav": {
+      "text": "The current time is eleven fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-11-58.wav": {
+      "text": "The current time is eleven fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-11-59.wav": {
+      "text": "The current time is eleven fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "current-12-00.wav": {
+      "text": "The current time is twelve o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-12-01.wav": {
+      "text": "The current time is twelve oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-12-02.wav": {
+      "text": "The current time is twelve oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-12-03.wav": {
+      "text": "The current time is twelve oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-12-04.wav": {
+      "text": "The current time is twelve oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-12-05.wav": {
+      "text": "The current time is twelve oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-12-06.wav": {
+      "text": "The current time is twelve oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-12-07.wav": {
+      "text": "The current time is twelve oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-12-08.wav": {
+      "text": "The current time is twelve oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-12-09.wav": {
+      "text": "The current time is twelve oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-12-10.wav": {
+      "text": "The current time is twelve ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv t\u02c8\u025bn."
+    },
+    "current-12-11.wav": {
+      "text": "The current time is twelve eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-12-12.wav": {
+      "text": "The current time is twelve twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv tw\u02c8\u025blv."
+    },
+    "current-12-13.wav": {
+      "text": "The current time is twelve thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-12-14.wav": {
+      "text": "The current time is twelve fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-12-15.wav": {
+      "text": "The current time is twelve fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u026afti\u02d0n."
+    },
+    "current-12-16.wav": {
+      "text": "The current time is twelve sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv s\u02c8\u026aksti\u02d0n."
+    },
+    "current-12-17.wav": {
+      "text": "The current time is twelve seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-12-18.wav": {
+      "text": "The current time is twelve eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u02c8e\u026ati\u02d0n."
+    },
+    "current-12-19.wav": {
+      "text": "The current time is twelve nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv n\u02c8a\u026anti\u02d0n."
+    },
+    "current-12-20.wav": {
+      "text": "The current time is twelve twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv tw\u02c8\u025bnti."
+    },
+    "current-12-21.wav": {
+      "text": "The current time is twelve twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-12-22.wav": {
+      "text": "The current time is twelve twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-12-23.wav": {
+      "text": "The current time is twelve twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-12-24.wav": {
+      "text": "The current time is twelve twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-12-25.wav": {
+      "text": "The current time is twelve twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-12-26.wav": {
+      "text": "The current time is twelve twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-12-27.wav": {
+      "text": "The current time is twelve twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-12-28.wav": {
+      "text": "The current time is twelve twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-12-29.wav": {
+      "text": "The current time is twelve twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-12-30.wav": {
+      "text": "The current time is twelve thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-12-31.wav": {
+      "text": "The current time is twelve thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-12-32.wav": {
+      "text": "The current time is twelve thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-12-33.wav": {
+      "text": "The current time is twelve thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-12-34.wav": {
+      "text": "The current time is twelve thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-12-35.wav": {
+      "text": "The current time is twelve thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-12-36.wav": {
+      "text": "The current time is twelve thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-12-37.wav": {
+      "text": "The current time is twelve thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-12-38.wav": {
+      "text": "The current time is twelve thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-12-39.wav": {
+      "text": "The current time is twelve thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-12-40.wav": {
+      "text": "The current time is twelve forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-12-41.wav": {
+      "text": "The current time is twelve forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-12-42.wav": {
+      "text": "The current time is twelve forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-12-43.wav": {
+      "text": "The current time is twelve forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-12-44.wav": {
+      "text": "The current time is twelve forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-12-45.wav": {
+      "text": "The current time is twelve forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-12-46.wav": {
+      "text": "The current time is twelve forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-12-47.wav": {
+      "text": "The current time is twelve forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-12-48.wav": {
+      "text": "The current time is twelve forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-12-49.wav": {
+      "text": "The current time is twelve forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-12-50.wav": {
+      "text": "The current time is twelve fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u026afti."
+    },
+    "current-12-51.wav": {
+      "text": "The current time is twelve fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-12-52.wav": {
+      "text": "The current time is twelve fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-12-53.wav": {
+      "text": "The current time is twelve fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-12-54.wav": {
+      "text": "The current time is twelve fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-12-55.wav": {
+      "text": "The current time is twelve fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-12-56.wav": {
+      "text": "The current time is twelve fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-12-57.wav": {
+      "text": "The current time is twelve fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-12-58.wav": {
+      "text": "The current time is twelve fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-12-59.wav": {
+      "text": "The current time is twelve fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az tw\u02c8\u025blv f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "current-2-00.wav": {
+      "text": "The current time is two o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-2-01.wav": {
+      "text": "The current time is two oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-2-02.wav": {
+      "text": "The current time is two oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-2-03.wav": {
+      "text": "The current time is two oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-2-04.wav": {
+      "text": "The current time is two oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-2-05.wav": {
+      "text": "The current time is two oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-2-06.wav": {
+      "text": "The current time is two oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-2-07.wav": {
+      "text": "The current time is two oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-2-08.wav": {
+      "text": "The current time is two oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-2-09.wav": {
+      "text": "The current time is two oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-2-10.wav": {
+      "text": "The current time is two ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 t\u02c8\u025bn."
+    },
+    "current-2-11.wav": {
+      "text": "The current time is two eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-2-12.wav": {
+      "text": "The current time is two twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 tw\u02c8\u025blv."
+    },
+    "current-2-13.wav": {
+      "text": "The current time is two thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-2-14.wav": {
+      "text": "The current time is two fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-2-15.wav": {
+      "text": "The current time is two fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u026afti\u02d0n."
+    },
+    "current-2-16.wav": {
+      "text": "The current time is two sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 s\u02c8\u026aksti\u02d0n."
+    },
+    "current-2-17.wav": {
+      "text": "The current time is two seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-2-18.wav": {
+      "text": "The current time is two eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u02c8e\u026ati\u02d0n."
+    },
+    "current-2-19.wav": {
+      "text": "The current time is two nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 n\u02c8a\u026anti\u02d0n."
+    },
+    "current-2-20.wav": {
+      "text": "The current time is two twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 tw\u02c8\u025bnti."
+    },
+    "current-2-21.wav": {
+      "text": "The current time is two twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-2-22.wav": {
+      "text": "The current time is two twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-2-23.wav": {
+      "text": "The current time is two twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-2-24.wav": {
+      "text": "The current time is two twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-2-25.wav": {
+      "text": "The current time is two twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-2-26.wav": {
+      "text": "The current time is two twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-2-27.wav": {
+      "text": "The current time is two twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-2-28.wav": {
+      "text": "The current time is two twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-2-29.wav": {
+      "text": "The current time is two twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-2-30.wav": {
+      "text": "The current time is two thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-2-31.wav": {
+      "text": "The current time is two thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-2-32.wav": {
+      "text": "The current time is two thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-2-33.wav": {
+      "text": "The current time is two thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-2-34.wav": {
+      "text": "The current time is two thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-2-35.wav": {
+      "text": "The current time is two thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-2-36.wav": {
+      "text": "The current time is two thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-2-37.wav": {
+      "text": "The current time is two thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-2-38.wav": {
+      "text": "The current time is two thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-2-39.wav": {
+      "text": "The current time is two thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-2-40.wav": {
+      "text": "The current time is two forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-2-41.wav": {
+      "text": "The current time is two forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-2-42.wav": {
+      "text": "The current time is two forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-2-43.wav": {
+      "text": "The current time is two forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-2-44.wav": {
+      "text": "The current time is two forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-2-45.wav": {
+      "text": "The current time is two forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-2-46.wav": {
+      "text": "The current time is two forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-2-47.wav": {
+      "text": "The current time is two forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-2-48.wav": {
+      "text": "The current time is two forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-2-49.wav": {
+      "text": "The current time is two forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-2-50.wav": {
+      "text": "The current time is two fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u026afti."
+    },
+    "current-2-51.wav": {
+      "text": "The current time is two fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-2-52.wav": {
+      "text": "The current time is two fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-2-53.wav": {
+      "text": "The current time is two fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-2-54.wav": {
+      "text": "The current time is two fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-2-55.wav": {
+      "text": "The current time is two fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-2-56.wav": {
+      "text": "The current time is two fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-2-57.wav": {
+      "text": "The current time is two fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-2-58.wav": {
+      "text": "The current time is two fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-2-59.wav": {
+      "text": "The current time is two fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az t\u02c8u\u02d0 f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "current-3-00.wav": {
+      "text": "The current time is three o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-3-01.wav": {
+      "text": "The current time is three oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-3-02.wav": {
+      "text": "The current time is three oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-3-03.wav": {
+      "text": "The current time is three oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-3-04.wav": {
+      "text": "The current time is three oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-3-05.wav": {
+      "text": "The current time is three oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-3-06.wav": {
+      "text": "The current time is three oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-3-07.wav": {
+      "text": "The current time is three oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-3-08.wav": {
+      "text": "The current time is three oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-3-09.wav": {
+      "text": "The current time is three oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-3-10.wav": {
+      "text": "The current time is three ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 t\u02c8\u025bn."
+    },
+    "current-3-11.wav": {
+      "text": "The current time is three eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-3-12.wav": {
+      "text": "The current time is three twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 tw\u02c8\u025blv."
+    },
+    "current-3-13.wav": {
+      "text": "The current time is three thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-3-14.wav": {
+      "text": "The current time is three fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-3-15.wav": {
+      "text": "The current time is three fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti\u02d0n."
+    },
+    "current-3-16.wav": {
+      "text": "The current time is three sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 s\u02c8\u026aksti\u02d0n."
+    },
+    "current-3-17.wav": {
+      "text": "The current time is three seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-3-18.wav": {
+      "text": "The current time is three eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u02c8e\u026ati\u02d0n."
+    },
+    "current-3-19.wav": {
+      "text": "The current time is three nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 n\u02c8a\u026anti\u02d0n."
+    },
+    "current-3-20.wav": {
+      "text": "The current time is three twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 tw\u02c8\u025bnti."
+    },
+    "current-3-21.wav": {
+      "text": "The current time is three twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-3-22.wav": {
+      "text": "The current time is three twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-3-23.wav": {
+      "text": "The current time is three twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-3-24.wav": {
+      "text": "The current time is three twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-3-25.wav": {
+      "text": "The current time is three twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-3-26.wav": {
+      "text": "The current time is three twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-3-27.wav": {
+      "text": "The current time is three twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-3-28.wav": {
+      "text": "The current time is three twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-3-29.wav": {
+      "text": "The current time is three twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-3-30.wav": {
+      "text": "The current time is three thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-3-31.wav": {
+      "text": "The current time is three thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-3-32.wav": {
+      "text": "The current time is three thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-3-33.wav": {
+      "text": "The current time is three thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-3-34.wav": {
+      "text": "The current time is three thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-3-35.wav": {
+      "text": "The current time is three thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-3-36.wav": {
+      "text": "The current time is three thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-3-37.wav": {
+      "text": "The current time is three thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-3-38.wav": {
+      "text": "The current time is three thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-3-39.wav": {
+      "text": "The current time is three thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-3-40.wav": {
+      "text": "The current time is three forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-3-41.wav": {
+      "text": "The current time is three forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-3-42.wav": {
+      "text": "The current time is three forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-3-43.wav": {
+      "text": "The current time is three forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-3-44.wav": {
+      "text": "The current time is three forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-3-45.wav": {
+      "text": "The current time is three forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-3-46.wav": {
+      "text": "The current time is three forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-3-47.wav": {
+      "text": "The current time is three forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-3-48.wav": {
+      "text": "The current time is three forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-3-49.wav": {
+      "text": "The current time is three forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-3-50.wav": {
+      "text": "The current time is three fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti."
+    },
+    "current-3-51.wav": {
+      "text": "The current time is three fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-3-52.wav": {
+      "text": "The current time is three fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-3-53.wav": {
+      "text": "The current time is three fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-3-54.wav": {
+      "text": "The current time is three fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-3-55.wav": {
+      "text": "The current time is three fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-3-56.wav": {
+      "text": "The current time is three fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-3-57.wav": {
+      "text": "The current time is three fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-3-58.wav": {
+      "text": "The current time is three fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-3-59.wav": {
+      "text": "The current time is three fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "current-4-00.wav": {
+      "text": "The current time is four o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-4-01.wav": {
+      "text": "The current time is four oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-4-02.wav": {
+      "text": "The current time is four oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-4-03.wav": {
+      "text": "The current time is four oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-4-04.wav": {
+      "text": "The current time is four oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-4-05.wav": {
+      "text": "The current time is four oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-4-06.wav": {
+      "text": "The current time is four oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-4-07.wav": {
+      "text": "The current time is four oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-4-08.wav": {
+      "text": "The current time is four oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-4-09.wav": {
+      "text": "The current time is four oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-4-10.wav": {
+      "text": "The current time is four ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 t\u02c8\u025bn."
+    },
+    "current-4-11.wav": {
+      "text": "The current time is four eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-4-12.wav": {
+      "text": "The current time is four twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 tw\u02c8\u025blv."
+    },
+    "current-4-13.wav": {
+      "text": "The current time is four thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-4-14.wav": {
+      "text": "The current time is four fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-4-15.wav": {
+      "text": "The current time is four fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti\u02d0n."
+    },
+    "current-4-16.wav": {
+      "text": "The current time is four sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 s\u02c8\u026aksti\u02d0n."
+    },
+    "current-4-17.wav": {
+      "text": "The current time is four seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-4-18.wav": {
+      "text": "The current time is four eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u02c8e\u026ati\u02d0n."
+    },
+    "current-4-19.wav": {
+      "text": "The current time is four nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 n\u02c8a\u026anti\u02d0n."
+    },
+    "current-4-20.wav": {
+      "text": "The current time is four twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 tw\u02c8\u025bnti."
+    },
+    "current-4-21.wav": {
+      "text": "The current time is four twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-4-22.wav": {
+      "text": "The current time is four twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-4-23.wav": {
+      "text": "The current time is four twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-4-24.wav": {
+      "text": "The current time is four twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-4-25.wav": {
+      "text": "The current time is four twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-4-26.wav": {
+      "text": "The current time is four twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-4-27.wav": {
+      "text": "The current time is four twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-4-28.wav": {
+      "text": "The current time is four twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-4-29.wav": {
+      "text": "The current time is four twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-4-30.wav": {
+      "text": "The current time is four thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-4-31.wav": {
+      "text": "The current time is four thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-4-32.wav": {
+      "text": "The current time is four thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-4-33.wav": {
+      "text": "The current time is four thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-4-34.wav": {
+      "text": "The current time is four thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-4-35.wav": {
+      "text": "The current time is four thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-4-36.wav": {
+      "text": "The current time is four thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-4-37.wav": {
+      "text": "The current time is four thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-4-38.wav": {
+      "text": "The current time is four thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-4-39.wav": {
+      "text": "The current time is four thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-4-40.wav": {
+      "text": "The current time is four forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-4-41.wav": {
+      "text": "The current time is four forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-4-42.wav": {
+      "text": "The current time is four forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-4-43.wav": {
+      "text": "The current time is four forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-4-44.wav": {
+      "text": "The current time is four forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-4-45.wav": {
+      "text": "The current time is four forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-4-46.wav": {
+      "text": "The current time is four forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-4-47.wav": {
+      "text": "The current time is four forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-4-48.wav": {
+      "text": "The current time is four forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-4-49.wav": {
+      "text": "The current time is four forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-4-50.wav": {
+      "text": "The current time is four fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti."
+    },
+    "current-4-51.wav": {
+      "text": "The current time is four fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-4-52.wav": {
+      "text": "The current time is four fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-4-53.wav": {
+      "text": "The current time is four fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-4-54.wav": {
+      "text": "The current time is four fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-4-55.wav": {
+      "text": "The current time is four fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-4-56.wav": {
+      "text": "The current time is four fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-4-57.wav": {
+      "text": "The current time is four fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-4-58.wav": {
+      "text": "The current time is four fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-4-59.wav": {
+      "text": "The current time is four fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "current-5-00.wav": {
+      "text": "The current time is five o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-5-01.wav": {
+      "text": "The current time is five oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-5-02.wav": {
+      "text": "The current time is five oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-5-03.wav": {
+      "text": "The current time is five oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-5-04.wav": {
+      "text": "The current time is five oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-5-05.wav": {
+      "text": "The current time is five oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-5-06.wav": {
+      "text": "The current time is five oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-5-07.wav": {
+      "text": "The current time is five oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-5-08.wav": {
+      "text": "The current time is five oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-5-09.wav": {
+      "text": "The current time is five oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-5-10.wav": {
+      "text": "The current time is five ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av t\u02c8\u025bn."
+    },
+    "current-5-11.wav": {
+      "text": "The current time is five eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-5-12.wav": {
+      "text": "The current time is five twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av tw\u02c8\u025blv."
+    },
+    "current-5-13.wav": {
+      "text": "The current time is five thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-5-14.wav": {
+      "text": "The current time is five fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-5-15.wav": {
+      "text": "The current time is five fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u026afti\u02d0n."
+    },
+    "current-5-16.wav": {
+      "text": "The current time is five sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av s\u02c8\u026aksti\u02d0n."
+    },
+    "current-5-17.wav": {
+      "text": "The current time is five seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-5-18.wav": {
+      "text": "The current time is five eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u02c8e\u026ati\u02d0n."
+    },
+    "current-5-19.wav": {
+      "text": "The current time is five nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av n\u02c8a\u026anti\u02d0n."
+    },
+    "current-5-20.wav": {
+      "text": "The current time is five twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av tw\u02c8\u025bnti."
+    },
+    "current-5-21.wav": {
+      "text": "The current time is five twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-5-22.wav": {
+      "text": "The current time is five twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-5-23.wav": {
+      "text": "The current time is five twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-5-24.wav": {
+      "text": "The current time is five twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-5-25.wav": {
+      "text": "The current time is five twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-5-26.wav": {
+      "text": "The current time is five twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-5-27.wav": {
+      "text": "The current time is five twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-5-28.wav": {
+      "text": "The current time is five twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-5-29.wav": {
+      "text": "The current time is five twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-5-30.wav": {
+      "text": "The current time is five thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-5-31.wav": {
+      "text": "The current time is five thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-5-32.wav": {
+      "text": "The current time is five thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-5-33.wav": {
+      "text": "The current time is five thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-5-34.wav": {
+      "text": "The current time is five thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-5-35.wav": {
+      "text": "The current time is five thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-5-36.wav": {
+      "text": "The current time is five thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-5-37.wav": {
+      "text": "The current time is five thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-5-38.wav": {
+      "text": "The current time is five thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-5-39.wav": {
+      "text": "The current time is five thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-5-40.wav": {
+      "text": "The current time is five forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-5-41.wav": {
+      "text": "The current time is five forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-5-42.wav": {
+      "text": "The current time is five forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-5-43.wav": {
+      "text": "The current time is five forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-5-44.wav": {
+      "text": "The current time is five forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-5-45.wav": {
+      "text": "The current time is five forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-5-46.wav": {
+      "text": "The current time is five forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-5-47.wav": {
+      "text": "The current time is five forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-5-48.wav": {
+      "text": "The current time is five forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-5-49.wav": {
+      "text": "The current time is five forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-5-50.wav": {
+      "text": "The current time is five fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u026afti."
+    },
+    "current-5-51.wav": {
+      "text": "The current time is five fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-5-52.wav": {
+      "text": "The current time is five fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-5-53.wav": {
+      "text": "The current time is five fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-5-54.wav": {
+      "text": "The current time is five fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-5-55.wav": {
+      "text": "The current time is five fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-5-56.wav": {
+      "text": "The current time is five fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-5-57.wav": {
+      "text": "The current time is five fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-5-58.wav": {
+      "text": "The current time is five fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-5-59.wav": {
+      "text": "The current time is five fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az f\u02c8a\u026av f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "current-6-00.wav": {
+      "text": "The current time is six o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-6-01.wav": {
+      "text": "The current time is six oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-6-02.wav": {
+      "text": "The current time is six oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-6-03.wav": {
+      "text": "The current time is six oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-6-04.wav": {
+      "text": "The current time is six oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-6-05.wav": {
+      "text": "The current time is six oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-6-06.wav": {
+      "text": "The current time is six oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-6-07.wav": {
+      "text": "The current time is six oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-6-08.wav": {
+      "text": "The current time is six oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-6-09.wav": {
+      "text": "The current time is six oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-6-10.wav": {
+      "text": "The current time is six ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks t\u02c8\u025bn."
+    },
+    "current-6-11.wav": {
+      "text": "The current time is six eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-6-12.wav": {
+      "text": "The current time is six twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks tw\u02c8\u025blv."
+    },
+    "current-6-13.wav": {
+      "text": "The current time is six thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-6-14.wav": {
+      "text": "The current time is six fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-6-15.wav": {
+      "text": "The current time is six fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u026afti\u02d0n."
+    },
+    "current-6-16.wav": {
+      "text": "The current time is six sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks s\u02c8\u026aksti\u02d0n."
+    },
+    "current-6-17.wav": {
+      "text": "The current time is six seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-6-18.wav": {
+      "text": "The current time is six eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u02c8e\u026ati\u02d0n."
+    },
+    "current-6-19.wav": {
+      "text": "The current time is six nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks n\u02c8a\u026anti\u02d0n."
+    },
+    "current-6-20.wav": {
+      "text": "The current time is six twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks tw\u02c8\u025bnti."
+    },
+    "current-6-21.wav": {
+      "text": "The current time is six twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-6-22.wav": {
+      "text": "The current time is six twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-6-23.wav": {
+      "text": "The current time is six twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-6-24.wav": {
+      "text": "The current time is six twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-6-25.wav": {
+      "text": "The current time is six twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-6-26.wav": {
+      "text": "The current time is six twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-6-27.wav": {
+      "text": "The current time is six twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-6-28.wav": {
+      "text": "The current time is six twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-6-29.wav": {
+      "text": "The current time is six twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-6-30.wav": {
+      "text": "The current time is six thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-6-31.wav": {
+      "text": "The current time is six thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-6-32.wav": {
+      "text": "The current time is six thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-6-33.wav": {
+      "text": "The current time is six thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-6-34.wav": {
+      "text": "The current time is six thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-6-35.wav": {
+      "text": "The current time is six thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-6-36.wav": {
+      "text": "The current time is six thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-6-37.wav": {
+      "text": "The current time is six thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-6-38.wav": {
+      "text": "The current time is six thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-6-39.wav": {
+      "text": "The current time is six thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-6-40.wav": {
+      "text": "The current time is six forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-6-41.wav": {
+      "text": "The current time is six forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-6-42.wav": {
+      "text": "The current time is six forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-6-43.wav": {
+      "text": "The current time is six forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-6-44.wav": {
+      "text": "The current time is six forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-6-45.wav": {
+      "text": "The current time is six forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-6-46.wav": {
+      "text": "The current time is six forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-6-47.wav": {
+      "text": "The current time is six forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-6-48.wav": {
+      "text": "The current time is six forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-6-49.wav": {
+      "text": "The current time is six forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-6-50.wav": {
+      "text": "The current time is six fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u026afti."
+    },
+    "current-6-51.wav": {
+      "text": "The current time is six fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-6-52.wav": {
+      "text": "The current time is six fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-6-53.wav": {
+      "text": "The current time is six fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-6-54.wav": {
+      "text": "The current time is six fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-6-55.wav": {
+      "text": "The current time is six fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-6-56.wav": {
+      "text": "The current time is six fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-6-57.wav": {
+      "text": "The current time is six fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-6-58.wav": {
+      "text": "The current time is six fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-6-59.wav": {
+      "text": "The current time is six fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u026aks f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "current-7-00.wav": {
+      "text": "The current time is seven o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-7-01.wav": {
+      "text": "The current time is seven oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-7-02.wav": {
+      "text": "The current time is seven oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-7-03.wav": {
+      "text": "The current time is seven oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-7-04.wav": {
+      "text": "The current time is seven oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-7-05.wav": {
+      "text": "The current time is seven oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-7-06.wav": {
+      "text": "The current time is seven oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-7-07.wav": {
+      "text": "The current time is seven oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-7-08.wav": {
+      "text": "The current time is seven oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-7-09.wav": {
+      "text": "The current time is seven oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-7-10.wav": {
+      "text": "The current time is seven ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n t\u02c8\u025bn."
+    },
+    "current-7-11.wav": {
+      "text": "The current time is seven eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-7-12.wav": {
+      "text": "The current time is seven twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n tw\u02c8\u025blv."
+    },
+    "current-7-13.wav": {
+      "text": "The current time is seven thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-7-14.wav": {
+      "text": "The current time is seven fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-7-15.wav": {
+      "text": "The current time is seven fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u026afti\u02d0n."
+    },
+    "current-7-16.wav": {
+      "text": "The current time is seven sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n s\u02c8\u026aksti\u02d0n."
+    },
+    "current-7-17.wav": {
+      "text": "The current time is seven seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-7-18.wav": {
+      "text": "The current time is seven eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u02c8e\u026ati\u02d0n."
+    },
+    "current-7-19.wav": {
+      "text": "The current time is seven nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n n\u02c8a\u026anti\u02d0n."
+    },
+    "current-7-20.wav": {
+      "text": "The current time is seven twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n tw\u02c8\u025bnti."
+    },
+    "current-7-21.wav": {
+      "text": "The current time is seven twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-7-22.wav": {
+      "text": "The current time is seven twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-7-23.wav": {
+      "text": "The current time is seven twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-7-24.wav": {
+      "text": "The current time is seven twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-7-25.wav": {
+      "text": "The current time is seven twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-7-26.wav": {
+      "text": "The current time is seven twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-7-27.wav": {
+      "text": "The current time is seven twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-7-28.wav": {
+      "text": "The current time is seven twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-7-29.wav": {
+      "text": "The current time is seven twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-7-30.wav": {
+      "text": "The current time is seven thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-7-31.wav": {
+      "text": "The current time is seven thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-7-32.wav": {
+      "text": "The current time is seven thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-7-33.wav": {
+      "text": "The current time is seven thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-7-34.wav": {
+      "text": "The current time is seven thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-7-35.wav": {
+      "text": "The current time is seven thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-7-36.wav": {
+      "text": "The current time is seven thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-7-37.wav": {
+      "text": "The current time is seven thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-7-38.wav": {
+      "text": "The current time is seven thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-7-39.wav": {
+      "text": "The current time is seven thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-7-40.wav": {
+      "text": "The current time is seven forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-7-41.wav": {
+      "text": "The current time is seven forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-7-42.wav": {
+      "text": "The current time is seven forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-7-43.wav": {
+      "text": "The current time is seven forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-7-44.wav": {
+      "text": "The current time is seven forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-7-45.wav": {
+      "text": "The current time is seven forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-7-46.wav": {
+      "text": "The current time is seven forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-7-47.wav": {
+      "text": "The current time is seven forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-7-48.wav": {
+      "text": "The current time is seven forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-7-49.wav": {
+      "text": "The current time is seven forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-7-50.wav": {
+      "text": "The current time is seven fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u026afti."
+    },
+    "current-7-51.wav": {
+      "text": "The current time is seven fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-7-52.wav": {
+      "text": "The current time is seven fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-7-53.wav": {
+      "text": "The current time is seven fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-7-54.wav": {
+      "text": "The current time is seven fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-7-55.wav": {
+      "text": "The current time is seven fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-7-56.wav": {
+      "text": "The current time is seven fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-7-57.wav": {
+      "text": "The current time is seven fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-7-58.wav": {
+      "text": "The current time is seven fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-7-59.wav": {
+      "text": "The current time is seven fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az s\u02c8\u025bv\u0259n f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "current-8-00.wav": {
+      "text": "The current time is eight o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-8-01.wav": {
+      "text": "The current time is eight oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-8-02.wav": {
+      "text": "The current time is eight oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-8-03.wav": {
+      "text": "The current time is eight oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-8-04.wav": {
+      "text": "The current time is eight oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-8-05.wav": {
+      "text": "The current time is eight oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-8-06.wav": {
+      "text": "The current time is eight oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-8-07.wav": {
+      "text": "The current time is eight oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-8-08.wav": {
+      "text": "The current time is eight oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-8-09.wav": {
+      "text": "The current time is eight oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-8-10.wav": {
+      "text": "The current time is eight ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at t\u02c8\u025bn."
+    },
+    "current-8-11.wav": {
+      "text": "The current time is eight eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-8-12.wav": {
+      "text": "The current time is eight twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at tw\u02c8\u025blv."
+    },
+    "current-8-13.wav": {
+      "text": "The current time is eight thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-8-14.wav": {
+      "text": "The current time is eight fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-8-15.wav": {
+      "text": "The current time is eight fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u026afti\u02d0n."
+    },
+    "current-8-16.wav": {
+      "text": "The current time is eight sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at s\u02c8\u026aksti\u02d0n."
+    },
+    "current-8-17.wav": {
+      "text": "The current time is eight seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-8-18.wav": {
+      "text": "The current time is eight eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u02c8e\u026ati\u02d0n."
+    },
+    "current-8-19.wav": {
+      "text": "The current time is eight nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at n\u02c8a\u026anti\u02d0n."
+    },
+    "current-8-20.wav": {
+      "text": "The current time is eight twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at tw\u02c8\u025bnti."
+    },
+    "current-8-21.wav": {
+      "text": "The current time is eight twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-8-22.wav": {
+      "text": "The current time is eight twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-8-23.wav": {
+      "text": "The current time is eight twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-8-24.wav": {
+      "text": "The current time is eight twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-8-25.wav": {
+      "text": "The current time is eight twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-8-26.wav": {
+      "text": "The current time is eight twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-8-27.wav": {
+      "text": "The current time is eight twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-8-28.wav": {
+      "text": "The current time is eight twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-8-29.wav": {
+      "text": "The current time is eight twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-8-30.wav": {
+      "text": "The current time is eight thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-8-31.wav": {
+      "text": "The current time is eight thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-8-32.wav": {
+      "text": "The current time is eight thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-8-33.wav": {
+      "text": "The current time is eight thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-8-34.wav": {
+      "text": "The current time is eight thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-8-35.wav": {
+      "text": "The current time is eight thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-8-36.wav": {
+      "text": "The current time is eight thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-8-37.wav": {
+      "text": "The current time is eight thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-8-38.wav": {
+      "text": "The current time is eight thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-8-39.wav": {
+      "text": "The current time is eight thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-8-40.wav": {
+      "text": "The current time is eight forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-8-41.wav": {
+      "text": "The current time is eight forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-8-42.wav": {
+      "text": "The current time is eight forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-8-43.wav": {
+      "text": "The current time is eight forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-8-44.wav": {
+      "text": "The current time is eight forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-8-45.wav": {
+      "text": "The current time is eight forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-8-46.wav": {
+      "text": "The current time is eight forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-8-47.wav": {
+      "text": "The current time is eight forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-8-48.wav": {
+      "text": "The current time is eight forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-8-49.wav": {
+      "text": "The current time is eight forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-8-50.wav": {
+      "text": "The current time is eight fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u026afti."
+    },
+    "current-8-51.wav": {
+      "text": "The current time is eight fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-8-52.wav": {
+      "text": "The current time is eight fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-8-53.wav": {
+      "text": "The current time is eight fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-8-54.wav": {
+      "text": "The current time is eight fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-8-55.wav": {
+      "text": "The current time is eight fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-8-56.wav": {
+      "text": "The current time is eight fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-8-57.wav": {
+      "text": "The current time is eight fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-8-58.wav": {
+      "text": "The current time is eight fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-8-59.wav": {
+      "text": "The current time is eight fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az \u02c8e\u026at f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "current-9-00.wav": {
+      "text": "The current time is nine o'clock.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "current-9-01.wav": {
+      "text": "The current time is nine oh one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u02c8o\u028a w\u02cc\u028cn."
+    },
+    "current-9-02.wav": {
+      "text": "The current time is nine oh two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u02c8o\u028a t\u02c8u\u02d0."
+    },
+    "current-9-03.wav": {
+      "text": "The current time is nine oh three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u02c8o\u028a \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-9-04.wav": {
+      "text": "The current time is nine oh four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u02c8o\u028a f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-9-05.wav": {
+      "text": "The current time is nine oh five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u02c8o\u028a f\u02c8a\u026av."
+    },
+    "current-9-06.wav": {
+      "text": "The current time is nine oh six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u02c8o\u028a s\u02c8\u026aks."
+    },
+    "current-9-07.wav": {
+      "text": "The current time is nine oh seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u02c8o\u028a s\u02c8\u025bv\u0259n."
+    },
+    "current-9-08.wav": {
+      "text": "The current time is nine oh eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u02c8o\u028a \u02c8e\u026at."
+    },
+    "current-9-09.wav": {
+      "text": "The current time is nine oh nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u02c8o\u028a n\u02c8a\u026an."
+    },
+    "current-9-10.wav": {
+      "text": "The current time is nine ten.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an t\u02c8\u025bn."
+    },
+    "current-9-11.wav": {
+      "text": "The current time is nine eleven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u1d7bl\u02c8\u025bv\u0259n."
+    },
+    "current-9-12.wav": {
+      "text": "The current time is nine twelve.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an tw\u02c8\u025blv."
+    },
+    "current-9-13.wav": {
+      "text": "The current time is nine thirteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0ti\u02d0n."
+    },
+    "current-9-14.wav": {
+      "text": "The current time is nine fourteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279ti\u02d0n."
+    },
+    "current-9-15.wav": {
+      "text": "The current time is nine fifteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u026afti\u02d0n."
+    },
+    "current-9-16.wav": {
+      "text": "The current time is nine sixteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an s\u02c8\u026aksti\u02d0n."
+    },
+    "current-9-17.wav": {
+      "text": "The current time is nine seventeen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an s\u02c8\u025bv\u0259nt\u02cci\u02d0n."
+    },
+    "current-9-18.wav": {
+      "text": "The current time is nine eighteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u02c8e\u026ati\u02d0n."
+    },
+    "current-9-19.wav": {
+      "text": "The current time is nine nineteen.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an n\u02c8a\u026anti\u02d0n."
+    },
+    "current-9-20.wav": {
+      "text": "The current time is nine twenty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an tw\u02c8\u025bnti."
+    },
+    "current-9-21.wav": {
+      "text": "The current time is nine twenty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an tw\u02c8\u025bnti w\u02cc\u028cn."
+    },
+    "current-9-22.wav": {
+      "text": "The current time is nine twenty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an tw\u02c8\u025bnti t\u02c8u\u02d0."
+    },
+    "current-9-23.wav": {
+      "text": "The current time is nine twenty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an tw\u02c8\u025bnti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-9-24.wav": {
+      "text": "The current time is nine twenty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an tw\u02c8\u025bnti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-9-25.wav": {
+      "text": "The current time is nine twenty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an tw\u02c8\u025bnti f\u02c8a\u026av."
+    },
+    "current-9-26.wav": {
+      "text": "The current time is nine twenty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an tw\u02c8\u025bnti s\u02c8\u026aks."
+    },
+    "current-9-27.wav": {
+      "text": "The current time is nine twenty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an tw\u02c8\u025bnti s\u02c8\u025bv\u0259n."
+    },
+    "current-9-28.wav": {
+      "text": "The current time is nine twenty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an tw\u02c8\u025bnti \u02c8e\u026at."
+    },
+    "current-9-29.wav": {
+      "text": "The current time is nine twenty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an tw\u02c8\u025bnti n\u02c8a\u026an."
+    },
+    "current-9-30.wav": {
+      "text": "The current time is nine thirty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "current-9-31.wav": {
+      "text": "The current time is nine thirty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0\u027ei w\u02cc\u028cn."
+    },
+    "current-9-32.wav": {
+      "text": "The current time is nine thirty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0\u027ei t\u02c8u\u02d0."
+    },
+    "current-9-33.wav": {
+      "text": "The current time is nine thirty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-9-34.wav": {
+      "text": "The current time is nine thirty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-9-35.wav": {
+      "text": "The current time is nine thirty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0\u027ei f\u02c8a\u026av."
+    },
+    "current-9-36.wav": {
+      "text": "The current time is nine thirty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u026aks."
+    },
+    "current-9-37.wav": {
+      "text": "The current time is nine thirty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-9-38.wav": {
+      "text": "The current time is nine thirty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0\u027ei \u02c8e\u026at."
+    },
+    "current-9-39.wav": {
+      "text": "The current time is nine thirty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0\u027ei n\u02c8a\u026an."
+    },
+    "current-9-40.wav": {
+      "text": "The current time is nine forty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279\u027ei."
+    },
+    "current-9-41.wav": {
+      "text": "The current time is nine forty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279\u027ei w\u02cc\u028cn."
+    },
+    "current-9-42.wav": {
+      "text": "The current time is nine forty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279\u027ei t\u02c8u\u02d0."
+    },
+    "current-9-43.wav": {
+      "text": "The current time is nine forty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279\u027ei \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-9-44.wav": {
+      "text": "The current time is nine forty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-9-45.wav": {
+      "text": "The current time is nine forty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "current-9-46.wav": {
+      "text": "The current time is nine forty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u026aks."
+    },
+    "current-9-47.wav": {
+      "text": "The current time is nine forty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279\u027ei s\u02c8\u025bv\u0259n."
+    },
+    "current-9-48.wav": {
+      "text": "The current time is nine forty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279\u027ei \u02c8e\u026at."
+    },
+    "current-9-49.wav": {
+      "text": "The current time is nine forty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279\u027ei n\u02c8a\u026an."
+    },
+    "current-9-50.wav": {
+      "text": "The current time is nine fifty.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u026afti."
+    },
+    "current-9-51.wav": {
+      "text": "The current time is nine fifty one.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u026afti w\u02cc\u028cn."
+    },
+    "current-9-52.wav": {
+      "text": "The current time is nine fifty two.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u026afti t\u02c8u\u02d0."
+    },
+    "current-9-53.wav": {
+      "text": "The current time is nine fifty three.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u026afti \u03b8\u0279\u02c8i\u02d0."
+    },
+    "current-9-54.wav": {
+      "text": "The current time is nine fifty four.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u026afti f\u02c8\u0254\u02d0\u0279."
+    },
+    "current-9-55.wav": {
+      "text": "The current time is nine fifty five.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u026afti f\u02c8a\u026av."
+    },
+    "current-9-56.wav": {
+      "text": "The current time is nine fifty six.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u026afti s\u02c8\u026aks."
+    },
+    "current-9-57.wav": {
+      "text": "The current time is nine fifty seven.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u026afti s\u02c8\u025bv\u0259n."
+    },
+    "current-9-58.wav": {
+      "text": "The current time is nine fifty eight.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u026afti \u02c8e\u026at."
+    },
+    "current-9-59.wav": {
+      "text": "The current time is nine fifty nine.",
+      "phonemes": "\u00f0\u0259 k\u02c8\u025c\u02d0\u0279\u0259nt t\u02c8a\u026am \u026az n\u02c8a\u026an f\u02c8\u026afti n\u02c8a\u026an."
+    },
+    "error.wav": {
+      "text": "Playback cannot start. Check appliance diagnostics.",
+      "phonemes": "pl\u02c8e\u026ab\u00e6k k\u00e6n\u02c8\u0251\u02d0t st\u02c8\u0251\u02d0\u0279t. t\u0283\u02c8\u025bk \u0250pl\u02c8a\u026a\u0259ns d\u02cca\u026a\u0259\u0261n\u02c8\u0251\u02d0st\u026aks."
+    },
+    "mode-noise.wav": {
+      "text": "Without reading.",
+      "phonemes": "w\u026a\u00f0\u02cca\u028at \u0279\u02c8i\u02d0d\u026a\u014b."
+    },
+    "mode-reading.wav": {
+      "text": "With reading.",
+      "phonemes": "w\u026a\u00f0 \u0279\u02c8i\u02d0d\u026a\u014b."
+    },
+    "wake-1-00.wav": {
+      "text": "Your alarm is set for one o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 w\u02c8\u028cn \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-1-15.wav": {
+      "text": "Your alarm is set for one fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 w\u02c8\u028cn f\u02c8\u026afti\u02d0n."
+    },
+    "wake-1-30.wav": {
+      "text": "Your alarm is set for one thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 w\u02c8\u028cn \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-1-45.wav": {
+      "text": "Your alarm is set for one forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 w\u02c8\u028cn f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "wake-10-00.wav": {
+      "text": "Your alarm is set for ten o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 t\u02c8\u025bn \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-10-15.wav": {
+      "text": "Your alarm is set for ten fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 t\u02c8\u025bn f\u02c8\u026afti\u02d0n."
+    },
+    "wake-10-30.wav": {
+      "text": "Your alarm is set for ten thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 t\u02c8\u025bn \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-10-45.wav": {
+      "text": "Your alarm is set for ten forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 t\u02c8\u025bn f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "wake-11-00.wav": {
+      "text": "Your alarm is set for eleven o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u1d7bl\u02c8\u025bv\u0259n \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-11-15.wav": {
+      "text": "Your alarm is set for eleven fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u026afti\u02d0n."
+    },
+    "wake-11-30.wav": {
+      "text": "Your alarm is set for eleven thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u1d7bl\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-11-45.wav": {
+      "text": "Your alarm is set for eleven forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u1d7bl\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "wake-12-00.wav": {
+      "text": "Your alarm is set for twelve o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 tw\u02c8\u025blv \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-12-15.wav": {
+      "text": "Your alarm is set for twelve fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 tw\u02c8\u025blv f\u02c8\u026afti\u02d0n."
+    },
+    "wake-12-30.wav": {
+      "text": "Your alarm is set for twelve thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 tw\u02c8\u025blv \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-12-45.wav": {
+      "text": "Your alarm is set for twelve forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 tw\u02c8\u025blv f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "wake-2-00.wav": {
+      "text": "Your alarm is set for two o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 t\u02c8u\u02d0 \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-2-15.wav": {
+      "text": "Your alarm is set for two fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 t\u02c8u\u02d0 f\u02c8\u026afti\u02d0n."
+    },
+    "wake-2-30.wav": {
+      "text": "Your alarm is set for two thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 t\u02c8u\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-2-45.wav": {
+      "text": "Your alarm is set for two forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 t\u02c8u\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "wake-3-00.wav": {
+      "text": "Your alarm is set for three o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u03b8\u0279\u02c8i\u02d0 \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-3-15.wav": {
+      "text": "Your alarm is set for three fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u03b8\u0279\u02c8i\u02d0 f\u02c8\u026afti\u02d0n."
+    },
+    "wake-3-30.wav": {
+      "text": "Your alarm is set for three thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u03b8\u0279\u02c8i\u02d0 \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-3-45.wav": {
+      "text": "Your alarm is set for three forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u03b8\u0279\u02c8i\u02d0 f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "wake-4-00.wav": {
+      "text": "Your alarm is set for four o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279 \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-4-15.wav": {
+      "text": "Your alarm is set for four fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279 f\u02c8\u026afti\u02d0n."
+    },
+    "wake-4-30.wav": {
+      "text": "Your alarm is set for four thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279 \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-4-45.wav": {
+      "text": "Your alarm is set for four forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279 f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "wake-5-00.wav": {
+      "text": "Your alarm is set for five o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 f\u02c8a\u026av \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-5-15.wav": {
+      "text": "Your alarm is set for five fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 f\u02c8a\u026av f\u02c8\u026afti\u02d0n."
+    },
+    "wake-5-30.wav": {
+      "text": "Your alarm is set for five thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 f\u02c8a\u026av \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-5-45.wav": {
+      "text": "Your alarm is set for five forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 f\u02c8a\u026av f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "wake-6-00.wav": {
+      "text": "Your alarm is set for six o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 s\u02c8\u026aks \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-6-15.wav": {
+      "text": "Your alarm is set for six fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 s\u02c8\u026aks f\u02c8\u026afti\u02d0n."
+    },
+    "wake-6-30.wav": {
+      "text": "Your alarm is set for six thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 s\u02c8\u026aks \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-6-45.wav": {
+      "text": "Your alarm is set for six forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 s\u02c8\u026aks f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "wake-7-00.wav": {
+      "text": "Your alarm is set for seven o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 s\u02c8\u025bv\u0259n \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-7-15.wav": {
+      "text": "Your alarm is set for seven fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 s\u02c8\u025bv\u0259n f\u02c8\u026afti\u02d0n."
+    },
+    "wake-7-30.wav": {
+      "text": "Your alarm is set for seven thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 s\u02c8\u025bv\u0259n \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-7-45.wav": {
+      "text": "Your alarm is set for seven forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 s\u02c8\u025bv\u0259n f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "wake-8-00.wav": {
+      "text": "Your alarm is set for eight o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u02c8e\u026at \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-8-15.wav": {
+      "text": "Your alarm is set for eight fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u02c8e\u026at f\u02c8\u026afti\u02d0n."
+    },
+    "wake-8-30.wav": {
+      "text": "Your alarm is set for eight thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u02c8e\u026at \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-8-45.wav": {
+      "text": "Your alarm is set for eight forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 \u02c8e\u026at f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    },
+    "wake-9-00.wav": {
+      "text": "Your alarm is set for nine o'clock.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 n\u02c8a\u026an \u0259kl\u02c8\u0251\u02d0k."
+    },
+    "wake-9-15.wav": {
+      "text": "Your alarm is set for nine fifteen.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 n\u02c8a\u026an f\u02c8\u026afti\u02d0n."
+    },
+    "wake-9-30.wav": {
+      "text": "Your alarm is set for nine thirty.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 n\u02c8a\u026an \u03b8\u02c8\u025c\u02d0\u027ei."
+    },
+    "wake-9-45.wav": {
+      "text": "Your alarm is set for nine forty five.",
+      "phonemes": "j\u028a\u0279 \u0250l\u02c8\u0251\u02d0\u0279m \u026az s\u02c8\u025bt f\u0254\u02d0\u0279 n\u02c8a\u026an f\u02c8\u0254\u02d0\u0279\u027ei f\u02c8a\u026av."
+    }
+  }
+}

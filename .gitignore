@@ -1,0 +1,6 @@
+/target/
+/settings.json
+/settings.json.*.tmp
+__pycache__/
+/.appliance-build/
+/dist/

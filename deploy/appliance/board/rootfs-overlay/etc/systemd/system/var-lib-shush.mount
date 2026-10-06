@@ -1,0 +1,14 @@
+[Unit]
+Description=Persistent Shush settings partition
+Requires=var.mount
+After=var.mount
+Before=local-fs.target
+
+[Mount]
+What=/dev/mmcblk0p3
+Where=/var/lib/shush
+Type=ext4
+Options=rw,nodev,nosuid,noexec,noatime
+
+[Install]
+WantedBy=local-fs.target
