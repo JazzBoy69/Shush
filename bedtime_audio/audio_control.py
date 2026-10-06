@@ -36,6 +36,10 @@ class AudioClient:
     def start(self) -> None:
         self._request({"action": "ping"})
 
+    def status(self) -> dict[str, object]:
+        """Return the native daemon's current stream and absolute deadline."""
+        return self._request({"action": "status"})
+
     def close(self) -> None:
         """The controller must never own the audio daemon's lifetime."""
 
@@ -66,30 +70,43 @@ class AudioClient:
         result = self._request({"action": "events"})
         if self.event_handler is None:
             return
-        for item in result.get("events", []):
+        items = result.get("events")
+        if not isinstance(items, list):
+            raise PlayerError("audio service returned an invalid events list")
+        for item in items:
+            if (
+                not isinstance(item, dict)
+                or not isinstance(item.get("kind"), str)
+                or not item["kind"]
+                or any(item.get(key) is not None and not isinstance(item[key], str)
+                       for key in ("path", "reason", "message"))
+            ):
+                LOG.warning("Ignoring malformed audio service event")
+                continue
             path = Path(item["path"]) if item.get("path") else None
-            self.event_handler(PlayerEvent(kind=str(item["kind"]), path=path,
+            self.event_handler(PlayerEvent(kind=item["kind"], path=path,
                                            reason=item.get("reason"), message=item.get("message")))
 
     @staticmethod
     def _request(request: dict[str, object]) -> dict[str, object]:
-        connection = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-        connection.settimeout(12)
         raw = b""
         try:
-            connection.connect(str(AUDIO_SOCKET))
-            connection.sendall(json.dumps(request).encode("utf-8") + b"\n")
-            stream = connection.makefile("rb")
-            raw = stream.readline(65537)
-            stream.close()
+            with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as connection:
+                connection.settimeout(12)
+                connection.connect(str(AUDIO_SOCKET))
+                connection.sendall(json.dumps(request).encode("utf-8") + b"\n")
+                with connection.makefile("rb") as stream:
+                    raw = stream.readline(65537)
         except OSError as error:
             raise PlayerError(f"audio service unavailable at {AUDIO_SOCKET}: {error}") from error
-        finally:
-            connection.close()
+        if not raw.endswith(b"\n") or len(raw) > 65536:
+            raise PlayerError("audio service returned an incomplete or oversized response")
         try:
             response = json.loads(raw)
-        except json.JSONDecodeError as error:
+        except (json.JSONDecodeError, UnicodeDecodeError) as error:
             raise PlayerError("audio service returned invalid JSON") from error
-        if not isinstance(response, dict) or response.get("ok") is not True:
+        if not isinstance(response, dict):
+            raise PlayerError("audio service response must be an object")
+        if response.get("ok") is not True:
             raise PlayerError(str(response.get("error", "audio service request failed")))
         return response

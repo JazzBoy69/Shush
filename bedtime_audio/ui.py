@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import time
 import logging
 import tkinter as tk
 from tkinter import font
@@ -36,8 +37,15 @@ def run_ui(service: BedtimeService) -> None:
         root = tk.Tk()
     except tk.TclError as error:
         LOG.warning("Graphical display unavailable; running controls headless: %s", error)
+        last_tick_error_at = 0.0
         while not service.stop_requested.is_set():
-            service.service_tick()
+            try:
+                service.service_tick()
+            except Exception:
+                now = time.monotonic()
+                if now - last_tick_error_at >= 10:
+                    LOG.exception("Controller service tick failed; continuing headless")
+                    last_tick_error_at = now
             service.stop_requested.wait(TICK_MS / 1000)
         return
 
@@ -49,6 +57,7 @@ class BedtimeWindow:
     def __init__(self, root: tk.Tk, service: BedtimeService) -> None:
         self.root = root
         self.service = service
+        self._last_tick_error_at = 0.0
         self.root.title("Shush")
         self.root.configure(bg=COLORS["background"])
         self.root.attributes("-fullscreen", True)
@@ -166,9 +175,20 @@ class BedtimeWindow:
         if self.service.stop_requested.is_set():
             self.root.destroy()
             return
-        self.service.service_tick()
-        self._refresh()
-        self.root.after(TICK_MS, self._tick)
+        try:
+            self.service.service_tick()
+            self._refresh()
+        except Exception:
+            now = time.monotonic()
+            if now - self._last_tick_error_at >= 10:
+                LOG.exception("Controller UI tick failed; continuing")
+                self._last_tick_error_at = now
+        finally:
+            if not self.service.stop_requested.is_set():
+                try:
+                    self.root.after(TICK_MS, self._tick)
+                except tk.TclError:
+                    LOG.exception("Could not schedule the next controller UI tick")
 
     def _refresh(self) -> None:
         with self.service.state_lock:

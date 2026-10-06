@@ -212,6 +212,19 @@ private:
         }
         std::string action = json_object_get_string(action_obj);
         if (action == "ping") return response(true);
+        if (action == "status") {
+            json_object* result = response(true);
+            std::lock_guard<std::mutex> lock(state_mutex_);
+            json_object_object_add(result, "state", json_object_new_string(current_kind_.c_str()));
+            json_object_object_add(result, "stop_at_unix_ms", json_object_new_int64(stop_at_unix_ms_));
+            bool playing = false;
+            {
+                std::lock_guard<std::mutex> noise_lock(noise_mutex_);
+                playing = current_kind_ == "pink_noise" && noise_ready_ && !noise_stop_ && active_pcm_ != nullptr;
+            }
+            json_object_object_add(result, "playing", json_object_new_boolean(playing));
+            return result;
+        }
         if (action == "pink_noise") {
             const std::string path = canonical_file(json_string(req, "path"));
             if (path != canonical_file(kPinkNoise))
@@ -393,33 +406,39 @@ private:
                 continue;
             }
             if (ready == 0 || !(pfd.revents & POLLIN)) continue;
-            uint64_t expirations = 0;
-            ssize_t bytes_read;
-            do {
-                bytes_read = read(deadline_fd_, &expirations, sizeof(expirations));
-            } while (bytes_read < 0 && errno == EINTR);
-            if (bytes_read != static_cast<ssize_t>(sizeof(expirations))) continue;
-
             bool was_playing = false;
             bool emit_started = false;
-            bool should_stop = false;
             {
+                // Serialize consumption of the one-shot timer with rearming it.
+                // Otherwise an old expiration can be consumed just before a new
+                // deadline is armed, then act on the new playback session.
                 std::lock_guard<std::mutex> lock(state_mutex_);
-                const int64_t now_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
-                    std::chrono::system_clock::now().time_since_epoch()).count();
-                if (stop_at_unix_ms_ > 0 && now_ms >= stop_at_unix_ms_ &&
-                    (current_kind_ == "pink_noise" || current_kind_ == "starting")) {
-                    emit_started = current_kind_ == "starting" && noise_is_ready();
-                    was_playing = current_kind_ == "pink_noise" || emit_started;
-                    current_kind_ = "off";
-                    stop_at_unix_ms_ = 0;
-                    should_stop = true;
-                }
+                uint64_t expirations = 0;
+                ssize_t bytes_read;
+                do {
+                    bytes_read = read(deadline_fd_, &expirations, sizeof(expirations));
+                } while (bytes_read < 0 && errno == EINTR);
+                if (bytes_read != static_cast<ssize_t>(sizeof(expirations)) ||
+                    stop_at_unix_ms_ <= 0 ||
+                    (current_kind_ != "pink_noise" && current_kind_ != "starting"))
+                    continue;
+
+                // A readable timerfd means its absolute deadline expired. Do not
+                // re-check CLOCK_REALTIME here: a clock adjustment between the
+                // timer wake and this thread running must not discard the only
+                // expiration notification.
+                emit_started = current_kind_ == "starting" && noise_is_ready();
+                was_playing = current_kind_ == "pink_noise" || emit_started;
+                current_kind_ = "off";
+                stop_at_unix_ms_ = 0;
+
+                // Stop the PCM while still holding state_mutex_. A new play
+                // request cannot arm its stream before this stop applies to the
+                // stream whose deadline just expired.
+                request_noise_stop();
+                if (emit_started) emit_event("started", "command");
+                if (was_playing) emit_event("stopped", "deadline");
             }
-            if (!should_stop) continue;
-            if (emit_started) emit_event("started", "command");
-            request_noise_stop();
-            if (was_playing) emit_event("stopped", "deadline");
         }
     }
 
@@ -543,8 +562,24 @@ private:
                 bool stopping;
                 { std::lock_guard<std::mutex> lock(noise_mutex_); stopping = noise_stop_; }
                 if (stopping) break;
-                // Do not prepare/restart after an underrun: that would create the gap this stream is designed to avoid.
-                fail(std::string("continuous PCM stream stopped: ") + snd_strerror(static_cast<int>(written)));
+
+                // ALSA reports an underrun (EPIPE), suspend (ESTRPIPE), or
+                // interrupted write (EINTR) as a negative result. Treat those
+                // as transient stream conditions: recover the same PCM handle
+                // and continue from the first sample that was not written.
+                // Tearing down the thread here made a single transient xrun a
+                // permanent early stop, long before the requested deadline.
+                if (written == -EPIPE || written == -ESTRPIPE || written == -EINTR) {
+                    const int recover_result = snd_pcm_recover(pcm, static_cast<int>(written), 1);
+                    if (recover_result >= 0) {
+                        std::cerr << "Recovered continuous PCM stream after "
+                                  << snd_strerror(static_cast<int>(written)) << '\n';
+                        continue;
+                    }
+                    fail(std::string("cannot recover continuous PCM stream: ") + snd_strerror(recover_result));
+                } else {
+                    fail(std::string("continuous PCM stream stopped: ") + snd_strerror(static_cast<int>(written)));
+                }
                 break;
             }
             if (written == 0) continue;

@@ -250,13 +250,17 @@ class MpvPlayer:
         connection = self._socket
         if connection is None:
             return
-        stream = connection.makefile("r", encoding="utf-8", errors="replace")
+        stream = None
         try:
+            stream = connection.makefile("r", encoding="utf-8", errors="replace")
             for line in stream:
                 try:
                     message = json.loads(line)
                 except json.JSONDecodeError:
                     LOG.warning("Ignoring malformed MPV IPC message")
+                    continue
+                if not isinstance(message, dict):
+                    LOG.warning("Ignoring MPV IPC message that is not an object")
                     continue
                 request_id = message.get("request_id")
                 if isinstance(request_id, int):
@@ -270,12 +274,19 @@ class MpvPlayer:
                     continue
                 if message.get("event") == "end-file":
                     self._handle_end_file(message)
-        except OSError:
             if not self._closing.is_set():
-                LOG.exception("MPV IPC connection ended unexpectedly")
+                LOG.error("MPV IPC connection closed unexpectedly")
                 self._emit(PlayerEvent(kind="error", message="MPV IPC connection ended"))
+        except Exception:
+            if not self._closing.is_set():
+                LOG.exception("MPV IPC reader failed")
+                self._emit(PlayerEvent(kind="error", message="MPV IPC reader failed"))
         finally:
-            stream.close()
+            if stream is not None:
+                try:
+                    stream.close()
+                except (OSError, ValueError):
+                    LOG.exception("Could not close MPV IPC reader stream")
 
     def _handle_end_file(self, message: Mapping[str, object]) -> None:
         data = message.get("reason")
@@ -292,10 +303,14 @@ class MpvPlayer:
         process = self._process
         if process is None or process.stderr is None:
             return
-        for line in process.stderr:
-            message = line.rstrip()
-            if message:
-                LOG.info("mpv: %s", message)
+        try:
+            for line in process.stderr:
+                message = line.rstrip()
+                if message:
+                    LOG.info("mpv: %s", message)
+        except Exception:
+            if not self._closing.is_set():
+                LOG.exception("MPV stderr reader failed")
 
     def _emit(self, event: PlayerEvent) -> None:
         if self._event_handler is None:

@@ -168,12 +168,22 @@ class BedtimeService:
                 with self.state_lock:
                     self._request_audio_stop()
                     self.restore_audio_stop = False
-            elif self.session.phase in (Phase.PLAYLIST, Phase.PINK_NOISE):
+            elif self.session.phase is Phase.PLAYLIST:
                 with self.state_lock:
-                    if self.session.phase is Phase.PLAYLIST:
-                        self._play_current_track()
-                    else:
-                        self._play_pink_noise()
+                    self._play_current_track()
+            elif self.session.phase is Phase.PINK_NOISE:
+                # The WAV daemon has its own playback thread and deadline. On a
+                # controller restart, attach to that stream instead of issuing
+                # another play command, which would stop and restart the WAV.
+                daemon_status = self.audio.status()
+                if daemon_status.get("playing") is not True:
+                    LOG.info("Saved pink-noise session is not active in the daemon; returning to ready state")
+                    with self.state_lock:
+                        self.session = stop_session(self.session)
+                        self.paused = False
+                        self._clear_persisted_session()
+                else:
+                    LOG.info("Reattached to the existing pink-noise daemon stream")
             self.control_server = _ControlServer(CONTROL_SOCKET, self)
             self.control_thread = threading.Thread(
                 target=self.control_server.serve_forever,
@@ -201,13 +211,25 @@ class BedtimeService:
             # has an independent systemd unit and remains in its current state.
         if self.control_server is not None:
             if self.control_thread is not None and self.control_thread.is_alive():
-                self.control_server.shutdown()
-                self.control_thread.join(timeout=2)
-            self.control_server.server_close()
+                try:
+                    self.control_server.shutdown()
+                except Exception:
+                    LOG.exception("Could not shut down controller socket server")
+                try:
+                    self.control_thread.join(timeout=2)
+                except Exception:
+                    LOG.exception("Could not join controller socket thread")
+            try:
+                self.control_server.server_close()
+            except Exception:
+                LOG.exception("Could not close controller socket server")
             self.control_server = None
-        self.media_keys.close()
-        self.player.close()
-        self.audio.close()
+        for name, component in (("media keys", self.media_keys),
+                                ("MPV", self.player), ("audio client", self.audio)):
+            try:
+                component.close()
+            except Exception:
+                LOG.exception("Could not close %s", name)
         try:
             CONTROL_SOCKET.unlink(missing_ok=True)
         except OSError:
@@ -424,7 +446,12 @@ class BedtimeService:
             with self.state_lock:
                 if event.kind == "error":
                     LOG.error("Playback error for %s: %s", event.path, event.message)
-                    if isinstance(event, AudioEvent) and self.session.phase is Phase.PINK_NOISE:
+                    # Each playback backend owns only its own phase. In
+                    # particular, a late MPV event must not stop the fixed-WAV
+                    # daemon after the controller has moved on to pink noise.
+                    if isinstance(event, AudioEvent) and self.session.phase is not Phase.PINK_NOISE:
+                        continue
+                    if isinstance(event, PlayerEvent) and self.session.phase is not Phase.PLAYLIST:
                         continue
                     self.session = stop_session(self.session)
                     self.paused = False
