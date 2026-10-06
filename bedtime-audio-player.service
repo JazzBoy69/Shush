@@ -1,0 +1,20 @@
+[Unit]
+Description=Shush native continuous audio daemon
+After=local-fs.target sound.target
+
+[Service]
+Type=simple
+User=bedtime-audio
+Group=bedtime-audio
+WorkingDirectory=/opt/bedtime-audio
+ExecStart=/opt/bedtime-audio/bin/bedtime-audio-player
+StandardOutput=journal
+StandardError=journal
+Restart=no
+OOMScoreAdjust=-500
+CPUWeight=1000
+RuntimeDirectory=bedtime-audio-player
+RuntimeDirectoryMode=0700
+
+[Install]
+WantedBy=multi-user.target
