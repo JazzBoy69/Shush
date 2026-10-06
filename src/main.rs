@@ -81,7 +81,6 @@ fn entry() -> Result<()> {
 }
 struct Prepared {
     reading: Option<media::Samples>,
-    announcement: media::Samples,
 }
 fn run(
     options: Options,
@@ -114,6 +113,24 @@ fn run(
     let mut last_settings = engine.settings.clone();
     let mut input_dropped = false;
     let mut input_failed = false;
+    // All media, settings, clock, input and audio are ready at this point.
+    let ready = engine.apply(Command::CurrentTime, Utc::now());
+    handle_effects(
+        ready,
+        &mut engine,
+        &output,
+        &options,
+        &schedule,
+        &prepared_tx,
+        &mut preparation,
+        &mut generation,
+        &mut speech,
+        &mut last_settings,
+        &voices,
+    )?;
+    if let Some(prompt) = speech.take() {
+        output.send(audio::Message::Prompt(prompt))?;
+    }
     // No playback is restored automatically at startup.
     loop {
         let now = Utc::now();
@@ -158,14 +175,13 @@ fn run(
                 }
                 if id == generation && engine.state == State::Starting {
                     match result {
-                        Ok(prepared) => output.send(audio::Message::Begin {
+                        Ok(prepared) => output.send(audio::Message::Ready {
                             reading: prepared.reading,
-                            announcement: prepared.announcement,
                             id,
-                            deadline: engine.deadline.context("starting without deadline")?,
                         })?,
                         Err(error) => {
                             eprintln!("shush: cannot start: {error:#}");
+                            output.send(audio::Message::Cancel)?;
                             engine.abort_start();
                             speech = Some(voices.get("error.wav")?);
                         }
@@ -277,6 +293,12 @@ fn handle_effects(
                 let tracks = schedule.day(control::reading_day(Utc::now()))?.to_vec();
                 let deadline = engine.deadline.context("starting without deadline")?;
                 let announcement = voices.time("wake", settings.hour, settings.minute)?;
+                let announcement_length = announcement.len();
+                output.send(audio::Message::Prepare {
+                    announcement,
+                    id,
+                    deadline,
+                })?;
                 *preparation = Some(thread::Builder::new().name("shush-prepare".into()).spawn(
                     move || {
                         let result = (|| -> Result<Prepared> {
@@ -285,7 +307,7 @@ fn handle_effects(
                             } else {
                                 None
                             };
-                            let total = announcement.len()
+                            let total = announcement_length
                                 + reading.as_ref().map_or(0, |samples| samples.len());
                             let remaining = deadline
                                 .signed_duration_since(Utc::now())
@@ -296,10 +318,7 @@ fn handle_effects(
                                         < remaining as u64,
                                 "complete reading and announcement cannot finish before wake time"
                             );
-                            Ok(Prepared {
-                                reading,
-                                announcement,
-                            })
+                            Ok(Prepared { reading })
                         })();
                         let _ = tx.send((id, result));
                     },

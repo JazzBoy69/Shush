@@ -224,20 +224,22 @@ fn display_hour(hour: u32) -> u8 {
     }
 }
 
-/// Resolve the next real Chicago occurrence, accepting either half of the day.
-/// An impossible spring-forward time or a >12-hour fall-back interval is
-/// refused; it must never silently change the selected wake time.
+/// Select the next alarm by the local time shown at bedtime, then convert to UTC.
+/// A passed local time stays passed even if fall-back repeats that hour.
 pub fn next_deadline(now: DateTime<Utc>, settings: &Settings) -> Option<DateTime<Utc>> {
     if settings.validate().is_err() {
         return None;
     }
-    let date = now.with_timezone(&Chicago).date_naive();
-    let limit = now.checked_add_signed(Duration::hours(12))?;
+    let local_now = now.with_timezone(&Chicago).naive_local();
+    let date = local_now.date();
     let mut best = None;
     for offset in 0..=1 {
         let day = date.checked_add_signed(Duration::days(offset))?;
         for hour in [settings.hour as u32 % 12, settings.hour as u32 % 12 + 12] {
             let local = day.and_hms_opt(hour, settings.minute as u32, 0)?;
+            if local <= local_now {
+                continue;
+            }
             let candidates = match Chicago.from_local_datetime(&local) {
                 LocalResult::Single(t) => [Some(t), None],
                 LocalResult::Ambiguous(a, b) => [Some(a), Some(b)],
@@ -245,7 +247,7 @@ pub fn next_deadline(now: DateTime<Utc>, settings: &Settings) -> Option<DateTime
             };
             for candidate in candidates.into_iter().flatten() {
                 let utc = candidate.with_timezone(&Utc);
-                if utc > now && utc <= limit && best.is_none_or(|previous| utc < previous) {
+                if utc > now && best.is_none_or(|previous| utc < previous) {
                     best = Some(utc);
                 }
             }
@@ -348,19 +350,25 @@ mod tests {
         assert_eq!(Command::from_key(358, 2), None);
     }
     #[test]
-    fn dst_refuses_unreachable_time() {
+    fn dst_selects_next_existing_occurrence_without_a_duration_cap() {
         let settings = Settings {
             hour: 2,
             minute: 30,
             reading: false,
         };
-        assert_eq!(next_deadline(local(2026, 3, 7, 22, 0), &settings), None);
+        assert_eq!(
+            next_deadline(local(2026, 3, 7, 22, 0), &settings),
+            Some(local(2026, 3, 8, 14, 30))
+        );
         let settings = Settings {
             hour: 6,
             minute: 30,
             reading: false,
         };
-        assert_eq!(next_deadline(local(2026, 10, 31, 18, 31), &settings), None);
+        assert_eq!(
+            next_deadline(local(2026, 10, 31, 18, 31), &settings),
+            Some(local(2026, 11, 1, 6, 30))
+        );
     }
     #[test]
     fn reading_boundary_and_cycle() {
@@ -412,7 +420,7 @@ mod tests {
     fn unavailable_deadline_does_not_arm_and_failed_start_is_idle() {
         let now = local(2026, 3, 7, 22, 0);
         let mut engine = Engine::new(Settings {
-            hour: 2,
+            hour: 0,
             minute: 30,
             reading: false,
         });
@@ -420,6 +428,7 @@ mod tests {
         assert_eq!(engine.state, State::Idle);
         assert!(engine.deadline.is_none());
         let now = local(2026, 10, 5, 17, 0);
+        engine.settings.hour = 2;
         assert_eq!(engine.apply(Command::Play, now), vec![Effect::Begin]);
         engine.abort_start();
         assert_eq!(engine.state, State::Idle);

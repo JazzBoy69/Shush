@@ -16,6 +16,15 @@ use std::{
 
 const FRAMES: usize = 256;
 pub enum Message {
+    Prepare {
+        announcement: Samples,
+        id: u64,
+        deadline: chrono::DateTime<chrono::Utc>,
+    },
+    Ready {
+        reading: Option<Samples>,
+        id: u64,
+    },
     Begin {
         reading: Option<Samples>,
         announcement: Samples,
@@ -39,6 +48,7 @@ pub enum Event {
 #[derive(Clone, Copy, PartialEq, Debug)]
 enum Phase {
     Idle,
+    Preparing,
     Announcing,
     Reading,
     Noise,
@@ -57,7 +67,6 @@ struct Mixer {
     muted: bool,
     id: u64,
     deadline: Option<chrono::DateTime<chrono::Utc>>,
-    limit: Option<Instant>,
 }
 impl Mixer {
     fn new(noise: Samples) -> Self {
@@ -73,11 +82,31 @@ impl Mixer {
             muted: false,
             id: 0,
             deadline: None,
-            limit: None,
         }
     }
     fn command(&mut self, message: Message) {
         match message {
+            Message::Prepare {
+                announcement,
+                id,
+                deadline,
+            } => {
+                self.command(Message::Begin {
+                    reading: None,
+                    announcement,
+                    id,
+                    deadline,
+                });
+                self.phase = Phase::Preparing;
+            }
+            Message::Ready { reading, id } => {
+                if self.phase == Phase::Preparing && id == self.id {
+                    self.reading = reading;
+                    self.phase = Phase::Announcing;
+                } else {
+                    self.retired = reading;
+                }
+            }
             Message::Begin {
                 reading,
                 announcement,
@@ -86,7 +115,6 @@ impl Mixer {
             } => {
                 self.id = id;
                 self.deadline = Some(deadline);
-                self.limit = Some(Instant::now() + Duration::from_secs(12 * 60 * 60));
                 self.retired = self.reading.take();
                 self.reading = reading;
                 self.prompt = Some(announcement);
@@ -125,7 +153,6 @@ impl Mixer {
                 self.prompt = None;
                 self.position = 0;
                 self.deadline = None;
-                self.limit = None;
             }
             Message::Gain(volume, muted) => {
                 self.volume = volume.min(100);
@@ -135,9 +162,7 @@ impl Mixer {
         }
     }
     fn expire(&mut self, now: chrono::DateTime<chrono::Utc>) -> Option<u64> {
-        if self.deadline.is_some_and(|deadline| now >= deadline)
-            || self.limit.is_some_and(|limit| Instant::now() >= limit)
-        {
+        if self.deadline.is_some_and(|deadline| now >= deadline) {
             let id = self.id;
             self.command(Message::Cancel);
             Some(id)
@@ -146,6 +171,14 @@ impl Mixer {
         }
     }
     fn sample(&mut self, started: &mut bool, finished: &mut bool) -> i16 {
+        if self.phase == Phase::Announcing && self.prompt.is_none() {
+            self.phase = if self.reading.is_some() {
+                Phase::Reading
+            } else {
+                Phase::Noise
+            };
+            *started = true;
+        }
         let sample = if let Some(prompt) = &self.prompt {
             if let Some(sample) = prompt.get(self.prompt_position).copied() {
                 self.prompt_position += 1;
@@ -356,8 +389,93 @@ fn stream(
     Ok(())
 }
 #[cfg(test)]
+#[path = "audio_expire_tests.rs"]
+mod expire_tests;
+
+#[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn announcement_starts_before_loading_and_finishes_before_reading() {
+        for ready_early in [false, true] {
+            let mut mixer = Mixer::new(Arc::from([30]));
+            mixer.volume = 100;
+            mixer.command(Message::Prepare {
+                announcement: Arc::from([1, 2]),
+                id: 7,
+                deadline: chrono::Utc::now() + chrono::Duration::hours(1),
+            });
+            let mut frame = [0; 2];
+            assert_eq!(mixer.fill(&mut frame), (false, false));
+            assert_eq!(frame, [1, 1]);
+            if ready_early {
+                mixer.command(Message::Ready {
+                    reading: Some(Arc::from([10, 20])),
+                    id: 7,
+                });
+            }
+            assert_eq!(mixer.fill(&mut frame), (false, false));
+            assert_eq!(frame, [2, 2]);
+            if !ready_early {
+                assert_eq!(mixer.fill(&mut frame), (false, false));
+                assert_eq!(frame, [0, 0]);
+                mixer.command(Message::Ready {
+                    reading: Some(Arc::from([10, 20])),
+                    id: 7,
+                });
+            }
+            assert_eq!(mixer.fill(&mut frame), (true, false));
+            assert_eq!(frame, [10, 10]);
+            assert_eq!(mixer.fill(&mut frame), (false, false));
+            assert_eq!(frame, [20, 20]);
+        }
+    }
+
+    #[test]
+    fn noise_waits_for_immediate_announcement_without_repeating_it() {
+        let mut mixer = Mixer::new(Arc::from([30]));
+        mixer.volume = 100;
+        mixer.command(Message::Prepare {
+            announcement: Arc::from([1, 2]),
+            id: 7,
+            deadline: chrono::Utc::now() + chrono::Duration::hours(1),
+        });
+        mixer.command(Message::Ready {
+            reading: None,
+            id: 7,
+        });
+        let mut buffer = [0; 6];
+        assert_eq!(mixer.fill(&mut buffer), (true, false));
+        assert_eq!(buffer, [1, 1, 2, 2, 30, 30]);
+    }
+
+    #[test]
+    fn cancelling_or_expiring_loading_cannot_be_undone_by_ready() {
+        for expire in [false, true] {
+            let mut mixer = Mixer::new(Arc::from([30]));
+            mixer.volume = 100;
+            let now = chrono::Utc::now();
+            mixer.command(Message::Prepare {
+                announcement: Arc::from([1, 2]),
+                id: 7,
+                deadline: now + chrono::Duration::seconds(1),
+            });
+            if expire {
+                assert_eq!(mixer.expire(now + chrono::Duration::seconds(2)), Some(7));
+            } else {
+                mixer.command(Message::Cancel);
+            }
+            mixer.command(Message::Ready {
+                reading: Some(Arc::from([10, 20])),
+                id: 7,
+            });
+            let mut buffer = [0; 6];
+            assert_eq!(mixer.fill(&mut buffer), (false, false));
+            assert_eq!(buffer, [0; 6]);
+            assert_eq!(mixer.phase, Phase::Idle);
+        }
+    }
+
     #[test]
     fn playlist_then_noise_without_gaps_and_resume_without_announcement() {
         let mut mixer = Mixer::new(Arc::from([30, 40]));
