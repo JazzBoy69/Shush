@@ -1,6 +1,7 @@
 #![forbid(unsafe_code)]
 mod audio;
 mod control;
+mod hardware_volume;
 mod media;
 mod settings;
 

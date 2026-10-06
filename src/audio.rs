@@ -212,6 +212,10 @@ pub struct Output {
 impl Output {
     pub fn open(device: &str, noise: Samples) -> Result<Self> {
         ensure!(!noise.is_empty(), "empty noise loop");
+        // Optional device initialization must not prevent otherwise working playback.
+        if let Err(error) = crate::hardware_volume::initialize(device) {
+            eprintln!("shush: hardware volume unchanged: {error:#}");
+        }
         let pcm = PCM::new(device, Direction::Playback, true).context("opening ALSA output")?;
         {
             let hw = HwParams::any(&pcm)?;
