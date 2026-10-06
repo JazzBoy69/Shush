@@ -23,7 +23,7 @@ The remote adjusts software volume from 0 to 100%; 100% passes the original PCM 
 
 ## Build and install the appliance image
 
-The appliance uses a custom Buildroot 2026.08 Linux image for the Raspberry Pi 3 B+ in 64-bit mode. It packages the Rust application, all reading audio, pink noise, and voice prompts; no packages or speech engine need installing on the Pi. The SD image has passed partition, packaged-file integrity, driver and AArch64 asset-loading checks under QEMU. The preceding image worked with low volume; the FTP image produced no response and has been withdrawn. The startup USB mixer experiment is also withdrawn after the volume-only image remained unresponsive. A plain three-partition image is being rebuilt from the original working application source. Hardware endurance remains unverified.
+The appliance uses a custom Buildroot 2026.08 Linux image for the Raspberry Pi 3 B+ in 64-bit mode. It packages the Rust application, all reading audio, pink noise, and voice prompts; no packages or speech engine need installing on the Pi. The SD image has passed partition, packaged-file integrity, driver and AArch64 asset-loading checks under QEMU. The preceding image worked with low volume; the FTP image produced no response and has been withdrawn. The startup USB mixer experiment is also withdrawn after the volume-only image remained unresponsive. The plain three-partition image has been rebuilt from the original working application source; its physical operation still needs confirmation. Hardware endurance remains unverified.
 
 Use the built [SD image](dist/shush-pi3.img), with its [SHA-256 checksum](dist/shush-pi3.img.sha256) and [verification manifest](dist/shush-image.json). It includes the USB audio and eHome/MCEUSB receiver drivers. The image automatically selects the single MCEUSB receiver and USB speaker playback device at boot; no device identifiers need entering.
 
@@ -57,7 +57,7 @@ cargo run --locked -- check --root .
 cargo run --locked -- validate-media --root .
 ```
 
-`check` validates configuration and assets. `validate-media` fully decodes the scheduled media and checks its segment ranges. The latest native run passed all 1,055 referenced MP3s and 366 playlist checks with the selected Michael bank loaded, peaking at approximately 490 MiB RSS without swaps; this is a host measurement, not a Pi runtime measurement. The complete media lives in `Audio/`, with `Pink_Noise.wav` at the root. The image builder packages these files and validates the AArch64 application against them.
+`check` validates configuration and assets. `validate-media` fully decodes the scheduled media and checks its segment ranges. The latest native run passed all 1,055 referenced MP3s and 366 playlist checks with the selected Michael bank loaded, peaking at approximately 490 MiB RSS without swaps; this is a host measurement, not a Pi runtime measurement. Audio and image assets are excluded from Git. Reading recordings must be supplied locally in `Audio/`, with `Pink_Noise.wav` at the root; generated voice WAVs are prepared using the tracked generator and manifests. The image builder packages these files and validates the AArch64 application against them.
 
 ## Playback and failure prevention
 
