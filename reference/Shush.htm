@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Shush.css">
+    <title>Shush</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="button" id="Alarm" onclick="Alarm()">Alarm</div>
+            <span>Wake up at</span>
+            <div class="dropdown" onclick="OpenDropDown(this)">
+                <span id="hour">6</span>
+                <div class="dropdown-content">
+                    <p onclick="HourDropdown(this)">1</p>
+                    <p onclick="HourDropdown(this)">2</p>
+                    <p onclick="HourDropdown(this)">3</p>
+                    <p onclick="HourDropdown(this)">4</p>
+                    <p onclick="HourDropdown(this)">5</p>
+                    <p onclick="HourDropdown(this)">6</p>
+                    <p onclick="HourDropdown(this)">7</p>
+                    <p onclick="HourDropdown(this)">8</p>
+                    <p onclick="HourDropdown(this)">9</p>
+                    <p onclick="HourDropdown(this)">10</p>
+                    <p onclick="HourDropdown(this)">11</p>
+                    <p onclick="HourDropdown(this)">12</p>
+                </div>
+            </div>
+            <span>:</span>
+            <div class="dropdown" onclick="OpenDropDown(this)">
+                <span id="minute">30</span>
+                <div class="dropdown-content">
+                    <p onclick="MinuteDropdown(this)">00</p>
+                    <p onclick="MinuteDropdown(this)">15</p>
+                    <p onclick="MinuteDropdown(this)">30</p>
+                    <p onclick="MinuteDropdown(this)">45</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="button" id="AlarmNo" onclick="AlarmNo()">Alarm without reading</div>
+        </div>
+        <div class="row">
+            <div id="SnoozeButton" class="button" onclick="Snooze()">Snooze</div>
+            <span>For</span>
+            <div id="snoozeDown" class="increment" onclick="DecrementSnooze()">-</div> 
+            <span id="snoozeminutes">15</span>
+            <div id="snoozeUp" class="increment" onclick="IncrementSnooze()">+</div>
+            <span>minutes until</span>
+            <span id="snoozetime" data-hour="10" data-minute="0">10:00</span>
+        </div>
+        <div class="row">
+            <audio controls id="player" data-track="0" data-endtime="" onended="PlayNext()">
+                <source id="audioSource" src=""></source>
+            </audio>
+        </div>
+        <audio id="player2" preload="auto" src="Pink_Noise.wav" playsinline></audio>
+    </div>
+    <div id="data" data-mode="0" data-hour="6" data-minute="30" data-snooze="15"></div>
+</body>
+<script src="./schedule.js"></script>
+<script src="./Shush_v2.js"></script>
+<script>
+    window.onload = function()  
+    {
+        UpdateSnoozeTime();
+        setInterval(Tick, 1000);
+    }
+</script>
+</html>

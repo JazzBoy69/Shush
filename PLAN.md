@@ -1,254 +1,209 @@
-# Raspberry Pi Bedtime Audio Application — Implementation Plan
+# Shush alarm appliance implementation plan
 
-## Goal
+Build an audio-only Raspberry Pi appliance in Rust, using the behavior in `reference/` as its starting point. Its reliability objective is uninterrupted correct operation. Restarting or recovering after failure does not satisfy that objective.
 
-Replace the browser-based Shush implementation with a standalone Raspberry Pi application. The service starts at boot and waits at a ready UI. The user sets an alarm time, chooses whether the alarm runs with or without the reading playlist, then presses Play to begin. The reading playlist plays in order and transitions to looping pink noise. Playback stops at the alarm time. There is no snooze feature.
+This plan records the agreed behavior and implementation. The target is a Raspberry Pi 3 B+ with USB speakers and an HID remote receiver. Use America/Chicago for US Central time, with network clock synchronization available. Preserve the reference reading schedule and its existing date anchor.
 
-The application runs locally without a browser or network connection during normal playback, starts on boot, and reconciles its state after a restart. Treat `schedule.js` and `Shush_v2.js` as the legacy behavioral specification: preserve the useful user workflows and schedule semantics while omitting browser-specific power-management workarounds and snooze.
+## Voice revision
 
-## Source behavior discovered
+The user rejected eSpeak NG and selected Michael, a male American English neural voice. The exact mode labels are now “With reading” and “Without reading”; canonical time messages remain “Your alarm is set for …” and “The current time is ….” Every actively generated prompt goes through explicit phonemization, the shared `scripts/stress.py` pass, and neural synthesis with corrected phonemes. `scripts/neural_pipeline.py` is used by both the complete bank generator and active previews. The pass has a pure `postprocess_stress(text, phonemes)` API and records its version, raw/corrected phonemes, tokens, and correction metadata.
 
-`schedule.js` defines `readingSchedule`, a map of day indexes to ordered audio entries. Its data is not a weekday schedule: `ScheduleDay()` computes whole elapsed 24-hour periods from local April 5, 2020 at 03:00. Use modulo 366 to match all 366 keys (0 through 365), making the complete schedule reachable while preserving the anchor and elapsed-day semantics. The first migration phase creates a structured JSON copy with `cycle_days: 366`; the legacy browser player continues to read the JavaScript object until the native player is implemented.
+The complete 771-prompt corpus uses `shush-phrase-stress-v7`. All nonmode stress rules remain unchanged from verified v3. Introductions receive secondary prominence and “set” is unstressed. With nonzero minutes, the hour becomes secondary, leading “oh” is unstressed, and compound minutes use secondary tens plus a primary final unit, including “one.” Plain minutes carry primary stress at their lexical syllable; thirteen through nineteen receive final-teen primary stress. At zero minutes, the hour remains primary and “o'clock” becomes secondary. WITH receives primary stress and reading secondary. Without retains secondary prominence and reading primary in a single continuous model utterance. V7 adds a 40 ms hold at the model-aligned word boundary within that connected utterance, with 2 ms edge fades. V5's split-word 200 ms pause was rejected; v6 removed the pause without implementing the promised beat. Error sentences keep “start” and “diagnostics” primary, with neutral first-syllable “cannot” at secondary prominence and diagnostics' internal secondary retained. Per-word role/correction metadata records changes.
 
-Most entries are filenames under `./Audio/`. Some are comma-delimited clip specifications such as `nwt_01_Ge_E_11.mp3, 0, 94`; the current player interprets these as filename, start offset in seconds, and duration in seconds, then advances when playback time passes `start + duration`. Preserve these clips and sequence positions in a structured representation, not as filenames containing commas.
+V7 retains the same 770 stress-marker changes as v5: all 768 time prompts, the error indication, and With reading. All speech sounds are preserved and unknown text or audited phoneme drift is rejected. Active mode previews now target `voice-samples/stress-v7/modes/`; the two continuous-utterance samples and complete bank have been verified and installed. Earlier samples and audits remain references, with v5 explicitly archived as the rejected forced-pause approach. The raw audit carries the exact mode labels, with the earlier raw fixture preserved in `stress-audit-raw-v1-v3.json`. No pitch processing is involved. The inserted hold is checked in the actual WAV; the user accepted this delivery as passable. Keep the installed v7 voice revision.
 
-`Shush_v2.js` currently starts readings on a user action (`Alarm()`), selects the current schedule index, and moves to pink noise after the final entry. `AlarmNo()` starts pink noise directly. Pink noise comes from `Pink_Noise.wav` and loops. The configured alarm time is only checked while pink noise mode is active, so it does not currently cut off the reading playlist; the Pi version must enforce the alarm cutoff during either phase. The current UI stores a 12-hour hour/minute without AM/PM; the Pi interface must use an unambiguous time and timezone. Browser wake-lock, Web Audio fallback, and visibility-change handling are browser/mobile workarounds, not behavior to reproduce on the Pi.
+The complete Michael v7 bank is installed in `voice/`. Both mode messages use single model utterances, with primary WITH retained and a 40 ms aligned hold added to Without reading. Both full manifests and all 771 actual WAV bytes/hashes matched. The 769 nonmode WAVs are byte-identical to v6 and retain their independent reproduction proofs; the modes were freshly synthesized twice in separate sessions and match the listening samples exactly. `voice/reproduction-verification.json` records lineage, source hashes, and passed staged/installed native checks. The bank uses 163,577,914 bytes (156.0 MiB) of resident 44,100 Hz PCM within its 192 MiB limit, with no clipped samples. Eight tests pass, including the actual WAV's hold duration, placement, and WITH stress snapshot.
 
-The browser exposes OS/browser media-session play, pause, and stop actions. The Pi UI and remote controls should preserve those actions, and add the selected playlist mode and alarm-time adjustments described below. The remote receiver presents HID input; consume the resulting Linux input events rather than adding an IR or GPIO protocol decoder. Map Stop to immediate stop, and never expose snooze.
+All v7 generation and validation sessions have finished successfully. Prior banks remain in `voice-michael-v3/` through `voice-michael-v6/`; v5 is the rejected 200 ms pause reference and v6 has no added beat. eSpeak remains in `voice-espeak-baseline/`, and independent comparison copies remain in `voice-reproduction-v*/`. Earlier partial candidates are unused. Current/error/mode/wake use fresh seed-zero sessions with sorted inputs; full verification repeats all 771. Optional reuse validates complete proof, recognized independent-session recipe, environment, text/stress metadata and hashes before copying unchanged families. Active mode previews target v7; larger prior preview sets remain references. Historical comparisons require explicit replay. Preparation uses fixed two-thread CPU inference and deterministic computation; the Pi uses WAV assets only.
 
-## Platform and runtime assumptions
+## Restore working playback baseline (confirmed working on hardware)
 
-Use a Python 3 UI/session controller and a compiled native C++ audio daemon on Raspberry Pi OS. The daemon streams the installed pink-noise WAV through one persistent ALSA PCM stream at the WAV's exact sample rate; MPV is used only for scheduled reading tracks. Keep schedule logic independent of audio output.
+The user reports that the FTP image and the subsequent three-partition volume-only image both produced no response. FTP, writable audio and startup hardware mixer initialization are all removed. The exact original src/main.rs, src/media.rs, src/control.rs, Cargo.toml and Cargo.lock were recovered and match the earlier working-source hashes. Removed the mixer call from src/audio.rs and its module. Restore operation before attempting further volume changes. Existing startup software volume and remote behavior remain as in the original working application. The cause of the reported silence has not been confirmed. No added diagnostics/logging or full media decoding.
 
-Target Raspberry Pi OS Lite (64-bit). Do not add an application configuration file or setup screen for static system settings. Use the OS timezone and default audio device. Install the application, migrated schedule, readings, and `Pink_Noise.wav` at fixed documented paths under `/opt/bedtime-audio` and `/var/lib/bedtime-audio`; keep those paths as application/package constants. Configure timezone and audio output through Raspberry Pi OS.
+The plain baseline image is published at dist/shush-pi3.img: 3,356,491,776 bytes, SHA-256 4f0aa30e3ce67a61c61eb5030b3df79d508b5f683d13e364b6f095d7924ca4f1. Requires a 4 GB or larger card. Its three-partition layout, packaged startup/configuration/assets and ARM executable loading passed verification. All 18 Rust tests, formatting, strict Clippy and native/ARM release builds passed. Exact decoder/dependency restoration supports retaining prior complete media evidence in dist/pre-ftp-media-evidence.json rather than repeating decoding. Logs: /tmp/shush-baseline-arm-build.log, /tmp/shush-baseline-image.log, /tmp/shush-baseline-verification.log. Guarded publisher: /tmp/shush-publish-baseline.py. No build/verification/publication sessions remain active. Failed images are retained under dist/withdrawn-ftp and dist/withdrawn-volume and should not be flashed.
 
-There is no automatic bedtime start in the source code. Preserve a user-started flow: set the alarm time, toggle the selected mode between playlist and direct pink noise, then press Play. The alarm time is per-start input and the hard stop for either mode; it is not persistent application configuration. Use local OS time with explicit 12/24-hour presentation and define the date for after-midnight starts consistently (typically the date on which bedtime began). If the Pi is connected to a TV and picture-off is desired, put it behind an optional display-control interface and implement only for a confirmed TV protocol; audio must work when display control is unavailable.
+Git: user requested audio/image ignores and a commit, then expressly requested removing audio from the initial commit's history. Audio recordings/generated WAVs, disk/graphic images and sidecars are ignored while generator source, manifests and reproduction metadata remain tracked. Audio and the temporary session file were untracked without deleting local files. The initial commit was rewritten as a0c806b, and its discarded predecessor/audio objects were removed by reflog expiration and garbage collection. Verified that no audio or image files are in the initial commit; repository object storage is approximately 402 KiB. The follow-up commit records ignore rules and this status. An earlier Git index lock cleared before mutation; no Git job remains active.
 
-## Runtime behavior
+The user confirms this baseline works again. Prompts, noise and reading are all quiet even with the speaker knob at maximum and remote volume raised. Audio files must not be changed. No normalization or startup software-volume increase has been implemented.
 
-1. On startup, load and validate the installed schedule, read local time from the OS, initialize audio using the OS default output and available controls, and enter `IDLE`.
-2. The ready UI lets the user adjust the alarm time and select **Alarm with playlist** or **Alarm without playlist**. Channel Up/Down toggles the selected label. Play starts the selected mode immediately: playlist mode selects the current cycle day and begins at its first entry; no-playlist mode starts pink noise directly. Both choices share the same alarm cutoff.
-3. Play entries sequentially. For a clip entry, seek to `start_seconds` and stop after `duration_seconds`; for a normal entry, play to media completion. Handle player completion and error events rather than polling browser-style time updates.
-4. After the final entry, start `Pink_Noise.wav` as a continuous loop immediately. If the playlist runs to the alarm time, stop it and do not start noise.
-5. At alarm time, stop and unload audio regardless of whether a reading or pink noise is playing. Return the UI to its ready state; the boot-started service continues waiting for the next Play command.
-6. If the service restarts during an active session, recover the saved mode and alarm deadline only if valid. If persisted session state is absent or invalid, return to `IDLE` and require a fresh user start. Never resume or play past the alarm.
-7. Recalculate transitions using timezone-aware datetimes. Handle daylight-saving changes, clock corrections, and overnight sessions explicitly; do not assume every local day is 24 elapsed hours.
-8. Stop cleanly on service shutdown and ensure no audio process remains orphaned.
+Volume investigation: the application applies only software attenuation, starts at 50%, and reaches unchanged PCM at 100%. It opens the selected USB PCM directly through plughw and never sets the USB hardware mixer. The packaged kernel is Raspberry Pi Linux 6.12.61; its USB mixer assumes volume descriptors express 1/256 dB, and lacks the newer linear-volume quirk. An exact-model ALSA report describes EDIFIER R19U / MVSILICON.INC. / USB 0001:0201 with raw PCM range 0–999 incorrectly presented as a decibel range. Setting raw 999 restored sound for the reporter; maintainer Takashi Iwai suggested the linear-volume quirk. Primary report: https://lore-kernel.gnuweeb.org/alsa-devel/871pdc4iog.wl-tiwai@suse.de/T/ . Current kernel documentation describes mixer_playback_linear_vol (bit 27): https://www.kernel.org/doc/html/latest/sound/alsa-configuration.html . This is a strong hardware-control lead, not a confirmed measurement of this user's speaker revision or current mixer value. This workspace has no /proc/asound/cards or sound devices, so it cannot read the physical Pi's controls.
 
-## Schedule migration
+The removed generic initialization targeted non-positive dB values. For the reported R19U descriptor range, the old driver maps raw 0 to 0 dB and raw 999 to approximately +3.90 dB. Therefore that initialization could select the device's minimum rather than unity gain, explaining the failed volume image. This remains an inference until actual device controls are observed. Do not repeat generic 0 dB initialization or claim hardware confirmation. Correct handling must use the device's actual volume semantics and retain remote software-volume control. No executable, kernel, image or audio asset changed during this investigation.
 
-Create a one-time migration utility that converts the JavaScript map into JSON with explicit day index and entry fields, for example:
+## Automatic USB selection correction (completed)
 
-```json
-{
-  "0": [
-    {"file": "nwt_51_Col_E_03.mp3"},
-    {"file": "nwt_01_Ge_E_11.mp3", "start_seconds": 0, "duration_seconds": 94}
-  ]
-}
-```
+User authorized removing manual device setup and requested an error review first. Reviewed Rust startup/control/audio/settings/media and appliance mounts, kernel drivers, service enablement and packaging. Existing 18 Rust and five packaging tests pass. No additional confirmed playback defect found in reviewed paths. The manual helper's requirement for a by-id input path was also inappropriate for selecting the kernel MCEUSB rc input node. Review found the standard rc6-mce keymap has no PgUp entry. User selected Info instead; KEY_INFO (358) is present in that map and is now the current-time command. Physical remote key delivery still needs hardware verification.
 
-Migration requirements:
+Default boot config uses auto for both devices. A bounded startup launcher follows sysfs driver ancestry to select exactly one MCEUSB input node and one USB audio playback PCM, waits for usable character nodes and ALSA control/udev permissions, then execs Rust. It runs as shush under existing restrictions, does not reopen devices, and refuses ambiguity. Device numbers are discovered afresh each boot and are not persisted. Optional diagnostic overrides remain; normal flashing requires no configuration edits. The old manual-only helper is removed. The Rust key mapping and input test now use Info (KEY_INFO 358).
 
-- Preserve all entry ordering and exact filenames.
-- Parse the legacy `file, start, duration` string form; validate nonnegative numeric offsets and positive durations.
-- Validate that the 366 schedule keys are contiguous from 0 through 365 and use a 366-day selector cycle so every entry is reachable.
-- Check every referenced media file exists under the fixed installed media directory and report all missing files before enabling playback.
-- Keep the source `schedule.js` unchanged; retain a generated JSON schedule and a reproducible migration command in the project.
+Correction is complete: 18 Rust tests, strict Clippy, formatting, seven packaging tests, native/ARM release builds, final target ARM BusyBox discovery and full image verification passed. Fixtures cover renumbering, unrelated devices, absence, missing ALSA control nodes and ambiguity. Actual image checks confirmed the launcher bytes, executable mode 0755, service entry point, boot configuration, partitions, driver support, all assets and ARM application loading. All three full ARM media groups completed, covering every original day/file/segment. Native media decoding and voice generation were unchanged; earlier native full validation and reproducibility proofs remain applicable.
 
-## Controls and remote integration
+Published replacement: dist/shush-pi3.img, 3356491776 bytes, SHA-256 d2eb8be22ec0950eefd20dc0b8d17a2775a8cd7cd71a12eb61133a370e3f777c. The staged copy was checked against the build checksum, rehashed before publication, fsynced and atomically renamed. Its checksum, final manifest, kernel configuration and ARM logs accompany it in dist. Manifest records automatic device selection and KEY_INFO. No build or validation sessions remain active. Logs: /tmp/shush-info-native-build.log, /tmp/shush-info-arm-build.log, /tmp/shush-auto-info-image.log, /tmp/shush-auto-info-verification.log. The initial /tmp/shush-auto-device-image.log build was superseded when the user selected Info. Temporary guarded publisher is /tmp/shush-publish-auto-info.py. Physical Pi/USB/remote and overnight checks remain unverified.
 
-- Provide the designed full-screen graphical UI for a large display used at bedtime. Keep the ready screen calm and readable from across the room: a dark, warm brown background and panel, warm muted cream text, subdued amber accents, and no bright white surfaces or flashing effects. Scale the alarm time and controls to the display. Show the alarm time, selected **Alarm with playlist / Alarm without playlist** mode button, plus Play, Play/Pause, and Stop buttons. The service starts at boot and waits at this ready screen; remote Play starts the selected mode directly without menu or Enter navigation. As soon as playback starts, cover the display in pure black and keep it black while playing or paused. Restore the ready screen after Stop or the alarm cutoff; audio and remote controls continue operating while the display is black.
-- Use keyboard arrow keys to adjust the alarm time. On the remote, Channel Up/Down toggles the selected mode and updates the label between **Alarm with playlist** and **Alarm without playlist**.
-- The remote's Play key immediately starts the selected mode. Play/Pause toggles playback after start. Stop ends playback and returns the UI to its ready state; it does not stop the always-running service or schedule a restart.
-- The local CLI and private Unix socket are administration/diagnostic interfaces, not the designed user interface. Keep the socket off the network.
-- Consume the HID receiver through Linux evdev. Map `KEY_CHANNELUP` and `KEY_CHANNELDOWN` to playlist-mode toggle; `KEY_PLAY` to start the selected mode; `KEY_PLAYPAUSE` to playback toggle; `KEY_STOP` to stop; and arrow key events to alarm-time adjustment. `KEY_PAUSE` pauses and `KEY_PLAY` resumes while playback is paused. Do not add an IR/GPIO decoder or substitute a text key such as `N` for the media-key action.
-- Do not implement snooze controls, snooze timer/state, or legacy snooze UI.
+## Appliance image completion
 
-## Suggested project structure
+Implementation is authorized. Buildroot 2026.08 is the selected image builder (agent choice), targeting Pi 3 B+ AArch64 with systemd, ALSA, udev, wired DHCP and NTP. Boot and system/media partitions remain read-only; a 64 MiB ext4 partition contains saved settings only. /var and logs are bounded RAM storage. No application restart, watchdog reboot, swap, runtime package updates, TTS, desktop, or remote login service. Configuration is placed on the FAT boot partition for host-side editing. Root/media are packaged at build time; the Pi requires no manual package installation.
 
-```text
-bedtime-audio/
-  bedtime-audio.service
-  data/reading_schedule.json
-  bedtime_audio/
-    __init__.py
-    __main__.py
-    planner.py
-    audio_control.py
-    key_listener.py
-    ui.py
-    service.py
-  tools/migrate_schedule.py
-  native/audio_player.cpp
-```
+The appliance image is complete and verified. `dist/shush-pi3.img` is 3,356,491,776 bytes (3.13 GiB), SHA-256 `d2eb8be22ec0950eefd20dc0b8d17a2775a8cd7cd71a12eb61133a370e3f777c`. Its checksum, verification manifest, extracted kernel configuration, three ARM media validation logs, and native validation log are published under `dist/`. Both READMEs give direct image links and flashing instructions; ordinary installation requires no device configuration edits. No SD card was written and no physical Pi boot or USB audio/receiver operation is claimed; `hardware_boot_verified` remains false.
 
-The UI/session controller uses a directly runnable Python package rather than a built wheel: place the `bedtime_audio/` directory and `bedtime-audio.service` at `/opt/bedtime-audio/`. Build `native/audio_player.cpp` into `/opt/bedtime-audio/bin/bedtime-audio-player`; systemd runs that compiled daemon directly. The full-screen UI uses Tkinter and a local X server; keyboard and remote input use Raspberry Pi OS's `python3-evdev` package.
+Final checks passed: 18 Rust tests, strict Clippy, formatting, native and AArch64 release builds, seven appliance packaging regression tests, Python/shell syntax checks, and complete native/ARM scheduled-media validation. The verifier compared the real embedded partitions, kernel options, AArch64 executable, mount/service configuration, original schedule, all 771 voice WAVs, all 1,189 packaged MP3 hashes, pink noise, and boot files. Three complete-playlist ARM validation partitions covered all 366 original days, all 1,055 referenced MP3s and every segment; only two files were shared across groups. Each preserved its original playlists, repeated solely to satisfy the unchanged 366-day schema. Their largest playlists were 22.4, 25.8 and 23.8 minutes. Native validation with Michael v7 resident peaked at 501,744 KiB (490.0 MiB) RSS, with no swaps; physical runtime memory still needs measurement.
 
-Keep the planner pure: given session state, schedule, and a timezone-aware current time, it returns `idle`, `playlist`, `pink_noise`, or `stopped`, along with the alarm deadline and playlist index/clip details. The user flow is `IDLE → BEDTIME_SETUP → (PLAYLIST or PINK_NOISE) → STOPPED`; playlist completion changes `PLAYLIST → PINK_NOISE`, and alarm time or explicit Stop ends either playback state. The service executes that plan and reacts to player/control events.
+Media preparation now uses bounded geometric capacity growth rather than exact reallocation on every MP3 frame. The new test verifies infrequent growth, the hard PCM ceiling, and rejection beyond the limit. Voice assets and playback semantics are unchanged. The final kernel contains built-in USB host, USB audio, HID/evdev, LAN78XX Ethernet, rc-core/MCEUSB/RC6/MCE-keyboard decoding and hardware RNG. Static systemd dependency verification passed with the actual factory-generated `/var` mount; the older host checker warned only about newer upstream systemd options. `/var` is bounded RAM storage, settings have their own writable filesystem, and no process restart or watchdog reboot is configured.
 
-## Raspberry Pi OS and MPV setup instructions
+All build/validation sessions have completed. Output is `/tmp/shush-image-build`, source `/tmp/buildroot-2026.08`, downloads `/tmp/shush-image-downloads`. The device/Info correction logs are listed above; earlier media-allocation/native proof logs are `/tmp/shush-app-final.log`, `/tmp/shush-image-allocation-fix.log`, `/tmp/shush-image-verification-final.log`, and `/tmp/shush-native-media-final.log`. Host cpio was extracted into `/tmp/shush-host-tools/usr/bin`; no system packages were installed. Buildroot timezone dataset is `northamerica`, with local zone America/Chicago. Future builds should use the supplied builder with a fresh work directory. Do not repeat passed checks without a change, failure or unresolved concern.
 
-Use Raspberry Pi OS Lite (64-bit) as the target. The application has no static settings file: set the OS timezone and audio route on the Pi, enter the alarm time for each session, and install media at the documented fixed paths.
+## Implementation status
 
-### 1. Set the Pi's local time zone
+Implementation is authorized and the Rust application is implemented in `src/`. `README.md` contains build, deployment, controls, resource bounds, and hardware acceptance instructions. `deploy/` contains the service and device configuration template. `scripts/generate_neural_voice.py`, `scripts/stress.py`, and `voice/manifest.json` define the selected reproducible voice assets.
 
-On the Pi, list valid timezone names and set the one for the installation:
+The runtime uses resident mono 44,100 Hz PCM for reading and noise, a preloaded voice bank, a separate preparation worker, and a dedicated ALSA output thread. The output thread owns deadline enforcement independently of HID input and settings persistence. Playlist buffers are retired to the control thread for cleanup. HID commands follow the established mapping; settings writes use validated, synced atomic replacement. The original elapsed-time schedule calculation and Chicago date anchor are retained.
 
-```sh
-timedatectl list-timezones
-sudo timedatectl set-timezone Area/City
-timedatectl status
-```
+Host validation has passed 18 behavior/resource tests, including native ALSA null-output deadline handling, strict Clippy checks, a release build, and exact regeneration of all 771 WAV prompts. All 1,055 referenced MP3 files and all scheduled segments have been decoded successfully; the image packages all 1,189 supplied MP3 files and verifies their integrity. Validation at the final 44,100 Hz output rate passed, including preparation of the largest real playlist. The longest playlist is 25.8 minutes and uses 130.4 MiB PCM; the fixed playlist budget is 192 MiB, and the current resident Michael voice bank uses 156.0 MiB within its separate 192 MiB limit.
 
-Replace `Area/City` with the intended IANA timezone. Verify the displayed local time before enabling the bedtime service; the planner reads OS local time.
+The remaining external validation is on the actual Pi, USB speakers, and HID receiver. No physical hardware playback or overnight endurance result is claimed. Next steps are to deploy using `README.md`, validate the deployed media, exercise the remote, and measure overnight audio continuity and silence timing.
 
-### 2. Install MPV and identify the OS audio output
+Verification commands are `cargo test --locked`, `cargo clippy --locked --all-targets -- -D warnings`, `cargo build --release --locked`, `target/release/shush check --root .`, `target/release/shush validate-media --root .`, and `/tmp/shush-neural-voice-venv/bin/python scripts/generate_neural_voice.py --output voice --verify`; `python3 scripts/test_stress.py` checks the complete stress policy and preparation guards. In this workspace, dependencies are cached with `CARGO_HOME=/tmp/shush-cargo`, allowing offline Cargo checks. The first 44,100 Hz validation found Psalm 119 exceeded the initial 96 MiB single-file limit. The single-file bound now matches the 192 MiB playlist bound, and native-rate MP3 decoding avoids an unnecessary copy. Final media validation completed successfully in 2 minutes 56 seconds, with a host peak resident size of 404.1 MiB while the earlier 132.6 MiB eSpeak bank was resident and the largest real playlist was prepared. That historical peak used the old bank. The latest native full validation with Michael v7 and bounded geometric allocation passed at 501,744 KiB (490.0 MiB) peak RSS with no swaps; the Michael bank itself uses 156.0 MiB PCM. No validation sessions remain active. A subsequent arithmetic correction uses wide intermediate values for 32-bit Pi portability; it does not change the validated host sample counts.
 
-Install MPV and ALSA command-line tools from the Raspberry Pi OS repositories:
+## Agreed behavior
 
-```sh
-sudo apt update
-sudo apt install --no-install-recommends mpv alsa-utils python3-evdev python3-tk xserver-xorg xinit
-```
+- USB speakers provide playback and spoken configuration feedback. There is no screen.
+- A remote control receiver emits HID keycodes. The command mapping is recorded below.
+- The user selects either the complete daily reading playlist followed by pink noise, or pink noise immediately.
+- Reading plays in full. The intended use places reading completion before the wake deadline; playback does not cut the playlist short.
+- Pink noise continues until the selected wake time, then stops. Silence is the wake signal inherited from Shush.
+- Changing the reading option announces the selected option.
+- Up and down arrows adjust hours. Left and right arrows adjust minutes in 15-minute increments, with spoken indications of the selected time.
+- Wake time has no AM/PM selection. Use the next future alarm time according to the local time displayed at bedtime. Fall-back must not revisit an alarm time already passed at bedtime. There is no maximum session duration. The configured time remains in use until the user changes it.
+- Starting playback from idle announces the configured wake time before reading or pink noise begins. Resuming paused playback does not reannounce it.
+- Pause pauses audio and leaves the original wake deadline running. Resume continues reading from its paused position or resumes pink noise, with the deadline unchanged.
+- While paused, the user may change settings and request the current time.
+- The reading option and configured wake time persist across power-off.
+- A command speaks the current time while idle or paused. It is disabled while reading or pink noise is playing.
+- Configuration and its voice feedback are available while idle or paused. There are no spoken prompts or overlays while reading or pink noise is playing.
+- Volume, mute, play, pause, and stop media commands work.
+- The accept or OK button acts as play/pause. Stop cancels current playback and its wake deadline; it retains the configured wake time.
+- There is no snooze.
+- Voice messages are packaged as reproducible WAV assets; speech generation happens during preparation or the build, not during appliance operation.
 
-Configure the desired output at the OS level. On Raspberry Pi OS Desktop, select HDMI, headphone, or USB audio from the desktop audio control. On Lite, inspect ALSA devices and test the intended output before installing the service:
+## Remote key mapping
 
-```sh
-aplay -l
-speaker-test -c 2 -t wav
-```
+| Linux keycode | Command | Behavior |
+| --- | --- | --- |
+| KEY_OK | toggle | Play or pause |
+| KEY_PLAYPAUSE | toggle | Play or pause |
+| KEY_PLAY | play | Start or resume playback |
+| KEY_PAUSE | pause | Pause playback |
+| KEY_STOP | stop | Cancel playback and its wake deadline |
+| KEY_VOLUMEUP | volume_up | Increase volume |
+| KEY_VOLUMEDOWN | volume_down | Decrease volume |
+| KEY_MUTE | mute_toggle | Toggle mute |
+| KEY_CHANNELUP | mode | Toggle reading before noise or noise immediately |
+| KEY_CHANNELDOWN | mode | Toggle reading before noise or noise immediately |
+| KEY_LEFT | alarm_left | Decrease wake minutes by 15 |
+| KEY_RIGHT | alarm_right | Increase wake minutes by 15 |
+| KEY_UP | alarm_up | Increase wake hour |
+| KEY_DOWN | alarm_down | Decrease wake hour |
+| KEY_INFO | current_time | Speak current time while idle or paused |
 
-Stop `speaker-test` with Ctrl+C. If an audio HAT or other non-default device is used, follow that device's OS driver/setup instructions and make it the system default. Do not add an audio-device selector to the app or pass a device override to MPV. Raspberry Pi OS documents its [audio output choices](https://www.raspberrypi.com/documentation/computers/configuration.html#change-audio-output) and notes that Lite is intended for headless audio use in its [audio documentation](https://www.raspberrypi.com/documentation/accessories/audio.html).
+Mode and wake-time changes are available while idle or paused, with voice feedback. Starting from idle announces wake time; resuming does not. Info requests the current time while idle or paused; it is disabled while reading or pink noise is playing.
 
-### 3. Install the application and media at fixed paths
+## Reference material
 
-- Create a dedicated service account and the fixed directories, then copy the application package and unit from the repository:
+`reference/Shush.htm` and `Shush.css` supply the original controls and visual layout. The appliance carries forward the relevant behavior through the remote and voice interface.
 
-```sh
-sudo useradd --system --home-dir /var/lib/bedtime-audio --create-home --shell /usr/sbin/nologin bedtime-audio
-sudo install -d -o root -g root -m 0755 /opt/bedtime-audio/data
-sudo install -d -o root -g root -m 0755 /opt/bedtime-audio/bedtime_audio
-sudo install -d -o bedtime-audio -g bedtime-audio -m 0750 /var/lib/bedtime-audio/Audio
-sudo install -o root -g root -m 0644 bedtime_audio/*.py /opt/bedtime-audio/bedtime_audio/
-sudo install -o root -g root -m 0644 reading_schedule.json /opt/bedtime-audio/data/reading_schedule.json
-sudo install -o root -g root -m 0644 bedtime-audio.service /etc/systemd/system/bedtime-audio.service
-sudo cp -a Audio/. /var/lib/bedtime-audio/Audio/
-sudo install -o bedtime-audio -g bedtime-audio -m 0644 Pink_Noise.wav /var/lib/bedtime-audio/Pink_Noise.wav
-sudo chown -R bedtime-audio:bedtime-audio /var/lib/bedtime-audio/Audio
-sudo chmod -R u=rwX,g=rX,o= /var/lib/bedtime-audio/Audio
-sudo python3 -m venv --system-site-packages /opt/bedtime-audio/.venv
-```
+`reference/Shush_v2.js` contains reading playback, pink noise playback, and time checks. The Rust implementation will replace browser execution, DOM state, and browser audio with explicit appliance state and native audio output.
 
-Run those commands from the repository root on the Pi (or adjust only the source side if the checkout is elsewhere). Keep application code owned by root and readable by the service; media is readable by the service account.
+`reference/reading_schedule.json` contains all 366 schedule days and 1,118 track entries, including 125 entries with start and duration fields. It matches `reference/schedule.js`. The schedule anchor is local time at 03:00 on 5 April 2020. Reading audio is available in the repository at `Audio/`, and the pink noise asset is `Pink_Noise.wav` at the repository root.
 
-For keyboard and remote controls, ensure the `bedtime-audio` account can read the relevant `/dev/input/event*` device. On Raspberry Pi OS installations that assign these devices to the `input` group, add the service account to that existing group with `sudo usermod -aG input bedtime-audio`, then restart the controller so systemd applies the group membership. Use `evtest` to confirm the expected `KEY_*` events, including Volume Up, Volume Down, and Mute.
+## Proposed software structure
 
-- Install the migrated schedule with the application under `/opt/bedtime-audio/data/reading_schedule.json`.
-- Install readings under `/var/lib/bedtime-audio/Audio/` and `Pink_Noise.wav` at `/var/lib/bedtime-audio/Pink_Noise.wav`.
-- Create a dedicated unprivileged `bedtime-audio` account. Make the application and media readable by that account; keep the media read-only to the service.
-- Ensure the service account can access the OS audio device. On Lite/ALSA, inspect `/dev/snd` ownership and add the service account to the device's existing access group if required.
-- Before enabling the service, verify MPV can play a known installed track as the service account, using the same default output:
+Use a small Rust application with a deterministic control core. Separate the rules for playback and deadlines from Linux input, clock, audio, and storage access so that those rules can be tested without hardware.
 
-```sh
-sudo -u bedtime-audio mpv --no-config --no-terminal --no-video --audio-display=no \
-  /var/lib/bedtime-audio/Audio/<known-track>.mp3
-```
+The control core owns the selected reading option, wake time, active playback session, playlist position, volume, and mute state. Represent idle, reading, pink noise, and paused playback explicitly. Define each remote command in each state before implementing it. Configuration commands and the current-time command are available while idle or paused. They cannot produce speech while reading or pink noise is playing. Pause retains playback position and the original wake deadline; resume continues audio without repeating the wake-time announcement.
 
-### 4. Create the systemd service and private MPV IPC directory
+Map HID events to application commands using the mapping below. Handle key press, release, and repeat deliberately so that holding OK cannot repeatedly start and stop playback. Keep input traffic bounded and prevent it from delaying audio work.
 
-The MPV adapter uses the local Unix socket `/run/bedtime-audio/mpv.sock`. MPV's JSON IPC is intended for local control and is explicitly not a secure network protocol; never expose it through TCP or a network socket. The directory must be accessible only to the service account. The service starts a local X server on `/dev/tty1` for its full-screen graphical UI, conflicts with the login getty on that console, and passes `-nolisten tcp` so X accepts no network connections.
+Use native Linux audio output. Select the audio backend for the USB speakers after confirming the Pi and audio device. Feed it from bounded buffers; avoid allocation, file access, decoding, logging, and blocking locks in the audio callback or equivalent output loop. Prepare reading audio ahead of consumption and load the pink noise loop before starting the session.
 
-In `bedtime-audio.service`, include these service settings and the final application entry point:
+Resolve the selected 12-hour wake time by the displayed local bedtime without an AM/PM setting or elapsed-duration cutoff. A local alarm time already passed at bedtime is skipped even if fall-back repeats it. Define midnight, timezone, daylight-saving changes, and clock correction behavior explicitly. A delayed control iteration must still recognize a reached deadline instead of relying on equality with one particular minute. Freeze the chosen daily playlist for the session so that crossing a schedule boundary cannot change its remaining tracks.
 
-```ini
-[Unit]
-Description=Raspberry Pi bedtime audio
-After=local-fs.target sound.target getty@tty1.service
-Conflicts=getty@tty1.service
+## Reproducible voice assets
 
-[Service]
-User=bedtime-audio
-Group=bedtime-audio
-WorkingDirectory=/opt/bedtime-audio
-ExecStart=/usr/bin/startx /opt/bedtime-audio/.venv/bin/python -m bedtime_audio service -- :0 vt1 -keeptty -nolisten tcp
-Environment=TERM=linux
-StandardInput=tty-force
-StandardOutput=journal
-StandardError=journal
-TTYPath=/dev/tty1
-TTYReset=yes
-TTYVHangup=yes
-TTYVTDisallocate=yes
-Restart=on-failure
-RestartSec=3
-RuntimeDirectory=bedtime-audio
-RuntimeDirectoryMode=0700
+Maintain a manifest of prompt text, filenames, voice source, generator version, and audio settings. Pin the generation environment and use a deterministic source or retain fixed source recordings if the chosen speech engine cannot reproduce identical output.
 
-[Install]
-WantedBy=multi-user.target
-```
+Produce WAV assets in the playback format, with consistent levels and no accidental leading or trailing gaps. Include reading-option announcements and the phrases needed to assemble selected-time, playback-start, and current-time messages. Validate that every supported time can be spoken from the packaged assets. Network access and a speech engine are unnecessary at runtime.
 
-`RuntimeDirectory=bedtime-audio` makes systemd create `/run/bedtime-audio` owned by the service account before startup and remove it when the service stops. `RuntimeDirectoryMode=0700` prevents other accounts from connecting to MPV's IPC socket. Do not manually create this transient directory. This is the systemd [runtime-directory mechanism](https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html#RuntimeDirectory=).
+## Failure prevention
 
-The adapter must launch MPV with `--no-config`, `--no-terminal`, `--no-video`, `--audio-display=no`, and `--input-ipc-server=/run/bedtime-audio/mpv.sock`. `--no-config` avoids requiring MPV-specific app configuration; MPV uses the OS audio default. Its [JSON IPC](https://mpv.io/manual/stable/#json-ipc) supports local command/event exchange, and its [loadfile options](https://mpv.io/manual/stable/#list-of-input-commands) support per-track clip ranges and file-loop settings.
+Identify causes of missed or incorrect silence deadlines, interrupted noise, incomplete reading, and unintended remote actions before choosing implementation details. Treat premature silence as an important failure because silence is also the intended wake signal.
 
-After installing the unit, `enable --now` starts it immediately and enables it to start automatically during normal boot through `multi-user.target`. Confirm the enabled state before rebooting:
+- Validate the schedule, segment ranges, voice assets, required reading audio, clock setup, and audio configuration before starting a session.
+- A failed playback preflight leaves the appliance idle and plays the packaged error indication. It does not announce a successfully started session.
+- Bound memory, queues, file handles, and diagnostic output. Keep configuration writes and diagnostics outside the audio and timing paths.
+- Review production paths and dependencies for panics, unchecked arithmetic, unbounded work, and blocking operations. Rust memory safety is only one part of the requirement.
+- Use network clock synchronization and America/Chicago for local time. Keep reading and noise playback independent of network services.
+- Plan storage layout to minimize routine writes and prevent logs from filling storage. Evaluate a read-only operating-system image and a small settings area.
+- Select cooling, storage, clock hardware, and USB audio configuration against the agreed operating conditions.
+- Establish measurable limits for deadline accuracy, audio gaps, resource use, and continuous operating duration. Verify them on the actual appliance.
 
-```sh
-sudo systemctl daemon-reload
-sudo systemctl enable --now bedtime-audio.service
-systemctl status bedtime-audio.service
-systemctl is-enabled bedtime-audio.service
-journalctl -u bedtime-audio.service -f
-```
-
-Use `journalctl` to diagnose missing media, audio-device access failures, MPV startup errors, and IPC problems. The alarm time remains a session input; do not add it to the unit or an application config file.
-
-### 5. Start and control bedtime audio
-
-The service starts at boot and waits on the ready UI. Set the alarm with the UI's arrow-key controls. Channel Up/Down selects whether the label reads **Alarm with playlist** or **Alarm without playlist**; press the remote's Play key to start that selection. Play/Pause toggles playback, and Stop ends playback and returns to the ready UI. The CLI below is for local administration and diagnostics, not the normal bedtime interaction:
-
-```sh
-sudo -u bedtime-audio /opt/bedtime-audio/.venv/bin/python -m bedtime_audio start --alarm 06:30
-sudo -u bedtime-audio /opt/bedtime-audio/.venv/bin/python -m bedtime_audio status
-sudo -u bedtime-audio /opt/bedtime-audio/.venv/bin/python -m bedtime_audio stop
-```
-
-To skip readings and start pink noise immediately from an administrative shell, add `--mode pink-noise` to the `start` command. Keep the local Unix control socket off the network.
+Process restart policies and watchdog reboots are not the reliability strategy for this project. Validation must show that the playback session continues correctly within the specified operating conditions.
 
 ## Implementation sequence
 
-1. Convert and validate `readingSchedule`; preserve the anchor, use a 366-day cycle to reach keys 0 through 365, and retain ordering and clip ranges.
-2. Implement the deterministic session state machine for idle/setup, playlist, pink noise, and stopped. Take timezone and audio output from Raspberry Pi OS; accept the alarm time only as a per-session user input. Define overnight/session-date and daylight-saving behavior.
-3. Implement a compiled native audio daemon. Stream the pink-noise WAV from memory through one ALSA PCM stream at its exact sample rate; use MPV only for scheduled reading tracks. Keep the private Unix-socket command/event protocol for the Python controller.
-4. Implement the long-running Python UI/controller, log output, local status/control, and controller restart without stopping playback. Scheduled cutoff is owned by the separate native timing daemon.
-5. Implemented: the designed graphical UI and remote actions. Arrow keys adjust the alarm; Channel Up/Down toggles the playlist choice label; Play starts the selected mode; Play/Pause toggles playback; Stop stops playback and returns to ready UI. Media Volume Up/Down and Mute adjust the output level.
-6. Package and deploy as a `systemd` service using the setup instructions above. Do not require an app configuration file.
-7. Verify deterministic schedule/clip conversion and planner behavior with a fake clock and mock player, then verify on Pi hardware: bedtime setup, both start choices, phase transitions, clip boundaries, noise looping, cutoff during both playlist and noise, restart recovery, DST/time changes, missing media, audio failure, media keys, and confirmed remote/display integrations if applicable.
+1. Resolve control semantics, time-setting behavior, hardware, and operating conditions. Record a state and command table and measurable acceptance criteria.
+2. Inspect the receiver and record its keycodes, repeat behavior, and device identity. Confirm the audio device and output format on the selected Pi.
+3. Implement the Rust control core and test full-playlist transitions, deadline handling, remote commands, and suppression of speech during playback.
+4. Prepare and validate the reading schedule, reading audio, pink noise loop, and reproducible voice assets.
+5. Integrate HID input, native audio, clock handling, and saved settings. Bound resource use and keep nonessential work outside playback timing.
+6. Package the appliance OS and application with only the required services, deliberate storage writes, and documented hardware setup.
+7. Run hardware acceptance and endurance tests. Measure playback continuity, deadline accuracy, memory use, and behavior under repeated input, CPU and storage load, and the agreed network conditions.
 
-## Current implementation status
+## Remaining preparation
 
-- Implemented: schedule JSON migration and utility; fixed 366-day selector; pure session planner; compiled C++ sound daemon; direct ALSA PCM stream loops the pink-noise WAV in memory at its fixed sample rate; MPV handles scheduled reading tracks; private Unix control socket; media volume and mute controls; separate C++ timing daemon that arms an absolute Linux timer before durably persisting and acknowledging a deadline, then sends the scheduled stop directly to the sound daemon; Python UI/controller integration and timing daemon installation instructions.
-- Completed: full-screen Tkinter UI with visible mode, Play, Play/Pause, and Stop buttons; Left/Right adjust minutes by 15; Up/Down adjust hours; Channel Up/Down toggles playlist mode; Play starts the selected mode; the display turns pure black during playback or pause and Stop/alarm cutoff restore the ready screen. The Linux input adapter maps keyboard arrows and remote events through evdev.
-- Still needed: confirming the receiver's HID-to-Linux key mapping and device permissions on the Pi; on-device UI, timing, playback, and boot verification.
-- No application settings file is used. The OS provides timezone and default audio output; alarm time is entered for each session. There is no snooze behavior.
+Device selection is automatic; verify the actual receiver emits the established keycodes during hardware acceptance. Hardware models are Edifier R19U USB speakers and HP OVU400102 eHome IR receiver. Speaker USB audio is confirmed by manufacturer documentation. The pinned kernel mceusb driver supports HP/eHome receivers and outputs evdev keys; preserve the agreed application keycode mapping. Explicit built-in rc-core/MCEUSB/RC6/MCE-keyboard decoding is now added to linux.fragment. The final kernel rebuild passed and the required built-in options were extracted from the generated kernel; final image generation, the ARM asset check, and full ARM media validation passed. Device identifiers and observed keys still need confirmation on the actual unit. The user confirmed wired Ethernet; keep wired DHCP/NTP and omit Wi-Fi services/drivers.
 
-## Acceptance criteria
+Image assembly and full verification are complete. Flash the published image, then test the physical Pi/USB/HID combination. Use the README's one-second deadline tolerance and seven consecutive overnight sessions as initial acceptance criteria; measure gaps, memory, temperature and load behavior. Software/asset checks do not establish physical hardware reliability.
 
-- Normal operation requires no browser or network access.
-- Schedule selection matches the legacy anchor and reaches all 366 schedule entries through the 366-day cycle.
-- All daily tracks play in the specified order, and clip entries honor their start and duration values.
-- Pink noise starts after playlist completion and loops until the configured alarm time.
-- The native timing daemon arms the absolute deadline before acknowledging a session start, and stops audio even during a long playlist; no new audio begins after the cutoff.
-- Restart behavior follows the documented policy and never plays past alarm time.
-- Missing files, invalid schedule entries, and player/device failures are clearly logged and cannot silently produce an unintended session.
-- Local controls and supported OS media keys work; any programmed remote is tied to confirmed hardware/protocol.
-- There is no snooze button, snooze timer, snooze state, or snooze behavior.
-- Installation, service management, and diagnostics are documented and usable on Raspberry Pi OS.
+## R19U driver-only linear-volume trial (reverted)
 
-## Open decisions for implementation
+User requested trying the newer correction with no other changes. Backported the upstream linear-volume TLV mapping from commit 3787a6a10e707fca1a61d364a7c256c59823ed59 into the pinned Raspberry Pi 6.12.61 USB mixer driver. Enabled only for USB 0001:0201, product EDIFIER R19U (case-insensitive), playback volume, and actual raw range 0–999. Added the reproducible kernel patch directory to the appliance defconfig. Kernel build passed and embedded kernel configuration matches the working baseline exactly. This patch changes ALSA volume metadata only; it does not initialize hardware gain. The current application does not consume that metadata, so this change alone does not make the software volume command control the USB mixer. Do not describe it as a verified loudness fix.
 
-- Verify which Linux evdev key codes the HID receiver emits for each remote button.
-- Identify the TV model/protocol if picture-off control is required.
-- Confirm whether startup recovery should resume a saved playlist position or return to `IDLE` when session state is unavailable.
+Assembled image by replacing only Image in the original boot partition. Every other boot file retains identical contents; all image bytes outside boot are identical to the confirmed working baseline. No application, audio, service or settings changes. Complete media decoding and application rebuild/tests were not repeated. Original working image retained at dist/shush-pi3-before-r19u.img (SHA-256 4f0aa30e3ce67a61c61eb5030b3df79d508b5f683d13e364b6f095d7924ca4f1). Logs: /tmp/shush-r19u-kernel.log, /tmp/shush-r19u-image.log, /tmp/shush-r19u-publication.log. Assembly/publication scripts: /tmp/shush-r19u-image.py and /tmp/shush-publish-r19u.py. User reported no volume change; trial reverted.
+
+Published driver-only trial at dist/shush-pi3.img: 3,356,491,776 bytes; SHA-256 3d62c08edd8375d55df8b813b32f5203632e739596c67719e1c8c2819a9839ee. Publication checks passed. No running build/assembly/publication sessions remain.
+
+## R19U actual hardware-volume fix (confirmed working on Pi)
+
+User reports driver-only trial changed nothing and requests reverting it and making the fix. Removed the driver patch and restored the defconfig to its original patch directory; restored exact baseline Image and boot partition in the assembled SD image. Added src/hardware_volume.rs and one startup call before PCM output opens. For the selected plughw card, resolves ALSA numeric/persistent identifier to sysfs and checks the USB product is EDIFIER R19U. Opens only that card’s PCM mixer control, requires the reported raw range 0–999, sets raw 999 on all channels and enables the hardware playback switch. Reads the setting back. Never uses misleading dB metadata; remote software volume, initial 50%, mute, media and other behavior remain unchanged. Initialization errors use existing stderr and allow playback to continue, so a mixer-control problem cannot disable a working appliance. No recovery/reopening added.
+
+21 Rust tests (including card selection, product identification and raw-range regression), formatting, strict Clippy, native/ARM release builds passed. ARM executable help ran successfully under QEMU. Replaced only /opt/shush/bin/shush in the existing system filesystem via debugfs; verified its bytes/owner/mode and e2fsck found no errors. Seven 1 MiB blocks differ in the system partition; settings and original boot are unchanged. The first ARM help check failed because the local debugfs dump lacked its executable bit; chmod on the temporary dump fixed that check, with no further change to packaged executable or filesystem. No audio files modified or full decoding repeated. Logs: /tmp/shush-hardware-volume-arm.log, /tmp/shush-hardware-volume-native.log, /tmp/shush-hardware-volume-image.log, /tmp/shush-hardware-volume-arm-verification.log, /tmp/shush-hardware-volume-publication.log. Assembly/publisher scripts: /tmp/shush-hardware-volume-image.py, /tmp/shush-publish-hardware-volume.py. User confirms this fix works on the physical Pi.
+
+Published actual hardware-volume image at dist/shush-pi3.img: 3,356,491,776 bytes; SHA-256 42e54c781f7919a96e632971f4287450723bf1e47f1a2db8691a3a57c69878a1. Publication hash/config/source checks passed. No build or publication sessions remain.
+
+## Next version: ready time and immediate wake announcement
+
+Current version f82c432 and dist/shush-pi3.img remain the user-confirmed working volume fix undergoing testing. User requests current time on boot once ready and immediate acknowledgment on Play. They replaced the proposed chime with announcing the alarm time immediately. No chime is retained or generated. Startup reuses the existing current-time command and prerecorded Michael prompts after clock/input/audio/settings initialization. Play sends the wake announcement to the independent audio thread before starting playlist decoding. New Prepare/Ready messages let speech and loading overlap; reading or immediate-noise playback starts only when both finish. Wake time is spoken once, never again on resume. Preparing retains the independent wake deadline; cancelled/expired loading cannot be restarted by a late Ready. A preparation error cancels pending announcement before the existing error prompt. Audio assets, original kernel, settings, remote mappings and confirmed hardware-volume fix are unchanged.
+
+24 Rust tests, formatting, strict Clippy, native and ARM release builds passed. Regression tests cover slow and fast loading, announcement completion before reading/noise, and cancellation/expiry while loading. Packaged executable matches ARM build and ran help under QEMU; system filesystem passed e2fsck. Replaced only the application file in the existing system filesystem. Six 1 MiB system blocks changed from the working volume image; original boot and settings are unchanged. Media decoding was not repeated. Publish as dist/shush-pi3-next.img with separate checksum/manifest; preserve current test image. Logs: /tmp/shush-next-arm-build.log, /tmp/shush-next-native-build.log, /tmp/shush-next-image.log, /tmp/shush-next-publication.log. Image and publication scripts: /tmp/shush-next-image.py and /tmp/shush-publish-next.py. Physical test pending.
+
+Next version published at dist/shush-pi3-next.img: 3,356,491,776 bytes; SHA-256 9bed3d18c40e41dbbf651eb898ace7d77f159c82b2ffff2741414c9c7d037536. Current shush-pi3.img and its manifest remain the tested volume version with SHA-256 42e54c781f7919a96e632971f4287450723bf1e47f1a2db8691a3a57c69878a1. Publication checks passed; no build/publication sessions remain.
+
+## Remove invented 12-hour restrictions
+
+User clarifies that the 12-hour statement explained omission of AM/PM, not a maximum session duration, and explicitly requests removing the bad code. Removed the elapsed-time limit field/initialization/check/reset from the audio mixer and the maximum-12-hour candidate restriction from next_deadline. Deadline selection now chooses the next existing Chicago occurrence of the configured hour/minute. Missing spring-forward occurrences are skipped; repeated fall-back occurrences are considered in UTC order. Neither normal nor paused playback has a maximum elapsed duration. Existing wake deadline, startup/current-time announcement, immediate wake announcement, volume fix and audio files are retained. Updated the active plan requirements to match.
+
+Separate src/audio_expire_tests.rs follows Engine::apply(Play, fixed start time), passes its actual calculated deadline via Prepare/Ready, and checks both audio expiry and control tick. Tests assign no deadlines or elapsed limits directly. Covers after-midnight starts, midnight/noon selection, no early cancellation across midnight, paused/stopped sessions, 13-hour fall-back playback, spring-forward local alarm time, nonexistent 2:30 AM selecting next 2:30 PM, and selection before/between/after repeated 1:30 AM occurrences with explicit UTC offsets. Replaced older DST rejection expectations; unavailable-deadline validation now uses invalid settings rather than rejecting a valid DST session. All 34 tests, formatting and strict Clippy passed; native/ARM release builds passed. Packaged binary matches ARM output and ran help under QEMU. The system filesystem passed e2fsck. Only application file modified; original kernel/boot/settings/media remain untouched. Logs: /tmp/shush-no-cap-arm-build.log, /tmp/shush-no-cap-native-build.log, /tmp/shush-no-cap-image.log, /tmp/shush-no-cap-publication.log. Reuses /tmp/shush-next-image.py and /tmp/shush-publish-next.py to update only dist/shush-pi3-next.img and its separate metadata. Current confirmed volume-only image remains unchanged. Physical trial pending.
+
+Corrected next image published at dist/shush-pi3-next.img: SHA-256 af202659cd1e04f301f4cf5acffe1281fff1a4a89282531c2e62a6b4987d66a5; 3,356,491,776 bytes. Earlier next-image hash 9bed3d18... is superseded. Final metadata/source checks passed. Current image remains unchanged; all build/publication sessions are closed.
+
+## Correct fall-back bedtime interpretation
+
+User rejects waking at the repeated 1:30 AM when bedtime was the first 1:45 AM, and instructs fixing the code. Before timezone conversion, next_deadline now excludes local date/time candidates at or before the displayed local bedtime. Thus a passed 1:30 AM stays passed on fall-back; 1:30 PM is selected. UTC conversion still handles the selected future local candidate and excludes already elapsed UTC instances. No elapsed-duration cutoff or AM/PM input added. Replaced the prior test expectation for first 1:45 AM; added a dedicated negative test proving playback does not expire at the repeated 1:30 AM or 2:00 AM and expires at 1:30 PM. Test starts still go through Engine::apply(Play) and pass its calculated deadline to the audio mixer. The earlier repeated-hour policy documented above is superseded by this user-approved bedtime rule.
+
+35 tests, formatting and strict Clippy pass. Native/ARM release builds pass. Updating dist/shush-pi3-next.img with only the new application executable; original kernel, boot, settings, audio files, volume fix and announcements retained. Current confirmed volume image remains unchanged. Logs: /tmp/shush-bedtime-arm-build.log, /tmp/shush-bedtime-native-build.log, /tmp/shush-bedtime-image.log, /tmp/shush-bedtime-publication.log. Reuses /tmp/shush-next-image.py and /tmp/shush-publish-next.py. Physical test pending.
+
+Bedtime-rule image published at dist/shush-pi3-next.img: 3,356,491,776 bytes; SHA-256 18c00cb75f7c928b78f2573677054acedab999deddca9fad5ef28e23b546d988. Supersedes af202659... next image. Metadata verified; all build/publication sessions closed.
+
+## Canonical image filename
+
+User requests stopping image names that change by version and renaming the latest image. Promoted the latest bedtime-rule image to dist/shush-pi3.img, replacing the earlier volume-only image, and updated dist/shush-pi3.img.sha256, dist/shush-image.json and dist/STATUS.txt. Removed the superseded next-named checksum, manifest and status. Image contents are unchanged: SHA-256 18c00cb75f7c928b78f2573677054acedab999deddca9fad5ef28e23b546d988. All future images must use dist/shush-pi3.img and canonical sidecars, replacing the existing output. Do not use the old /tmp/shush-publish-next.py workflow unchanged. Prior next-image paths above are historical and no longer exist.

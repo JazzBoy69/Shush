@@ -1,0 +1,1 @@
+root=/dev/mmcblk0p2 rootfstype=ext4 rootflags=ro,noload ro rootwait net.ifnames=0 console=serial0,115200 quiet usbcore.autosuspend=-1

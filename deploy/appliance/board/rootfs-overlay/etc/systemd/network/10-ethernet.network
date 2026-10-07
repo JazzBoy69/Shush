@@ -1,0 +1,11 @@
+[Match]
+Name=eth0
+
+[Network]
+DHCP=ipv4
+IPv6AcceptRA=no
+LLMNR=no
+MulticastDNS=no
+
+[DHCPv4]
+UseNTP=yes

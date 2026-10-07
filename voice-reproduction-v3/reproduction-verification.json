@@ -1,0 +1,18 @@
+{
+  "verified_at_utc": "2026-10-05T12:53:41.754789+00:00",
+  "method": "Two independent complete model sessions; canonical ordered corpus, complete manifests, all actual WAV bytes and recorded SHA-256 hashes compared.",
+  "prompt_count": 771,
+  "all_manifests_and_wavs_identical": true,
+  "stress_pass_version": "shush-phrase-stress-v3",
+  "manifest_sha256": "26aca51c181028b4276f77b7ad92c5aba723ce520fac65113eef228416b9965c",
+  "source_sha256": {
+    "scripts/stress.py": "f19f8f736e3e69b68afc9d0d715b62636b1b6bdc8b9148ef4d3740ca801b4fa3",
+    "scripts/neural_pipeline.py": "3312fd92034ece1e1af5bff88882f26a216fa6ac6f10257a6a433bf193cea4b9",
+    "scripts/generate_neural_voice.py": "b719dc3d08e1d6671053b1071f2624e301c04f0627794100bf4175a4dce302a4",
+    "scripts/preview_voice.py": "8de0ff60d06f387b5aefebf49016c0a7584c3fbcfe557fb813b57b025c577c8c"
+  },
+  "resident_pcm_bytes_at_44100": 163534874,
+  "appliance_staged_check": "passed",
+  "clipped_i16_samples": 0,
+  "peak_i16": 17184
+}

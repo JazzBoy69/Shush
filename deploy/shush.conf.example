@@ -1,0 +1,4 @@
+# Use the receiver's persistent event-device symlink, not a changing eventN.
+INPUT_DEVICE=/dev/input/by-id/REPLACE_WITH_RECEIVER-event-kbd
+# Find the USB speaker's card name with aplay -L.
+AUDIO_DEVICE=plughw:CARD=Device,DEV=0

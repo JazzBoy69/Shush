@@ -1,2 +1,30 @@
-Pink_Noise.wav
+/target/
+/settings.json
+/settings.json.*.tmp
+__pycache__/
+/.appliance-build/
+/dist/
+
+# Reading recordings and generated voice audio stay outside Git.
+/Audio/
 *.mp3
+*.wav
+*:Zone.Identifier
+
+# Disk images and graphic assets stay outside Git.
+*.img
+*.iso
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.tif
+*.tiff
+*.ico
+*.svg
+*.avif
+
+# Temporary speech-generation session file.
+/:memory:.ses

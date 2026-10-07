@@ -1,0 +1,23 @@
+{
+  "verified_at_utc": "2026-10-05T13:15:03.610293+00:00",
+  "method": "769 unchanged nonmode WAVs retain prior independent reproduction proof after validating recognized independent family recipes, environment, text, stress metadata, and hashes. The two mode WAVs freshly synthesized in independent mode sessions twice; Without uses two chunks plus an exact 200 ms zero gap. Both complete manifests and all 771 actual WAV bytes/hashes compared.",
+  "prompt_count": 771,
+  "newly_independently_synthesized": 2,
+  "previously_independently_synthesized_unchanged_nonmode": 769,
+  "prior_verified_manifest_sha256": "140c8564b5ef7468ff7559c193db314edc6a74277bf77f168c619a91112310f0",
+  "all_manifests_and_wavs_identical": true,
+  "stress_pass_version": "shush-phrase-stress-v5",
+  "manifest_sha256": "23f69601eaf1e976eecba437581d894589a139473b723b301c94cec3c377739f",
+  "source_sha256": {
+    "scripts/stress.py": "7736f6825d08ab1bbf2af9dc1d0fbf56de44f57868ab8ad6159f8d48a5eb4229",
+    "scripts/neural_pipeline.py": "bbf550801062df59421b19cb9a641e07517a0003de069effb98ee877c67aa3b7",
+    "scripts/generate_neural_voice.py": "7d019a65759b6f5b308b93fc223802e2b92e951d2f9f7b42b52a8ef9d7940ec5",
+    "scripts/preview_voice.py": "db244150c0f79c75b18475ced5c77822a3ca613b2b7ed68c89ef7c51850d059b"
+  },
+  "resident_pcm_bytes_at_44100": 163644712,
+  "clipped_i16_samples": 0,
+  "peak_i16": 17184,
+  "without_reading_beat_milliseconds": 200,
+  "appliance_staged_check": "passed",
+  "appliance_installed_check": "passed"
+}

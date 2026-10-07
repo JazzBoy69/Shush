@@ -1,0 +1,1 @@
+shush 1000 shush 1000 * /var/lib/shush /bin/false audio,input Shush audio appliance

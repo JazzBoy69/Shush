@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_SHUSH_PATH/package/shush/Config.in"
