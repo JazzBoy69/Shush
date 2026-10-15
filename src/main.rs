@@ -5,6 +5,7 @@ mod control;
 mod hardware_volume;
 mod media;
 mod mqtt;
+mod preload;
 mod settings;
 
 use anyhow::{bail, ensure, Context, Result};
@@ -14,7 +15,6 @@ use std::os::unix::fs::OpenOptionsExt;
 use std::{
     path::PathBuf,
     sync::atomic::Ordering,
-    sync::mpsc::{self, TryRecvError},
     thread,
     time::{Duration, Instant},
 };
@@ -86,9 +86,6 @@ fn entry() -> Result<()> {
     }
     run(options, schedule, noise, voices)
 }
-struct Prepared {
-    reading: Option<media::Samples>,
-}
 fn run(
     options: Options,
     schedule: media::Schedule,
@@ -96,6 +93,10 @@ fn run(
     voices: media::VoiceBank,
 ) -> Result<()> {
     clock_ready()?;
+    // Decode before opening the output or accepting commands: startup stays silent.
+    let mut daily = preload::DailyPlaylist::new(Utc::now(), |day| {
+        media::playlist(&options.root, schedule.day(day)?)
+    })?;
     let input = options
         .input
         .as_ref()
@@ -125,8 +126,7 @@ fn run(
         });
     let mut last_mqtt_state = String::new();
     let mut last_mqtt_publish = Instant::now() - Duration::from_secs(30);
-    let (prepared_tx, prepared_rx) = mpsc::sync_channel::<(u64, Result<Prepared>)>(1);
-    let mut preparation: Option<thread::JoinHandle<()>> = None;
+    let mut next_preload_attempt = Instant::now();
     let mut generation = 0u64;
     let mut last_adjustment = Instant::now() - Duration::from_secs(1);
     let mut last_gain = (engine.volume, engine.muted);
@@ -141,9 +141,7 @@ fn run(
         &mut engine,
         &output,
         &options,
-        &schedule,
-        &prepared_tx,
-        &mut preparation,
+        &daily,
         &mut generation,
         &mut speech,
         &mut last_settings,
@@ -155,14 +153,26 @@ fn run(
     // No playback is restored automatically at startup.
     loop {
         let now = Utc::now();
+        if engine.state == State::Idle
+            && daily.due(now)
+            && Instant::now() >= next_preload_attempt
+            && output.is_silent()?
+        {
+            // Synchronous by design: no remote, MQTT, prompt or Bluetooth command can
+            // start sound between the silence acknowledgment and the end of decoding.
+            if let Err(error) = daily.refresh(now, true, |day| {
+                media::playlist(&options.root, schedule.day(day)?)
+            }) {
+                eprintln!("shush: daily preload failed: {error:#}");
+                next_preload_attempt = Instant::now() + Duration::from_secs(60);
+            }
+        }
         handle_effects(
             engine.tick(now),
             &mut engine,
             &output,
             &options,
-            &schedule,
-            &prepared_tx,
-            &mut preparation,
+            &daily,
             &mut generation,
             &mut speech,
             &mut last_settings,
@@ -187,30 +197,6 @@ fn run(
         }
         if output.stop.load(Ordering::Acquire) {
             bail!("audio output thread stopped");
-        }
-        match prepared_rx.try_recv() {
-            Ok((id, result)) => {
-                if let Some(job) = preparation.take() {
-                    job.join()
-                        .map_err(|_| anyhow::anyhow!("media preparation panicked"))?;
-                }
-                if id == generation && engine.state == State::Starting {
-                    match result {
-                        Ok(prepared) => output.send(audio::Message::Ready {
-                            reading: prepared.reading,
-                            id,
-                        })?,
-                        Err(error) => {
-                            eprintln!("shush: cannot start: {error:#}");
-                            output.send(audio::Message::Cancel)?;
-                            engine.abort_start();
-                            speech = Some(voices.get("error.wav")?);
-                        }
-                    }
-                }
-            }
-            Err(TryRecvError::Empty) => {}
-            Err(TryRecvError::Disconnected) => bail!("media preparation channel closed"),
         }
         // Raw evdev reads a bounded batch. Never replay synthetic presses after dropped input.
         if !input_failed {
@@ -248,9 +234,7 @@ fn run(
                             &mut engine,
                             &output,
                             &options,
-                            &schedule,
-                            &prepared_tx,
-                            &mut preparation,
+                            &daily,
                             &mut generation,
                             &mut speech,
                             &mut last_settings,
@@ -286,9 +270,7 @@ fn run(
                             &mut engine,
                             &output,
                             &options,
-                            &schedule,
-                            &prepared_tx,
-                            &mut preparation,
+                            &daily,
                             &mut generation,
                             &mut speech,
                             &mut last_settings,
@@ -324,9 +306,7 @@ fn handle_effects(
     engine: &mut Engine,
     output: &audio::Output,
     options: &Options,
-    schedule: &media::Schedule,
-    prepared_tx: &mpsc::SyncSender<(u64, Result<Prepared>)>,
-    preparation: &mut Option<thread::JoinHandle<()>>,
+    daily: &preload::DailyPlaylist,
     generation: &mut u64,
     speech: &mut Option<media::Samples>,
     last_settings: &mut settings::Settings,
@@ -336,52 +316,31 @@ fn handle_effects(
         match effect {
             Effect::Begin => {
                 bluetooth::send(b"busy");
-                // Only one bounded preparation worker exists, including after a cancelled start.
-                if preparation.is_some() {
-                    engine.abort_start();
-                    *speech = Some(voices.get("error.wav")?);
-                    continue;
-                }
                 *speech = None;
                 output.send(audio::Message::Cancel)?;
                 *generation = generation.wrapping_add(1);
                 let id = *generation;
-                let tx = prepared_tx.clone();
-                let root = options.root.clone();
-                let settings = engine.settings.clone();
-                let tracks = schedule.day(control::reading_day(Utc::now()))?.to_vec();
+                let settings = &engine.settings;
+                let reading = settings.reading.then(|| daily.samples());
                 let deadline = engine.deadline.context("starting without deadline")?;
                 let announcement = voices.time("wake", settings.hour, settings.minute)?;
-                let announcement_length = announcement.len();
+                let total =
+                    announcement.len() + reading.as_ref().map_or(0, |samples| samples.len());
+                let remaining = deadline
+                    .signed_duration_since(Utc::now())
+                    .num_milliseconds();
+                if remaining <= 0 || total as u64 * 1000 / media::RATE as u64 >= remaining as u64 {
+                    engine.abort_start();
+                    *speech = Some(voices.get("error.wav")?);
+                    continue;
+                }
+                // Both messages reference resident PCM. Play performs no media I/O or decoding.
                 output.send(audio::Message::Prepare {
                     announcement,
                     id,
                     deadline,
                 })?;
-                *preparation = Some(thread::Builder::new().name("shush-prepare".into()).spawn(
-                    move || {
-                        let result = (|| -> Result<Prepared> {
-                            let reading = if settings.reading {
-                                Some(media::playlist(&root, &tracks)?)
-                            } else {
-                                None
-                            };
-                            let total = announcement_length
-                                + reading.as_ref().map_or(0, |samples| samples.len());
-                            let remaining = deadline
-                                .signed_duration_since(Utc::now())
-                                .num_milliseconds();
-                            ensure!(
-                                remaining > 0
-                                    && total as u64 * 1000 / (media::RATE as u64)
-                                        < remaining as u64,
-                                "complete reading and announcement cannot finish before wake time"
-                            );
-                            Ok(Prepared { reading })
-                        })();
-                        let _ = tx.send((id, result));
-                    },
-                )?);
+                output.send(audio::Message::Ready { reading, id })?;
             }
             Effect::Pause => output.send(audio::Message::Pause)?,
             Effect::Resume => {

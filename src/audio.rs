@@ -16,6 +16,7 @@ use std::{
 
 const FRAMES: usize = 256;
 pub enum Message {
+    CheckSilence(SyncSender<bool>),
     Prepare {
         announcement: Samples,
         id: u64,
@@ -71,6 +72,9 @@ struct Mixer {
     bluetooth_enabled: bool,
 }
 impl Mixer {
+    fn can_preload(&self) -> bool {
+        self.phase == Phase::Idle && self.prompt.is_none() && !self.bluetooth_enabled
+    }
     fn new(noise: Samples) -> Self {
         Self {
             noise,
@@ -319,6 +323,14 @@ impl Output {
             .send(message)
             .context("audio command queue unavailable")
     }
+
+    /// Called only by the control thread, which sends no sound commands while loading.
+    pub fn is_silent(&self) -> Result<bool> {
+        let (tx, rx) = mpsc::sync_channel(1);
+        self.send(Message::CheckSilence(tx))?;
+        rx.recv_timeout(Duration::from_secs(1))
+            .context("audio silence check timed out")
+    }
 }
 impl Drop for Output {
     fn drop(&mut self) {
@@ -343,11 +355,19 @@ fn stream(
     let mut pending_id = 0;
     let mut bluetooth = crate::bluetooth::Input::open();
     let mut bluetooth_buffer = [0i16; FRAMES * 2];
+    let mut silent_since = Instant::now();
     while !stop.load(Ordering::Acquire) {
         // Fixed maximum command work per iteration prevents input floods starving output.
         for _ in 0..32 {
             match rx.try_recv() {
                 Ok(message) => {
+                    if let Message::CheckSilence(reply) = message {
+                        let _ = reply.try_send(
+                            mixer.can_preload()
+                                && silent_since.elapsed() >= Duration::from_millis(300),
+                        );
+                        continue;
+                    }
                     if mixer.phase == Phase::Idle
                         && matches!(
                             message,
@@ -362,6 +382,9 @@ fn stream(
                         offset = FRAMES;
                     }
                     mixer.command(message);
+                    if !mixer.can_preload() {
+                        silent_since = Instant::now();
+                    }
                     if let Some(samples) = mixer.retired.take() {
                         tx.try_send(Event::Retired(samples))
                             .context("audio retirement queue full")?;
@@ -395,6 +418,9 @@ fn stream(
             }
             pending_id = mixer.id;
             offset = 0;
+        }
+        if !mixer.can_preload() {
+            silent_since = Instant::now();
         }
         let available = pcm.avail_update()?;
         if available > 0 {
@@ -437,6 +463,32 @@ mod expire_tests;
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn preloading_requires_idle_without_prompt_or_bluetooth() {
+        use super::*;
+        let mut mixer = Mixer::new(vec![1].into());
+        assert!(mixer.can_preload());
+        for phase in [
+            Phase::Preparing,
+            Phase::Announcing,
+            Phase::Reading,
+            Phase::Noise,
+            Phase::PausedReading,
+            Phase::PausedNoise,
+        ] {
+            mixer.phase = phase;
+            assert!(!mixer.can_preload());
+        }
+        mixer.phase = Phase::Idle;
+        mixer.command(Message::Prompt(vec![1].into()));
+        assert!(!mixer.can_preload());
+        mixer.command(Message::Cancel);
+        mixer.command(Message::BluetoothEnabled(true));
+        assert!(!mixer.can_preload());
+        mixer.command(Message::Cancel);
+        assert!(mixer.can_preload());
+    }
+
     #[test]
     fn bluetooth_is_stereo_only_when_enabled_and_idle_and_never_overlays_an_alarm() {
         use super::*;
@@ -632,6 +684,32 @@ mod tests {
         mixer.fill(&mut buffer);
         assert_eq!(buffer, [0; 4]);
     }
+    #[test]
+    fn alsa_silence_check_waits_for_queue_clear_and_rejects_active_sessions() -> Result<()> {
+        let output = Output::open("null", Arc::from([10, 20]))?;
+        thread::sleep(Duration::from_millis(350));
+        ensure!(output.is_silent()?, "initial idle output should be silent");
+        output.send(Message::Begin {
+            reading: None,
+            announcement: Arc::from([1]),
+            id: 70,
+            deadline: chrono::Utc::now() + chrono::Duration::hours(1),
+        })?;
+        ensure!(!output.is_silent()?, "active noise must prevent loading");
+        output.send(Message::Pause)?;
+        ensure!(!output.is_silent()?, "paused sessions must prevent loading");
+        output.send(Message::Cancel)?;
+        ensure!(!output.is_silent()?, "queued speaker audio has not cleared");
+        thread::sleep(Duration::from_millis(350));
+        ensure!(output.is_silent()?, "stopped output should become silent");
+        output.send(Message::BluetoothEnabled(true))?;
+        ensure!(
+            !output.is_silent()?,
+            "Bluetooth session must prevent loading"
+        );
+        Ok(())
+    }
+
     #[test]
     fn alsa_null_output_enforces_deadline_independently() -> Result<()> {
         let output = Output::open("null", Arc::from([10, 20]))?;

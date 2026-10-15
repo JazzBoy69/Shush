@@ -4,6 +4,8 @@ Rust implementation of Shush for a Raspberry Pi 3 B+, Edifier R19U USB speakers,
 
 The reading option plays the complete daily playlist before pink noise. The other option starts pink noise immediately. The reference schedule retains its 366-day cycle and America/Chicago anchor at April 5, 2020, 03:00. The intended use allows the reading to finish before wake time. There is no snooze.
 
+The daily playlist is decoded into memory during silent startup, before commands are accepted. Play and repeated Stop/Play reuse that buffer. Daily refresh waits for the first idle opportunity after 3 a.m. Chicago time, with no announcement or Bluetooth session active and at least 300 ms for queued speaker audio to clear. No sound commands are processed during the refresh. Active and paused sessions retain their playlist; the next eligible idle refresh prepares the new day. The original elapsed-time schedule is unchanged, including its winter boundary at 2 a.m.; refresh still waits until 3 a.m. If refresh fails, the previous playlist remains available and a silent retry is attempted after 60 seconds.
+
 The earlier Python controller is retained in `bedtime_audio/`, with its native player in `native/audio_player.cpp`. Its setup instructions are in [INSTALLATION.md](INSTALLATION.md), and its implementation plan is in [PLAN-python.md](PLAN-python.md).
 
 ## Controls
