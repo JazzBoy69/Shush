@@ -3,6 +3,7 @@ mod audio;
 mod control;
 mod hardware_volume;
 mod media;
+mod mqtt;
 mod settings;
 
 use anyhow::{bail, ensure, Context, Result};
@@ -23,6 +24,7 @@ struct Options {
     settings: PathBuf,
     input: Option<PathBuf>,
     audio: String,
+    mqtt_config: Option<PathBuf>,
 }
 impl Options {
     fn parse() -> Result<Self> {
@@ -34,6 +36,9 @@ impl Options {
             settings: PathBuf::from("settings.json"),
             input: None,
             audio: "default".into(),
+            mqtt_config: std::env::var_os("CREDENTIALS_DIRECTORY")
+                .map(|path| PathBuf::from(path).join("mqtt"))
+                .filter(|path| path.is_dir()),
         };
         while let Some(flag) = args.next() {
             let value = args
@@ -44,6 +49,7 @@ impl Options {
                 "--settings" => options.settings = value.into(),
                 "--input" => options.input = Some(value.into()),
                 "--audio" => options.audio = value,
+                "--mqtt-config" => options.mqtt_config = Some(value.into()),
                 _ => bail!("unknown flag {flag}"),
             }
         }
@@ -59,7 +65,7 @@ fn main() {
 fn entry() -> Result<()> {
     let options = Options::parse()?;
     if matches!(options.command.as_str(), "help" | "--help" | "-h") {
-        println!("shush run --root PATH --settings PATH --input /dev/input/by-id/... --audio plughw:CARD=Device,DEV=0\nshush check --root PATH\nshush validate-media --root PATH");
+        println!("shush run --root PATH --settings PATH --input /dev/input/by-id/... --audio plughw:CARD=Device,DEV=0 [--mqtt-config DIRECTORY]\nshush check --root PATH\nshush validate-media --root PATH");
         return Ok(());
     }
     ensure!(
@@ -104,6 +110,18 @@ fn run(
         .context("grabbing the remote receiver exclusively")?;
     let mut engine = Engine::new(settings::load(&options.settings)?);
     let output = audio::Output::open(&options.audio, noise)?;
+    let mqtt = options
+        .mqtt_config
+        .as_deref()
+        .and_then(|path| match mqtt::Client::start(path) {
+            Ok(client) => Some(client),
+            Err(error) => {
+                eprintln!("shush: MQTT unavailable: {error:#}");
+                None
+            }
+        });
+    let mut last_mqtt_state = String::new();
+    let mut last_mqtt_publish = Instant::now() - Duration::from_secs(30);
     let (prepared_tx, prepared_rx) = mpsc::sync_channel::<(u64, Result<Prepared>)>(1);
     let mut preparation: Option<thread::JoinHandle<()>> = None;
     let mut generation = 0u64;
@@ -249,6 +267,42 @@ fn run(
             }
         }
         // Coalesce adjustment announcements within a poll instead of building a speech queue.
+        let mut status_requested = false;
+        if let Some(client) = &mqtt {
+            // Bound work per poll so network traffic cannot starve remote input.
+            for _ in 0..8 {
+                let Some(action) = client.receive() else {
+                    break;
+                };
+                match action {
+                    mqtt::Action::Status => status_requested = true,
+                    mqtt::Action::Control(command) => {
+                        let effects = engine.apply(command, Utc::now());
+                        handle_effects(
+                            effects,
+                            &mut engine,
+                            &output,
+                            &options,
+                            &schedule,
+                            &prepared_tx,
+                            &mut preparation,
+                            &mut generation,
+                            &mut speech,
+                            &mut last_settings,
+                            &voices,
+                        )?;
+                    }
+                }
+            }
+            let state = mqtt::state(&engine);
+            let publish_due = state != last_mqtt_state
+                || status_requested
+                || last_mqtt_publish.elapsed() >= Duration::from_secs(30);
+            if publish_due && client.publish(state.clone()) {
+                last_mqtt_state = state;
+                last_mqtt_publish = Instant::now();
+            }
+        }
         if let Some(prompt) = speech.take() {
             output.send(audio::Message::Prompt(prompt))?;
         }

@@ -19,13 +19,29 @@ The earlier Python controller is retained in `bedtime_audio/`, with its native p
 | Info | Speak the current time |
 | Volume Up / Down / Mute | Adjust playback volume / toggle mute |
 
-Settings and current-time speech work while idle or paused. During reading and noise, configuration and speech commands are ignored. Starting from idle announces the selected wake time; resuming does not. Pause preserves position and leaves the wake deadline running. Settings changes while paused apply to the next session; the current deadline remains fixed. Wake time and reading option persist across power-off.
+Settings and current-time speech work while idle or paused. During reading and noise, configuration and speech commands are ignored. Once startup is ready, the appliance speaks the current time. Starting from idle immediately announces the selected wake time while media loads; resuming does not. Pause preserves position and leaves the wake deadline running. Settings changes while paused apply to the next session; the current deadline remains fixed. Wake time and reading option persist across power-off.
 
-The remote adjusts software volume from 0 to 100%; 100% passes the original PCM signal without amplification. Startup does not change the USB hardware mixer. Volume and mute changes have no spoken feedback. 
+The remote adjusts software volume from 0 to 100%; 100% passes the original PCM signal without amplification. Startup initializes the detected Edifier R19U hardware mixer to raw 999 and unmutes it; software volume starts at 50%. Volume and mute changes have no spoken feedback.
+
+## Wi-Fi and MQTT
+
+The appliance profile includes the Pi 3 B+ Wi-Fi driver and firmware, WPA2 authentication, and DHCP on `wlan0`, alongside wired Ethernet. Private configuration lives in Git-ignored `.local/appliance/`. The builder installs it into `/etc/shush-private/` with restricted permissions; credentials are never copied into the tracked overlay or boot partition. MQTT credentials are supplied to the `shush` service through systemd credentials.
+
+To create or replace the private files, run this command and enter both passwords at the prompts:
+
+```sh
+python3 scripts/configure_network.py --wifi-ssid YOUR_SSID --country US --mqtt-host YOUR_BROKER --mqtt-user YOUR_USERNAME
+```
+
+Publish a plain action name to `shush/action`: `play`, `pause`, `resume`, `toggle`, `stop`, `volume_up`, `volume_down`, `mute_toggle`, `mode`, `alarm_left`, `alarm_right`, `alarm_up`, `alarm_down`, `current_time`, or `status`. `start` aliases `play`; `mute` aliases `mute_toggle`. Commands follow the same state rules as remote buttons. Send actions without the retained flag. MQTT 5 subscriptions reject retained actions, including retained messages sent while connected.
+
+The appliance publishes retained JSON to `shush/state` when state changes, on a `status` request, and every 30 seconds. Fields are `phase` (`idle`, `starting`, `reading`, `noise`), `paused`, `wake_hour`, `wake_minute`, `reading`, `volume`, `muted`, and the current session's UTC `deadline` (or `null`). This is a state snapshot, not an acknowledgement or an availability indicator; check its receipt time if monitoring connectivity. Use `--topic PREFIX` when generating private configuration to replace `shush`.
+
+MQTT I/O runs on separate workers with bounded queues. A broker outage does not cancel or restart playback. Clients reconnect independently; actions delayed in the local queue beyond two seconds are discarded. The appliance runs MQTT clients only, with no local broker. The Mosquitto clients read passwords from private configuration files rather than command arguments ([client documentation](https://mosquitto.org/man/mosquitto_sub-1.html)).
 
 ## Build and install the appliance image
 
-The appliance uses a custom Buildroot 2026.08 Linux image for the Raspberry Pi 3 B+ in 64-bit mode. It packages the Rust application, all reading audio, pink noise, and voice prompts; no packages or speech engine need installing on the Pi. The SD image has passed partition, packaged-file integrity, driver and AArch64 asset-loading checks under QEMU. The preceding image worked with low volume; the FTP image produced no response and has been withdrawn. The startup USB mixer experiment is also withdrawn after the volume-only image remained unresponsive. The plain three-partition image has been rebuilt from the original working application source; its physical operation still needs confirmation. Hardware endurance remains unverified.
+The appliance uses a custom Buildroot 2026.08 Linux image for the Raspberry Pi 3 B+ in 64-bit mode. It packages the Rust application, reading audio, pink noise, and voice prompts. The current source profile includes Wi-Fi and MQTT clients alongside wired Ethernet, and retains the R19U hardware-volume fix and startup announcements. Build and flash a new image to install these source changes. Previous image-validation results apply to the earlier images; this network profile still needs an image build and hardware validation.
 
 Use the built [SD image](dist/shush-pi3.img), with its [SHA-256 checksum](dist/shush-pi3.img.sha256) and [verification manifest](dist/shush-image.json). It includes the USB audio and eHome/MCEUSB receiver drivers. The image automatically selects the single MCEUSB receiver and USB speaker playback device at boot; no device identifiers need entering.
 
@@ -44,7 +60,7 @@ python3 scripts/build_appliance.py
 The builder downloads the checksum-pinned Buildroot release and its build dependencies, cross-compiles the application, creates `.appliance-build/output/images/sdcard.img`, and runs the image verifier. It writes an image file only. It never flashes an SD card. See [the appliance build guide](deploy/appliance/README.md) for build options, storage layout, and validation details.
 
 1. Write `dist/shush-pi3.img` (or a rebuilt `sdcard.img`) to an SD card using Raspberry Pi Imager's custom-image option. Select the intended card carefully: writing replaces its contents. The [official Raspberry Pi installation guide](https://www.raspberrypi.com/documentation/computers/getting-started.html) describes Imager and custom images.
-2. Connect the Edifier R19U USB speakers, HP OVU400102 receiver, and wired Ethernet, insert the card, and boot the Pi. Ethernet uses IPv4 DHCP; the OS synchronizes time over the network and uses America/Chicago. Playback remains unavailable until the clock is synchronized and the devices are ready.
+2. Connect the Edifier R19U USB speakers and HP OVU400102 receiver, insert the card, and boot the Pi. Use configured Wi-Fi or wired Ethernet; both use IPv4 DHCP. The OS synchronizes time over the network and uses America/Chicago. Playback remains unavailable until the clock is synchronized and the devices are ready.
 
 The image has no SSH server or interactive console login. Updating application or media requires building and flashing a replacement image. If retaining settings matters, copy `/var/lib/shush/settings.json` from the old card's third partition before overwriting it.
 
@@ -59,7 +75,7 @@ cargo run --locked -- check --root .
 cargo run --locked -- validate-media --root .
 ```
 
-`check` validates configuration and assets. `validate-media` fully decodes the scheduled media and checks its segment ranges. The latest native run passed all 1,055 referenced MP3s and 366 playlist checks with the selected Michael bank loaded, peaking at approximately 490 MiB RSS without swaps; this is a host measurement, not a Pi runtime measurement. Audio and image assets are excluded from Git. Reading recordings must be supplied locally in `Audio/`, with `Pink_Noise.wav` at the root; generated voice WAVs are prepared using the tracked generator and manifests. The image builder packages these files and validates the AArch64 application against them.
+`check` validates configuration and assets. `validate-media` fully decodes the scheduled media and checks its segment ranges. The latest native run passed all 1,055 referenced MP3s and 366 playlist checks with the selected Michael bank loaded, peaking at approximately 490 MiB RSS without swaps; this is a host measurement, not a Pi runtime measurement. WAV assets are tracked in Git, including `Pink_Noise.wav` and the complete `voice/` bank. MP3 reading recordings and disk images remain excluded. Reading recordings must be supplied locally in `Audio/`; the tracked generator and manifests reproduce the voice WAVs. The image builder packages these files and validates the AArch64 application against them.
 
 ## Playback and failure prevention
 
@@ -67,7 +83,7 @@ The complete selected playlist is decoded before the start announcement, then he
 
 Media preparation grows decoding buffers geometrically within the 192 MiB capacity limit, avoiding exact reallocation for every MP3 frame. A dedicated ALSA output thread uses fixed buffers and bounded command queues. It enforces the wake deadline independently of input handling and settings writes. Pause retains its sample position; the wake deadline also applies while paused. The negotiated ALSA buffer must not exceed 250 ms; commands and silence onset can be delayed by queued audio within this bound. Volume starts at 50 percent and changes in five-percent steps. Mute silences output without changing playback position or the deadline.
 
-The reading day uses the original elapsed-time calculation from the Chicago date anchor, including its behavior across daylight-saving changes. A nonexistent spring-forward wake time, or a next matching time more than 12 elapsed hours away at fall-back, is refused rather than silently changing wake time. Playback failure is reported without restarting. Losing the HID receiver does not stop independent audio or its deadline; the device is not automatically reopened.
+The reading day uses the original elapsed-time calculation from the Chicago date anchor, including its behavior across daylight-saving changes. Wake selection uses the next existing local hour/minute after the displayed bedtime. A missing spring-forward occurrence is skipped; a local time already passed at bedtime stays passed when fall-back repeats an hour. There is no 12-hour elapsed-duration limit. Playback failure is reported without restarting. Losing the HID receiver does not stop independent audio or its deadline; the device is not automatically reopened.
 
 The appliance mounts its boot and system partitions read-only, keeps settings on a separate writable persistent partition, and bounds temporary storage and journal logs in RAM. It has no swap, SSH server, or login/getty service. The application service requests elevated scheduling priority and waits for OS clock synchronization. Essential device, networking, DNS, time, and logging services support playback; the application has no automatic restart. These measures and host tests do not establish hardware reliability.
 

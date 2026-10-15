@@ -3,6 +3,7 @@ enable var-lib-shush.mount
 enable systemd-networkd.service
 enable systemd-resolved.service
 enable systemd-timesyncd.service
+enable shush-wifi.service
 disable getty@.service
 disable serial-getty@.service
 disable console-getty.service

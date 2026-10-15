@@ -23,6 +23,21 @@ def digest(path):
     return value.hexdigest()
 
 
+def extract_buildroot(archive, destination):
+    """Defer rootfs absolute symlinks until all archive file writes are done."""
+    destination = Path(destination).resolve()
+    with tarfile.open(archive) as bundle:
+        members = bundle.getmembers()
+        links = [item for item in members if item.issym() and item.linkname.startswith("/")]
+        bundle.extractall(destination, members=(item for item in members if item not in links),
+                          filter="data")
+        for item in links:
+            path = destination / item.name
+            if not path.resolve().is_relative_to(destination):
+                raise ValueError("Buildroot symlink path escapes extraction directory")
+            path.symlink_to(item.linkname)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--work", type=Path, default=PROJECT / ".appliance-build")
@@ -36,6 +51,8 @@ def main():
         "--host-tools", type=Path, help="Additional directory of host tools"
     )
     parser.add_argument("--verify-only", action="store_true")
+    parser.add_argument("--private-config", type=Path, default=PROJECT / ".local/appliance",
+                        help="Private Wi-Fi/MQTT directory (never committed)")
     args = parser.parse_args()
     work = args.work.resolve()
     if any(character.isspace() for character in str(work) + str(PROJECT)):
@@ -57,6 +74,10 @@ def main():
         paths.insert(0, str(args.host_tools.resolve()))
     env["PATH"] = os.pathsep.join(paths)
     env["PYTHON"] = "/usr/bin/python3"
+    private_config = args.private_config.resolve()
+    if not args.verify_only and not private_config.is_dir():
+        parser.error("Private network configuration missing; run scripts/configure_network.py")
+    env["SHUSH_PRIVATE_CONFIG"] = str(private_config)
     if config:
         env["SHUSH_DEVICE_CONFIG"] = str(config)
     if not args.verify_only:
@@ -108,8 +129,7 @@ def main():
             with tempfile.TemporaryDirectory(
                 dir=work, prefix="extract-buildroot-"
             ) as folder:
-                with tarfile.open(archive) as bundle:
-                    bundle.extractall(folder, filter="data")
+                extract_buildroot(archive, folder)
                 extracted = Path(folder) / source.name
                 if not (extracted / "Makefile").is_file():
                     raise SystemExit("Buildroot archive lacks its expected source tree")

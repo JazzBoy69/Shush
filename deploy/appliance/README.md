@@ -1,6 +1,6 @@
 # Shush appliance image
 
-This Buildroot external tree builds a custom 64-bit Linux SD image for the Raspberry Pi 3 B+. The image contains the release Rust application and every required reading, pink-noise, schedule, and voice asset. The image has passed partition, packaged-file integrity, driver and AArch64 asset-loading checks under QEMU. The user reports the preceding image operated with low volume; the FTP image then produced no response. FTP and writable audio are removed from the restored three-partition image. The startup USB mixer experiment is also withdrawn after the volume-only image remained unresponsive. The original working application source is restored in the plain three-partition image; physical operation needs confirmation before further volume changes.
+This Buildroot external tree builds a custom 64-bit Linux SD image for the Raspberry Pi 3 B+. It includes the release Rust application, reading audio, pink noise, voice prompts, Wi-Fi and MQTT clients. The R19U hardware-volume fix and startup announcements are retained. The new network profile requires a fresh image build and hardware validation; historical image checks do not validate this updated profile.
 
 The built [SD image](../../dist/shush-pi3.img), [checksum](../../dist/shush-pi3.img.sha256), and [verification manifest](../../dist/shush-image.json) are available in `dist/`, alongside the extracted kernel configuration and validation logs. Use this image directly or rebuild as described below. It selects the connected receiver and speakers automatically; no manual device configuration is required.
 
@@ -13,7 +13,7 @@ sudo apt-get install build-essential python3 wget curl cpio unzip rsync bc patch
 python3 scripts/build_appliance.py
 ```
 
-The selected hardware is Edifier R19U USB speakers and an HP OVU400102 eHome IR receiver, with wired Ethernet. The image includes USB audio and built-in eHome/MCEUSB infrared decoding; the receiver supplies decoded Linux input keycodes without a separate LIRC daemon.
+The selected hardware is Edifier R19U USB speakers and an HP OVU400102 eHome IR receiver, with Wi-Fi or wired Ethernet. The image includes USB audio and built-in eHome/MCEUSB infrared decoding; the receiver supplies decoded Linux input keycodes without a separate LIRC daemon.
 
 The script checks required host tools, downloads Buildroot 2026.08, verifies its pinned archive SHA-256, and uses the external tree's checked dependency hashes. Buildroot supplies the cross-compilation toolchain, Rust build tools, kernel, firmware, and image-generation/verification tools. A full checkout with all media is required; preparation environments and archived voice banks are excluded from the target. Build and checkout paths must contain no whitespace. The build requires network access for source downloads and enough host storage for sources, toolchains, intermediate output, and the image.
 
@@ -26,6 +26,11 @@ Options:
 | `--jobs N` | Parallel build jobs, 1–32; defaults to 4 |
 | `--host-tools PATH` | Prepend an additional host-tools directory to the build PATH |
 | `--verify-only` | Verify the image already present under the selected work directory |
+| `--private-config PATH` | Private network directory; defaults to Git-ignored `.local/appliance/` |
+
+Before building, generate private network files with `scripts/configure_network.py` as described in the root README. Passwords are entered at hidden prompts. The private directory must contain `wpa_supplicant.conf`, `mqtt/mosquitto_sub`, `mqtt/mosquitto_pub`, and `mqtt/topic`. An existing complete private directory can be supplied using `--private-config`; keep it outside Git. Never commit or publish an image containing your credentials. Images and the private directory are ignored by Git. A fresh `--work` directory is required after this profile change.
+
+The generated image stores Wi-Fi credentials under root-only `/etc/shush-private/`. The MQTT service drop-in uses `LoadCredential` to provide the MQTT files to the service account, and permits IP sockets for its clients. Boot configuration remains limited to device selection. To change credentials on the read-only appliance, rebuild and flash a replacement image.
 
 With default paths, build output is in `.appliance-build/build.log`; the flashable file is `.appliance-build/output/images/sdcard.img`. The adjacent `sdcard.img.sha256` records its hash, and `shush-image.json` records image and validation details. For example:
 
@@ -40,13 +45,13 @@ The script creates files only and never writes a physical device. Repeated build
 
 Use an SD card of at least 4 GB. Write `dist/shush-pi3.img` (or a rebuilt `sdcard.img`) using Raspberry Pi Imager's custom-image option, selecting the intended SD card. This replaces its contents. The [official Raspberry Pi guide](https://www.raspberrypi.com/documentation/computers/getting-started.html) covers installing custom images.
 
-Connect the Edifier R19U USB speakers, HP OVU400102 receiver, and wired Ethernet, insert the flashed card, and boot. No device identifiers, host-side enumeration, or package installation on the Pi are required.
+Connect the Edifier R19U USB speakers and HP OVU400102 receiver, insert the flashed card, and boot with the configured Wi-Fi available or wired Ethernet connected. No device identifiers, host-side enumeration, or package installation on the Pi are required.
 
 At every boot, startup discovers the single input node owned by the `mceusb` driver and the single playback PCM owned by `snd-usb-audio`, following their sysfs device ancestry. Device numbers may change between boots. It waits up to 60 seconds for both nodes and their access permissions, then opens them once. Multiple compatible receiver nodes or playback devices are rejected as ambiguous. Runtime disconnects do not trigger automatic reopening or recovery.
 
 The boot partition's `shush.conf` defaults both `INPUT_DEVICE` and `AUDIO_DEVICE` to `auto`. Optional explicit overrides remain available for diagnostic use: a persistent `/dev/input/by-id/…-event…` input path and `plughw:CARD=identifier,DEV=number` output. Overrides require editing the card on a host and booting again; ordinary installation requires no edits.
 
-Networking uses `eth0` with IPv4 DHCP. DNS and NTP run through systemd; DHCP-provided NTP is accepted, with configured public servers as fallback. Local time is America/Chicago. The application waits for clock synchronization before accepting playback and performs no playback network requests. Startup does not modify the USB hardware mixer.
+Networking uses IPv4 DHCP on `eth0` and `wlan0`. `shush-wifi.service` authenticates with WPA2 using the private configuration. Ethernet takes route priority over Wi-Fi. DNS and NTP run through systemd; DHCP-provided NTP is accepted, with configured public servers as fallback. Local time is America/Chicago. The application waits for clock synchronization before accepting playback. MQTT uses separate workers and is not required for playback. Startup initializes the detected Edifier R19U hardware mixer to raw 999 and unmutes it.
 
 There is no SSH server, root login, interactive console/getty, or debug shell. The UART is configured at 115200 baud for kernel and service diagnostics, with no login prompt. Service diagnostics are forwarded to that console and retained in a bounded volatile journal; they are not saved across reboot. USB autosuspend is disabled to keep the receiver and speakers continuously available. Actual Pi boot, device discovery, clock synchronization, audio output, and overnight operation require the hardware acceptance checks in the repository README.
 

@@ -1,0 +1,18 @@
+[Unit]
+Description=Shush Wi-Fi authentication
+Wants=sys-subsystem-net-devices-wlan0.device
+After=sys-subsystem-net-devices-wlan0.device
+ConditionPathExists=/etc/shush-private/wpa_supplicant.conf
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/wpa_supplicant -i wlan0 -D nl80211 -c /etc/shush-private/wpa_supplicant.conf
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=yes
+ProtectHome=yes
+ProtectSystem=strict
+
+[Install]
+WantedBy=multi-user.target

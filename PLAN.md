@@ -160,7 +160,7 @@ Process restart policies and watchdog reboots are not the reliability strategy f
 
 ## Remaining preparation
 
-Device selection is automatic; verify the actual receiver emits the established keycodes during hardware acceptance. Hardware models are Edifier R19U USB speakers and HP OVU400102 eHome IR receiver. Speaker USB audio is confirmed by manufacturer documentation. The pinned kernel mceusb driver supports HP/eHome receivers and outputs evdev keys; preserve the agreed application keycode mapping. Explicit built-in rc-core/MCEUSB/RC6/MCE-keyboard decoding is now added to linux.fragment. The final kernel rebuild passed and the required built-in options were extracted from the generated kernel; final image generation, the ARM asset check, and full ARM media validation passed. Device identifiers and observed keys still need confirmation on the actual unit. The user confirmed wired Ethernet; keep wired DHCP/NTP and omit Wi-Fi services/drivers.
+Device selection is automatic; verify the actual receiver emits the established keycodes during hardware acceptance. Hardware models are Edifier R19U USB speakers and HP OVU400102 eHome IR receiver. Preserve the established application keycode mapping. The October 14 Wi-Fi/MQTT update supersedes the earlier Ethernet-only requirement: retain wired DHCP/NTP and include Pi Wi-Fi drivers, firmware and authentication. Previously recorded image-validation results apply to their historical images, not to this new network profile.
 
 Image assembly and full verification are complete. Flash the published image, then test the physical Pi/USB/HID combination. Use the README's one-second deadline tolerance and seven consecutive overnight sessions as initial acceptance criteria; measure gaps, memory, temperature and load behavior. Software/asset checks do not establish physical hardware reliability.
 
@@ -207,3 +207,12 @@ Bedtime-rule image published at dist/shush-pi3-next.img: 3,356,491,776 bytes; SH
 ## Canonical image filename
 
 User requests stopping image names that change by version and renaming the latest image. Promoted the latest bedtime-rule image to dist/shush-pi3.img, replacing the earlier volume-only image, and updated dist/shush-pi3.img.sha256, dist/shush-image.json and dist/STATUS.txt. Removed the superseded next-named checksum, manifest and status. Image contents are unchanged: SHA-256 18c00cb75f7c928b78f2573677054acedab999deddca9fad5ef28e23b546d988. All future images must use dist/shush-pi3.img and canonical sidecars, replacing the existing output. Do not use the old /tmp/shush-publish-next.py workflow unchanged. Prior next-image paths above are historical and no longer exist.
+
+
+## October 14 Wi-Fi, MQTT and tracked audio
+
+Added Pi 3 B+ Wi-Fi driver/firmware, WPA2 authentication and DHCP alongside Ethernet. Private Wi-Fi and MQTT files are stored under ignored `.local/appliance/` and installed separately from the tracked overlay. MQTT credentials reach the service through systemd credentials. MQTT actions use the existing control engine; retained commands are rejected, state is published separately, and network I/O remains outside playback threads. Default topics are `shush/action` and `shush/state`.
+
+Restored all 771 active Michael WAVs using the recorded Python 3.13.5 environment, exact dependency versions, checksum-pinned models, pronunciation edits and inference order. Every WAV and all generated metadata match the original manifest. The original manifest and reproduction proof remain unchanged. Commit `1137752` tracks the complete active bank and pink noise; WAVs are no longer excluded and are marked binary.
+
+Validation: 38 Rust tests including the isolated live MQTT broker test; strict Clippy; native release build; 13 Python appliance/network checks; pinned Buildroot configuration selection; and the application asset check all passed. The new Wi-Fi/MQTT image has not been built or tested on the physical Pi.

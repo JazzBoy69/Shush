@@ -7,6 +7,33 @@ import shutil
 import sys
 
 
+def install_private_network(target, source):
+    """Copy secrets separately from the tracked overlay and boot partition."""
+    private = target / "etc/shush-private"
+    # Remove stale configuration if the builder switches private directories.
+    if private.exists():
+        shutil.rmtree(private)
+    mqtt_unit = target / "etc/systemd/system/shush.service.d/mqtt.conf"
+    mqtt_unit.unlink(missing_ok=True)
+    if source is None:
+        return
+    source = Path(source).resolve()
+    names = ("wpa_supplicant.conf", "mqtt/mosquitto_sub", "mqtt/mosquitto_pub", "mqtt/topic")
+    if not all((source / name).is_file() for name in names):
+        raise SystemExit("Incomplete private network configuration")
+    private.mkdir(parents=True, mode=0o700)
+    (private / "mqtt").mkdir(mode=0o700)
+    for name in names:
+        shutil.copyfile(source / name, private / name)
+        (private / name).chmod(0o600)
+    mqtt_unit.parent.mkdir(parents=True, exist_ok=True)
+    mqtt_unit.write_text(
+        "[Service]\nLoadCredential=mqtt:/etc/shush-private/mqtt\n"
+        "RestrictAddressFamilies=\nRestrictAddressFamilies=AF_UNIX AF_INET AF_INET6\n"
+        "TasksMax=32\n"
+    )
+
+
 def main():
     target = Path(sys.argv[1]).resolve()
     if target == Path("/") or not (target / "etc/os-release").is_file():
@@ -15,6 +42,7 @@ def main():
     unit = target / "etc/systemd/system/shush.service"
     unit.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(project / "deploy/shush.service", unit)
+    install_private_network(target, os.environ.get("SHUSH_PRIVATE_CONFIG"))
     # Retire the prior manual-only launcher in reused development build trees.
     (target / "usr/libexec/shush-wait-devices").unlink(missing_ok=True)
     # Remove FTP units and enabled links from reused development trees.

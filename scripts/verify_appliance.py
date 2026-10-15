@@ -195,6 +195,9 @@ def main():
         "MEMCG",
         "CFS_BANDWIDTH",
         "CGROUP_PIDS",
+        "CFG80211",
+        "BRCMFMAC",
+        "BRCMFMAC_SDIO",
     )
     for option in required_kernel_options:
         require(
@@ -241,6 +244,33 @@ def main():
             "/etc/systemd/system/shush.service.d/appliance.conf"
         ).decode()
         require("Restart=no" in unit, "Application must not auto-restart")
+        overlay = PROJECT / "deploy/appliance/board/rootfs-overlay"
+        for path in (
+            "etc/systemd/network/20-wifi.network",
+            "etc/systemd/system/shush-wifi.service",
+        ):
+            require(read_root("/" + path) == (overlay / path).read_bytes(),
+                    "Packaged Wi-Fi configuration differs: " + path)
+        for name in ("wpa_supplicant", "mosquitto_sub", "mosquitto_pub"):
+            path = ("/usr/sbin/" if name == "wpa_supplicant" else "/usr/bin/") + name
+            require(read_root(path)[:4] == b"\x7fELF", "Missing network executable: " + name)
+        for name in (
+            "brcm/brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt",
+            "cypress/cyfmac43455-sdio.bin",
+            "cypress/cyfmac43455-sdio.clm_blob",
+        ):
+            require(bool(read_root("/lib/firmware/" + name)), "Missing Pi Wi-Fi firmware")
+        for name in ("wpa_supplicant.conf", "mqtt/mosquitto_sub", "mqtt/mosquitto_pub", "mqtt/topic"):
+            path = "/etc/shush-private/" + name
+            require(bool(read_root(path)), "Missing private network configuration")
+            stat = subprocess.run(
+                [str(host / "sbin/debugfs"), "-R", "stat " + path, str(rootfs)],
+                capture_output=True, text=True, check=True,
+            ).stdout
+            require("Mode:  0600" in stat, "Private network file permissions are not 0600")
+        mqtt_unit = read_root("/etc/systemd/system/shush.service.d/mqtt.conf").decode()
+        require("LoadCredential=mqtt:/etc/shush-private/mqtt" in mqtt_unit,
+                "MQTT credentials are not provided through systemd")
         require(
             "RequiresMountsFor=/boot /var/lib/shush" in dropin,
             "Persistent settings mount not required",

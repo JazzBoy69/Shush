@@ -9,3 +9,4 @@ MulticastDNS=no
 
 [DHCPv4]
 UseNTP=yes
+RouteMetric=100
