@@ -1,0 +1,23 @@
+[Unit]
+Description=Shush idle-only Bluetooth pairing agent
+Wants=bluetooth.service shush-bluealsa.service
+After=bluetooth.service shush-bluealsa.service
+
+[Service]
+Type=notify
+NotifyAccess=main
+Group=shush
+RuntimeDirectory=shush-bluetooth
+RuntimeDirectoryMode=0750
+RuntimeDirectoryPreserve=yes
+UMask=0007
+ExecStart=/usr/bin/python3 /usr/libexec/shush-bluetooth.py
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+ProtectHome=yes
+ProtectSystem=strict
+ReadWritePaths=/run/shush-bluetooth
+
+[Install]
+WantedBy=multi-user.target

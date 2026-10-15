@@ -4,6 +4,12 @@ enable systemd-networkd.service
 enable systemd-resolved.service
 enable systemd-timesyncd.service
 enable shush-wifi.service
+enable bluetooth.service
+enable shush-bluealsa.service
+enable shush-bluetooth.service
+enable shush-bluealsa-aplay.service
+disable bluealsa.service
+disable bluealsa-aplay.service
 disable getty@.service
 disable serial-getty@.service
 disable console-getty.service

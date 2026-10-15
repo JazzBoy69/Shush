@@ -1,0 +1,3 @@
+# SHA-256 of pinned upstream archive and its redistribution license.
+sha256  5e027003671a8b129d3e44b6f13845f0a51596047d2310cb69e04a22ea16e70f  cdf61dc691a49ff01a124752bd04194907f0f9cd.tar.gz
+sha256  a92f031f19089fa63bd24ac4c5298ca1356670321b39c67024a961ee3285fff7  debian/firmware/broadcom/LICENSE.cypress

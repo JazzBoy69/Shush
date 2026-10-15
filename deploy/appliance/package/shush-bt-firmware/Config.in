@@ -1,0 +1,4 @@
+config BR2_PACKAGE_SHUSH_BT_FIRMWARE
+	bool "Shush Pi 3 B+ Bluetooth firmware"
+	help
+	  Pinned Raspberry Pi distribution firmware for the BCM4345C0 UART controller.

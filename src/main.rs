@@ -1,5 +1,6 @@
 #![forbid(unsafe_code)]
 mod audio;
+mod bluetooth;
 mod control;
 mod hardware_volume;
 mod media;
@@ -110,6 +111,8 @@ fn run(
         .context("grabbing the remote receiver exclusively")?;
     let mut engine = Engine::new(settings::load(&options.settings)?);
     let output = audio::Output::open(&options.audio, noise)?;
+    let mut bluetooth_control = bluetooth::Control::new();
+    bluetooth_control.update(engine.state);
     let mqtt = options
         .mqtt_config
         .as_deref()
@@ -307,6 +310,7 @@ fn run(
             output.send(audio::Message::Prompt(prompt))?;
         }
         let gain = (engine.volume, engine.muted);
+        bluetooth_control.update(engine.state);
         if gain != last_gain {
             output.send(audio::Message::Gain(gain.0, gain.1))?;
             last_gain = gain;
@@ -331,6 +335,7 @@ fn handle_effects(
     for effect in effects {
         match effect {
             Effect::Begin => {
+                bluetooth::send(b"busy");
                 // Only one bounded preparation worker exists, including after a cancelled start.
                 if preparation.is_some() {
                     engine.abort_start();
@@ -384,6 +389,7 @@ fn handle_effects(
                 output.send(audio::Message::Resume)?;
             }
             Effect::Cancel => {
+                bluetooth::send(b"stop");
                 *generation = generation.wrapping_add(1);
                 *speech = None;
                 output.send(audio::Message::Cancel)?;
@@ -413,6 +419,11 @@ fn handle_effects(
             }
             Effect::Unavailable => {
                 *speech = Some(voices.get("error.wav")?);
+            }
+            Effect::BluetoothPair => {
+                bluetooth::send(b"idle");
+                bluetooth::send(b"pair");
+                output.send(audio::Message::BluetoothEnabled(true))?;
             }
         }
     }

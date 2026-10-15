@@ -1,1 +1,2 @@
 source "$BR2_EXTERNAL_SHUSH_PATH/package/shush/Config.in"
+source "$BR2_EXTERNAL_SHUSH_PATH/package/shush-bt-firmware/Config.in"

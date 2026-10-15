@@ -4,5 +4,5 @@ kernel=Image
 arm_64bit=1
 gpu_mem=32
 enable_uart=1
-dtoverlay=disable-bt
+dtparam=krnbt=on
 dtparam=audio=off

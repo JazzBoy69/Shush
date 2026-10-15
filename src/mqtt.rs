@@ -38,6 +38,7 @@ pub fn parse_action(payload: &str) -> Option<Action> {
         "alarm_up" => Command::AlarmUp,
         "alarm_down" => Command::AlarmDown,
         "current_time" => Command::CurrentTime,
+        "bluetooth_pair" => Command::BluetoothPair,
         "status" => return Some(Action::Status),
         _ => return None,
     };

@@ -1,0 +1,16 @@
+[Unit]
+Description=Shush Bluetooth PCM ingress
+Wants=shush-bluetooth.service
+Requires=shush-bluealsa.service
+After=shush-bluetooth.service shush-bluealsa.service
+
+[Service]
+Environment=ALSA_CONFIG_PATH=/etc/shush-bluetooth-asound.conf
+ExecStart=/usr/bin/bluealsa-aplay --pcm=shush_bluetooth --single-audio --volume=software --pcm-period-time=10000 --pcm-buffer-time=40000
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+ProtectHome=yes
+
+[Install]
+WantedBy=multi-user.target

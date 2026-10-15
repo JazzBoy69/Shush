@@ -17,6 +17,7 @@ pub enum Command {
     AlarmUp,
     AlarmDown,
     CurrentTime,
+    BluetoothPair,
 }
 impl Command {
     /// Linux input-event codes. Releases are ignored; only adjustments repeat.
@@ -35,6 +36,7 @@ impl Command {
             103 => Self::AlarmUp,
             108 => Self::AlarmDown,
             358 => Self::CurrentTime,
+            401 => Self::BluetoothPair,
             _ => return None,
         };
         if value == 1
@@ -80,6 +82,7 @@ pub enum Effect {
     SpeakMode(bool),
     SaveSettings,
     Unavailable,
+    BluetoothPair,
 }
 
 pub struct Engine {
@@ -148,6 +151,9 @@ impl Engine {
                     display_hour(local.hour()),
                     local.minute() as u8,
                 ));
+            }
+            Command::BluetoothPair if self.state == State::Idle => {
+                effects.push(Effect::BluetoothPair);
             }
             _ => {}
         }
@@ -341,6 +347,9 @@ mod tests {
     }
     #[test]
     fn input_repeat_policy() {
+        assert_eq!(Command::from_key(401, 1), Some(Command::BluetoothPair));
+        assert_eq!(Command::from_key(401, 0), None);
+        assert_eq!(Command::from_key(401, 2), None);
         assert_eq!(Command::from_key(352, 1), Some(Command::Toggle));
         assert_eq!(Command::from_key(352, 2), None);
         assert_eq!(Command::from_key(115, 2), Some(Command::VolumeUp));
@@ -348,6 +357,31 @@ mod tests {
         assert_eq!(Command::from_key(358, 1), Some(Command::CurrentTime));
         assert_eq!(Command::from_key(358, 0), None);
         assert_eq!(Command::from_key(358, 2), None);
+    }
+    #[test]
+    fn blue_button_pairs_only_while_idle_including_not_while_paused() {
+        let now = local(2026, 10, 5, 21, 0);
+        let mut engine = Engine::new(Settings::default());
+        assert_eq!(
+            engine.apply(Command::BluetoothPair, now),
+            vec![Effect::BluetoothPair]
+        );
+        engine.apply(Command::Play, now);
+        assert!(engine.apply(Command::BluetoothPair, now).is_empty());
+        engine.start_ready();
+        assert!(engine.apply(Command::BluetoothPair, now).is_empty());
+        engine.apply(Command::Pause, now);
+        assert!(engine.apply(Command::BluetoothPair, now).is_empty());
+        engine.apply(Command::Play, now);
+        engine.reading_finished();
+        assert!(engine.apply(Command::BluetoothPair, now).is_empty());
+        engine.apply(Command::Pause, now);
+        assert!(engine.apply(Command::BluetoothPair, now).is_empty());
+        engine.apply(Command::Stop, now);
+        assert_eq!(
+            engine.apply(Command::BluetoothPair, now),
+            vec![Effect::BluetoothPair]
+        );
     }
     #[test]
     fn dst_selects_next_existing_occurrence_without_a_duration_cap() {

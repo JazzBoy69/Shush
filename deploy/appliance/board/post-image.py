@@ -44,6 +44,8 @@ def main():
             "shush-settings",
             "-U",
             "a2ebc8ab-8823-49e2-b94e-e35b54ce6111",
+            "-E",
+            "root_owner=1000:1000",
             str(settings),
             "16384",
         ],

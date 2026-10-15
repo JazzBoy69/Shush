@@ -36,6 +36,7 @@ pub enum Message {
     Resume,
     Cancel,
     Gain(u8, bool),
+    BluetoothEnabled(bool),
 }
 #[derive(Debug)]
 pub enum Event {
@@ -67,6 +68,7 @@ struct Mixer {
     muted: bool,
     id: u64,
     deadline: Option<chrono::DateTime<chrono::Utc>>,
+    bluetooth_enabled: bool,
 }
 impl Mixer {
     fn new(noise: Samples) -> Self {
@@ -82,6 +84,7 @@ impl Mixer {
             muted: false,
             id: 0,
             deadline: None,
+            bluetooth_enabled: false,
         }
     }
     fn command(&mut self, message: Message) {
@@ -113,6 +116,7 @@ impl Mixer {
                 id,
                 deadline,
             } => {
+                self.bluetooth_enabled = false;
                 self.id = id;
                 self.deadline = Some(deadline);
                 self.retired = self.reading.take();
@@ -148,6 +152,7 @@ impl Mixer {
                 };
             }
             Message::Cancel => {
+                self.bluetooth_enabled = false;
                 self.phase = Phase::Idle;
                 self.retired = self.reading.take();
                 self.prompt = None;
@@ -158,6 +163,7 @@ impl Mixer {
                 self.volume = volume.min(100);
                 self.muted = muted;
             }
+            Message::BluetoothEnabled(enabled) => self.bluetooth_enabled = enabled,
             _ => {}
         }
     }
@@ -228,10 +234,24 @@ impl Mixer {
         }
     }
     fn fill(&mut self, buffer: &mut [i16]) -> (bool, bool) {
+        self.fill_bluetooth(buffer, &[])
+    }
+    fn fill_bluetooth(&mut self, buffer: &mut [i16], bluetooth: &[i16]) -> (bool, bool) {
         let (mut started, mut finished) = (false, false);
-        for frame in buffer.chunks_exact_mut(2) {
-            let sample = self.sample(&mut started, &mut finished);
-            frame.fill(sample);
+        for (index, frame) in buffer.chunks_exact_mut(2).enumerate() {
+            if self.phase == Phase::Idle && self.bluetooth_enabled && self.prompt.is_none() {
+                for (channel, sample) in frame.iter_mut().enumerate() {
+                    let source = bluetooth.get(index * 2 + channel).copied().unwrap_or(0);
+                    *sample = if self.muted {
+                        0
+                    } else {
+                        ((source as i32 * self.volume as i32) / 100) as i16
+                    };
+                }
+            } else {
+                let sample = self.sample(&mut started, &mut finished);
+                frame.fill(sample);
+            }
         }
         (started, finished)
     }
@@ -321,11 +341,26 @@ fn stream(
     let mut last_progress = Instant::now();
     let (mut started, mut finished) = (false, false);
     let mut pending_id = 0;
+    let mut bluetooth = crate::bluetooth::Input::open();
+    let mut bluetooth_buffer = [0i16; FRAMES * 2];
     while !stop.load(Ordering::Acquire) {
         // Fixed maximum command work per iteration prevents input floods starving output.
         for _ in 0..32 {
             match rx.try_recv() {
                 Ok(message) => {
+                    if mixer.phase == Phase::Idle
+                        && matches!(
+                            message,
+                            Message::Prepare { .. }
+                                | Message::Begin { .. }
+                                | Message::Cancel
+                                | Message::Prompt(_)
+                                | Message::BluetoothEnabled(false)
+                        )
+                    {
+                        buffer.fill(0);
+                        offset = FRAMES;
+                    }
                     mixer.command(message);
                     if let Some(samples) = mixer.retired.take() {
                         tx.try_send(Event::Retired(samples))
@@ -349,7 +384,15 @@ fn stream(
                 .context("audio event queue full")?;
         }
         if offset == FRAMES {
-            (started, finished) = mixer.fill(&mut buffer);
+            if let Some(input) = &mut bluetooth {
+                input.fill(
+                    &mut bluetooth_buffer,
+                    mixer.phase == Phase::Idle && mixer.bluetooth_enabled && mixer.prompt.is_none(),
+                );
+                (started, finished) = mixer.fill_bluetooth(&mut buffer, &bluetooth_buffer);
+            } else {
+                (started, finished) = mixer.fill(&mut buffer);
+            }
             pending_id = mixer.id;
             offset = 0;
         }
@@ -394,6 +437,39 @@ mod expire_tests;
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn bluetooth_is_stereo_only_when_enabled_and_idle_and_never_overlays_an_alarm() {
+        use super::*;
+        for phase in [
+            Phase::Preparing,
+            Phase::Announcing,
+            Phase::Reading,
+            Phase::Noise,
+            Phase::PausedReading,
+            Phase::PausedNoise,
+        ] {
+            let mut mixer = Mixer::new(Arc::from([0]));
+            mixer.phase = phase;
+            mixer.command(Message::BluetoothEnabled(true));
+            let mut output = [0; 4];
+            mixer.fill_bluetooth(&mut output, &[1000, -2000, 3000, -4000]);
+            assert_eq!(output, [0; 4], "Bluetooth leaked into {phase:?}");
+        }
+        let mut mixer = Mixer::new(Arc::from([0]));
+        let mut output = [0; 4];
+        mixer.fill_bluetooth(&mut output, &[1000, -2000, 3000, -4000]);
+        assert_eq!(output, [0; 4]);
+        mixer.command(Message::BluetoothEnabled(true));
+        mixer.fill_bluetooth(&mut output, &[1000, -2000, 3000, -4000]);
+        assert_eq!(output, [500, -1000, 1500, -2000]);
+        mixer.command(Message::Gain(50, true));
+        mixer.fill_bluetooth(&mut output, &[1000, -2000, 3000, -4000]);
+        assert_eq!(output, [0; 4]);
+        mixer.command(Message::Gain(50, false));
+        mixer.command(Message::Cancel);
+        mixer.fill_bluetooth(&mut output, &[1000, -2000, 3000, -4000]);
+        assert_eq!(output, [0; 4]);
+    }
     use super::*;
     #[test]
     fn announcement_starts_before_loading_and_finishes_before_reading() {

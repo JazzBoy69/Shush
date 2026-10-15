@@ -56,6 +56,7 @@ def main():
             (unit.parent / parent / name).unlink(missing_ok=True)
     for directory in ("boot", "var/lib/shush"):
         (target / directory).mkdir(parents=True, exist_ok=True)
+    (target / "var/lib/bluetooth").mkdir(parents=True, exist_ok=True)
     for path in (target / "opt/shush/reference").glob("audio_*json"):
         path.unlink()
     for path in (

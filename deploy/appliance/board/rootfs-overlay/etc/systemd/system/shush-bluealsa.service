@@ -1,0 +1,16 @@
+[Unit]
+Description=Shush Bluetooth A2DP receiver
+Requires=bluetooth.service
+After=bluetooth.service
+
+[Service]
+Type=dbus
+BusName=org.bluealsa
+ExecStart=/usr/bin/bluealsa --profile=a2dp-sink --a2dp-force-audio-cd
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+ProtectHome=yes
+
+[Install]
+WantedBy=multi-user.target
