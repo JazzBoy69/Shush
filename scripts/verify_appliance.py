@@ -198,6 +198,11 @@ def main():
         "CFG80211",
         "BRCMFMAC",
         "BRCMFMAC_SDIO",
+        "BT",
+        "BT_BREDR",
+        "BT_HCIUART",
+        "BT_HCIUART_BCM",
+        "BT_HCIUART_SERDEV",
     )
     for option in required_kernel_options:
         require(
@@ -248,9 +253,23 @@ def main():
         for path in (
             "etc/systemd/network/20-wifi.network",
             "etc/systemd/system/shush-wifi.service",
+            "etc/bluetooth/main.conf",
+            "etc/shush-bluetooth-asound.conf",
+            "etc/systemd/system/shush-bluetooth.service",
+            "etc/systemd/system/shush-bluealsa.service",
+            "etc/systemd/system/shush-bluealsa-aplay.service",
+            "etc/systemd/system/bluetooth.service.d/shush.conf",
+            "usr/libexec/shush-bluetooth.py",
         ):
             require(read_root("/" + path) == (overlay / path).read_bytes(),
-                    "Packaged Wi-Fi configuration differs: " + path)
+                    "Packaged appliance configuration differs: " + path)
+        for name in ("bluealsa", "bluealsa-aplay", "python3"):
+            require(read_root("/usr/bin/" + name)[:4] == b"\x7fELF",
+                    "Missing Bluetooth executable: " + name)
+        bluetooth_firmware = read_root("/lib/firmware/brcm/BCM4345C0.hcd")
+        require(hashlib.sha256(bluetooth_firmware).hexdigest()
+                == "51c45e77ddad91a19e96dc8fb75295b2087c279940df2634b23baf71b6dea42c",
+                "Wrong Pi 3 B+ Bluetooth firmware")
         for name in ("wpa_supplicant", "mosquitto_sub", "mosquitto_pub"):
             path = ("/usr/sbin/" if name == "wpa_supplicant" else "/usr/bin/") + name
             require(read_root(path)[:4] == b"\x7fELF", "Missing network executable: " + name)
@@ -385,6 +404,9 @@ def main():
             else "rpi-firmware/" + filename
         )
         require(actual == source.read_bytes(), "Boot file mismatch: " + filename)
+    boot_config = (images / "rpi-firmware/config.txt").read_text()
+    require("dtparam=krnbt=on" in boot_config and "dtoverlay=disable-bt" not in boot_config,
+            "Native Bluetooth initialization is not enabled")
     # QEMU user mode executes the actual target binary against its target libraries.
     # It proves cross-build/asset loading, not Pi boot, USB audio, or endurance.
     with tempfile.TemporaryDirectory(prefix="shush-emulated-settings-") as folder:
@@ -405,6 +427,7 @@ def main():
             [] if args.structure_only else validate_arm_media(command, target, images)
         )
     manifest["image_structure_verified"] = True
+    manifest["bluetooth_firmware_and_services_verified"] = True
     manifest["packaged_voice_prompts_verified"] = 771
     manifest["aarch64_asset_check"] = "passed (QEMU user mode)"
     manifest["aarch64_full_media_validation"] = (
