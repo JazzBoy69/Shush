@@ -1,0 +1,7 @@
+# Linux scripts and target configuration must survive Windows checkouts.
+*.wav binary
+/voice/*.json text eol=lf
+*.rs text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+deploy/** text eol=lf
