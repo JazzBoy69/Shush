@@ -35,17 +35,50 @@ To create or replace the private files, run this command and enter both password
 python3 scripts/configure_network.py --wifi-ssid YOUR_SSID --country US --mqtt-host YOUR_BROKER --mqtt-user YOUR_USERNAME
 ```
 
-Publish a plain action name to `shush/action`: `play`, `pause`, `resume`, `toggle`, `stop`, `volume_up`, `volume_down`, `mute_toggle`, `mode`, `alarm_left`, `alarm_right`, `alarm_up`, `alarm_down`, `current_time`, or `status`. `start` aliases `play`; `mute` aliases `mute_toggle`. Commands follow the same state rules as remote buttons. Send actions without the retained flag. MQTT 5 subscriptions reject retained actions, including retained messages sent while connected.
+Publish a plain action name to `shush/action`: `play`, `pause`, `resume`, `toggle`, `stop`, `volume_up`, `volume_down`, `mute_toggle`, `mode`, `alarm_left`, `alarm_right`, `alarm_up`, `alarm_down`, `current_time`, `bluetooth_pair`, or `status`. `start` aliases `play`; `mute` aliases `mute_toggle`. Commands follow the same state rules as remote buttons. Send actions without the retained flag. MQTT 5 subscriptions reject retained actions, including retained messages sent while connected.
 
-The appliance publishes retained JSON to `shush/state` when state changes, on a `status` request, and every 30 seconds. Fields are `phase` (`idle`, `starting`, `reading`, `noise`), `paused`, `wake_hour`, `wake_minute`, `reading`, `volume`, `muted`, and the current session's UTC `deadline` (or `null`). This is a state snapshot, not an acknowledgement or an availability indicator; check its receipt time if monitoring connectivity. Use `--topic PREFIX` when generating private configuration to replace `shush`.
+The appliance publishes retained JSON to `shush/state` when state changes, on a `status` request, and every 30 seconds. Fields are `phase` (`idle`, `starting`, `reading`, `noise`), `paused`, `wake_hour`, `wake_minute`, `reading`, `volume`, `muted`, and the current session's UTC `deadline` (or `null`). This is a state snapshot, not a command acknowledgement. Connectivity is reported separately on `shush/availability`: retained `online` accompanies state publications, and a retained `offline` last will is sent when the broker detects a lost availability connection. Use `--topic PREFIX` when generating private configuration to replace `shush`.
 
 MQTT I/O runs on separate workers with bounded queues. A broker outage does not cancel or restart playback. Clients reconnect independently; actions delayed in the local queue beyond two seconds are discarded. The appliance runs MQTT clients only, with no local broker. The Mosquitto clients read passwords from private configuration files rather than command arguments ([client documentation](https://mosquitto.org/man/mosquitto_sub-1.html)).
 
+## Home Assistant
+
+Configure Home Assistant's MQTT integration to use the same broker as the appliance, with MQTT discovery enabled and discovery prefix `homeassistant`. Boot an image containing the discovery support. After clock synchronization and application startup, the device appears as **Shush** under **Settings → Devices & services → MQTT**. No manual entity YAML is required. See [Home Assistant's MQTT discovery instructions](https://www.home-assistant.io/integrations/mqtt/#mqtt-discovery).
+
+The device exposes 20 entities: 13 control buttons and seven status entities. Controls include Play, Pause, Stop, Volume up/down, Toggle mute, Change reading mode, four alarm adjustments, Announce time, and Bluetooth pairing. Buttons send non-retained commands and obey the same idle/paused/playback restrictions as the remote. Bluetooth pairing is accepted only while idle.
+
+| Status entity | Meaning |
+| --- | --- |
+| Playback | `idle`, `starting`, `reading`, or `noise`; use Paused to distinguish a paused session |
+| Playing | On during reading or noise when not paused; off during idle, preparation, and pause |
+| Paused | Whether the session is paused |
+| Muted | Whether software audio is muted |
+| Reading enabled | Configured reading-before-noise option |
+| Volume | Software playback volume, 0–100% |
+| Alarm time | Configured 12-hour wake time as `HH:MM`; this can differ from an already-running session's fixed deadline |
+
+Playback changes are published immediately through the control loop; the 30-second heartbeat is additional. To automate playback start, select the discovered **Playing** binary sensor and trigger on a change from off to on. Pause, stop, or the wake deadline turning playback off also updates this sensor. Home Assistant assigns entity IDs, so use the discovered entity rather than assuming a fixed ID.
+
+The current alarm-button labels contain a known mismatch. The actual commands are:
+
+| Command | Actual adjustment | Current Home Assistant button label |
+| --- | --- | --- |
+| `alarm_left` | Minute minus 15, wrapping within the hour | Alarm hour earlier |
+| `alarm_right` | Minute plus 15, wrapping within the hour | Alarm hour later |
+| `alarm_up` | Hour plus 1, wrapping through 1–12 | Alarm minute later |
+| `alarm_down` | Hour minus 1, wrapping through 1–12 | Alarm minute earlier |
+
+Discovery is published with QoS 1 and retain to `homeassistant/device/<device_id>/config`. For the default `shush` topic prefix, the ID is `shush_7368757368`. IDs encode the complete configured topic prefix and remain stable across boots; use a different prefix for each appliance. Changing the prefix changes its discovery identity and leaves the previous retained discovery configuration at the broker until it is removed. The discovery prefix itself is currently fixed to `homeassistant`.
+
+Discovery is refreshed every 60 seconds, with failed publication retried after five seconds. Retention supports Home Assistant restarts; periodic refresh restores discovery after a broker loses its retained data. Shush does not subscribe to Home Assistant's birth topic. Status entities expire after 90 seconds without state updates. All entities share the availability topic; a lost connection is marked offline when the broker detects it, rather than immediately at power loss. Availability returns online with a subsequent state publication.
+
+If Shush does not appear, check that Home Assistant and the appliance use the same broker, discovery is enabled with the expected prefix, and the appliance account may publish `homeassistant/device/<device_id>/config`, `<prefix>/state`, and `<prefix>/availability` and subscribe to `<prefix>/action`. Listening to these topics in Home Assistant's MQTT integration distinguishes missing discovery from missing state or availability. Retained state alone does not prove that the appliance is currently online.
+
 ## Build and install the appliance image
 
-The appliance uses a custom Buildroot 2026.08 Linux image for the Raspberry Pi 3 B+ in 64-bit mode. It packages the Rust application, reading audio, pink noise, and voice prompts. The current source profile includes Wi-Fi and MQTT clients alongside wired Ethernet, and retains the R19U hardware-volume fix and startup announcements. Build and flash a new image to install these source changes. Previous image-validation results apply to the earlier images; this network profile still needs an image build and hardware validation.
+The appliance uses a custom Buildroot 2026.08 Linux image for the Raspberry Pi 3 B+ in 64-bit mode. It packages the Rust application, reading audio, pink noise, and voice prompts. The current source profile includes Wi-Fi, wired Ethernet, Home Assistant MQTT discovery, the R19U hardware-volume fix, and startup announcements. Its Broadcom driver includes the WPA offload authorization fix required by WPA supplicant 2.11 and later. Build and flash a new image to install application or image-profile changes. The accompanying verification manifest identifies the checks and retained evidence for that particular image; it does not establish overnight endurance.
 
-Use the built [SD image](dist/shush-pi3.img), with its [SHA-256 checksum](dist/shush-pi3.img.sha256) and [verification manifest](dist/shush-image.json). It includes the USB audio and eHome/MCEUSB receiver drivers. The image automatically selects the single MCEUSB receiver and USB speaker playback device at boot; no device identifiers need entering.
+Use the built [SD image](dist/shush-pi3.img), with its [SHA-256 checksum](dist/shush-pi3.img.sha256) and [verification manifest](dist/shush-pi3.json). It includes the USB audio and eHome/MCEUSB receiver drivers. The image automatically selects the single MCEUSB receiver and USB speaker playback device at boot; no device identifiers need entering.
 
 To rebuild on an Ubuntu Linux host, install the required tools:
 
@@ -64,6 +97,8 @@ The builder downloads the checksum-pinned Buildroot release and its build depend
 1. Write `dist/shush-pi3.img` (or a rebuilt `sdcard.img`) to an SD card using Raspberry Pi Imager's custom-image option. Select the intended card carefully: writing replaces its contents. The [official Raspberry Pi installation guide](https://www.raspberrypi.com/documentation/computers/getting-started.html) describes Imager and custom images.
 2. Connect the Edifier R19U USB speakers and HP OVU400102 receiver, insert the card, and boot the Pi. Use configured Wi-Fi or wired Ethernet; both use IPv4 DHCP. The OS synchronizes time over the network and uses America/Chicago. Playback remains unavailable until the clock is synchronized and the devices are ready.
 
+If the clock cannot synchronize within three minutes, the appliance announces “Unable to set the clock. Check the network connection.” Playback remains stopped. A diagnostic service saves `shush-network-report.txt` to the SD card’s boot partition, collecting service states, Wi-Fi/DHCP information, routes, DNS and clock state, relevant journal messages, and kernel logs. It collects a second snapshot after a 45-second pause following the first collection. Please leave power on for three minutes after the prompt before removing the card to retrieve the report. The service does not read the private Wi-Fi or MQTT configuration files, but the report can contain the SSID, addresses, and hardware identifiers. A later clock-failure boot replaces the report; its presence alone does not indicate a failure in the current boot. Reboot after correcting the connection to retry startup.
+
 The image has no SSH server or interactive console login. Updating application or media requires building and flashing a replacement image. If retaining settings matters, copy `/var/lib/shush/settings.json` from the old card's third partition before overwriting it.
 
 ## Host development and validation
@@ -73,6 +108,8 @@ For development on Linux, install Rust 1.88 or newer, `pkg-config`, and the ALSA
 ```sh
 cargo build --release --locked
 cargo test --locked
+# With local mosquitto and mosquitto-clients installed:
+cargo test --locked mqtt::tests::live_broker_controls_state_retention_and_reconnection -- --ignored --nocapture
 cargo run --locked -- check --root .
 cargo run --locked -- validate-media --root .
 ```
@@ -87,7 +124,7 @@ Media preparation grows decoding buffers geometrically within the 192 MiB capaci
 
 The reading day uses the original elapsed-time calculation from the Chicago date anchor, including its behavior across daylight-saving changes. Wake selection uses the next existing local hour/minute after the displayed bedtime. A missing spring-forward occurrence is skipped; a local time already passed at bedtime stays passed when fall-back repeats an hour. There is no 12-hour elapsed-duration limit. Playback failure is reported without restarting. Losing the HID receiver does not stop independent audio or its deadline; the device is not automatically reopened.
 
-The appliance mounts its boot and system partitions read-only, keeps settings on a separate writable persistent partition, and bounds temporary storage and journal logs in RAM. It has no swap, SSH server, or login/getty service. The application service requests elevated scheduling priority and waits for OS clock synchronization. Essential device, networking, DNS, time, and logging services support playback; the application has no automatic restart. These measures and host tests do not establish hardware reliability.
+The appliance normally mounts its boot and system partitions read-only. The clock-failure reporter temporarily remounts the boot partition writable to save its report, then restores its previous read-only state. The appliance keeps settings on a separate writable persistent partition, and bounds temporary storage and journal logs in RAM. It has no swap, SSH server, or login/getty service. The application service requests elevated scheduling priority and waits for OS clock synchronization. Essential device, networking, DNS, time, and logging services support playback; the application has no automatic restart. These measures and host tests do not establish hardware reliability.
 
 ## Voice assets
 
