@@ -5,33 +5,57 @@ import os
 from pathlib import Path
 import shutil
 import sys
+import tempfile
 
 
 def install_private_network(target, source):
     """Copy secrets separately from the tracked overlay and boot partition."""
     private = target / "etc/shush-private"
-    # Remove stale configuration if the builder switches private directories.
-    if private.exists():
-        shutil.rmtree(private)
     mqtt_unit = target / "etc/systemd/system/shush.service.d/mqtt.conf"
-    mqtt_unit.unlink(missing_ok=True)
     if source is None:
+        # A direct Buildroot invocation may omit the builder's environment.
+        # Never interpret that as a request to delete installed credentials.
         return
     source = Path(source).resolve()
     names = ("wpa_supplicant.conf", "mqtt/mosquitto_sub", "mqtt/mosquitto_pub", "mqtt/topic")
     if not all((source / name).is_file() for name in names):
         raise SystemExit("Incomplete private network configuration")
-    private.mkdir(parents=True, mode=0o700)
-    (private / "mqtt").mkdir(mode=0o700)
-    for name in names:
-        shutil.copyfile(source / name, private / name)
-        (private / name).chmod(0o600)
-    mqtt_unit.parent.mkdir(parents=True, exist_ok=True)
-    mqtt_unit.write_text(
-        "[Service]\nLoadCredential=mqtt:/etc/shush-private/mqtt\n"
-        "RestrictAddressFamilies=\nRestrictAddressFamilies=AF_UNIX AF_INET AF_INET6\n"
-        "TasksMax=32\n"
-    )
+    private.parent.mkdir(parents=True, exist_ok=True)
+    # Finish all copies before moving the existing directory. Retain the old
+    # directory as a recovery copy, including if the process is interrupted.
+    with tempfile.TemporaryDirectory(prefix=".shush-private-", dir=private.parent) as folder:
+        staged = Path(folder) / "new"
+        staged.mkdir(mode=0o700)
+        (staged / "mqtt").mkdir(mode=0o700)
+        for name in names:
+            shutil.copyfile(source / name, staged / name)
+            (staged / name).chmod(0o600)
+        mqtt_unit.parent.mkdir(parents=True, exist_ok=True)
+        staged_unit = Path(folder) / "mqtt.conf"
+        staged_unit.write_text(
+            "[Service]\n"
+            "LoadCredential=mosquitto_sub:/etc/shush-private/mqtt/mosquitto_sub\n"
+            "LoadCredential=mosquitto_pub:/etc/shush-private/mqtt/mosquitto_pub\n"
+            "LoadCredential=topic:/etc/shush-private/mqtt/topic\n"
+            "RestrictAddressFamilies=\nRestrictAddressFamilies=AF_UNIX AF_INET AF_INET6\n"
+            "TasksMax=32\n"
+        )
+        backup = None
+        if private.exists():
+            backup = Path(tempfile.mkdtemp(prefix=".shush-private-backup-", dir=target.parent))
+            if mqtt_unit.exists():
+                shutil.copyfile(mqtt_unit, backup / "mqtt.conf")
+            private.rename(backup / "private")
+        try:
+            staged.rename(private)
+            os.replace(staged_unit, mqtt_unit)
+        except BaseException:
+            if private.exists():
+                private.rename(staged)
+            if backup is not None:
+                (backup / "private").rename(private)
+            raise
+
 
 
 def main():

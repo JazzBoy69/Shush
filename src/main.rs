@@ -38,7 +38,7 @@ impl Options {
             input: None,
             audio: "default".into(),
             mqtt_config: std::env::var_os("CREDENTIALS_DIRECTORY")
-                .map(|path| PathBuf::from(path).join("mqtt"))
+                .map(PathBuf::from)
                 .filter(|path| path.is_dir()),
         };
         while let Some(flag) = args.next() {
@@ -67,6 +67,20 @@ fn entry() -> Result<()> {
     let options = Options::parse()?;
     if matches!(options.command.as_str(), "help" | "--help" | "-h") {
         println!("shush run --root PATH --settings PATH --input /dev/input/by-id/... --audio plughw:CARD=Device,DEV=0 [--mqtt-config DIRECTORY]\nshush check --root PATH\nshush validate-media --root PATH");
+        return Ok(());
+    }
+    if options.command == "clock-error" {
+        // Boot diagnostics must work without the clock, receiver, schedule,
+        // settings, or main audio worker. aplay drains the complete WAV.
+        let prompt = options.root.join("voice/clock-network-error.wav");
+        media::wav(&prompt).context("validating clock failure prompt")?;
+        hardware_volume::initialize(&options.audio)?;
+        let status = std::process::Command::new("/usr/bin/aplay")
+            .args(["--quiet", "--device", &options.audio])
+            .arg(prompt)
+            .status()
+            .context("playing clock failure prompt")?;
+        ensure!(status.success(), "clock failure prompt playback failed");
         return Ok(());
     }
     ensure!(

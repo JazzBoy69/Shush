@@ -39,6 +39,7 @@ CONFIG_BRCMFMAC=y
 CONFIG_BRCMFMAC_SDIO=y
 CONFIG_RFKILL=y
 CONFIG_FW_LOADER=y
+CONFIG_EXTRA_FIRMWARE="regulatory.db regulatory.db.p7s brcm/brcmfmac43455-sdio.bin brcm/brcmfmac43455-sdio.clm_blob brcm/brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt brcm/BCM4345C0.hcd brcm/BCM4345C0.raspberrypi,3-model-b-plus.hcd"
 # CONFIG_SND_SOC is not set
 # CONFIG_SND_SEQUENCER is not set
 # CONFIG_SND_OSSEMUL is not set

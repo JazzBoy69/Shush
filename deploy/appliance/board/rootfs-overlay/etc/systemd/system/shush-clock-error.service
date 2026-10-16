@@ -1,0 +1,19 @@
+[Unit]
+Description=Announce that the appliance clock could not synchronize
+After=sound.target
+RequiresMountsFor=/boot
+
+[Service]
+Type=oneshot
+User=shush
+Group=shush
+SupplementaryGroups=audio
+EnvironmentFile=/boot/shush.conf
+ExecStart=/usr/libexec/shush-start --clock-error
+TimeoutStartSec=90
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+StandardOutput=journal
+StandardError=journal

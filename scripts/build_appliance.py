@@ -3,6 +3,7 @@
 
 import argparse
 import hashlib
+import json
 import os
 from pathlib import Path
 import shutil
@@ -36,6 +37,32 @@ def extract_buildroot(archive, destination):
             if not path.resolve().is_relative_to(destination):
                 raise ValueError("Buildroot symlink path escapes extraction directory")
             path.symlink_to(item.linkname)
+
+
+def publish_candidate(images):
+    """Publish only after verification; keep the previous image and metadata."""
+    candidate = images / "sdcard-candidate.img"
+    manifest = json.loads((images / "shush-candidate.json").read_text())
+    if not manifest.get("image_structure_verified") or manifest.get("aarch64_playlists_validated") != 366:
+        raise RuntimeError("Candidate has not passed full verification")
+    if digest(candidate) != manifest["image_sha256"]:
+        raise RuntimeError("Candidate changed after verification")
+    published = ("sdcard.img", "sdcard.img.sha256", "shush-image.json")
+    if any((images / name).exists() for name in published):
+        backup = Path(tempfile.mkdtemp(prefix="previous-image-", dir=images))
+        for name in published:
+            if (images / name).exists():
+                if name == "sdcard.img":
+                    # Image publication always replaces the inode.
+                    os.link(images / name, backup / name)
+                else:
+                    shutil.copyfile(images / name, backup / name)
+    manifest["image"] = "sdcard.img"
+    (images / "shush-candidate.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    (images / "sdcard-candidate.img.sha256").write_text(manifest["image_sha256"] + "  sdcard.img\n")
+    os.replace(candidate, images / "sdcard.img")
+    os.replace(images / "sdcard-candidate.img.sha256", images / "sdcard.img.sha256")
+    os.replace(images / "shush-candidate.json", images / "shush-image.json")
 
 
 def main():
@@ -204,10 +231,12 @@ def main():
             str(PROJECT / "scripts/verify_appliance.py"),
             "--output",
             str(work / "output"),
-        ],
+        ] + ([] if args.verify_only else ["--candidate"]),
         check=True,
         env=env,
     )
+    if not args.verify_only:
+        publish_candidate(work / "output/images")
     print(f"Image: {work / 'output/images/sdcard.img'}", flush=True)
 
 

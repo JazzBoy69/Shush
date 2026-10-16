@@ -1,0 +1,12 @@
+[Unit]
+Description=Retain clock and network failure diagnostics on the SD boot partition
+After=local-fs.target
+RequiresMountsFor=/boot
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/libexec/shush-network-report.py
+TimeoutStartSec=180
+UMask=0077
+StandardOutput=journal
+StandardError=journal

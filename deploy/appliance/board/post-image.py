@@ -68,7 +68,7 @@ def main():
     } }
     size = 64M
 }
-image sdcard.img {
+image sdcard-candidate.img {
     hdimage { }
     partition boot {
         offset = 1M
@@ -105,10 +105,10 @@ image sdcard.img {
             ],
             check=True,
         )
-    output = binaries / "sdcard.img"
+    output = binaries / "sdcard-candidate.img"
     sha = digest(output)
-    (binaries / "sdcard.img.sha256").write_text(sha + "  sdcard.img\n")
-    (binaries / "shush-image.json").write_text(
+    (binaries / "sdcard-candidate.img.sha256").write_text(sha + "  sdcard-candidate.img\n")
+    (binaries / "shush-candidate.json").write_text(
         json.dumps(
             {
                 "buildroot": "2026.08",

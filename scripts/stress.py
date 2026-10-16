@@ -145,7 +145,10 @@ def postprocess_stress(text, phonemes):
             replacement = re.sub("[ˈˌ]", marker, original)
         return change(word, role, original, replacement, level + "-prominence")
 
-    if text == "With reading.":
+    if text == "Unable to set the clock. Check the network connection.":
+        _expect(phonemes, "ʌnˈeɪbəl tə sˈɛt ðə klˈɑːk. tʃˈɛk ðə nˈɛtwɜːk kənˈɛkʃən.")
+        corrected = phonemes
+    elif text == "With reading.":
         _expect(phonemes, UNCHANGED[text])
         corrected = (
             change(

@@ -3,6 +3,8 @@
 import argparse
 import getpass
 import hashlib
+import os
+import tempfile
 from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -10,8 +12,16 @@ PROJECT = Path(__file__).resolve().parents[1]
 
 def private_file(path, text):
     path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
-    path.write_text(text, encoding="utf-8")
-    path.chmod(0o600)
+    # mkstemp creates a root/user-only file before any secret bytes are written.
+    descriptor, temporary = tempfile.mkstemp(prefix="." + path.name + ".", dir=path.parent)
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+            stream.write(text)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        Path(temporary).unlink(missing_ok=True)
 
 
 def wifi_config(ssid, password, country):

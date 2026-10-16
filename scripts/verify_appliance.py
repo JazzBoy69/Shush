@@ -6,12 +6,46 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import posixpath
+import re
 import struct
 import subprocess
 import tempfile
 import time
 
 PROJECT = Path(__file__).resolve().parents[1]
+
+
+def validate_radio_authorization(output, images):
+    kernel = output / "build/linux-custom/vmlinux"
+    prefix = output / "host/bin/aarch64-linux-"
+    symbols = subprocess.check_output([str(prefix) + "nm", "--defined-only", str(kernel)]).decode()
+    functions = re.findall(r"\b(brcmf_bss_connect_done(?:\.[\w.]+)?)$", symbols, re.M)
+    require(functions, "Cannot inspect Broadcom connection completion code")
+    assembly = "\n".join(subprocess.check_output([
+        str(prefix) + "objdump", "-d", "--disassemble=" + function, str(kernel)
+    ]).decode() for function in functions)
+    require("cfg80211_port_authorized" in assembly,
+            "Broadcom connection completion omits WPA offload authorization")
+    # Check that the inspected ELF really produced the kernel shipped on the SD.
+    with tempfile.TemporaryDirectory(prefix="shush-kernel-verify-") as folder:
+        reconstructed = Path(folder) / "Image"
+        subprocess.run([str(prefix) + "objcopy", "-O", "binary", "-R", ".note",
+                        "-R", ".note.gnu.build-id", "-R", ".comment", "-S",
+                        str(kernel), str(reconstructed)], check=True)
+        require(digest(reconstructed) == digest(images / "Image"),
+                "Inspected kernel ELF does not match the packaged Image")
+    (images / "wifi-authorization.disassembly").write_text(assembly)
+
+EARLY_FIRMWARE = (
+    "regulatory.db",
+    "regulatory.db.p7s",
+    "brcm/brcmfmac43455-sdio.bin",
+    "brcm/brcmfmac43455-sdio.clm_blob",
+    "brcm/brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt",
+    "brcm/BCM4345C0.hcd",
+    "brcm/BCM4345C0.raspberrypi,3-model-b-plus.hcd",
+)
 
 
 def digest(path):
@@ -25,6 +59,36 @@ def digest(path):
 def require(condition, message):
     if not condition:
         raise RuntimeError(message)
+
+
+def validate_early_firmware(kernel_config, kernel_image, firmware):
+    setting = re.search(r'^CONFIG_EXTRA_FIRMWARE="([^"]*)"$', kernel_config, re.M)
+    names = set(setting.group(1).split()) if setting else set()
+    for name in EARLY_FIRMWARE:
+        require(name in names, "Firmware is unavailable before root mount: " + name)
+        data = firmware(name)
+        require(bool(data) and data in kernel_image, "Firmware bytes are not embedded in kernel: " + name)
+
+
+def validate_fstab(text):
+    entries = {}
+    for line in text.splitlines():
+        fields = line.split()
+        if not fields or fields[0].startswith("#"):
+            continue
+        require(len(fields) == 6, "Malformed fstab entry: " + line)
+        require(fields[1].startswith("/"), "Invalid fstab mount point: " + fields[1])
+        require(fields[1] not in entries, "Duplicate fstab mount point: " + fields[1])
+        entries[fields[1]] = (fields[0], fields[2], set(fields[3].split(",")))
+    for mount, device, filesystem, flags in (
+        ("/", "/dev/mmcblk0p2", "ext4", {"ro", "noload", "noatime"}),
+        ("/boot", "/dev/mmcblk0p1", "vfat", {"ro", "nodev", "nosuid", "noexec", "umask=0077"}),
+        ("/tmp", "tmpfs", "tmpfs", {"mode=1777", "nosuid", "nodev", "size=32M"}),
+    ):
+        require(mount in entries, "Missing fstab mount: " + mount)
+        actual_device, actual_filesystem, actual_flags = entries[mount]
+        require(actual_device == device and actual_filesystem == filesystem
+                and flags == actual_flags, "Incorrect fstab mount: " + mount)
 
 
 def partitions(image):
@@ -157,6 +221,7 @@ def validate_arm_media(command, target, images):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--candidate", action="store_true", help="Verify the unpublished replacement image")
     parser.add_argument(
         "--structure-only",
         action="store_true",
@@ -165,8 +230,9 @@ def main():
     args = parser.parse_args()
     output = args.output.resolve()
     images, host, target = output / "images", output / "host", output / "target"
-    image = images / "sdcard.img"
-    manifest = json.loads((images / "shush-image.json").read_text())
+    image = images / ("sdcard-candidate.img" if args.candidate else "sdcard.img")
+    manifest_path = images / ("shush-candidate.json" if args.candidate else "shush-image.json")
+    manifest = json.loads(manifest_path.read_text())
     require(digest(image) == manifest["image_sha256"], "SD image checksum mismatch")
     table = partitions(image)
     for entry, filename in zip(table, ("boot.vfat", "rootfs.ext4", "settings.ext4")):
@@ -212,11 +278,29 @@ def main():
     (images / "kernel.config").write_text(kernel_config)
     manifest["kernel_sha256"] = digest(images / "Image")
     manifest["kernel_config_sha256"] = digest(images / "kernel.config")
+    validate_radio_authorization(output, images)
+    manifest["wifi_offload_authorization_verified"] = True
+    manifest["wifi_authorization_disassembly_sha256"] = digest(images / "wifi-authorization.disassembly")
     rootfs = images / "rootfs.ext4"
     with tempfile.TemporaryDirectory(prefix="shush-image-verify-") as folder:
         scratch = Path(folder)
 
-        def read_root(path):
+        def read_root(path, follow_symlinks=False):
+            if follow_symlinks:
+                for _ in range(40):
+                    stat = subprocess.check_output(
+                        [str(host / "sbin/debugfs"), "-R", f"stat {path}", str(rootfs)],
+                        stderr=subprocess.DEVNULL,
+                    ).decode()
+                    if "Type: symlink" not in stat:
+                        break
+                    link = re.search(r'Fast link dest: "(.*)"', stat)
+                    destination = link.group(1) if link else read_root(path).decode()
+                    path = posixpath.normpath(
+                        posixpath.join(posixpath.dirname(path), destination)
+                    )
+                else:
+                    raise RuntimeError("Too many symbolic links in system image: " + path)
             dump = scratch / "dump"
             dump.unlink(missing_ok=True)
             subprocess.run(
@@ -229,6 +313,10 @@ def main():
             return dump.read_bytes()
 
         binary = read_root("/opt/shush/bin/shush")
+        validate_early_firmware(
+            kernel_config, (images / "Image").read_bytes(),
+            lambda name: read_root("/lib/firmware/" + name, follow_symlinks=True),
+        )
         require(
             binary[:5] == b"\x7fELF\x02" and binary[5] == 1,
             "App must be 64-bit little-endian ELF",
@@ -239,11 +327,7 @@ def main():
             "Packaged binary differs",
         )
         fstab = read_root("/etc/fstab").decode()
-        require(
-            "/ ext4 ro,noload,noatime" in fstab, "System filesystem is not read-only"
-        )
-        require("/boot vfat ro," in fstab, "Boot filesystem is not read-only")
-        require("size=32M" in fstab, "Temporary storage is not bounded")
+        validate_fstab(fstab)
         unit = read_root("/etc/systemd/system/shush.service").decode()
         dropin = read_root(
             "/etc/systemd/system/shush.service.d/appliance.conf"
@@ -264,7 +348,7 @@ def main():
             require(read_root("/" + path) == (overlay / path).read_bytes(),
                     "Packaged appliance configuration differs: " + path)
         for name in ("bluealsa", "bluealsa-aplay", "python3"):
-            require(read_root("/usr/bin/" + name)[:4] == b"\x7fELF",
+            require(read_root("/usr/bin/" + name, follow_symlinks=True)[:4] == b"\x7fELF",
                     "Missing Bluetooth executable: " + name)
         bluetooth_firmware = read_root("/lib/firmware/brcm/BCM4345C0.hcd")
         require(hashlib.sha256(bluetooth_firmware).hexdigest()
@@ -272,13 +356,29 @@ def main():
                 "Wrong Pi 3 B+ Bluetooth firmware")
         for name in ("wpa_supplicant", "mosquitto_sub", "mosquitto_pub"):
             path = ("/usr/sbin/" if name == "wpa_supplicant" else "/usr/bin/") + name
-            require(read_root(path)[:4] == b"\x7fELF", "Missing network executable: " + name)
+            require(read_root(path, follow_symlinks=True)[:4] == b"\x7fELF",
+                    "Missing network executable: " + name)
         for name in (
             "brcm/brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt",
-            "cypress/cyfmac43455-sdio.bin",
-            "cypress/cyfmac43455-sdio.clm_blob",
+            "brcm/brcmfmac43455-sdio.bin",
+            "brcm/brcmfmac43455-sdio.clm_blob",
+            "regulatory.db",
+            "regulatory.db.p7s",
         ):
-            require(bool(read_root("/lib/firmware/" + name)), "Missing Pi Wi-Fi firmware")
+            # Check the paths requested by the driver, including symlink targets.
+            # Checking only cypress/* misses broken brcm/* aliases.
+            require(bool(read_root("/lib/firmware/" + name, follow_symlinks=True)),
+                    "Missing Pi Wi-Fi firmware: " + name)
+        for name, service_target in (
+            ("shush-wifi", "multi-user"),
+            ("systemd-networkd", "multi-user"),
+            ("systemd-resolved", "sysinit"),
+            ("systemd-timesyncd", "sysinit"),
+        ):
+            require(bool(read_root(
+                f"/etc/systemd/system/{service_target}.target.wants/{name}.service",
+                follow_symlinks=True,
+            )), "Network service is not enabled: " + name)
         for name in ("wpa_supplicant.conf", "mqtt/mosquitto_sub", "mqtt/mosquitto_pub", "mqtt/topic"):
             path = "/etc/shush-private/" + name
             require(bool(read_root(path)), "Missing private network configuration")
@@ -288,8 +388,9 @@ def main():
             ).stdout
             require("Mode:  0600" in stat, "Private network file permissions are not 0600")
         mqtt_unit = read_root("/etc/systemd/system/shush.service.d/mqtt.conf").decode()
-        require("LoadCredential=mqtt:/etc/shush-private/mqtt" in mqtt_unit,
-                "MQTT credentials are not provided through systemd")
+        for name in ("mosquitto_sub", "mosquitto_pub", "topic"):
+            require(f"LoadCredential={name}:/etc/shush-private/mqtt/{name}\n" in mqtt_unit,
+                    "MQTT credential is not provided with its client filename: " + name)
         require(
             "RequiresMountsFor=/boot /var/lib/shush" in dropin,
             "Persistent settings mount not required",
@@ -368,6 +469,20 @@ def main():
             == (PROJECT / "reference/reading_schedule.json").read_bytes(),
             "Wrong schedule",
         )
+        for name in (
+            "systemd-time-wait-sync.service.d/shush.conf",
+            "shush-clock-error.service",
+            "shush-network-report.service",
+        ):
+            relative = "etc/systemd/system/" + name
+            require(read_root("/" + relative) == (overlay / relative).read_bytes(),
+                    "Clock failure diagnostic configuration differs: " + name)
+        require(read_root("/usr/libexec/shush-network-report.py")
+                == (overlay / "usr/libexec/shush-network-report.py").read_bytes(),
+                "Network failure reporter differs from the build source")
+        clock_prompt = json.loads((PROJECT / "voice/clock-network-error.json").read_text())["asset"]
+        require(hashlib.sha256(read_root("/opt/shush/voice/clock-network-error.wav")).hexdigest()
+                == clock_prompt["sha256"], "Clock failure voice prompt mismatch")
         # Read actual image assets, not just the staging directory.
         voice_manifest = json.loads((PROJECT / "voice/manifest.json").read_text())
         for entry in voice_manifest["assets"]:
@@ -412,6 +527,8 @@ def main():
     with tempfile.TemporaryDirectory(prefix="shush-emulated-settings-") as folder:
         command = [
             str(host / "bin/qemu-aarch64"),
+            "-cpu",
+            "cortex-a53",
             "-L",
             str(target),
             str(target / "opt/shush/bin/shush"),
@@ -439,7 +556,7 @@ def main():
     manifest["aarch64_playlists_validated"] = 0 if args.structure_only else 366
     manifest["verification_script_sha256"] = digest(Path(__file__).resolve())
     manifest["hardware_boot_verified"] = False
-    (images / "shush-image.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
     print(
         "Verified image partitions, packaged configuration/prompts, and AArch64 media loading."
     )

@@ -6,8 +6,9 @@ import tempfile
 import tarfile
 import io
 import unittest
+from unittest.mock import patch
 
-from configure_network import mqtt_config, topic_config, wifi_config
+from configure_network import mqtt_config, topic_config, wifi_config, private_file
 from build_appliance import extract_buildroot
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -60,7 +61,7 @@ class NetworkTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 topic_config(value)
 
-    def test_secrets_are_private_not_in_boot_and_old_config_is_removed(self):
+    def test_secrets_are_private_and_missing_source_preserves_installed_config(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder) / "target"
             source = Path(folder) / "private"
@@ -77,10 +78,15 @@ class NetworkTests(unittest.TestCase):
                     self.assertEqual(installed.stat().st_mode & 0o777, 0o600)
             self.assertFalse((root / "boot").exists())
             unit = root / "etc/systemd/system/shush.service.d/mqtt.conf"
-            self.assertIn("LoadCredential=mqtt:", unit.read_text())
+            for name in ("mosquitto_sub", "mosquitto_pub", "topic"):
+                self.assertIn(f"LoadCredential={name}:/etc/shush-private/mqtt/{name}\n", unit.read_text())
             post_build.install_private_network(root, None)
-            self.assertFalse(unit.exists())
-            self.assertFalse((root / "etc/shush-private").exists())
+            self.assertTrue(unit.exists())
+            self.assertEqual((root / "etc/shush-private/wpa_supplicant.conf").read_text(), "test-secret\n")
+            with self.assertRaises(SystemExit):
+                post_build.install_private_network(root, Path(folder) / "missing")
+            self.assertTrue(unit.exists())
+            self.assertEqual((root / "etc/shush-private/wpa_supplicant.conf").read_text(), "test-secret\n")
 
     def test_incomplete_private_config_fails_before_installing_any_secrets(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -88,6 +94,47 @@ class NetworkTests(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 post_build.install_private_network(root, Path(folder) / "missing")
             self.assertFalse((root / "etc/shush-private").exists())
+
+    def test_atomic_secret_write_preserves_original_on_failure(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "secret"
+            private_file(path, "original")
+            with patch("configure_network.os.replace", side_effect=OSError("injected")):
+                with self.assertRaises(OSError):
+                    private_file(path, "replacement")
+            self.assertEqual(path.read_text(), "original")
+            self.assertEqual(list(Path(folder).iterdir()), [path])
+            private_file(path, "replacement")
+            self.assertEqual(path.read_text(), "replacement")
+            self.assertEqual(path.stat().st_mode & 0o777, 0o600)
+
+    def test_install_copy_failure_preserves_existing_configuration(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder) / "target"
+            source = Path(folder) / "source"
+            for name in ("wpa_supplicant.conf", "mqtt/mosquitto_sub", "mqtt/mosquitto_pub", "mqtt/topic"):
+                p = source / name
+                p.parent.mkdir(parents=True, exist_ok=True)
+                p.write_text("original")
+            post_build.install_private_network(root, source)
+            unit = root / "etc/systemd/system/shush.service.d/mqtt.conf"
+            old_unit = unit.read_bytes()
+            with patch.object(post_build.shutil, "copyfile", side_effect=OSError("injected")):
+                with self.assertRaises(OSError):
+                    post_build.install_private_network(root, source)
+            self.assertEqual((root / "etc/shush-private/wpa_supplicant.conf").read_text(), "original")
+            self.assertEqual(unit.read_bytes(), old_unit)
+            with patch.object(post_build.os, "replace", side_effect=OSError("unit install failure")):
+                with self.assertRaises(OSError):
+                    post_build.install_private_network(root, source)
+            self.assertEqual((root / "etc/shush-private/wpa_supplicant.conf").read_text(), "original")
+            self.assertEqual(unit.read_bytes(), old_unit)
+            (source / "wpa_supplicant.conf").write_text("replacement")
+            post_build.install_private_network(root, source)
+            self.assertEqual((root / "etc/shush-private/wpa_supplicant.conf").read_text(), "replacement")
+            backups = list(Path(folder).glob(".shush-private-backup-*/private/wpa_supplicant.conf"))
+            self.assertEqual(len(backups), 1)
+            self.assertEqual(backups[0].read_text(), "original")
 
 
 if __name__ == "__main__":

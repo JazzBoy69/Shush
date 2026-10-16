@@ -8,12 +8,37 @@ import subprocess
 import tempfile
 import unittest
 
-from verify_appliance import media_schedules, partitions
+from verify_appliance import EARLY_FIRMWARE, media_schedules, partitions, validate_fstab, validate_early_firmware
 
 PROJECT = Path(__file__).resolve().parents[1]
 
 
 class ApplianceTests(unittest.TestCase):
+    def test_early_firmware_must_be_in_kernel_not_only_in_root_filesystem(self):
+        files = {name: ("fixture:" + name).encode() for name in EARLY_FIRMWARE}
+        config = 'CONFIG_EXTRA_FIRMWARE="' + " ".join(EARLY_FIRMWARE) + '"\n'
+        image = b"kernel" + b"\0".join(files.values())
+        validate_early_firmware(config, image, files.__getitem__)
+        for name in EARLY_FIRMWARE:
+            with self.subTest(name=name), self.assertRaises(RuntimeError):
+                validate_early_firmware(config.replace(name, ""), image, files.__getitem__)
+            with self.subTest(missing_bytes=name), self.assertRaises(RuntimeError):
+                validate_early_firmware(config, image.replace(files[name], b""), files.__getitem__)
+
+    def test_fstab_requires_valid_mount_points_and_actual_storage_limits(self):
+        text = (PROJECT / "deploy/appliance/board/rootfs-overlay/etc/fstab").read_text()
+        validate_fstab(text)
+        for broken in (
+            text.replace("tmpfs /tmp tmpfs", "/tmp tmpfs tmpfs"),
+            text.replace("size=32M", "size=50%"),
+            text.replace("size=32M", "size=32M,size=50%"),
+            text.replace("ro,noload,noatime", "rw,noload,noatime"),
+            text.replace("tmpfs /tmp tmpfs", "/dev/mmcblk0p3 /tmp ext4"),
+            text + "tmpfs /tmp tmpfs size=32M 0 0\n",
+        ):
+            with self.subTest(broken=broken), self.assertRaises(RuntimeError):
+                validate_fstab(broken)
+
     def test_playback_has_no_ftp_or_upload_dependency(self):
         overlay = PROJECT / "deploy/appliance/board/rootfs-overlay"
         app = (
@@ -179,7 +204,7 @@ class ApplianceTests(unittest.TestCase):
             if not control.exists():
                 control.symlink_to("/dev/null")
 
-    def probe(self, root):
+    def probe(self, root, mode="--probe"):
         helper = (
             PROJECT / "deploy/appliance/board/rootfs-overlay/usr/libexec/shush-start"
         )
@@ -190,7 +215,7 @@ class ApplianceTests(unittest.TestCase):
         sleep.write_text("#!/bin/sh\nexit 0\n")
         sleep.chmod(0o755)
         return subprocess.run(
-            ["/bin/sh", str(helper), "--probe"],
+            ["/bin/sh", str(helper), mode],
             env={
                 "INPUT_DEVICE": "auto",
                 "AUDIO_DEVICE": "auto",
@@ -218,6 +243,15 @@ class ApplianceTests(unittest.TestCase):
                     result.stdout.splitlines(),
                     [str(root / "dev/input" / event), f"plughw:CARD={card},DEV={pcm}"],
                 )
+
+    def test_clock_error_discovery_needs_speakers_but_not_receiver(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            self.device_fixture(root, "sound", "pcmC2D0p", "snd-usb-audio", "speakers")
+            result = self.probe(root, "--probe-clock-error")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("plughw:CARD=2,DEV=0", result.stdout)
+            self.assertNotEqual(self.probe(root).returncode, 0)
 
     def test_discovery_refuses_missing_or_ambiguous_hardware(self):
         for extra in (

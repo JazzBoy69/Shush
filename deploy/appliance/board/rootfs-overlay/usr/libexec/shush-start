@@ -6,6 +6,8 @@ sysfs=${SHUSH_SYSFS:-/sys}
 devfs=${SHUSH_DEVFS:-/dev}
 input=${INPUT_DEVICE-auto}
 audio=${AUDIO_DEVICE-auto}
+command=run
+case "${1:-}" in --clock-error|--probe-clock-error) command=clock-error ;; esac
 case "$input" in
     auto|/dev/input/by-id/*-event*) ;;
     *) echo "shush: INPUT_DEVICE must be auto or a persistent by-id event path" >&2; exit 1 ;;
@@ -41,7 +43,7 @@ while [ "$remaining" -gt 0 ]; do
     selected_audio=$audio
     playback_node=
     control_node=
-    if [ "$input" = auto ]; then
+    if [ "$input" = auto ] && [ "$command" = run ]; then
         selected_input=
         for event in "$sysfs"/class/input/event*; do
             [ -e "$event/device" ] || continue
@@ -82,12 +84,15 @@ while [ "$remaining" -gt 0 ]; do
         done
     fi
     # udev may still be assigning audio/input permissions after node creation.
-    if [ -c "$selected_input" ] && [ -r "$selected_input" ] &&
+    if { [ "$command" = clock-error ] || { [ -c "$selected_input" ] && [ -r "$selected_input" ]; }; } &&
        [ -c "$playback_node" ] && [ -r "$playback_node" ] && [ -w "$playback_node" ] &&
        [ -c "$control_node" ] && [ -r "$control_node" ] && [ -w "$control_node" ]; then
-        if [ "${1:-}" = --probe ]; then
+        if [ "${1:-}" = --probe ] || [ "${1:-}" = --probe-clock-error ]; then
             printf '%s\n%s\n' "$selected_input" "$selected_audio"
             exit 0
+        fi
+        if [ "$command" = clock-error ]; then
+            exec /opt/shush/bin/shush clock-error --root /opt/shush --audio "$selected_audio"
         fi
         exec /opt/shush/bin/shush run --root /opt/shush \
             --settings /var/lib/shush/settings.json \
